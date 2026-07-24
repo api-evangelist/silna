@@ -1,0 +1,372 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1PatientDiagnosisResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1PatientDiagnosisResource
+paths:
+  /public/v1/patient-diagnoses/{patient_diagnosis_id}:
+    get:
+      summary: Get Patient Diagnosis
+      responses:
+        '200':
+          description: "\n    Patient Diagnosis Response Schema\n    "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PatientDiagnosis'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: patient_diagnosis_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PatientDiagnosisResource.get
+      tags:
+      - V1PatientDiagnosisResource
+      x-folder: public_api
+  /public/v1/patient-diagnoses/:
+    post:
+      summary: Create Patient Diagnosis
+      responses:
+        '201':
+          description: "\n    Patient Diagnosis Create Response Schema\n    "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PatientDiagnosisCreateResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters: []
+      operationId: V1PatientDiagnosisResource.post
+      tags:
+      - V1PatientDiagnosisResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1PatientDiagnosisCreate'
+        description: "\n    Patient Diagnosis Create Schema\n    "
+components:
+  schemas:
+    V1DiagnosisCode:
+      description: Diagnosis Code Schema
+      properties:
+        code:
+          description: An ICD_10 Diagnosis Code
+          title: Code
+          type: string
+          example: F84.0
+        standard:
+          description: The standard that the diagnosis code is based on. We only support ICD_10
+          title: Standard
+          type: string
+          example: ICD_10
+        description:
+          description: Silna's description for the ICD_10 diagnosis code
+          title: Description
+          type: string
+      required:
+      - code
+      - standard
+      - description
+      title: V1DiagnosisCode
+      type: object
+      x-folder: public_api
+    V1PatientDiagnosisCreateResponse:
+      description: Patient Diagnosis Create Response Schema
+      properties:
+        patient_diagnosis_id:
+          format: uuid
+          title: Patient Diagnosis Id
+          type: string
+      required:
+      - patient_diagnosis_id
+      title: V1PatientDiagnosisCreateResponse
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1PatientDiagnosis:
+      description: Patient Diagnosis Response Schema
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+        patient_id:
+          format: uuid
+          title: Patient Id
+          type: string
+        diagnosis_code:
+          $ref: '#/components/schemas/V1DiagnosisCode'
+      required:
+      - id
+      - patient_id
+      - diagnosis_code
+      title: V1PatientDiagnosis
+      type: object
+      x-folder: public_api
+    V1PatientDiagnosisCreate:
+      description: Patient Diagnosis Create Schema
+      properties:
+        patient_id:
+          format: uuid
+          title: Patient Id
+          type: string
+        diagnosis_code:
+          description: An ICD_10 Diagnosis Code
+          title: Diagnosis Code
+          type: string
+          example: F84.0
+      required:
+      - patient_id
+      - diagnosis_code
+      title: V1PatientDiagnosisCreate
+      type: object
+      x-folder: public_api
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

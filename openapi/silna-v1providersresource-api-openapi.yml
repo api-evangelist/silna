@@ -1,0 +1,204 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1ProvidersResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1ProvidersResource
+paths:
+  /public/v1/providers/:
+    get:
+      summary: Get Providers
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeysetPaginatedResponse__V1Provider'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: query
+        name: starting_after
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: ending_before
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: source_id
+        required: false
+        schema:
+          type: string
+      operationId: V1ProvidersResource.get
+      tags:
+      - V1ProvidersResource
+      x-folder: public_api
+components:
+  schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    KeysetPaginatedResponse__V1Provider:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1Provider'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          nullable: true
+          format: uuid
+          type: string
+        last_id:
+          default: null
+          title: Last Id
+          nullable: true
+          format: uuid
+          type: string
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1Provider]
+      type: object
+      x-folder: null
+    V1Provider:
+      properties:
+        id:
+          description: The provider's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+        legal_name:
+          description: Legal name of the provider
+          title: Legal Name
+          type: string
+        dba:
+          title: Dba
+          type: string
+        source_id:
+          default: null
+          description: An API client's (internal) identifier for a provider
+          title: Source Id
+          nullable: true
+          type: string
+          example: my-unique-id-123
+        silna_url:
+          description: URL to view this provider in the Silna Health app
+          title: Silna Url
+          type: string
+      required:
+      - id
+      - legal_name
+      - dba
+      - silna_url
+      title: V1Provider
+      type: object
+      x-folder: public_api
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

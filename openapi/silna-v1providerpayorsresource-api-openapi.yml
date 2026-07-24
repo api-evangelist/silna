@@ -1,0 +1,301 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1ProviderPayorsResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1ProviderPayorsResource
+paths:
+  /public/v1/provider-payors/:
+    get:
+      summary: Get Provider Payors
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeysetPaginatedResponse__V1ProviderPayor'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: query
+        name: starting_after
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: ending_before
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: identifier
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: standard
+        required: false
+        schema:
+          $ref: '#/components/schemas/ProviderPayorStandard'
+      - in: query
+        name: payor_type
+        required: false
+        schema:
+          $ref: '#/components/schemas/InsuranceType'
+      - in: query
+        name: only_contracted
+        required: false
+        schema:
+          type: boolean
+      operationId: V1ProviderPayorsResource.get
+      tags:
+      - V1ProviderPayorsResource
+      x-folder: public_api
+components:
+  schemas:
+    V1ProviderPayorAlternateIdentifier:
+      properties:
+        identifier:
+          description: The alternate/provider supplied identifier
+          title: Identifier
+          type: string
+          example: AETNA_INSC
+        standard:
+          $ref: '#/components/schemas/ProviderPayorStandard'
+          description: The standard of the alternate identifier
+          example: PROVIDER_IDENTIFIER
+        payor_types:
+          description: The types of insurances that this alternate identifier is associated with
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Payor Types
+          type: array
+          example:
+          - COMMERCIAL
+          - MEDICARE
+      required:
+      - identifier
+      - standard
+      - payor_types
+      title: V1ProviderPayorAlternateIdentifier
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    KeysetPaginatedResponse__V1ProviderPayor:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1ProviderPayor'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          nullable: true
+          format: uuid
+          type: string
+        last_id:
+          default: null
+          title: Last Id
+          nullable: true
+          format: uuid
+          type: string
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1ProviderPayor]
+      type: object
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1ProviderPayor:
+      properties:
+        id:
+          description: The Silna Identifier for the payor
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: The name of the payor
+          title: Name
+          type: string
+          example: AETNA
+        alternate_identifiers:
+          description: The alternate identifiers and provider supplied identifiers associated with the payor
+          items:
+            $ref: '#/components/schemas/V1ProviderPayorAlternateIdentifier'
+          title: Alternate Identifiers
+          type: array
+        insurance_types:
+          description: The insurance types connected to the payor
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Insurance Types
+          type: array
+          example:
+          - - COMMERCIAL
+            - MEDICARE
+      required:
+      - id
+      - name
+      - alternate_identifiers
+      - insurance_types
+      title: V1ProviderPayor
+      type: object
+      x-folder: public_api
+    ProviderPayorStandard:
+      type: string
+      enum:
+      - AVAILITY
+      - WAYSTAR
+      - CHANGE_HEALTHCARE
+      - OFFICE_ALLY
+      - CLAIM_MD
+      - STEDI
+      - PROVIDER_IDENTIFIER
+      x-folder: public_api
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

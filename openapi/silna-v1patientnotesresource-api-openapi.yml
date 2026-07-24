@@ -1,0 +1,413 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1PatientNotesResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1PatientNotesResource
+paths:
+  /public/v1/patients/{patient_id}/notes:
+    get:
+      summary: Get Patient Notes
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeysetPaginatedResponse__V1PatientNote'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: patient_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: starting_after
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: ending_before
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+      operationId: V1PatientNotesResource.get
+      tags:
+      - V1PatientNotesResource
+      x-folder: public_api
+    post:
+      summary: Create Patient Note
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PatientNoteCreateResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: patient_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PatientNotesResource.post
+      tags:
+      - V1PatientNotesResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1PatientNoteCreate'
+        description: ''
+components:
+  schemas:
+    V1PatientNote:
+      properties:
+        id:
+          description: Patient note UUID
+          format: uuid
+          title: Id
+          type: string
+        patient_id:
+          description: Patient UUID
+          format: uuid
+          title: Patient Id
+          type: string
+        note:
+          default: null
+          description: The note text
+          title: Note
+          nullable: true
+          type: string
+        created_at:
+          description: When the note was created
+          format: date-time
+          title: Created At
+          type: string
+        file_id:
+          default: null
+          description: UUID of the attached file. Use GET /public/v1/files/<id> to retrieve file details.
+          title: File Id
+          nullable: true
+          format: uuid
+          type: string
+      required:
+      - id
+      - patient_id
+      - created_at
+      title: V1PatientNote
+      type: object
+      x-folder: public_api
+    V1PatientNoteCreate:
+      properties:
+        note:
+          default: null
+          description: The note text. At least one of note or file_id must be provided.
+          title: Note
+          nullable: true
+          type: string
+        file_id:
+          default: null
+          description: UUID of an uploaded file to attach to this note. At least one of note or file_id must be provided.
+          title: File Id
+          nullable: true
+          format: uuid
+          type: string
+      title: V1PatientNoteCreate
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PatientNoteCreateResponse:
+      properties:
+        patient_note_id:
+          format: uuid
+          title: Patient Note Id
+          type: string
+      required:
+      - patient_note_id
+      title: V1PatientNoteCreateResponse
+      type: object
+      x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    KeysetPaginatedResponse__V1PatientNote:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1PatientNote'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          nullable: true
+          format: uuid
+          type: string
+        last_id:
+          default: null
+          title: Last Id
+          nullable: true
+          format: uuid
+          type: string
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1PatientNote]
+      type: object
+      x-folder: null
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

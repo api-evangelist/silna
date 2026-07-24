@@ -1,0 +1,834 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1BenefitsCheckResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1BenefitsCheckResource
+paths:
+  /public/v1/benefits-checks/{benefits_check_id}:
+    get:
+      summary: Get Benefits Check V1
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1BenefitsCheckResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: benefits_check_id
+        required: true
+        schema:
+          type: string
+      operationId: V1BenefitsCheckResource.get
+      tags:
+      - V1BenefitsCheckResource
+      x-folder: public_api
+  /public/v1/benefits-checks/:
+    post:
+      summary: Create Benefits Check
+      responses:
+        '201':
+          description: "\n    Benefits Check Create Response Schema\n    "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1BenefitsCheckCreateResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: header
+        name: idempotency-key
+        required: false
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description: Unique key to prevent duplicate requests. We support keys up to 255 characters.
+        example: 550e8400-e29b-41d4-a716-446655440000
+      operationId: V1BenefitsCheckResource.post
+      tags:
+      - V1BenefitsCheckResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1BenefitsCheckCreateBody'
+        description: "\n    Benefits Check Create Request Schema\n    "
+components:
+  schemas:
+    BenefitsCheckEligibilityStatus:
+      type: string
+      enum:
+      - ELIGIBLE
+      - INELIGIBLE
+      x-folder: benefit_check
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicSpecialty:
+      type: string
+      enum:
+      - PHYSICAL_THERAPY
+      - ABA_THERAPY
+      - SPEECH_THERAPY
+      - OCCUPATIONAL_THERAPY
+      - PSYCHOLOGICAL_TESTING
+      - HOME_HEALTH_CARE
+      - HOSPICE
+      - CARDIAC_REHABILITATION
+      - INTENSIVE_CARDIAC_REHABILITATION
+      - MENTAL_HEALTH
+      - PRINCIPAL_ILLNESS_NAVIGATION
+      - PRINCIPAL_CARE_MANAGEMENT
+      - ADVANCED_PRIMARY_CARE_MODELS
+      - PREVENTATIVE_HEALTH
+      - PARTIAL_HOSPITALIZATION_PROGRAM
+      - INTENSIVE_OUTPATIENT_PROGRAM
+      - INTERVENTIONAL_RADIOLOGY
+      - VASCULAR_SURGERY
+      - INTERVENTIONAL_CARDIOLOGY
+      - ORTHOPEDICS
+      - CHIROPRACTIC
+      - GYNECOLOGY
+      - LONG_TERM_CARE
+      - NUTRITIONAL_COUNSELING
+      - PHYSICAL_MEDICINE
+      - PULMONARY_REHABILITATION
+      - INJECTABLE_SPECIALTY_MEDICATIONS
+      - ALLERGY_TESTING
+      - SKILLED_NURSING
+      - RADIOLOGY
+      - OTOLARYNGOLOGY
+      - DURABLE_MEDICAL_EQUIPMENT
+      - DERMATOLOGY
+      - PROFESSIONAL_OFFICE_VISIT
+      - PSYCHIATRY
+      x-folder: specialty
+    V1BenefitsCheckSpecialtyData:
+      description: Benefits Check Specialty Data Response Schema
+      properties:
+        specialty:
+          $ref: '#/components/schemas/PublicSpecialty'
+          description: Specialty
+        auth_required:
+          description: Whether authorization is required
+          title: Auth Required
+          nullable: true
+          type: boolean
+        referral_required:
+          description: Whether referral is required
+          title: Referral Required
+          nullable: true
+          type: boolean
+        referral_info:
+          description: Referral information
+          title: Referral Info
+          nullable: true
+          type: string
+        requirement_time:
+          description: When authorization is required
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckAuthRequiredTime'
+        requirement_quantity:
+          description: Authorization requirement quantity
+          title: Requirement Quantity
+          nullable: true
+          type: integer
+        requirement_unit:
+          description: Authorization requirement unit
+          nullable: true
+          $ref: '#/components/schemas/UnitType'
+        auth_company:
+          description: Authorization company
+          title: Auth Company
+          nullable: true
+          type: string
+        has_visit_limit:
+          description: Whether visit limit exists
+          title: Has Visit Limit
+          nullable: true
+          type: boolean
+        visit_limit_quantity:
+          description: Visit limit quantity
+          title: Visit Limit Quantity
+          nullable: true
+          type: integer
+        visits_used:
+          description: Number of visits used
+          title: Visits Used
+          nullable: true
+          type: integer
+        copay_amount:
+          description: Copay amount
+          title: Copay Amount
+          nullable: true
+          type: string
+        coinsurance_percentage:
+          description: Coinsurance percentage
+          title: Coinsurance Percentage
+          nullable: true
+          type: string
+        individual_deductible_amount:
+          description: Individual deductible amount
+          title: Individual Deductible Amount
+          nullable: true
+          type: string
+        individual_deductible_amount_met:
+          description: Individual deductible amount met
+          title: Individual Deductible Amount Met
+          nullable: true
+          type: string
+        family_deductible_amount:
+          description: Family deductible amount
+          title: Family Deductible Amount
+          nullable: true
+          type: string
+        family_deductible_amount_met:
+          description: Family deductible amount met
+          title: Family Deductible Amount Met
+          nullable: true
+          type: string
+        individual_out_of_pocket_amount:
+          description: Individual out of pocket amount
+          title: Individual Out Of Pocket Amount
+          nullable: true
+          type: string
+        individual_out_of_pocket_amount_met:
+          description: Individual out of pocket amount met
+          title: Individual Out Of Pocket Amount Met
+          nullable: true
+          type: string
+        family_out_of_pocket_amount:
+          description: Family out of pocket amount
+          title: Family Out Of Pocket Amount
+          nullable: true
+          type: string
+        family_out_of_pocket_amount_met:
+          description: Family out of pocket amount met
+          title: Family Out Of Pocket Amount Met
+          nullable: true
+          type: string
+        medicare_dollars_used:
+          description: Medicare dollars used
+          title: Medicare Dollars Used
+          nullable: true
+          type: string
+        reimbursement_rate:
+          description: Reimbursement rate
+          title: Reimbursement Rate
+          nullable: true
+          type: string
+        exclusions_and_limitations:
+          description: Exclusions and limitations
+          title: Exclusions And Limitations
+          nullable: true
+          type: string
+        patient_cost_estimates:
+          description: List of patient cost estimates
+          items:
+            $ref: '#/components/schemas/V1PatientCostOfServiceEstimate'
+          title: Patient Cost Estimates
+          type: array
+      required:
+      - specialty
+      - auth_required
+      - referral_required
+      - referral_info
+      - requirement_time
+      - requirement_quantity
+      - requirement_unit
+      - auth_company
+      - has_visit_limit
+      - visit_limit_quantity
+      - visits_used
+      - copay_amount
+      - coinsurance_percentage
+      - individual_deductible_amount
+      - individual_deductible_amount_met
+      - family_deductible_amount
+      - family_deductible_amount_met
+      - individual_out_of_pocket_amount
+      - individual_out_of_pocket_amount_met
+      - family_out_of_pocket_amount
+      - family_out_of_pocket_amount_met
+      - medicare_dollars_used
+      - reimbursement_rate
+      - exclusions_and_limitations
+      title: V1BenefitsCheckSpecialtyData
+      type: object
+      x-folder: public_api
+    UnitType:
+      type: string
+      enum:
+      - VISITS
+      - CPT_UNITS
+      x-folder: units
+    V1BenefitsCheckCreateResponse:
+      description: Benefits Check Create Response Schema
+      properties:
+        benefits_check_ids:
+          description: List of created benefits check IDs
+          items:
+            format: uuid
+            type: string
+          title: Benefits Check Ids
+          type: array
+      required:
+      - benefits_check_ids
+      title: V1BenefitsCheckCreateResponse
+      type: object
+      x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    V1BenefitsCheckCreateBody:
+      description: Benefits Check Create Request Schema
+      properties:
+        patient_plan_id:
+          description: Patient Plan ID
+          format: uuid
+          title: Patient Plan Id
+          type: string
+        specialties:
+          description: List of specialties to create benefits check for
+          items:
+            $ref: '#/components/schemas/PublicSpecialty'
+          title: Specialties
+          type: array
+          example:
+          - PHYSICAL_THERAPY
+        template_id:
+          default: null
+          description: Benefits Check Template ID
+          title: Template Id
+          nullable: true
+          format: uuid
+          type: string
+        network_status_override:
+          default: null
+          description: Override the network status for this benefits check. If provided, the benefits check will use this network status instead of determining it automatically.
+          nullable: true
+          $ref: '#/components/schemas/NetworkStatus'
+      required:
+      - patient_plan_id
+      - specialties
+      title: V1BenefitsCheckCreateBody
+      type: object
+      x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    BenefitsCheckStatusPublic:
+      type: string
+      enum:
+      - REQUESTED
+      - AWAITING_SILNA
+      - AWAITING_PROVIDER
+      - COMPLETE
+      - WITHDRAWN
+      x-folder: benefit_check
+    RateDuration:
+      type: string
+      enum:
+      - PER_VISIT
+      - PER_HOUR
+      - PER_DAY
+      - PER_SESSION
+      - PER_MONTH
+      - PER_WEEK
+      - PER_PHASE
+      - NONE_HIDDEN
+      x-folder: provider
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+    BenefitsCheckAuthRequiredTime:
+      type: string
+      enum:
+      - BEFORE_SERVICES
+      - AFTER_SERVICES
+      x-folder: benefit_check
+    V1PatientCostOfServiceEstimate:
+      properties:
+        cost_estimate_name:
+          description: Name of the cost estimate
+          title: Cost Estimate Name
+          type: string
+        cost_of_service:
+          description: Cost of service
+          title: Cost Of Service
+          type: string
+        cost_of_service_duration:
+          default: null
+          description: Duration of the cost estimate (e.g., PER_VISIT, PER_DAY)
+          nullable: true
+          $ref: '#/components/schemas/RateDuration'
+      required:
+      - cost_estimate_name
+      - cost_of_service
+      title: V1PatientCostOfServiceEstimate
+      type: object
+      x-folder: public_api
+    NetworkStatus:
+      type: string
+      enum:
+      - IN_NETWORK
+      - OUT_OF_NETWORK
+      x-folder: payor_entity
+    BenefitsCheckPatientInformation:
+      description: Patient Information Schema - shared between V1 and V2
+      properties:
+        subscriber_first_name:
+          default: null
+          description: Subscriber first name
+          title: Subscriber First Name
+          nullable: true
+          type: string
+        subscriber_last_name:
+          default: null
+          description: Subscriber last name
+          title: Subscriber Last Name
+          nullable: true
+          type: string
+        subscriber_date_of_birth:
+          default: null
+          description: Subscriber date of birth
+          title: Subscriber Date Of Birth
+          nullable: true
+          format: date
+          type: string
+        subscriber_address:
+          default: null
+          description: Subscriber address
+          title: Subscriber Address
+          nullable: true
+          type: string
+        subscriber_state:
+          default: null
+          description: Subscriber state
+          title: Subscriber State
+          nullable: true
+          type: string
+        subscriber_city:
+          default: null
+          description: Subscriber city
+          title: Subscriber City
+          nullable: true
+          type: string
+        subscriber_zip_code:
+          default: null
+          description: Subscriber zip code
+          title: Subscriber Zip Code
+          nullable: true
+          type: string
+        subscriber_patient_relationship:
+          default: null
+          description: Subscriber Patient relationship
+          title: Subscriber Patient Relationship
+          nullable: true
+          type: string
+      title: BenefitsCheckPatientInformation
+      type: object
+      x-folder: public_api
+    BenefitsCheckOtherPayorInformation:
+      description: Other Payor Information Schema - shared between V1 and V2
+      properties:
+        payor_name:
+          default: null
+          description: Payor name
+          title: Payor Name
+          nullable: true
+          type: string
+        plan_order_number:
+          default: null
+          description: Plan order number
+          title: Plan Order Number
+          nullable: true
+          type: integer
+      title: BenefitsCheckOtherPayorInformation
+      type: object
+      x-folder: public_api
+    V1BenefitsCheckResponse:
+      properties:
+        id:
+          description: Benefits Check ID
+          format: uuid
+          title: Id
+          type: string
+        status:
+          $ref: '#/components/schemas/BenefitsCheckStatusPublic'
+          description: Benefits Check Status
+        eligibility_status:
+          default: null
+          description: Eligibility Status
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckEligibilityStatus'
+        ineligibility_reason:
+          default: null
+          description: Reason for ineligibility
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckIneligibilityReason'
+        reference:
+          default: null
+          description: Reference number
+          title: Reference
+          nullable: true
+          type: string
+        note:
+          default: null
+          description: Notes
+          title: Note
+          nullable: true
+          type: string
+        insurance_type:
+          default: null
+          description: Insurance type
+          nullable: true
+          $ref: '#/components/schemas/InsuranceType'
+        date_verified:
+          default: null
+          description: Date verified
+          title: Date Verified
+          nullable: true
+          format: date-time
+          type: string
+        patient_plan_id:
+          description: Patient Plan ID
+          format: uuid
+          title: Patient Plan Id
+          type: string
+        patient_id:
+          description: Patient ID
+          format: uuid
+          title: Patient Id
+          type: string
+        provider_id:
+          description: Provider ID
+          format: uuid
+          title: Provider Id
+          type: string
+        network_status:
+          default: null
+          description: Network status
+          nullable: true
+          $ref: '#/components/schemas/NetworkStatus'
+        plan_type:
+          default: null
+          description: Plan type
+          title: Plan Type
+          nullable: true
+          type: string
+        plan_start_date:
+          default: null
+          description: Plan start date
+          title: Plan Start Date
+          nullable: true
+          format: date
+          type: string
+        plan_end_date:
+          default: null
+          description: Plan end date
+          title: Plan End Date
+          nullable: true
+          format: date
+          type: string
+        group_number:
+          default: null
+          description: Plan group ID
+          title: Group Number
+          nullable: true
+          type: string
+        patient_information:
+          default: null
+          description: Patient information
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckPatientInformation'
+        other_payor_information:
+          default: null
+          description: Other payor information
+          title: Other Payor Information
+          nullable: true
+          items:
+            $ref: '#/components/schemas/BenefitsCheckOtherPayorInformation'
+          type: array
+        other_payor_entity_name:
+          default: null
+          description: Name of the other insurance payor entity when ineligibility reason is patient has other insurance
+          title: Other Payor Entity Name
+          nullable: true
+          type: string
+        independent_physician_association_name:
+          default: null
+          description: Name of the Independent Physician Association (IPA) managing the provider network for the patient's plan
+          title: Independent Physician Association Name
+          nullable: true
+          type: string
+        created_at:
+          description: Created at timestamp
+          format: date-time
+          title: Created At
+          type: string
+        silna_url:
+          default: null
+          description: Silna benefits check URL
+          title: Silna Url
+          nullable: true
+          type: string
+        specialty_specific_data:
+          description: Specialty specific benefits data
+          items:
+            $ref: '#/components/schemas/V1BenefitsCheckSpecialtyData'
+          title: Specialty Specific Data
+          type: array
+      required:
+      - id
+      - status
+      - patient_plan_id
+      - patient_id
+      - provider_id
+      - created_at
+      - specialty_specific_data
+      title: V1BenefitsCheckResponse
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    BenefitsCheckIneligibilityReason:
+      type: string
+      enum:
+      - PLAN_INACTIVE
+      - PATIENT_HAS_OUT_OF_NETWORK_IPA
+      - PLAN_HAS_TERMINATED
+      - MBI_TERMINATED
+      - NO_MEDICARE_PART_B_COVERAGE
+      - MEMBER_NUMBER_MISMATCH
+      - SPECIALTY_NOT_COVERED
+      - PATIENT_HAS_OTHER_INSURANCE
+      - NO_OUT_OF_NETWORK_BENEFITS
+      - HAS_ACTIVE_HOME_PLAN
+      - ENROLLED_IN_HOSPICE
+      - PROVIDER_PLACE_OF_SERVICE_NOT_COVERED
+      - PATIENT_DECEASED
+      x-folder: benefit_check
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

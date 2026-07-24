@@ -1,0 +1,1539 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1PriorAuthorizationResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1PriorAuthorizationResource
+paths:
+  /public/v1/prior-authorizations/{prior_authorization_id}:
+    get:
+      summary: Get Prior Authorization
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PriorAuthorization'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: prior_authorization_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: with_requirements
+        required: false
+        schema:
+          type: boolean
+      operationId: V1PriorAuthorizationResource.get
+      tags:
+      - V1PriorAuthorizationResource
+      x-folder: public_api
+    patch:
+      summary: Update Prior Authorization
+      responses:
+        '204':
+          description: OK
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: prior_authorization_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PriorAuthorizationResource.patch
+      tags:
+      - V1PriorAuthorizationResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1PriorAuthorizationPatch'
+        description: ''
+    delete:
+      summary: Abort Prior Authorization
+      responses:
+        '204':
+          description: OK
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: prior_authorization_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PriorAuthorizationResource.delete
+      tags:
+      - V1PriorAuthorizationResource
+      x-folder: public_api
+  /public/v1/prior-authorizations/:
+    post:
+      summary: Create Prior Authorization
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PriorAuthorizationCreateResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: header
+        name: idempotency-key
+        required: false
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description: Unique key to prevent duplicate requests. We support keys up to 255 characters.
+        example: 550e8400-e29b-41d4-a716-446655440000
+      operationId: V1PriorAuthorizationResource.post
+      tags:
+      - V1PriorAuthorizationResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1PriorAuthorizationCreate'
+        description: ''
+components:
+  schemas:
+    PriorAuthorizationUnit:
+      type: string
+      enum:
+      - VISITS
+      - CPT_UNITS
+      - HOURS
+      - DAYS
+      x-folder: prior_authorization
+    V1DocumentsRequirement:
+      properties:
+        required:
+          description: Whether documents are required
+          title: Required
+          type: boolean
+        items:
+          description: List of document requirements
+          items:
+            $ref: '#/components/schemas/V1DocumentRequirement'
+          title: Items
+          type: array
+      required:
+      - required
+      title: V1DocumentsRequirement
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PriorAuthorizationUploadDocumentType:
+      type: string
+      enum:
+      - AUTHORIZATION_FORM
+      - PROGRESS_NOTE
+      - DIAGNOSIS_REPORT
+      - REFERRAL
+      - ASSESSMENT_EVALUATION
+      - CANCELLATION_LETTER
+      - TREATMENT_PLAN_PLAN_OF_CARE
+      - ATTENDANCE_LOGS
+      - INDIVIDUALIZED_EDUCATION_PROGRAM
+      - CHANGE_OF_PROVIDER_FORM
+      - TELEHEALTH_ATTESTATION
+      - ORIGINAL_AUTHORIZATION_APPROVAL_LETTER
+      - ABAS
+      - VINELAND
+      - SRS_2
+      - PDDBI
+      - PSI_SIPA
+      x-folder: prior_authorization
+    PublicSpecialty:
+      type: string
+      enum:
+      - PHYSICAL_THERAPY
+      - ABA_THERAPY
+      - SPEECH_THERAPY
+      - OCCUPATIONAL_THERAPY
+      - PSYCHOLOGICAL_TESTING
+      - HOME_HEALTH_CARE
+      - HOSPICE
+      - CARDIAC_REHABILITATION
+      - INTENSIVE_CARDIAC_REHABILITATION
+      - MENTAL_HEALTH
+      - PRINCIPAL_ILLNESS_NAVIGATION
+      - PRINCIPAL_CARE_MANAGEMENT
+      - ADVANCED_PRIMARY_CARE_MODELS
+      - PREVENTATIVE_HEALTH
+      - PARTIAL_HOSPITALIZATION_PROGRAM
+      - INTENSIVE_OUTPATIENT_PROGRAM
+      - INTERVENTIONAL_RADIOLOGY
+      - VASCULAR_SURGERY
+      - INTERVENTIONAL_CARDIOLOGY
+      - ORTHOPEDICS
+      - CHIROPRACTIC
+      - GYNECOLOGY
+      - LONG_TERM_CARE
+      - NUTRITIONAL_COUNSELING
+      - PHYSICAL_MEDICINE
+      - PULMONARY_REHABILITATION
+      - INJECTABLE_SPECIALTY_MEDICATIONS
+      - ALLERGY_TESTING
+      - SKILLED_NURSING
+      - RADIOLOGY
+      - OTOLARYNGOLOGY
+      - DURABLE_MEDICAL_EQUIPMENT
+      - DERMATOLOGY
+      - PROFESSIONAL_OFFICE_VISIT
+      - PSYCHIATRY
+      x-folder: specialty
+    V1DocumentRequirement:
+      properties:
+        document_type:
+          $ref: '#/components/schemas/PriorAuthorizationUploadDocumentType'
+          description: Type of document required
+        required:
+          description: Whether this document is required
+          title: Required
+          type: boolean
+        document_intelligence:
+          $ref: '#/components/schemas/V1DocumentIntelligence'
+          description: Document intelligence information
+      required:
+      - document_type
+      - required
+      - document_intelligence
+      title: V1DocumentRequirement
+      type: object
+      x-folder: public_api
+    TreatmentCodeStandard:
+      type: string
+      enum:
+      - CPT
+      - HCPCS
+      - CALIFORNIA_REGIONAL_CENTER
+      - ICD_10
+      x-folder: codes
+    UnitTimeFrame:
+      type: string
+      enum:
+      - DAILY
+      - WEEKLY
+      - MONTHLY
+      - AUTHORIZATION_PERIOD
+      - TOTAL
+      - SIX_MONTHS
+      - YEARLY
+      x-folder: prior_authorization
+    PriorAuthorizationApprovalDocumentType:
+      type: string
+      enum:
+      - APPROVAL_LETTER
+      x-folder: prior_authorization
+    V1PriorAuthorizationPatch:
+      properties:
+        requested_treatment_codes:
+          default: null
+          description: List of treatment codes to update
+          title: Requested Treatment Codes
+          nullable: true
+          items:
+            $ref: '#/components/schemas/V1RequestedTreatmentCodePatch'
+          type: array
+        documents:
+          default: null
+          description: List of documents to update
+          title: Documents
+          nullable: true
+          items:
+            $ref: '#/components/schemas/V1DocumentPatch'
+          type: array
+        document_intelligence_configurations:
+          default: null
+          description: Document intelligence configurations for validation overrides. By default, document validation is enabled if the document type supports it and document validation is enabled on your account
+          title: Document Intelligence Configurations
+          nullable: true
+          items:
+            $ref: '#/components/schemas/V1DocumentIntelligenceConfiguration'
+          type: array
+        clinician:
+          default: null
+          description: Clinician information
+          nullable: true
+          $ref: '#/components/schemas/V1ClinicianPatch'
+        start_date:
+          default: null
+          description: Requested start date
+          title: Start Date
+          nullable: true
+          format: date
+          type: string
+        save_as_draft:
+          default: false
+          description: Whether to save as draft. Only available if prior auth management is enabled. Reach out to your Silna contact to turn it on.
+          title: Save As Draft
+          type: boolean
+        skip_document_intelligence:
+          default: false
+          description: Skip document intelligence across all documents.
+          title: Skip Document Intelligence
+          type: boolean
+      title: V1PriorAuthorizationPatch
+      type: object
+      x-folder: public_api
+    V1PriorAuthorizationApprovalDocument:
+      properties:
+        document_type:
+          $ref: '#/components/schemas/PriorAuthorizationApprovalDocumentType'
+          description: Type of document
+        file_id:
+          description: ID of the file
+          format: uuid
+          title: File Id
+          type: string
+      required:
+      - document_type
+      - file_id
+      title: V1PriorAuthorizationApprovalDocument
+      type: object
+      x-folder: public_api
+    V1ApprovedTreatmentCode:
+      properties:
+        treatment_codes:
+          description: List of approved treatment codes
+          items:
+            $ref: '#/components/schemas/V1TreatmentCode'
+          title: Treatment Codes
+          type: array
+        units:
+          description: Approved units (this will be in a decimal string format)
+          title: Units
+          type: string
+          example: '2.5'
+        unit_type:
+          $ref: '#/components/schemas/PriorAuthorizationUnit'
+        time_frame:
+          $ref: '#/components/schemas/UnitTimeFrame'
+          default: TOTAL
+        reference_number:
+          default: null
+          description: Reference number for the approved treatment code
+          title: Reference Number
+          nullable: true
+          type: string
+        approved_start_date:
+          default: null
+          description: Approved start date for the treatment codes
+          title: Approved Start Date
+          nullable: true
+          format: date
+          type: string
+        approved_end_date:
+          default: null
+          description: Approved end date for the treatment codes
+          title: Approved End Date
+          nullable: true
+          format: date
+          type: string
+      required:
+      - units
+      - unit_type
+      title: V1ApprovedTreatmentCode
+      type: object
+      x-folder: public_api
+    V1GetDocumentRequirement:
+      properties:
+        document_type:
+          $ref: '#/components/schemas/PriorAuthorizationUploadDocumentType'
+          description: Type of document required
+        required:
+          description: Whether this document is required
+          title: Required
+          type: boolean
+        document_intelligence:
+          $ref: '#/components/schemas/V1DocumentIntelligence'
+          description: Document intelligence information
+        requirement_satisfied:
+          description: Whether the requirement is satisfied
+          title: Requirement Satisfied
+          type: boolean
+        files:
+          description: List of files for this document requirement
+          title: Files
+          nullable: true
+          items:
+            $ref: '#/components/schemas/V1DocumentFile'
+          type: array
+        document_validation:
+          default: null
+          deprecated: true
+          description: 'Document validation information if available. Deprecated: this field returns only a single document validation. Use document_validation_batch.id with the batch endpoints instead.'
+          nullable: true
+          $ref: '#/components/schemas/V1DocumentValidation'
+        document_validation_batch:
+          default: null
+          description: Document validation batch information if available
+          nullable: true
+          $ref: '#/components/schemas/V1DocumentValidationBatch'
+      required:
+      - document_type
+      - required
+      - document_intelligence
+      - requirement_satisfied
+      title: V1GetDocumentRequirement
+      type: object
+      x-folder: public_api
+    V1PriorAuthorizationCreateResponse:
+      properties:
+        id:
+          description: ID of the created prior authorization
+          format: uuid
+          title: Id
+          type: string
+        status:
+          $ref: '#/components/schemas/PublicPriorAuthorizationStatus'
+          description: Status of the prior authorization
+        required_data:
+          $ref: '#/components/schemas/V1PriorAuthorizationRequiredData'
+          description: Data required to complete the prior authorization request
+      required:
+      - id
+      - status
+      - required_data
+      title: V1PriorAuthorizationCreateResponse
+      type: object
+      x-folder: public_api
+    V1PriorAuthorizationDocument:
+      properties:
+        document_type:
+          $ref: '#/components/schemas/PriorAuthorizationPublicDocumentType'
+          description: Type of document
+        file_id:
+          description: ID of the file
+          format: uuid
+          title: File Id
+          type: string
+      required:
+      - document_type
+      - file_id
+      title: V1PriorAuthorizationDocument
+      type: object
+      x-folder: public_api
+    V1ClinicianNpiRequirement:
+      properties:
+        required:
+          description: Whether clinician NPI is required
+          title: Required
+          type: boolean
+      required:
+      - required
+      title: V1ClinicianNpiRequirement
+      type: object
+      x-folder: public_api
+    RuleExecutionResult:
+      type: string
+      enum:
+      - PASSED
+      - FAILED
+      x-folder: document_intelligence
+    V1TreatmentCode:
+      properties:
+        code:
+          description: Treatment code (e.g. a CPT code)
+          title: Code
+          type: string
+        description:
+          description: Description of the treatment code
+          title: Description
+          type: string
+        standard:
+          $ref: '#/components/schemas/TreatmentCodeStandard'
+          description: Standard for the treatment code
+        treatment_code_modifiers:
+          description: List of treatment code modifiers
+          items:
+            $ref: '#/components/schemas/V1TreatmentCodeModifier'
+          title: Treatment Code Modifiers
+          type: array
+      required:
+      - code
+      - description
+      - standard
+      title: V1TreatmentCode
+      type: object
+      x-folder: public_api
+    V1GetTreatmentCodesRequirement:
+      properties:
+        required:
+          description: Whether treatment codes are required
+          title: Required
+          type: boolean
+        standards:
+          description: Standard for the treatment codes
+          items:
+            $ref: '#/components/schemas/TreatmentCodeStandard'
+          title: Standards
+          type: array
+        requirement_satisfied:
+          description: Whether the requirement is satisfied
+          title: Requirement Satisfied
+          type: boolean
+      required:
+      - required
+      - standards
+      - requirement_satisfied
+      title: V1GetTreatmentCodesRequirement
+      type: object
+      x-folder: public_api
+    V1PriorAuthorization:
+      properties:
+        id:
+          description: ID of the prior authorization
+          format: uuid
+          title: Id
+          type: string
+        specialty:
+          $ref: '#/components/schemas/PublicSpecialty'
+          description: Specialty for the prior authorization
+        requested_treatment_codes:
+          description: List of requested treatment codes
+          items:
+            $ref: '#/components/schemas/V1RequestedTreatmentCode'
+          title: Requested Treatment Codes
+          type: array
+        approved_treatment_codes:
+          description: List of approved treatment codes
+          items:
+            $ref: '#/components/schemas/V1ApprovedTreatmentCode'
+          title: Approved Treatment Codes
+          type: array
+        requested_start_date:
+          default: null
+          description: Requested start date
+          title: Requested Start Date
+          nullable: true
+          format: date
+          type: string
+        requested_end_date:
+          default: null
+          description: Requested end date
+          title: Requested End Date
+          nullable: true
+          format: date
+          type: string
+        status:
+          $ref: '#/components/schemas/PublicPriorAuthorizationStatus'
+          description: Status of the prior authorization
+        reference_numbers:
+          description: List of all reference numbers on the authorization
+          items:
+            type: string
+          title: Reference Numbers
+          type: array
+        authorization_type:
+          $ref: '#/components/schemas/PriorAuthorizationType'
+          description: Type of authorization
+        approval_files:
+          description: List of approval files
+          items:
+            $ref: '#/components/schemas/V1PriorAuthorizationApprovalDocument'
+          title: Approval Files
+          type: array
+        denial_files:
+          description: List of denial files
+          items:
+            $ref: '#/components/schemas/V1PriorAuthorizationDenialDocument'
+          title: Denial Files
+          type: array
+        other_files:
+          description: List of other files
+          items:
+            $ref: '#/components/schemas/V1PriorAuthorizationDocument'
+          title: Other Files
+          type: array
+        created_at:
+          description: Date the prior authorization was created
+          format: date-time
+          title: Created At
+          type: string
+        submitted_at:
+          default: null
+          description: Date the prior authorization was submitted to the payor
+          title: Submitted At
+          nullable: true
+          format: date
+          type: string
+        last_updated_at:
+          default: null
+          description: Date the prior authorization was last updated
+          title: Last Updated At
+          nullable: true
+          format: date
+          type: string
+        clinician:
+          default: null
+          description: Clinician information
+          nullable: true
+          $ref: '#/components/schemas/V1Clinician'
+        required_data:
+          default: null
+          description: Data required to complete the prior authorization request
+          nullable: true
+          $ref: '#/components/schemas/V1GetPriorAuthorizationRequirements'
+        silna_url:
+          default: null
+          description: Silna prior auth url
+          title: Silna Url
+          nullable: true
+          type: string
+        approval_information_last_updated_at:
+          default: null
+          description: Date the prior authorization approval information was last updated
+          title: Approval Information Last Updated At
+          nullable: true
+          format: date-time
+          type: string
+      required:
+      - id
+      - specialty
+      - status
+      - reference_numbers
+      - authorization_type
+      - created_at
+      title: V1PriorAuthorization
+      type: object
+      x-folder: public_api
+    V1DocumentFile:
+      properties:
+        id:
+          description: File ID
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1DocumentFile
+      type: object
+      x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    V1DocumentIntelligenceConfiguration:
+      properties:
+        document_type:
+          $ref: '#/components/schemas/PriorAuthorizationUploadDocumentType'
+          description: Type of document
+        document_validation:
+          default: null
+          description: Document validation configuration
+          nullable: true
+          $ref: '#/components/schemas/V1DocumentValidationRequestConfiguration'
+      required:
+      - document_type
+      title: V1DocumentIntelligenceConfiguration
+      type: object
+      x-folder: public_api
+    V1GetPriorAuthorizationRequirements:
+      properties:
+        treatment_codes:
+          $ref: '#/components/schemas/V1GetTreatmentCodesRequirement'
+          description: Treatment codes requirements
+        documents:
+          $ref: '#/components/schemas/V1GetDocumentsRequirement'
+          description: Document requirements
+        clinician_npi:
+          $ref: '#/components/schemas/V1GetClinicianNpiRequirement'
+          description: Clinician NPI requirements
+        start_date:
+          $ref: '#/components/schemas/V1GetStartDateRequirement'
+          description: Start date requirements
+      required:
+      - treatment_codes
+      - documents
+      - clinician_npi
+      - start_date
+      title: V1GetPriorAuthorizationRequirements
+      type: object
+      x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1DocumentIntelligence:
+      properties:
+        validation_supported:
+          description: Whether document validation is supported for this document type
+          title: Validation Supported
+          type: boolean
+      required:
+      - validation_supported
+      title: V1DocumentIntelligence
+      type: object
+      x-folder: public_api
+    PriorAuthorizationPublicDocumentType:
+      type: string
+      enum:
+      - AUTHORIZATION_FORM
+      - PROGRESS_NOTE
+      - DIAGNOSIS_REPORT
+      - REFERRAL
+      - ASSESSMENT_EVALUATION
+      - CANCELLATION_LETTER
+      - PROOF_OF_AUTH_NOT_REQUIRED
+      - TREATMENT_PLAN_PLAN_OF_CARE
+      - SUPPLEMENTAL_DOCUMENT
+      - ATTENDANCE_LOGS
+      - INDIVIDUALIZED_EDUCATION_PROGRAM
+      - CHANGE_OF_PROVIDER_FORM
+      - TELEHEALTH_ATTESTATION
+      - ORIGINAL_AUTHORIZATION_APPROVAL_LETTER
+      - OTHER
+      - ABAS
+      - VINELAND
+      - SRS_2
+      - PDDBI
+      - PSI_SIPA
+      x-folder: prior_authorization
+    V1TreatmentCodeCreate:
+      properties:
+        code:
+          description: Treatment code (e.g. a CPT code)
+          title: Code
+          type: string
+        treatment_code_modifiers:
+          description: List of treatment code modifiers
+          items:
+            $ref: '#/components/schemas/V1TreatmentCodeModifiersCreate'
+          title: Treatment Code Modifiers
+          type: array
+      required:
+      - code
+      - treatment_code_modifiers
+      title: V1TreatmentCodeCreate
+      type: object
+      x-folder: public_api
+    V1RequestedTreatmentCodePatch:
+      properties:
+        time_frame:
+          $ref: '#/components/schemas/UnitTimeFrame'
+          description: Time frame for the units
+        unit_type:
+          $ref: '#/components/schemas/PriorAuthorizationUnit'
+          description: Type of unit for this treatment code
+        treatment_codes:
+          description: List of treatment codes
+          items:
+            $ref: '#/components/schemas/V1TreatmentCodeCreate'
+          title: Treatment Codes
+          type: array
+        units:
+          description: Number of units requested
+          title: Units
+          type: string
+      required:
+      - time_frame
+      - unit_type
+      - treatment_codes
+      - units
+      title: V1RequestedTreatmentCodePatch
+      type: object
+      x-folder: public_api
+    PublicPriorAuthorizationStatus:
+      type: string
+      enum:
+      - DATA_REQUESTED
+      - DATA_RECEIVED
+      - ALL_REQUIRED_DATA_RECEIVED
+      - REQUESTED
+      - TOO_EARLY_TO_SUBMIT
+      - UNNECESSARY
+      - AWAITING_PROVIDER
+      - PENDING_PROVIDER_SUBMISSION_REVIEW
+      - AWAITING_SILNA
+      - APPROVED_TO_SUBMIT
+      - SUBMITTED_TO_PAYOR
+      - PAYOR_DENIED
+      - PAYOR_DENIED_APPEALING
+      - AWAITING_RESUBMISSION
+      - RESUBMITTED_TO_PAYOR
+      - PAYOR_APPROVED
+      - DENIED_UNAPPEALED
+      - PRELIMINARY_APPROVAL
+      - PARTIALLY_APPROVED
+      - WITHDRAWN
+      x-folder: prior_authorization
+    V1DocumentValidationBatch:
+      properties:
+        id:
+          description: Document validation batch ID
+          format: uuid
+          title: Id
+          type: string
+        result:
+          $ref: '#/components/schemas/RuleExecutionResult'
+          description: Aggregate result across all document validations in the batch
+      required:
+      - id
+      - result
+      title: V1DocumentValidationBatch
+      type: object
+      x-folder: public_api
+    V1PriorAuthorizationCreate:
+      properties:
+        patient_plan_id:
+          description: Patient Plan ID
+          format: uuid
+          title: Patient Plan Id
+          type: string
+        specialty:
+          $ref: '#/components/schemas/PublicSpecialty'
+          description: Specialty for the prior authorization
+        authorization_type:
+          $ref: '#/components/schemas/PriorAuthorizationType'
+          description: 'Type of authorization. Note: The following specialties are constrained to specific authorization types: Psychological Testing: Assessment authorization, Amendment'
+        save_as_draft:
+          default: false
+          description: Whether to save as draft. Only available if prior auth management is enabled. Reach out to your Silna contact to turn it on.
+          title: Save As Draft
+          type: boolean
+      required:
+      - patient_plan_id
+      - specialty
+      - authorization_type
+      title: V1PriorAuthorizationCreate
+      type: object
+      x-folder: public_api
+    PriorAuthorizationDenialDocumentType:
+      type: string
+      enum:
+      - DENIAL_LETTER
+      x-folder: prior_authorization
+    V1PriorAuthorizationRequiredData:
+      properties:
+        treatment_codes:
+          $ref: '#/components/schemas/V1TreatmentCodesRequirement'
+          description: Treatment codes requirements
+        documents:
+          $ref: '#/components/schemas/V1DocumentsRequirement'
+          description: Document requirements
+        clinician_npi:
+          $ref: '#/components/schemas/V1ClinicianNpiRequirement'
+          description: Clinician NPI requirements
+        start_date:
+          $ref: '#/components/schemas/V1StartDateRequirement'
+          description: Start date requirements
+      required:
+      - treatment_codes
+      - documents
+      - clinician_npi
+      - start_date
+      title: V1PriorAuthorizationRequiredData
+      type: object
+      x-folder: public_api
+    V1DocumentPatch:
+      properties:
+        document_type:
+          $ref: '#/components/schemas/PriorAuthorizationUploadDocumentType'
+          description: Type of document
+        file_id:
+          description: ID of the file
+          format: uuid
+          title: File Id
+          type: string
+      required:
+      - document_type
+      - file_id
+      title: V1DocumentPatch
+      type: object
+      x-folder: public_api
+    V1GetStartDateRequirement:
+      properties:
+        required:
+          description: Whether start date is required
+          title: Required
+          type: boolean
+        requirement_satisfied:
+          description: Whether the requirement is satisfied
+          title: Requirement Satisfied
+          type: boolean
+      required:
+      - required
+      - requirement_satisfied
+      title: V1GetStartDateRequirement
+      type: object
+      x-folder: public_api
+    V1TreatmentCodesRequirement:
+      properties:
+        required:
+          description: Whether treatment codes are required
+          title: Required
+          type: boolean
+        standards:
+          description: Standard for the treatment codes
+          items:
+            $ref: '#/components/schemas/TreatmentCodeStandard'
+          title: Standards
+          type: array
+      required:
+      - required
+      - standards
+      title: V1TreatmentCodesRequirement
+      type: object
+      x-folder: public_api
+    V1StartDateRequirement:
+      properties:
+        required:
+          description: Whether start date is required
+          title: Required
+          type: boolean
+      required:
+      - required
+      title: V1StartDateRequirement
+      type: object
+      x-folder: public_api
+    V1GetClinicianNpiRequirement:
+      properties:
+        required:
+          description: Whether clinician NPI is required
+          title: Required
+          type: boolean
+        requirement_satisfied:
+          description: Whether the requirement is satisfied
+          title: Requirement Satisfied
+          type: boolean
+      required:
+      - required
+      - requirement_satisfied
+      title: V1GetClinicianNpiRequirement
+      type: object
+      x-folder: public_api
+    V1GetDocumentsRequirement:
+      properties:
+        required:
+          description: Whether documents are required
+          title: Required
+          type: boolean
+        items:
+          description: List of document requirements with satisfaction status
+          items:
+            $ref: '#/components/schemas/V1GetDocumentRequirement'
+          title: Items
+          type: array
+        requirement_satisfied:
+          description: Whether the requirement is satisfied
+          title: Requirement Satisfied
+          type: boolean
+      required:
+      - required
+      - requirement_satisfied
+      title: V1GetDocumentsRequirement
+      type: object
+      x-folder: public_api
+    V1DocumentValidation:
+      properties:
+        id:
+          description: Document validation ID
+          format: uuid
+          title: Id
+          type: string
+        result:
+          $ref: '#/components/schemas/RuleExecutionResult'
+          description: Document validation result
+      required:
+      - id
+      - result
+      title: V1DocumentValidation
+      type: object
+      x-folder: public_api
+    V1TreatmentCodeModifiersCreate:
+      properties:
+        code:
+          description: Modifier code
+          title: Code
+          type: string
+      required:
+      - code
+      title: V1TreatmentCodeModifiersCreate
+      type: object
+      x-folder: public_api
+    PriorAuthorizationType:
+      type: string
+      enum:
+      - ASSESSMENT_AUTHORIZATION
+      - INITIAL_AUTHORIZATION
+      - CONCURRENT_AUTHORIZATION
+      - AMENDMENT
+      x-folder: prior_authorization
+    V1PriorAuthorizationDenialDocument:
+      properties:
+        document_type:
+          $ref: '#/components/schemas/PriorAuthorizationDenialDocumentType'
+          description: Type of document
+        file_id:
+          description: ID of the file
+          format: uuid
+          title: File Id
+          type: string
+      required:
+      - document_type
+      - file_id
+      title: V1PriorAuthorizationDenialDocument
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1Clinician:
+      properties:
+        first_name:
+          default: null
+          description: First name of the clinician
+          title: First Name
+          nullable: true
+          type: string
+        last_name:
+          default: null
+          description: Last name of the clinician
+          title: Last Name
+          nullable: true
+          type: string
+        npi:
+          default: null
+          description: NPI of the clinician
+          title: Npi
+          nullable: true
+          type: string
+      title: V1Clinician
+      type: object
+      x-folder: public_api
+    V1ClinicianPatch:
+      properties:
+        npi:
+          description: NPI of the clinician
+          title: Npi
+          type: string
+        first_name:
+          description: Fist Name of the clinician
+          title: First Name
+          type: string
+        last_name:
+          description: Last Name of the clinician
+          title: Last Name
+          nullable: true
+          type: string
+      required:
+      - npi
+      - first_name
+      - last_name
+      title: V1ClinicianPatch
+      type: object
+      x-folder: public_api
+    V1RequestedTreatmentCode:
+      properties:
+        treatment_codes:
+          description: List of requeted treatment codes
+          items:
+            $ref: '#/components/schemas/V1TreatmentCode'
+          title: Treatment Codes
+          type: array
+        units:
+          description: Requested units (this will be in a decimal string format)
+          title: Units
+          type: string
+          example: '2.5'
+        unit_type:
+          $ref: '#/components/schemas/PriorAuthorizationUnit'
+        time_frame:
+          $ref: '#/components/schemas/UnitTimeFrame'
+          default: TOTAL
+      required:
+      - units
+      - unit_type
+      title: V1RequestedTreatmentCode
+      type: object
+      x-folder: public_api
+    V1DocumentValidationRequestConfiguration:
+      properties:
+        enabled:
+          default: true
+          description: Whether to enabled document validation
+          title: Enabled
+          type: boolean
+        validation_disabled_reason:
+          default: null
+          description: Reason for disabling validation
+          title: Validation Disabled Reason
+          nullable: true
+          type: string
+      title: V1DocumentValidationRequestConfiguration
+      type: object
+      x-folder: public_api
+    V1TreatmentCodeModifier:
+      properties:
+        code:
+          description: Modifier code
+          title: Code
+          type: string
+        description:
+          description: Description of the modifier
+          title: Description
+          type: string
+      required:
+      - code
+      - description
+      title: V1TreatmentCodeModifier
+      type: object
+      x-folder: public_api
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

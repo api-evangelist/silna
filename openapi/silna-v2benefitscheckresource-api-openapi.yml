@@ -1,0 +1,1073 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V2BenefitsCheckResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V2BenefitsCheckResource
+paths:
+  /public/v2/benefits-checks/{benefits_check_id}:
+    get:
+      summary: Get Benefits Check V2
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V2BenefitsCheckResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: benefits_check_id
+        required: true
+        schema:
+          type: string
+      operationId: V2BenefitsCheckResource.get
+      tags:
+      - V2BenefitsCheckResource
+      x-folder: public_api
+components:
+  schemas:
+    BenefitsCheckEligibilityStatus:
+      type: string
+      enum:
+      - ELIGIBLE
+      - INELIGIBLE
+      x-folder: benefit_check
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V2SpecialtyFieldsProvider:
+      properties:
+        specialty:
+          $ref: '#/components/schemas/PublicSpecialty'
+          description: Specialty
+        copay_fields:
+          description: List of copay fields
+          items:
+            $ref: '#/components/schemas/V2CopayField'
+          title: Copay Fields
+          type: array
+        coinsurance_fields:
+          description: List of coinsurance fields
+          items:
+            $ref: '#/components/schemas/V2CoinsuranceField'
+          title: Coinsurance Fields
+          type: array
+        deductible:
+          default: null
+          description: Deductible accumulation details
+          nullable: true
+          $ref: '#/components/schemas/V2AccumulationFields'
+        out_of_pocket:
+          default: null
+          description: Out of pocket accumulation details
+          nullable: true
+          $ref: '#/components/schemas/V2AccumulationFields'
+        visit_limits:
+          description: List of visit limit fields
+          items:
+            $ref: '#/components/schemas/V2VisitLimitField'
+          title: Visit Limits
+          type: array
+        dollar_limits:
+          description: List of dollar limit fields
+          items:
+            $ref: '#/components/schemas/V2DollarLimitField'
+          title: Dollar Limits
+          type: array
+        authorization_requirements:
+          description: List of authorization requirement fields
+          items:
+            $ref: '#/components/schemas/V2AuthorizationField'
+          title: Authorization Requirements
+          type: array
+        referral_requirements:
+          description: List of referral requirement fields
+          items:
+            $ref: '#/components/schemas/V2ReferralField'
+          title: Referral Requirements
+          type: array
+        exclusions:
+          description: List of exclusion fields
+          items:
+            $ref: '#/components/schemas/V2ExclusionField'
+          title: Exclusions
+          type: array
+        reimbursement_rate:
+          default: null
+          description: Reimbursement rate field
+          nullable: true
+          $ref: '#/components/schemas/V2ReimbursementRateField'
+        medicare_dollars_used:
+          default: null
+          description: Medicare dollars used field
+          nullable: true
+          $ref: '#/components/schemas/V2MedicareDollarsUsedField'
+        exclusions_and_limitations:
+          default: null
+          description: Exclusions and limitations text
+          title: Exclusions And Limitations
+          nullable: true
+          type: string
+        patient_cost_estimates:
+          description: List of patient cost estimates
+          items:
+            $ref: '#/components/schemas/V2PatientCostOfServiceEstimate'
+          title: Patient Cost Estimates
+          type: array
+      required:
+      - specialty
+      title: V2SpecialtyFieldsProvider
+      type: object
+      x-folder: public_api
+    BenefitsCheckModifierTime:
+      type: string
+      enum:
+      - BEFORE
+      - AFTER
+      x-folder: benefit_check
+    PublicSpecialty:
+      type: string
+      enum:
+      - PHYSICAL_THERAPY
+      - ABA_THERAPY
+      - SPEECH_THERAPY
+      - OCCUPATIONAL_THERAPY
+      - PSYCHOLOGICAL_TESTING
+      - HOME_HEALTH_CARE
+      - HOSPICE
+      - CARDIAC_REHABILITATION
+      - INTENSIVE_CARDIAC_REHABILITATION
+      - MENTAL_HEALTH
+      - PRINCIPAL_ILLNESS_NAVIGATION
+      - PRINCIPAL_CARE_MANAGEMENT
+      - ADVANCED_PRIMARY_CARE_MODELS
+      - PREVENTATIVE_HEALTH
+      - PARTIAL_HOSPITALIZATION_PROGRAM
+      - INTENSIVE_OUTPATIENT_PROGRAM
+      - INTERVENTIONAL_RADIOLOGY
+      - VASCULAR_SURGERY
+      - INTERVENTIONAL_CARDIOLOGY
+      - ORTHOPEDICS
+      - CHIROPRACTIC
+      - GYNECOLOGY
+      - LONG_TERM_CARE
+      - NUTRITIONAL_COUNSELING
+      - PHYSICAL_MEDICINE
+      - PULMONARY_REHABILITATION
+      - INJECTABLE_SPECIALTY_MEDICATIONS
+      - ALLERGY_TESTING
+      - SKILLED_NURSING
+      - RADIOLOGY
+      - OTOLARYNGOLOGY
+      - DURABLE_MEDICAL_EQUIPMENT
+      - DERMATOLOGY
+      - PROFESSIONAL_OFFICE_VISIT
+      - PSYCHIATRY
+      x-folder: specialty
+    V2DecimalFieldNoModifier:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          default: null
+          description: Decimal value
+          title: Value
+          nullable: true
+      title: V2DecimalFieldNoModifier
+      type: object
+      x-folder: public_api
+    V2CopayField:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          default: null
+          description: Copay Amount
+          title: Value
+          nullable: true
+        modifier:
+          default: null
+          description: Copay modifier information
+          nullable: true
+          $ref: '#/components/schemas/V2CopayModifier'
+      title: V2CopayField
+      type: object
+      x-folder: public_api
+    V2DollarLimitModifier:
+      properties:
+        treatment_codes:
+          description: List of treatment codes for which the dollar limit applies.
+          items:
+            type: string
+          title: Treatment Codes
+          type: array
+        places_of_service:
+          description: List of place of service codes for which the dollar limit applies.
+          items:
+            $ref: '#/components/schemas/V2PlaceOfServiceCode'
+          title: Places Of Service
+          type: array
+        specialties:
+          description: List of specialties for which the dollar limit applies.
+          items:
+            $ref: '#/components/schemas/PublicSpecialty'
+          title: Specialties
+          type: array
+        timing:
+          default: null
+          description: Timing information for when the dollar limit applies
+          nullable: true
+          $ref: '#/components/schemas/V2BenefitsCheckTiming'
+      title: V2DollarLimitModifier
+      type: object
+      x-folder: public_api
+    V2PlaceOfServiceCode:
+      properties:
+        code:
+          description: Service code
+          title: Code
+          type: string
+          example: '11'
+        name:
+          description: Service name
+          title: Name
+          type: string
+          example: Office
+      required:
+      - code
+      - name
+      title: V2PlaceOfServiceCode
+      type: object
+      x-folder: public_api
+    V2ReferralModifier:
+      properties:
+        treatment_codes:
+          description: List of treatment codes for which the referral requirement applies.
+          items:
+            type: string
+          title: Treatment Codes
+          type: array
+        places_of_service:
+          description: List of place of services for which the referral requirement applies.
+          items:
+            $ref: '#/components/schemas/V2PlaceOfServiceCode'
+          title: Places Of Service
+          type: array
+      title: V2ReferralModifier
+      type: object
+      x-folder: public_api
+    V2BenefitsCheckResponse:
+      properties:
+        id:
+          description: Benefits Check ID
+          format: uuid
+          title: Id
+          type: string
+        status:
+          $ref: '#/components/schemas/BenefitsCheckStatusPublic'
+          description: Benefits Check Status
+        eligibility_status:
+          default: null
+          description: Eligibility Status
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckEligibilityStatus'
+        ineligibility_reason:
+          default: null
+          description: Reason for ineligibility
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckIneligibilityReason'
+        reference:
+          default: null
+          description: Reference number
+          title: Reference
+          nullable: true
+          type: string
+        note:
+          default: null
+          description: Note
+          title: Note
+          nullable: true
+          type: string
+        insurance_type:
+          default: null
+          description: Insurance type
+          nullable: true
+          $ref: '#/components/schemas/InsuranceType'
+        date_verified:
+          default: null
+          description: Date verified
+          title: Date Verified
+          nullable: true
+          format: date-time
+          type: string
+        patient_plan_id:
+          description: Patient Plan ID
+          format: uuid
+          title: Patient Plan Id
+          type: string
+        patient_id:
+          description: Patient ID
+          format: uuid
+          title: Patient Id
+          type: string
+        provider_id:
+          description: Provider ID
+          format: uuid
+          title: Provider Id
+          type: string
+        network_status:
+          default: null
+          description: Network status
+          nullable: true
+          $ref: '#/components/schemas/NetworkStatus'
+        plan_type:
+          default: null
+          description: Plan type
+          title: Plan Type
+          nullable: true
+          type: string
+        plan_start_date:
+          default: null
+          description: Plan start date
+          title: Plan Start Date
+          nullable: true
+          format: date
+          type: string
+        plan_end_date:
+          default: null
+          description: Plan end date
+          title: Plan End Date
+          nullable: true
+          format: date
+          type: string
+        group_number:
+          default: null
+          description: Plan group ID
+          title: Group Number
+          nullable: true
+          type: string
+        patient_information:
+          default: null
+          description: Patient information
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckPatientInformation'
+        other_payor_information:
+          default: null
+          description: Other payor information
+          title: Other Payor Information
+          nullable: true
+          items:
+            $ref: '#/components/schemas/BenefitsCheckOtherPayorInformation'
+          type: array
+        other_payor_entity_name:
+          default: null
+          description: Name of the other insurance payor entity when ineligibility reason is patient has other insurance
+          title: Other Payor Entity Name
+          nullable: true
+          type: string
+        independent_physician_association_name:
+          default: null
+          description: Name of the Independent Physician Association (IPA) managing the provider network for the patient's plan
+          title: Independent Physician Association Name
+          nullable: true
+          type: string
+        created_at:
+          description: Created at timestamp
+          format: date-time
+          title: Created At
+          type: string
+        silna_url:
+          default: null
+          description: Silna benefits check URL
+          title: Silna Url
+          nullable: true
+          type: string
+        specialty_fields:
+          description: Specialty specific benefits data
+          items:
+            $ref: '#/components/schemas/V2SpecialtyFieldsProvider'
+          title: Specialty Fields
+          type: array
+      required:
+      - id
+      - status
+      - patient_plan_id
+      - patient_id
+      - provider_id
+      - created_at
+      - specialty_fields
+      title: V2BenefitsCheckResponse
+      type: object
+      x-folder: public_api
+    V2AccumulationFields:
+      properties:
+        individual:
+          $ref: '#/components/schemas/V2AccumulationField'
+          description: Individual accumulation field
+        family:
+          $ref: '#/components/schemas/V2AccumulationField'
+          description: Family accumulation field
+      required:
+      - individual
+      - family
+      title: V2AccumulationFields
+      type: object
+      x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    V2VisitLimitModifier:
+      properties:
+        treatment_codes:
+          description: List of treatment codes for which the treatment codes applie
+          items:
+            type: string
+          title: Treatment Codes
+          type: array
+        places_of_service:
+          description: List of place of service codes for which the visit limit applies
+          items:
+            $ref: '#/components/schemas/V2PlaceOfServiceCode'
+          title: Places Of Service
+          type: array
+        specialties:
+          description: List of specialties for which the visit limit applies
+          items:
+            $ref: '#/components/schemas/PublicSpecialty'
+          title: Specialties
+          type: array
+        timing:
+          default: null
+          description: Timing information for when the visit limit applies
+          nullable: true
+          $ref: '#/components/schemas/V2BenefitsCheckTiming'
+      title: V2VisitLimitModifier
+      type: object
+      x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V2PatientCostOfServiceEstimate:
+      properties:
+        cost_estimate_name:
+          description: Name of the cost estimate
+          title: Cost Estimate Name
+          type: string
+        cost_of_service:
+          description: Cost of service
+          title: Cost Of Service
+          type: string
+        cost_of_service_duration:
+          default: null
+          description: Duration of the cost estimate (e.g., PER_VISIT, PER_DAY)
+          nullable: true
+          $ref: '#/components/schemas/RateDuration'
+      required:
+      - cost_estimate_name
+      - cost_of_service
+      title: V2PatientCostOfServiceEstimate
+      type: object
+      x-folder: public_api
+    BenefitsCheckModifierUnitType:
+      type: string
+      enum:
+      - VISITS
+      - CPT_UNITS
+      - DOLLARS
+      - HOURS
+      - DAYS
+      - WEEKS
+      - MONTHS
+      - YEARS
+      x-folder: benefit_check
+    V2ReimbursementRateModifier:
+      properties:
+        reimbursement_rate_type:
+          default: null
+          description: Type of reimbursement rate
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckModifierReimbursementRateType'
+      title: V2ReimbursementRateModifier
+      type: object
+      x-folder: public_api
+    BenefitsCheckStatusPublic:
+      type: string
+      enum:
+      - REQUESTED
+      - AWAITING_SILNA
+      - AWAITING_PROVIDER
+      - COMPLETE
+      - WITHDRAWN
+      x-folder: benefit_check
+    RateDuration:
+      type: string
+      enum:
+      - PER_VISIT
+      - PER_HOUR
+      - PER_DAY
+      - PER_SESSION
+      - PER_MONTH
+      - PER_WEEK
+      - PER_PHASE
+      - NONE_HIDDEN
+      x-folder: provider
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+    V2ExclusionField:
+      properties:
+        value:
+          default: false
+          description: True if the associated services are excluded from coverage; False if covered or unknown
+          title: Value
+          type: boolean
+        modifier:
+          default: null
+          description: Exclusion modifier information
+          nullable: true
+          $ref: '#/components/schemas/V2ExclusionModifier'
+      title: V2ExclusionField
+      type: object
+      x-folder: public_api
+    V2ReferralField:
+      properties:
+        value:
+          default: false
+          description: Whether a referral is required.
+          title: Value
+          type: boolean
+        modifier:
+          default: null
+          description: Referral modifier information
+          nullable: true
+          $ref: '#/components/schemas/V2ReferralModifier'
+      title: V2ReferralField
+      type: object
+      x-folder: public_api
+    V2MedicareDollarsUsedField:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          default: null
+          description: Medicare Dollars Used
+          title: Value
+          nullable: true
+      title: V2MedicareDollarsUsedField
+      type: object
+      x-folder: public_api
+    V2AuthorizationModifier:
+      properties:
+        payor_name:
+          default: null
+          description: Name of the payor
+          title: Payor Name
+          nullable: true
+          type: string
+        timing:
+          default: null
+          description: Timing information for when the authorization is required
+          nullable: true
+          $ref: '#/components/schemas/V2BenefitsCheckTiming'
+        treatment_codes:
+          description: 'List of treatment codes for which the authorization requirement applies. '
+          items:
+            type: string
+          title: Treatment Codes
+          type: array
+        places_of_service:
+          description: List of place of service codes for which the authorization requirement applies.
+          items:
+            $ref: '#/components/schemas/V2PlaceOfServiceCode'
+          title: Places Of Service
+          type: array
+        diagnosis_codes:
+          description: List of diagnosis codes for which the authorization requirement applies.
+          items:
+            type: string
+          title: Diagnosis Codes
+          type: array
+      title: V2AuthorizationModifier
+      type: object
+      x-folder: public_api
+    V2ReimbursementRateField:
+      properties:
+        value:
+          default: null
+          description: Reimbursement Rate
+          title: Value
+          nullable: true
+          type: string
+        modifier:
+          default: null
+          description: Reimbursement rate modifier information
+          nullable: true
+          $ref: '#/components/schemas/V2ReimbursementRateModifier'
+      title: V2ReimbursementRateField
+      type: object
+      x-folder: public_api
+    V2CopayModifier:
+      properties:
+        timing:
+          default: null
+          description: Timing information for when the copay is applicable
+          nullable: true
+          $ref: '#/components/schemas/V2BenefitsCheckTiming'
+        treatment_codes:
+          description: List of treatment codes for which the treatment code applies
+          items:
+            type: string
+          title: Treatment Codes
+          type: array
+        places_of_service:
+          description: List of place of services for which the copay applies.
+          items:
+            $ref: '#/components/schemas/V2PlaceOfServiceCode'
+          title: Places Of Service
+          type: array
+        applies_to_deductible:
+          default: false
+          description: Whether the copay applies to the deductible
+          title: Applies To Deductible
+          type: boolean
+        before_deductible:
+          default: false
+          description: Whether the copay applies before or after the deductible
+          title: Before Deductible
+          type: boolean
+        benefit_unit:
+          default: null
+          description: The unit for which the copay applies. For example, the patient's copay is $25 per day
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckModifierBenefitUnitType'
+      title: V2CopayModifier
+      type: object
+      x-folder: public_api
+    NetworkStatus:
+      type: string
+      enum:
+      - IN_NETWORK
+      - OUT_OF_NETWORK
+      x-folder: payor_entity
+    V2BenefitsCheckTiming:
+      properties:
+        before_after:
+          default: null
+          description: Specifies whether the modifier applies before or after a specific timeframe or accumulation
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckModifierTime'
+        quantity:
+          default: null
+          description: Numeric quantity associated with the timing
+          title: Quantity
+          nullable: true
+          type: integer
+        unit:
+          default: null
+          description: Unit of measurement for the quantity
+          nullable: true
+          $ref: '#/components/schemas/BenefitsCheckModifierUnitType'
+          example: MONTHS
+      title: V2BenefitsCheckTiming
+      type: object
+      x-folder: public_api
+    V2VisitLimitField:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          default: null
+          description: Visit Limit
+          title: Value
+          nullable: true
+        modifier:
+          default: null
+          description: Visit limit modifier information
+          nullable: true
+          $ref: '#/components/schemas/V2VisitLimitModifier'
+      title: V2VisitLimitField
+      type: object
+      x-folder: public_api
+    V2CoinsuranceModifier:
+      properties:
+        timing:
+          default: null
+          description: Timing information for when the coinsurance is applicable
+          nullable: true
+          $ref: '#/components/schemas/V2BenefitsCheckTiming'
+        treatment_codes:
+          description: List of treatment codes for which the co-insurance applies.
+          items:
+            type: string
+          title: Treatment Codes
+          type: array
+        places_of_service:
+          description: List of place of service codes
+          items:
+            $ref: '#/components/schemas/V2PlaceOfServiceCode'
+          title: Places Of Service
+          type: array
+        applies_to_deductible:
+          default: false
+          description: Whether the coinsurance applies to the deductible
+          title: Applies To Deductible
+          type: boolean
+        before_deductible:
+          default: false
+          description: Whether the coinsurance applies before the deductible
+          title: Before Deductible
+          type: boolean
+      title: V2CoinsuranceModifier
+      type: object
+      x-folder: public_api
+    V2ExclusionModifier:
+      properties:
+        treatment_codes:
+          description: List of treatment codes for which the exclusion applies.
+          items:
+            type: string
+          title: Treatment Codes
+          type: array
+        places_of_service:
+          description: List of place of services for which the exclusion applies.
+          items:
+            $ref: '#/components/schemas/V2PlaceOfServiceCode'
+          title: Places Of Service
+          type: array
+        diagnosis_codes:
+          description: List of diagnosis codes for which the exclusion applies.
+          items:
+            type: string
+          title: Diagnosis Codes
+          type: array
+      title: V2ExclusionModifier
+      type: object
+      x-folder: public_api
+    V2AccumulationField:
+      properties:
+        amount:
+          $ref: '#/components/schemas/V2DecimalFieldNoModifier'
+          description: Amount field
+        amount_met:
+          $ref: '#/components/schemas/V2DecimalFieldNoModifier'
+          description: Amount met field
+      required:
+      - amount
+      - amount_met
+      title: V2AccumulationField
+      type: object
+      x-folder: public_api
+    BenefitsCheckModifierBenefitUnitType:
+      type: string
+      enum:
+      - VISIT
+      - DAY
+      - WEEK
+      - MONTH
+      - YEAR
+      - LIFETIME
+      - CPT_UNIT
+      - EPISODE
+      - ADMISSION
+      x-folder: benefit_check
+    BenefitsCheckPatientInformation:
+      description: Patient Information Schema - shared between V1 and V2
+      properties:
+        subscriber_first_name:
+          default: null
+          description: Subscriber first name
+          title: Subscriber First Name
+          nullable: true
+          type: string
+        subscriber_last_name:
+          default: null
+          description: Subscriber last name
+          title: Subscriber Last Name
+          nullable: true
+          type: string
+        subscriber_date_of_birth:
+          default: null
+          description: Subscriber date of birth
+          title: Subscriber Date Of Birth
+          nullable: true
+          format: date
+          type: string
+        subscriber_address:
+          default: null
+          description: Subscriber address
+          title: Subscriber Address
+          nullable: true
+          type: string
+        subscriber_state:
+          default: null
+          description: Subscriber state
+          title: Subscriber State
+          nullable: true
+          type: string
+        subscriber_city:
+          default: null
+          description: Subscriber city
+          title: Subscriber City
+          nullable: true
+          type: string
+        subscriber_zip_code:
+          default: null
+          description: Subscriber zip code
+          title: Subscriber Zip Code
+          nullable: true
+          type: string
+        subscriber_patient_relationship:
+          default: null
+          description: Subscriber Patient relationship
+          title: Subscriber Patient Relationship
+          nullable: true
+          type: string
+      title: BenefitsCheckPatientInformation
+      type: object
+      x-folder: public_api
+    V2CoinsuranceField:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          default: null
+          description: Coinsurance Percentage
+          title: Value
+          nullable: true
+        modifier:
+          default: null
+          description: Coinsurance modifier information
+          nullable: true
+          $ref: '#/components/schemas/V2CoinsuranceModifier'
+      title: V2CoinsuranceField
+      type: object
+      x-folder: public_api
+    BenefitsCheckOtherPayorInformation:
+      description: Other Payor Information Schema - shared between V1 and V2
+      properties:
+        payor_name:
+          default: null
+          description: Payor name
+          title: Payor Name
+          nullable: true
+          type: string
+        plan_order_number:
+          default: null
+          description: Plan order number
+          title: Plan Order Number
+          nullable: true
+          type: integer
+      title: BenefitsCheckOtherPayorInformation
+      type: object
+      x-folder: public_api
+    BenefitsCheckModifierReimbursementRateType:
+      type: string
+      enum:
+      - USUAL_CUSTOMARY_AND_REASONABLE
+      - REASONABLE_AND_CUSTOMARY
+      - FAIR_HEALTH_RATE
+      - MEDICARE_COMPARABLE_RATE
+      - RELATIVE_CUSTOMARY_RATE
+      - REFERENCE_BASED_PRICING
+      - ALLOWED_AMOUNT
+      - MEDICALLY_NECESSARY_REASONABLE_AND_PROPER
+      - NOT_SPECIFIED
+      x-folder: benefit_check
+    V2AuthorizationField:
+      properties:
+        value:
+          default: false
+          description: Whether an authorization is required.
+          title: Value
+          type: boolean
+        modifier:
+          default: null
+          description: Authorization modifier information
+          nullable: true
+          $ref: '#/components/schemas/V2AuthorizationModifier'
+      title: V2AuthorizationField
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    BenefitsCheckIneligibilityReason:
+      type: string
+      enum:
+      - PLAN_INACTIVE
+      - PATIENT_HAS_OUT_OF_NETWORK_IPA
+      - PLAN_HAS_TERMINATED
+      - MBI_TERMINATED
+      - NO_MEDICARE_PART_B_COVERAGE
+      - MEMBER_NUMBER_MISMATCH
+      - SPECIALTY_NOT_COVERED
+      - PATIENT_HAS_OTHER_INSURANCE
+      - NO_OUT_OF_NETWORK_BENEFITS
+      - HAS_ACTIVE_HOME_PLAN
+      - ENROLLED_IN_HOSPICE
+      - PROVIDER_PLACE_OF_SERVICE_NOT_COVERED
+      - PATIENT_DECEASED
+      x-folder: benefit_check
+    V2DollarLimitField:
+      properties:
+        value:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          default: null
+          description: Dollar Limit
+          title: Value
+          nullable: true
+        dollars_used:
+          anyOf:
+          - type: number
+          - pattern: ^(?!^[-+.]*$)[+-]?0*\d*\.?\d*$
+            type: string
+          default: null
+          description: Dollars already used against this limit
+          title: Dollars Used
+          nullable: true
+        modifier:
+          default: null
+          description: Dollar limit modifier information
+          nullable: true
+          $ref: '#/components/schemas/V2DollarLimitModifier'
+      title: V2DollarLimitField
+      type: object
+      x-folder: public_api
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

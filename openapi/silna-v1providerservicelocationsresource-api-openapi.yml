@@ -1,0 +1,324 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1ProviderServiceLocationsResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1ProviderServiceLocationsResource
+paths:
+  /public/v1/providers/{provider_id}/service-locations:
+    get:
+      summary: Get Service Locations
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeysetPaginatedResponse__V1ServiceLocation'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: provider_id
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: starting_after
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: ending_before
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: source_id
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: name
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: state
+        required: false
+        schema:
+          type: string
+      - in: query
+        name: provider_group_ids
+        required: false
+        schema:
+          type: array
+          items:
+            type: string
+            format: uuid
+      operationId: V1ProviderServiceLocationsResource.get
+      tags:
+      - V1ProviderServiceLocationsResource
+      x-folder: public_api
+components:
+  schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    KeysetPaginatedResponse__V1ServiceLocation:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1ServiceLocation'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          nullable: true
+          format: uuid
+          type: string
+        last_id:
+          default: null
+          title: Last Id
+          nullable: true
+          format: uuid
+          type: string
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1ServiceLocation]
+      type: object
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1ServiceLocation:
+      description: V1 Service Location
+      properties:
+        id:
+          description: The service location's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+        npi:
+          description: National Provider Identifier
+          maxLength: 10
+          minLength: 10
+          pattern: ^[0-9]{10}$
+          title: Npi
+          type: string
+          example: '1234567890'
+        tin:
+          description: Tax Identification Number
+          maxLength: 9
+          minLength: 9
+          pattern: ^[0-9]{9}$
+          title: Tin
+          type: string
+          example: '123456789'
+        address_line_1:
+          description: Primary address line
+          title: Address Line 1
+          type: string
+          example: 54 Broome St
+        address_line_2:
+          default: null
+          description: Secondary address line
+          title: Address Line 2
+          nullable: true
+          type: string
+          example: Apt 3
+        provider_group_id:
+          description: ID of the associated provider group
+          format: uuid
+          title: Provider Group Id
+          type: string
+        city:
+          description: City name
+          title: City
+          type: string
+          example: New York
+        state:
+          description: Two-letter state code
+          title: State
+          type: string
+          example: NY
+        zip_code:
+          description: ZIP code
+          title: Zip Code
+          type: string
+          example: '10001'
+        name:
+          description: Location name
+          title: Name
+          type: string
+        ptan_number:
+          default: null
+          description: PTAN number
+          title: Ptan Number
+          nullable: true
+          type: string
+        primary_taxonomy_code:
+          default: null
+          description: Primary taxonomy code
+          title: Primary Taxonomy Code
+          nullable: true
+          type: string
+        provider_id:
+          description: The associated provider's Silna identifier
+          format: uuid
+          title: Provider Id
+          type: string
+        source_id:
+          default: null
+          description: An API client's (internal) identifier for a service location
+          title: Source Id
+          nullable: true
+          type: string
+          example: my-unique-id-123
+      required:
+      - id
+      - npi
+      - tin
+      - address_line_1
+      - provider_group_id
+      - city
+      - state
+      - zip_code
+      - name
+      - provider_id
+      title: V1ServiceLocation
+      type: object
+      x-folder: public_api
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

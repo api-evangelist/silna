@@ -1,0 +1,587 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1ContractsResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1ContractsResource
+paths:
+  /public/v1/payor-contracts/:
+    get:
+      summary: List Payor Contracts
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeysetPaginatedResponse__V1Contract'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: query
+        name: starting_after
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: ending_before
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: provider_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: mso_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: payor_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+      operationId: V1ContractsResource.get
+      tags:
+      - V1ContractsResource
+      x-folder: public_api
+    post:
+      summary: Create Payor Contract
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1ContractCreateResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters: []
+      operationId: V1ContractsResource.post
+      tags:
+      - V1ContractsResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1ContractCreateBody'
+        description: ''
+components:
+  schemas:
+    KeysetPaginatedResponse__V1Contract:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1Contract'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          nullable: true
+          format: uuid
+          type: string
+        last_id:
+          default: null
+          title: Last Id
+          nullable: true
+          format: uuid
+          type: string
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1Contract]
+      type: object
+      x-folder: null
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1ContractPlan:
+      properties:
+        id:
+          description: The plan's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: Plan name
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: V1ContractPlan
+      type: object
+      x-folder: public_api
+    V1ContractServiceLocation:
+      properties:
+        id:
+          description: The service location's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: Service location name
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: V1ContractServiceLocation
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1ContractCreateResponse:
+      properties:
+        id:
+          description: The newly created contract's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1ContractCreateResponse
+      type: object
+      x-folder: public_api
+    V1ContractCreateBody:
+      properties:
+        provider_id:
+          default: null
+          description: The provider's Silna identifier
+          title: Provider Id
+          nullable: true
+          format: uuid
+          type: string
+        mso_id:
+          default: null
+          description: The MSO's Silna identifier
+          title: Mso Id
+          nullable: true
+          format: uuid
+          type: string
+        payor_id:
+          description: The payor's Silna identifier
+          format: uuid
+          title: Payor Id
+          type: string
+        clinician_id:
+          default: null
+          description: The clinician's Silna identifier. Specify either clinician_id or provider_group_id.
+          title: Clinician Id
+          nullable: true
+          format: uuid
+          type: string
+        provider_group_id:
+          default: null
+          description: The provider group's Silna identifier. Specify either clinician_id or provider_group_id.
+          title: Provider Group Id
+          nullable: true
+          format: uuid
+          type: string
+        insurance_types:
+          default: []
+          description: Specifies which insurance types this contract covers. When no types are selected, the contract applies to all insurance types.
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Insurance Types
+          type: array
+        plans:
+          default: []
+          description: Select specific plans to include. When no plans are selected, the contract applies to all plans. Cannot be combined with excluded_plans.
+          items:
+            format: uuid
+            type: string
+          title: Plans
+          type: array
+        excluded_plans:
+          default: []
+          description: Select specific plans to exclude. The contract will apply to all plans except those selected. Cannot be combined with plans.
+          items:
+            format: uuid
+            type: string
+          title: Excluded Plans
+          type: array
+        service_locations:
+          description: At least one service location is required.
+          items:
+            format: uuid
+            type: string
+          minItems: 1
+          title: Service Locations
+          type: array
+        medicaid_id:
+          default: null
+          description: Medicaid ID
+          title: Medicaid Id
+          nullable: true
+          type: string
+        ipa_required:
+          default: null
+          description: When enabled, this contract only applies when the patient is associated with one of the contract's IPAs.
+          title: Ipa Required
+          nullable: true
+          type: boolean
+      required:
+      - payor_id
+      - service_locations
+      title: V1ContractCreateBody
+      type: object
+      x-folder: public_api
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+    V1Contract:
+      properties:
+        id:
+          description: The contract's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+        payor_id:
+          description: The payor's Silna identifier
+          format: uuid
+          title: Payor Id
+          type: string
+        payor_name:
+          description: Payor name
+          title: Payor Name
+          type: string
+        contracted_under:
+          description: Name of the clinician or provider group this contract is for
+          title: Contracted Under
+          type: string
+        contract_npi:
+          default: null
+          description: National Provider Identifier
+          title: Contract Npi
+          nullable: true
+          type: string
+          example: '1234567890'
+        contract_tin:
+          default: null
+          description: Tax Identification Number
+          title: Contract Tin
+          nullable: true
+          type: string
+          example: '123456789'
+        insurance_types:
+          description: Specifies which insurance types this contract covers. When no types are selected, the contract applies to all insurance types.
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Insurance Types
+          type: array
+        plans:
+          description: Specific plans included in this contract. When no plans are selected, the contract applies to all plans.
+          items:
+            $ref: '#/components/schemas/V1ContractPlan'
+          title: Plans
+          type: array
+        excluded_plans:
+          description: Plans specifically excluded from this contract. The contract applies to all plans except those listed.
+          items:
+            $ref: '#/components/schemas/V1ContractPlan'
+          title: Excluded Plans
+          type: array
+        service_locations:
+          description: Service locations associated with this contract. At least one service location is required.
+          items:
+            $ref: '#/components/schemas/V1ContractServiceLocation'
+          title: Service Locations
+          type: array
+        medicaid_id:
+          default: null
+          description: Medicaid ID
+          title: Medicaid Id
+          nullable: true
+          type: string
+        ipa_required:
+          description: When enabled, this contract only applies when the patient is associated with one of the contract's IPAs.
+          title: Ipa Required
+          type: boolean
+        version_number:
+          description: Contract version number
+          title: Version Number
+          type: integer
+        created_at:
+          description: Contract creation timestamp
+          format: date-time
+          title: Created At
+          type: string
+      required:
+      - id
+      - payor_id
+      - payor_name
+      - contracted_under
+      - insurance_types
+      - plans
+      - excluded_plans
+      - service_locations
+      - ipa_required
+      - version_number
+      - created_at
+      title: V1Contract
+      type: object
+      x-folder: public_api
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

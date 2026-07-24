@@ -1,0 +1,700 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1PatientResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1PatientResource
+paths:
+  /public/v1/patients/{patient_id}:
+    get:
+      summary: Get Patient
+      responses:
+        '200':
+          description: "\n    Patient Response Schema\n    "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1Patient'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: patient_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PatientResource.get
+      tags:
+      - V1PatientResource
+      x-folder: public_api
+    patch:
+      summary: Update Patient
+      responses:
+        '204':
+          description: OK
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: patient_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PatientResource.patch
+      tags:
+      - V1PatientResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1PatientUpdate'
+        description: "\n    Patient Update Request Schema\n    "
+    delete:
+      summary: Delete Patient
+      responses:
+        '204':
+          description: OK
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: patient_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PatientResource.delete
+      tags:
+      - V1PatientResource
+      x-folder: public_api
+components:
+  schemas:
+    V1Patient:
+      description: Patient Response Schema
+      properties:
+        first_name:
+          description: Patient's first name
+          title: First Name
+          type: string
+        last_name:
+          description: Patient's last name
+          title: Last Name
+          type: string
+        date_of_birth:
+          description: Patient's date of birth
+          format: date
+          title: Date Of Birth
+          type: string
+        source_id:
+          default: null
+          description: Patient's EHR ID (or other unique identifier) that you have in your system
+          title: Source Id
+          nullable: true
+          type: string
+        address_line_1:
+          default: null
+          description: Patient's street address
+          title: Address Line 1
+          nullable: true
+          maxLength: 255
+          type: string
+        address_line_2:
+          default: null
+          description: Patient's apartment, suite, unit, etc.
+          title: Address Line 2
+          nullable: true
+          maxLength: 255
+          type: string
+        city:
+          default: null
+          description: Patient's city
+          title: City
+          nullable: true
+          maxLength: 255
+          type: string
+        state:
+          default: null
+          description: Patient's state
+          title: State
+          nullable: true
+          maxLength: 255
+          type: string
+        zip_code:
+          default: null
+          description: Patient's zip code. Empty strings are not allowed
+          title: Zip Code
+          nullable: true
+          type: string
+        sex:
+          default: null
+          description: Patient's sex
+          nullable: true
+          $ref: '#/components/schemas/PatientSex'
+        patient_specialties:
+          description: Patient's specialties. A patient can have multiple
+          items:
+            $ref: '#/components/schemas/PublicSpecialty'
+          title: Patient Specialties
+          type: array
+        status:
+          $ref: '#/components/schemas/PatientStatus'
+          description: Patient's status
+        provider_service_location_id:
+          description: Provider Service Location ID (where the patient receives service)
+          format: uuid
+          title: Provider Service Location Id
+          type: string
+        id:
+          format: uuid
+          title: Id
+          type: string
+        patient_code:
+          description: Patient's code. This is auto-generated by the system
+          title: Patient Code
+          type: string
+        patient_specialty_details:
+          default: null
+          description: Detailed specialty info including therapy type per specialty
+          title: Patient Specialty Details
+          nullable: true
+          items:
+            $ref: '#/components/schemas/V1PatientSpecialtyDetail'
+          type: array
+        patient_diagnosis_ids:
+          default: null
+          title: Patient Diagnosis Ids
+          nullable: true
+          items:
+            format: uuid
+            type: string
+          type: array
+        patient_place_of_service_ids:
+          default: null
+          title: Patient Place Of Service Ids
+          nullable: true
+          items:
+            format: uuid
+            type: string
+          type: array
+        silna_url:
+          description: URL to view this patient in the Silna Health app
+          title: Silna Url
+          type: string
+      required:
+      - first_name
+      - last_name
+      - date_of_birth
+      - patient_specialties
+      - status
+      - provider_service_location_id
+      - id
+      - patient_code
+      - silna_url
+      title: V1Patient
+      type: object
+      x-folder: public_api
+    TherapyType:
+      type: string
+      enum:
+      - REHABILITATIVE
+      - HABILITATIVE
+      x-folder: patient
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PatientStatus:
+      type: string
+      enum:
+      - INTAKE
+      - ACTIVE
+      - DISCHARGED
+      - ON_HOLD
+      x-folder: patient
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicSpecialty:
+      type: string
+      enum:
+      - PHYSICAL_THERAPY
+      - ABA_THERAPY
+      - SPEECH_THERAPY
+      - OCCUPATIONAL_THERAPY
+      - PSYCHOLOGICAL_TESTING
+      - HOME_HEALTH_CARE
+      - HOSPICE
+      - CARDIAC_REHABILITATION
+      - INTENSIVE_CARDIAC_REHABILITATION
+      - MENTAL_HEALTH
+      - PRINCIPAL_ILLNESS_NAVIGATION
+      - PRINCIPAL_CARE_MANAGEMENT
+      - ADVANCED_PRIMARY_CARE_MODELS
+      - PREVENTATIVE_HEALTH
+      - PARTIAL_HOSPITALIZATION_PROGRAM
+      - INTENSIVE_OUTPATIENT_PROGRAM
+      - INTERVENTIONAL_RADIOLOGY
+      - VASCULAR_SURGERY
+      - INTERVENTIONAL_CARDIOLOGY
+      - ORTHOPEDICS
+      - CHIROPRACTIC
+      - GYNECOLOGY
+      - LONG_TERM_CARE
+      - NUTRITIONAL_COUNSELING
+      - PHYSICAL_MEDICINE
+      - PULMONARY_REHABILITATION
+      - INJECTABLE_SPECIALTY_MEDICATIONS
+      - ALLERGY_TESTING
+      - SKILLED_NURSING
+      - RADIOLOGY
+      - OTOLARYNGOLOGY
+      - DURABLE_MEDICAL_EQUIPMENT
+      - DERMATOLOGY
+      - PROFESSIONAL_OFFICE_VISIT
+      - PSYCHIATRY
+      x-folder: specialty
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1PatientSpecialtyDetail:
+      properties:
+        specialty:
+          $ref: '#/components/schemas/PublicSpecialty'
+        therapy_type:
+          default: null
+          nullable: true
+          $ref: '#/components/schemas/TherapyType'
+      required:
+      - specialty
+      title: V1PatientSpecialtyDetail
+      type: object
+      x-folder: public_api
+    V1PatientUpdate:
+      description: Patient Update Request Schema
+      properties:
+        first_name:
+          default: null
+          title: First Name
+          nullable: true
+          type: string
+        last_name:
+          default: null
+          title: Last Name
+          nullable: true
+          type: string
+        date_of_birth:
+          default: null
+          title: Date Of Birth
+          nullable: true
+          format: date
+          type: string
+        source_id:
+          default: null
+          description: Patient's EHR ID (or other unique identifier) that you have in your system
+          title: Source Id
+          nullable: true
+          type: string
+        address_line_1:
+          default: null
+          description: Patient's street address
+          title: Address Line 1
+          nullable: true
+          maxLength: 255
+          type: string
+        address_line_2:
+          default: null
+          description: Patient's apartment, suite, unit, etc.
+          title: Address Line 2
+          nullable: true
+          maxLength: 255
+          type: string
+        city:
+          default: null
+          description: Patient's city
+          title: City
+          nullable: true
+          maxLength: 255
+          type: string
+        state:
+          default: null
+          description: Patient's state
+          title: State
+          nullable: true
+          maxLength: 255
+          type: string
+        zip_code:
+          default: null
+          title: Zip Code
+          nullable: true
+          type: string
+        sex:
+          default: null
+          nullable: true
+          $ref: '#/components/schemas/PatientSex'
+        patient_specialties:
+          default: null
+          title: Patient Specialties
+          nullable: true
+          items:
+            $ref: '#/components/schemas/PublicSpecialty'
+          type: array
+        status:
+          default: null
+          nullable: true
+          $ref: '#/components/schemas/PatientStatus'
+        provider_service_location_id:
+          default: null
+          title: Provider Service Location Id
+          nullable: true
+          format: uuid
+          type: string
+      title: V1PatientUpdate
+      type: object
+      x-folder: public_api
+    PatientSex:
+      type: string
+      enum:
+      - MALE
+      - FEMALE
+      x-folder: patient
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

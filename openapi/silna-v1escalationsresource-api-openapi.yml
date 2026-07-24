@@ -1,0 +1,377 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1EscalationsResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1EscalationsResource
+paths:
+  /public/v1/escalations/:
+    get:
+      summary: Get Escalations
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeysetPaginatedResponse__V1Escalation'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: query
+        name: starting_after
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: ending_before
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: limit
+        required: false
+        schema:
+          type: integer
+      - in: query
+        name: provider_id
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: resource_types
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/V1EscalationResourceType'
+      - in: query
+        name: resource_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: statuses
+        required: false
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/EscalationProviderDisplayStatus'
+      - in: query
+        name: patient_id
+        required: false
+        schema:
+          type: string
+          format: uuid
+      operationId: V1EscalationsResource.get
+      tags:
+      - V1EscalationsResource
+      x-folder: public_api
+components:
+  schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    KeysetPaginatedResponse__V1Escalation:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1Escalation'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          nullable: true
+          format: uuid
+          type: string
+        last_id:
+          default: null
+          title: Last Id
+          nullable: true
+          format: uuid
+          type: string
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1Escalation]
+      type: object
+      x-folder: null
+    EscalationV2Type:
+      type: string
+      enum:
+      - ADDITIONAL_REQUIREMENTS__DOCUMENTATION
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__PATIENT__INSURANCE
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__PATIENT__DEMOGRAPHICS
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__PATIENT__STATUS
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__PATIENT__DIAGNOSIS
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__PROVIDER__CLINICIAN
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__PROVIDER__LOCATION
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__PROVIDER__IDENTIFIERS
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__PROVIDER__NETWORK_STATUS
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__TREATMENT__CLINICAL
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__TREATMENT__DATES
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__TREATMENT__TREATMENT_CODES
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__TREATMENT__PEER_TO_PEER
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__TREATMENT__BILLING
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__EHR__PATIENT
+      - ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__EHR__PAYOR
+      - DECISION_RENDERED__APPROVED
+      - DECISION_RENDERED__PARTIALLY_APPROVED
+      - DECISION_RENDERED__DENIAL
+      - DECISION_RENDERED__CANCELLED
+      - DECISION_RENDERED__INELIGIBLE
+      - NOTIFICATION__PATIENT__INSURANCE
+      - NOTIFICATION__PATIENT__DEMOGRAPHICS
+      - NOTIFICATION__PATIENT__STATUS
+      - NOTIFICATION__PATIENT__DIAGNOSIS
+      - NOTIFICATION__PROVIDER__CLINICIAN
+      - NOTIFICATION__PROVIDER__LOCATION
+      - NOTIFICATION__PROVIDER__IDENTIFIERS
+      - NOTIFICATION__PROVIDER__NETWORK_STATUS
+      - NOTIFICATION__TREATMENT__CLINICAL
+      - NOTIFICATION__TREATMENT__DATES
+      - NOTIFICATION__TREATMENT__TREATMENT_CODES
+      - NOTIFICATION__TREATMENT__PEER_TO_PEER
+      - NOTIFICATION__TREATMENT__BILLING
+      - NOTIFICATION__EHR_SYNC__FAILED
+      - PROVIDER_REVIEW__PRE_SUBMISSION__REVIEW
+      - PROVIDER_REVIEW__PRE_SUBMISSION__SIGNATURE_ATTESTATION
+      x-folder: escalations
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    EscalationProviderDisplayStatus:
+      type: string
+      enum:
+      - NEW
+      - IN_PROGRESS
+      - RESOLVED
+      - WITHDRAWN
+      x-folder: escalations
+    V1Escalation:
+      properties:
+        id:
+          description: Escalation UUID
+          format: uuid
+          title: Id
+          type: string
+        escalation_type:
+          $ref: '#/components/schemas/EscalationV2Type'
+          description: Escalation V2 type identifier
+        action_type:
+          $ref: '#/components/schemas/PublicEscalationActionType'
+          description: NOTIFICATION (informational) or SUBMISSION (requires provider response)
+        reason:
+          description: Escalation description
+          title: Reason
+          type: string
+        status:
+          $ref: '#/components/schemas/EscalationProviderDisplayStatus'
+          description: 'Provider-facing status: NEW, IN_PROGRESS, RESOLVED, WITHDRAWN'
+        deadline:
+          default: null
+          description: Response deadline
+          title: Deadline
+          nullable: true
+          format: date-time
+          type: string
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+        last_submitted_at:
+          default: null
+          title: Last Submitted At
+          nullable: true
+          format: date-time
+          type: string
+        resource_type:
+          $ref: '#/components/schemas/V1EscalationResourceType'
+          description: 'Task type: PRIOR_AUTHORIZATION or BENEFITS_CHECK'
+        resource_id:
+          default: null
+          description: UUID of the associated resource
+          title: Resource Id
+          nullable: true
+          format: uuid
+          type: string
+        patient_id:
+          default: null
+          description: Patient UUID
+          title: Patient Id
+          nullable: true
+          format: uuid
+          type: string
+        payor_id:
+          default: null
+          description: Payor UUID
+          title: Payor Id
+          nullable: true
+          format: uuid
+          type: string
+        silna_url:
+          description: Link to escalation in Silna
+          title: Silna Url
+          type: string
+        supplemental_file_ids:
+          default: null
+          description: Supplemental file UUIDs. Use GET /public/v1/files/<id> to retrieve file details.
+          title: Supplemental File Ids
+          nullable: true
+          items:
+            format: uuid
+            type: string
+          type: array
+      required:
+      - id
+      - escalation_type
+      - action_type
+      - reason
+      - status
+      - created_at
+      - resource_type
+      - silna_url
+      title: V1Escalation
+      type: object
+      x-folder: public_api
+    V1EscalationResourceType:
+      type: string
+      enum:
+      - BENEFITS_CHECK
+      - PRIOR_AUTHORIZATION
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    PublicEscalationActionType:
+      type: string
+      enum:
+      - NOTIFICATION
+      - SUBMISSION
+      x-folder: public_api
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,233 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1DocumentValidationResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1DocumentValidationResource
+paths:
+  /public/v1/document-intelligence/document-validations/{document_validation_id}:
+    get:
+      summary: Get Document Validation
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1DetailedDocumentValidation'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: document_validation_id
+        required: true
+        schema:
+          type: string
+      operationId: V1DocumentValidationResource.get
+      tags:
+      - V1DocumentValidationResource
+      x-folder: public_api
+components:
+  schemas:
+    ConditionExpressionOperator:
+      type: string
+      enum:
+      - AND
+      - OR
+      x-folder: conditions
+    V1DocumentValidationRuleResult:
+      description: 'Unified schema for V1 rule evaluation results.
+
+
+        For leaf results (individual rules): rule is set, operator/child_results are defaults.
+
+        For parent results (nested rules): result/operator/child_results are set, rule is None.'
+      properties:
+        rule:
+          default: null
+          nullable: true
+          $ref: '#/components/schemas/SubRuleType'
+        reason:
+          default: null
+          title: Reason
+          nullable: true
+          type: string
+        result:
+          default: null
+          nullable: true
+          $ref: '#/components/schemas/RuleExecutionResult'
+        operator:
+          default: null
+          nullable: true
+          $ref: '#/components/schemas/ConditionExpressionOperator'
+        child_results:
+          default: []
+          items:
+            $ref: '#/components/schemas/V1DocumentValidationRuleResult'
+          title: Child Results
+          type: array
+      title: V1DocumentValidationRuleResult
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    SubRuleType:
+      type: string
+      enum:
+      - VALID_CLINICIAN_SIGNATURE
+      - VALID_CLINICIAN_CREDENTIAL
+      - VALID_CLINICIAN_TAXONOMY
+      - DOCUMENT_DATE
+      - DOCUMENT_EXPIRED
+      - EVALUATION_DATE
+      - AUTH_PERIOD_WITHIN_CERT_PERIOD
+      - DOCUMENT_EXPIRATION_AFTER_AUTH_PERIOD
+      - DIAGNOSIS_CODES
+      - DIAGNOSIS_DATE
+      - REFERRED_SPECIALTIES
+      - TREATMENT_CODES_PRESENCE
+      - PATIENT_AGE
+      - CLINICAL_HISTORY
+      - PATIENT_VERIFICATION
+      - DIAGNOSTIC_TOOLS
+      - DIAGNOSTIC_CRITERIA
+      - SYMPTOM_SEVERITY
+      - DOCUMENT_TYPE_VERIFICATION
+      x-folder: document_intelligence
+    V1DetailedDocumentValidation:
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+        result:
+          $ref: '#/components/schemas/RuleExecutionResult'
+        batch_id:
+          default: null
+          title: Batch Id
+          nullable: true
+          format: uuid
+          type: string
+        failed_rules:
+          items:
+            $ref: '#/components/schemas/V1DocumentValidationRuleResult'
+          title: Failed Rules
+          type: array
+        passed_rules:
+          items:
+            $ref: '#/components/schemas/V1DocumentValidationRuleResult'
+          title: Passed Rules
+          type: array
+        rule_results:
+          items:
+            $ref: '#/components/schemas/V1DocumentValidationRuleResult'
+          title: Rule Results
+          type: array
+      required:
+      - id
+      - result
+      - failed_rules
+      - passed_rules
+      - rule_results
+      title: V1DetailedDocumentValidation
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    RuleExecutionResult:
+      type: string
+      enum:
+      - PASSED
+      - FAILED
+      x-folder: document_intelligence
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

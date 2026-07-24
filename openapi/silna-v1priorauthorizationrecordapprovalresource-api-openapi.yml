@@ -1,0 +1,314 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1PriorAuthorizationRecordApprovalResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1PriorAuthorizationRecordApprovalResource
+paths:
+  /public/v1/prior-authorizations/{prior_authorization_id}/sync:
+    post:
+      summary: Record Approval for Prior Authorization.
+      responses:
+        '204':
+          description: OK
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: prior_authorization_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PriorAuthorizationRecordApprovalResource.post
+      tags:
+      - V1PriorAuthorizationRecordApprovalResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1RecordApprovalCreate'
+        description: ''
+components:
+  schemas:
+    PriorAuthorizationUnit:
+      type: string
+      enum:
+      - VISITS
+      - CPT_UNITS
+      - HOURS
+      - DAYS
+      x-folder: prior_authorization
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1RecordApprovalCreate:
+      properties:
+        reference_number:
+          default: null
+          description: Authorization reference number
+          title: Reference Number
+          nullable: true
+          type: string
+        approved_start_date:
+          default: null
+          description: Approved start date
+          title: Approved Start Date
+          nullable: true
+          format: date
+          type: string
+        approved_end_date:
+          default: null
+          description: Approved end date
+          title: Approved End Date
+          nullable: true
+          format: date
+          type: string
+        approved_treatment_codes:
+          description: List of approved treatment codes
+          items:
+            $ref: '#/components/schemas/V1RecordApprovedTreatmentCodeCreate'
+          title: Approved Treatment Codes
+          type: array
+        approval_letter_file_ids:
+          default: null
+          description: List of approval letter file IDs to trigger OCR. Mutually exclusive with manual approval details.
+          title: Approval Letter File Ids
+          nullable: true
+          items:
+            format: uuid
+            type: string
+          type: array
+      title: V1RecordApprovalCreate
+      type: object
+      x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    UnitTimeFrame:
+      type: string
+      enum:
+      - DAILY
+      - WEEKLY
+      - MONTHLY
+      - AUTHORIZATION_PERIOD
+      - TOTAL
+      - SIX_MONTHS
+      - YEARLY
+      x-folder: prior_authorization
+    V1RecordApprovedTreatmentCodeCreate:
+      properties:
+        treatment_codes:
+          description: List of treatment codes
+          items:
+            $ref: '#/components/schemas/V1TreatmentCodeCreate'
+          title: Treatment Codes
+          type: array
+        units:
+          description: Approved units (decimal string format)
+          title: Units
+          type: string
+          example: '2.5'
+        unit_type:
+          $ref: '#/components/schemas/PriorAuthorizationUnit'
+          description: Type of unit
+        time_frame:
+          $ref: '#/components/schemas/UnitTimeFrame'
+          default: TOTAL
+          description: Time frame for the units
+        reference_number:
+          default: null
+          description: Reference number for this treatment code group
+          title: Reference Number
+          nullable: true
+          type: string
+      required:
+      - treatment_codes
+      - units
+      - unit_type
+      title: V1RecordApprovedTreatmentCodeCreate
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1TreatmentCodeCreate:
+      properties:
+        code:
+          description: Treatment code (e.g. a CPT code)
+          title: Code
+          type: string
+        treatment_code_modifiers:
+          description: List of treatment code modifiers
+          items:
+            $ref: '#/components/schemas/V1TreatmentCodeModifiersCreate'
+          title: Treatment Code Modifiers
+          type: array
+      required:
+      - code
+      - treatment_code_modifiers
+      title: V1TreatmentCodeCreate
+      type: object
+      x-folder: public_api
+    V1TreatmentCodeModifiersCreate:
+      properties:
+        code:
+          description: Modifier code
+          title: Code
+          type: string
+      required:
+      - code
+      title: V1TreatmentCodeModifiersCreate
+      type: object
+      x-folder: public_api
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

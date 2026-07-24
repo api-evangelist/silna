@@ -1,0 +1,511 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1PayorDetectionRunResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1PayorDetectionRunResource
+paths:
+  /public/v1/payor-detection/runs/{payor_detection_run_id}:
+    get:
+      summary: Get payor detection run
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PayorDetectionRunResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: payor_detection_run_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PayorDetectionRunResource.get
+      tags:
+      - V1PayorDetectionRunResource
+      x-folder: public_api
+  /public/v1/payor-detection/runs:
+    post:
+      summary: Create payor detection run
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PayorDetectionRunCreateResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: header
+        name: idempotency-key
+        required: false
+        schema:
+          type: string
+          minLength: 1
+          maxLength: 255
+        description: Unique key to prevent duplicate requests. We support keys up to 255 characters.
+        example: 550e8400-e29b-41d4-a716-446655440000
+      operationId: V1PayorDetectionRunResource.post
+      tags:
+      - V1PayorDetectionRunResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1PayorDetectionRunCreateBody'
+        description: ''
+components:
+  schemas:
+    PayorDetectionStatus:
+      type: string
+      enum:
+      - ACTIVE_PLAN
+      - NO_ACTIVE_PLAN
+      - ACTIVE_PLAN_RELATED_PAYOR
+      - ACTIVE_PLAN_DENTAL_OR_VISION
+      - ACTIVE_PLAN_MEDICAID_DUPLICATE
+      - ACTIVE_PLAN_NO_MEMBER_NUMBER
+      - ACTIVE_PLAN_OTHER_PAYOR
+      - ACTIVE_PLAN_EXPIRED
+      x-folder: payor_detection
+    V1PayorDetectionSchema:
+      properties:
+        status:
+          $ref: '#/components/schemas/PayorDetectionStatus'
+          description: The detailed detection status. Each status maps to a confidence level.
+        confidence_level:
+          $ref: '#/components/schemas/PayorDetectionCategory'
+          description: High-level confidence category derived from the status
+        detected_payor_entity_id:
+          default: null
+          description: The payor the patient actually has coverage with. May differ from the queried payor.
+          title: Detected Payor Entity Id
+          nullable: true
+          format: uuid
+          type: string
+        detected_payor_entity_name:
+          default: null
+          description: The name of the detected payor entity
+          title: Detected Payor Entity Name
+          nullable: true
+          type: string
+        queried_payor_entity_id:
+          description: The payor that Silna queried. See `detected_payor_entity_id` for the actual coverage payor.
+          format: uuid
+          title: Queried Payor Entity Id
+          type: string
+        queried_payor_entity_name:
+          description: The name of the queried payor entity
+          title: Queried Payor Entity Name
+          type: string
+        patient_first_name:
+          default: null
+          description: The patient's first name as returned by the payor
+          title: Patient First Name
+          nullable: true
+          type: string
+        patient_last_name:
+          default: null
+          description: The patient's last name as returned by the payor
+          title: Patient Last Name
+          nullable: true
+          type: string
+        patient_date_of_birth:
+          default: null
+          description: The patient's date of birth as returned by the payor
+          title: Patient Date Of Birth
+          nullable: true
+          format: date
+          type: string
+        member_number:
+          default: null
+          description: The member/subscriber number for this patient's plan
+          title: Member Number
+          nullable: true
+          type: string
+        plan_coverage_description:
+          default: null
+          description: A description of the plan coverage (e.g., 'Gold PPO')
+          title: Plan Coverage Description
+          nullable: true
+          type: string
+        plan_start_date:
+          default: null
+          description: The start date of the detected plan
+          title: Plan Start Date
+          nullable: true
+          format: date
+          type: string
+        plan_end_date:
+          default: null
+          description: The end date of the detected plan
+          title: Plan End Date
+          nullable: true
+          format: date
+          type: string
+        other_payors:
+          description: Other payors identified in the EDI response, indicating possible coordination of benefits
+          items:
+            $ref: '#/components/schemas/V1PayorDetectionOtherPayorSchema'
+          title: Other Payors
+          type: array
+        created_at:
+          description: When this detection was created
+          format: date-time
+          title: Created At
+          type: string
+      required:
+      - status
+      - confidence_level
+      - queried_payor_entity_id
+      - queried_payor_entity_name
+      - created_at
+      title: V1PayorDetectionSchema
+      type: object
+      x-folder: public_api
+    PayorDetectionCategory:
+      type: string
+      enum:
+      - COVERAGE_FOUND
+      - POTENTIAL_COVERAGE
+      - NO_COVERAGE
+      x-folder: payor_detection
+    V1PayorDetectionRunResponse:
+      properties:
+        id:
+          description: The ID of the payor detection run
+          format: uuid
+          title: Id
+          type: string
+        status:
+          $ref: '#/components/schemas/PayorDetectionRunStatus'
+          description: The status of the payor detection run
+        coverages_found:
+          description: Number of detections with `COVERAGE_FOUND` confidence level
+          title: Coverages Found
+          type: integer
+        potential_coverages:
+          description: Number of detections with `POTENTIAL_COVERAGE` confidence level
+          title: Potential Coverages
+          type: integer
+        total:
+          description: Total number of payor detections in this run
+          title: Total
+          type: integer
+        payor_detections:
+          description: The individual payor detection results
+          items:
+            $ref: '#/components/schemas/V1PayorDetectionSchema'
+          title: Payor Detections
+          type: array
+        created_at:
+          description: When this run was created
+          format: date-time
+          title: Created At
+          type: string
+      required:
+      - id
+      - status
+      - coverages_found
+      - potential_coverages
+      - total
+      - created_at
+      title: V1PayorDetectionRunResponse
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PayorDetectionRunCreateBody:
+      properties:
+        patient_id:
+          description: The ID of the patient to run payor detection for
+          format: uuid
+          title: Patient Id
+          type: string
+      required:
+      - patient_id
+      title: V1PayorDetectionRunCreateBody
+      type: object
+      x-folder: public_api
+    V1PayorDetectionOtherPayorSchema:
+      properties:
+        name:
+          description: The name of the other payor as returned by the EDI response. This is a raw string and may not match a payor entity name exactly.
+          title: Name
+          type: string
+        order_number:
+          default: null
+          description: The coordination of benefits order (e.g., 1 for primary, 2 for secondary)
+          title: Order Number
+          nullable: true
+          type: integer
+      required:
+      - name
+      title: V1PayorDetectionOtherPayorSchema
+      type: object
+      x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1PayorDetectionRunCreateResponse:
+      properties:
+        id:
+          description: The ID of the created payor detection run. Use this to poll the GET endpoint for results.
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1PayorDetectionRunCreateResponse
+      type: object
+      x-folder: public_api
+    PayorDetectionRunStatus:
+      type: string
+      enum:
+      - IN_PROGRESS
+      - COMPLETE
+      x-folder: payor_detection
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

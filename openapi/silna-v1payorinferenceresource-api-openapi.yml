@@ -1,0 +1,480 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1PayorInferenceResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1PayorInferenceResource
+paths:
+  /public/v1/payor_inference/{payor_inference_id}:
+    get:
+      summary: Get Payor Inference
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PayorInferenceResponseSchema'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: payor_inference_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PayorInferenceResource.get
+      tags:
+      - V1PayorInferenceResource
+      x-folder: public_api
+  /public/v1/payor_inference/:
+    post:
+      summary: Create Payor Inference
+      responses:
+        '201':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PayorInferencePostResponseSchema'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters: []
+      operationId: V1PayorInferenceResource.post
+      tags:
+      - V1PayorInferenceResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1PayorInferenceRequestSchema'
+        description: ''
+components:
+  schemas:
+    V1PayorInferencePlanSchema:
+      properties:
+        member_number:
+          default: null
+          title: Member Number
+          nullable: true
+          type: string
+        group_number:
+          default: null
+          title: Group Number
+          nullable: true
+          type: string
+        payor_entity_id:
+          default: null
+          title: Payor Entity Id
+          nullable: true
+          format: uuid
+          type: string
+        proof_of_insurance_file_id:
+          default: null
+          title: Proof Of Insurance File Id
+          nullable: true
+          format: uuid
+          type: string
+        plan_order_number:
+          description: The order number of the plan (1 for primary, 2 for secondary, etc)
+          title: Plan Order Number
+          type: integer
+        name:
+          default: null
+          description: The name of the plan
+          title: Name
+          nullable: true
+          type: string
+        insurance_type:
+          default: null
+          description: The type of insurance
+          nullable: true
+          $ref: '#/components/schemas/InsuranceType'
+      required:
+      - plan_order_number
+      title: V1PayorInferencePlanSchema
+      type: object
+      x-folder: public_api
+    V1PayorInferencePostResponseSchema:
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1PayorInferencePostResponseSchema
+      type: object
+      x-folder: public_api
+    V1PayorInferenceIndividualSchema:
+      properties:
+        first_name:
+          default: null
+          description: Patient's first name
+          title: First Name
+          nullable: true
+          type: string
+        last_name:
+          default: null
+          description: Patient's alst name
+          title: Last Name
+          nullable: true
+          type: string
+        date_of_birth:
+          default: null
+          description: Patient's date of birth
+          title: Date Of Birth
+          nullable: true
+          format: date
+          type: string
+        patient_source_id:
+          default: null
+          description: Patient's EHR ID (or other unique identifier)
+          title: Patient Source Id
+          nullable: true
+          type: string
+        plans:
+          items:
+            $ref: '#/components/schemas/V1PayorInferencePlanSchema'
+          title: Plans
+          type: array
+      title: V1PayorInferenceIndividualSchema
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PayorInferenceStatus:
+      type: string
+      enum:
+      - COMPLETED
+      - FAILED
+      - PROCESSING
+      x-folder: payor_inference
+    V1PayorInferenceRequestSchema:
+      properties:
+        strategy:
+          $ref: '#/components/schemas/PayorInferenceConfigName'
+        patient_document_file_ids:
+          default: null
+          description: Optional list of document file IDs to process
+          title: Patient Document File Ids
+          nullable: true
+          items:
+            format: uuid
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        text:
+          default: null
+          description: Payor Text
+          title: Text
+          nullable: true
+          maxLength: 5000
+          minLength: 1
+          type: string
+        patient_id:
+          default: null
+          description: Optional patient identifier
+          title: Patient Id
+          nullable: true
+          format: uuid
+          type: string
+        provider_id:
+          description: Required provider identifier (for HIPAA compliance)
+          format: uuid
+          title: Provider Id
+          type: string
+      required:
+      - strategy
+      - provider_id
+      title: V1PayorInferenceRequestSchema
+      type: object
+      x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PayorInferenceResponseSchema:
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+        status:
+          $ref: '#/components/schemas/PayorInferenceStatus'
+        inference_result:
+          default: null
+          nullable: true
+          $ref: '#/components/schemas/V1PayorInferenceResultSchema'
+      required:
+      - id
+      - status
+      title: V1PayorInferenceResponseSchema
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1PayorInferenceResultSchema:
+      properties:
+        individuals:
+          items:
+            $ref: '#/components/schemas/V1PayorInferenceIndividualSchema'
+          title: Individuals
+          type: array
+      title: V1PayorInferenceResultSchema
+      type: object
+      x-folder: public_api
+    PayorInferenceConfigName:
+      type: string
+      enum:
+      - NEAR_REALTIME
+      - BASE
+      x-folder: payor_inference
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer

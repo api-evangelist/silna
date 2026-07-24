@@ -1,0 +1,1145 @@
+openapi: 3.0.2
+info:
+  title: Silna Public OldV1PriorAuthorizationResource V1PatientPlanResource API
+  version: '1.0'
+servers:
+- url: https://app.silnahealth.com/api
+security:
+- bearerAuth: []
+tags:
+- name: V1PatientPlanResource
+paths:
+  /public/v1/patient-plans/{patient_plan_id}:
+    get:
+      summary: Get Patient Plan
+      responses:
+        '200':
+          description: "\n    Response schema for patient plan\n    "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PatientPlan'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: patient_plan_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PatientPlanResource.get
+      tags:
+      - V1PatientPlanResource
+      x-folder: public_api
+    patch:
+      summary: Update Patient Plan
+      responses:
+        '204':
+          description: OK
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: patient_plan_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PatientPlanResource.patch
+      tags:
+      - V1PatientPlanResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1PatientPlanUpdate'
+        description: "\n    Request schema for updating a patient plan\n    "
+    delete:
+      summary: Delete Patient Plan
+      responses:
+        '204':
+          description: OK
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters:
+      - in: path
+        name: patient_plan_id
+        required: true
+        schema:
+          type: string
+      operationId: V1PatientPlanResource.delete
+      tags:
+      - V1PatientPlanResource
+      x-folder: public_api
+  /public/v1/patient-plans/:
+    post:
+      summary: Create Patient Plan
+      responses:
+        '201':
+          description: "\n    Response schema for creating a patient plan\n    "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PatientPlanCreateResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters: []
+      operationId: V1PatientPlanResource.post
+      tags:
+      - V1PatientPlanResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1PatientPlanCreate'
+        description: "\n    Request schema for creating a patient plan\n    "
+    put:
+      summary: Put Patient Plan
+      responses:
+        '201':
+          description: "\n    Response schema for creating a patient plan\n    "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PatientPlanCreateResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '200':
+          description: "\n    Response schema for creating a patient plan\n    "
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/V1PatientPlanPutResponse'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '400':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '429':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TooManyRequestsError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '401':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthenticationError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '409':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConflictError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+        '404':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectNotFoundError'
+          headers:
+            X-RateLimit-Limit:
+              schema:
+                type: integer
+                description: The maximum number of requests allowed in the time window
+            X-RateLimit-Remaining:
+              schema:
+                type: integer
+                description: The number of requests remaining in the current time window
+            X-RateLimit-Reset:
+              schema:
+                type: integer
+                description: The time when the rate limit will reset, in Unix timestamp
+            Retry-After:
+              schema:
+                type: number
+                description: The number of seconds to wait before making another request
+      parameters: []
+      operationId: V1PatientPlanResource.put
+      tags:
+      - V1PatientPlanResource
+      x-folder: public_api
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/V1PatientPlanPut'
+        description: "\n    Request schema for updating a patient plan\n    "
+components:
+  schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    EligibilityCheckCompleteStatus:
+      type: string
+      enum:
+      - ELIGIBLE
+      - INELIGIBLE
+      - WITHDRAWN
+      x-folder: eligibility_check
+    V1PatientPlan:
+      description: Response schema for patient plan
+      properties:
+        member_number:
+          maxLength: 80
+          minLength: 2
+          title: Member Number
+          type: string
+        group_number:
+          default: null
+          title: Group Number
+          nullable: true
+          maxLength: 80
+          minLength: 2
+          type: string
+        start_date:
+          default: null
+          title: Start Date
+          nullable: true
+          format: date-time
+          type: string
+        end_date:
+          default: null
+          title: End Date
+          nullable: true
+          format: date-time
+          type: string
+        payor_entity_id:
+          format: uuid
+          title: Payor Entity Id
+          type: string
+        insurance_type:
+          default: null
+          description: The type of insurance
+          nullable: true
+          $ref: '#/components/schemas/InsuranceType'
+        source_id:
+          default: null
+          description: Unique identifier for the patient plan. This is (optionally) generated and supplied by API clients
+          title: Source Id
+          nullable: true
+          type: string
+        id:
+          format: uuid
+          title: Id
+          type: string
+        patient_id:
+          format: uuid
+          title: Patient Id
+          type: string
+        provider_id:
+          format: uuid
+          title: Provider Id
+          type: string
+        plan_order_number:
+          description: The order number of the plan (1 for primary, 2 for secondary, etc)
+          title: Plan Order Number
+          type: integer
+        plan_eligibility_status:
+          $ref: '#/components/schemas/PatientPlanEligibilityStatus'
+        insurance_card_file_id:
+          default: null
+          description: The file ID corresponding to the front of the insurance card
+          title: Insurance Card File Id
+          nullable: true
+          format: uuid
+          type: string
+        insurance_card_back_file_id:
+          default: null
+          description: The file ID corresponding to the back of the insurance card
+          title: Insurance Card Back File Id
+          nullable: true
+          format: uuid
+          type: string
+        archived_at:
+          default: null
+          title: Archived At
+          nullable: true
+          format: date-time
+          type: string
+        latest_eligibility_check:
+          default: null
+          nullable: true
+          $ref: '#/components/schemas/V1EligibilityInformation'
+        latest_benefits_check:
+          default: null
+          nullable: true
+          $ref: '#/components/schemas/V1BenefitsInformation'
+      required:
+      - member_number
+      - payor_entity_id
+      - id
+      - patient_id
+      - provider_id
+      - plan_order_number
+      - plan_eligibility_status
+      title: V1PatientPlan
+      type: object
+      x-folder: public_api
+    PatientPlanEligibilityStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - INACTIVE
+      - NO_CHECK
+      x-folder: patient
+    V1PatientPlanCreate:
+      description: Request schema for creating a patient plan
+      properties:
+        member_number:
+          maxLength: 80
+          minLength: 2
+          title: Member Number
+          type: string
+        group_number:
+          default: null
+          title: Group Number
+          nullable: true
+          maxLength: 80
+          minLength: 2
+          type: string
+        start_date:
+          default: null
+          title: Start Date
+          nullable: true
+          format: date-time
+          type: string
+        end_date:
+          default: null
+          title: End Date
+          nullable: true
+          format: date-time
+          type: string
+        payor_entity_id:
+          format: uuid
+          title: Payor Entity Id
+          type: string
+        insurance_type:
+          default: null
+          description: The type of insurance
+          nullable: true
+          $ref: '#/components/schemas/InsuranceType'
+        source_id:
+          default: null
+          description: Unique identifier for the patient plan. This is (optionally) generated and supplied by API clients
+          title: Source Id
+          nullable: true
+          type: string
+        patient_id:
+          format: uuid
+          title: Patient Id
+          type: string
+        plan_order_number:
+          description: The order number of the plan (1 for primary, 2 for secondary, etc)
+          title: Plan Order Number
+          type: integer
+        insurance_card_file_id:
+          default: null
+          description: The file ID corresponding to the front of the insurance card
+          title: Insurance Card File Id
+          nullable: true
+          format: uuid
+          type: string
+        insurance_card_back_file_id:
+          default: null
+          description: The file ID corresponding to the back of the insurance card
+          title: Insurance Card Back File Id
+          nullable: true
+          format: uuid
+          type: string
+        conflict_behavior:
+          default: RAISE_ERROR
+          description: How to handle a conflict when a patient plan already exists at the specified plan_order_number. RAISE_ERROR (default) will return a 409 Conflict error. BUMP_ONE will move the existing plan at the specified order to the next order number (e.g., primary becomes secondary).
+          nullable: true
+          $ref: '#/components/schemas/APIPatientPlanCreateConflictBehavior'
+      required:
+      - member_number
+      - payor_entity_id
+      - patient_id
+      - plan_order_number
+      title: V1PatientPlanCreate
+      type: object
+      x-folder: public_api
+    DeduplicationStrategy:
+      type: string
+      enum:
+      - MEMBER_NUMBER
+      - MEMBER_NUMBER_AND_PAYOR
+      - MEMBER_NUMBER_PAYOR_AND_ORDER
+      x-folder: patient
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    BenefitsCheckCompleteStatus:
+      type: string
+      enum:
+      - COMPLETE
+      x-folder: benefit_check
+    V1PatientPlanPut:
+      description: Request schema for updating a patient plan
+      properties:
+        member_number:
+          maxLength: 80
+          minLength: 2
+          title: Member Number
+          type: string
+        group_number:
+          default: null
+          title: Group Number
+          nullable: true
+          maxLength: 80
+          minLength: 2
+          type: string
+        start_date:
+          default: null
+          title: Start Date
+          nullable: true
+          format: date-time
+          type: string
+        end_date:
+          default: null
+          title: End Date
+          nullable: true
+          format: date-time
+          type: string
+        payor_entity_id:
+          format: uuid
+          title: Payor Entity Id
+          type: string
+        insurance_type:
+          default: null
+          description: The type of insurance
+          nullable: true
+          $ref: '#/components/schemas/InsuranceType'
+        source_id:
+          description: Unique identifier for the patient plan. This is generated and supplied by API clients
+          title: Source Id
+          type: string
+        patient_id:
+          format: uuid
+          title: Patient Id
+          type: string
+        plan_order_number:
+          description: The order number of the plan (1 for primary, 2 for secondary, etc)
+          title: Plan Order Number
+          type: integer
+        insurance_card_file_id:
+          default: null
+          description: The file ID corresponding to the front of the insurance card
+          title: Insurance Card File Id
+          nullable: true
+          format: uuid
+          type: string
+        insurance_card_back_file_id:
+          default: null
+          description: The file ID corresponding to the back of the insurance card
+          title: Insurance Card Back File Id
+          nullable: true
+          format: uuid
+          type: string
+        conflict_behavior:
+          default: REPLACE
+          description: The behavior to take when there is a conflict with an existing patient plan.REPLACE (default) will replace the existing plan (this will halt all in progress benefits checks and prior authorizations for the plan). RAISE_ERROR will raise an error if there is a conflict. RAISE_ERROR_ON_AUTH_WITHDRAWAL will raise an error if there are active prior authorizations that would be withdrawn. The default behavior is REPLACE
+          nullable: true
+          $ref: '#/components/schemas/APIPatientPlanPutConflictBehavior'
+        deduplication_strategy:
+          default: MEMBER_NUMBER
+          description: The strategy to use for deduplicating patient plans. MEMBER_NUMBER (default) checks only the member number. MEMBER_NUMBER_AND_PAYOR checks both member number and payor entity for deduplication. MEMBER_NUMBER_PAYOR_AND_ORDER checks member number, payor entity, and plan order number for deduplication.
+          nullable: true
+          $ref: '#/components/schemas/DeduplicationStrategy'
+      required:
+      - member_number
+      - payor_entity_id
+      - source_id
+      - patient_id
+      - plan_order_number
+      title: V1PatientPlanPut
+      type: object
+      x-folder: public_api
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+    APIPatientPlanPutConflictBehavior:
+      type: string
+      enum:
+      - RAISE_ERROR
+      - REPLACE
+      - RAISE_ERROR_ON_AUTH_WITHDRAWAL
+      x-folder: patient
+    V1BenefitsInformation:
+      description: Response schema for benefits check information
+      properties:
+        status:
+          $ref: '#/components/schemas/BenefitsCheckCompleteStatus'
+        benefits_check_id:
+          format: uuid
+          title: Benefits Check Id
+          type: string
+        date_verified:
+          default: null
+          title: Date Verified
+          nullable: true
+          format: date-time
+          type: string
+      required:
+      - status
+      - benefits_check_id
+      title: V1BenefitsInformation
+      type: object
+      x-folder: public_api
+    V1PatientPlanPutResponse:
+      description: Response schema for creating a patient plan
+      properties:
+        patient_plan_id:
+          format: uuid
+          title: Patient Plan Id
+          type: string
+      required:
+      - patient_plan_id
+      title: V1PatientPlanPutResponse
+      type: object
+      x-folder: public_api
+    V1PatientPlanUpdate:
+      description: Request schema for updating a patient plan
+      properties:
+        source_id:
+          default: null
+          description: Unique identifier for the patient plan. This is (optionally) generated and supplied by API clients
+          title: Source Id
+          nullable: true
+          type: string
+      title: V1PatientPlanUpdate
+      type: object
+      x-folder: public_api
+    APIPatientPlanCreateConflictBehavior:
+      type: string
+      enum:
+      - RAISE_ERROR
+      - BUMP_ONE
+      x-folder: patient
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1EligibilityInformation:
+      description: Response schema for eligibility check information
+      properties:
+        status:
+          $ref: '#/components/schemas/EligibilityCheckCompleteStatus'
+        eligibility_check_id:
+          format: uuid
+          title: Eligibility Check Id
+          type: string
+        date_verified:
+          default: null
+          title: Date Verified
+          nullable: true
+          format: date-time
+          type: string
+      required:
+      - status
+      - eligibility_check_id
+      title: V1EligibilityInformation
+      type: object
+      x-folder: public_api
+    ConflictError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PatientPlanCreateResponse:
+      description: Response schema for creating a patient plan
+      properties:
+        patient_plan_id:
+          format: uuid
+          title: Patient Plan Id
+          type: string
+      required:
+      - patient_plan_id
+      title: V1PatientPlanCreateResponse
+      type: object
+      x-folder: public_api
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
