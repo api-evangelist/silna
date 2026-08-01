@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.silnahealth.com/
+description: >-
+  Compliance and trust posture for Silna Health, sourced from certification badges
+  published on the company website. Silna handles protected health information (PHI)
+  for healthcare providers.
+certifications:
+- name: SOC 2 Type II
+  status: certified
+  attestation_provider: Vanta
+  evidence: '"SOC 2 Type II certified, powered by Vanta" badge on www.silnahealth.com'
+- name: HIPAA
+  status: compliant
+  evidence: HIPAA compliance badge on www.silnahealth.com
+trust_center_url: null
+notes: >-
+  No public bug-bounty program, security.txt, or standalone trust portal was found
+  during probing (probe-security-programs reported none). Compliance claims above are
+  taken verbatim from the vendor's own website badges.

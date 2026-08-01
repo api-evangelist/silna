@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/silna-openapi.json
+description: >-
+  Conformance assertions for the Silna Public API against cross-cutting API standards
+  and healthcare/compliance frameworks. Booleans are derived from the OpenAPI contract
+  and documented behavior; evidence cites the source.
+standards:
+- id: oauth2
+  conforms: false
+  evidence: Only http bearer securityScheme; no OAuth 2.0 flows declared.
+- id: oidc
+  conforms: false
+  evidence: No openIdConnect scheme or discovery document.
+- id: rfc9457
+  conforms: false
+  evidence: Errors use a custom '{ message, type? }' envelope, not application/problem+json.
+- id: idempotency
+  conforms: true
+  evidence: Idempotency-Key header (255 char, 30-day retention, 2XX-only) plus PUT+source_id upsert semantics.
+- id: pagination
+  conforms: true
+  evidence: Cursor pagination via starting_after / ending_before / limit on list endpoints.
+- id: rate_limiting
+  conforms: true
+  evidence: X-RateLimit-Limit/Remaining/Reset and Retry-After headers; 429 responses on all operations.
+- id: fhir
+  conforms: false
+  evidence: Domain (prior auth / benefits / eligibility) is healthcare, but the API is a
+    proprietary REST model, not HL7 FHIR resources.
+- id: json_api
+  conforms: false
+  evidence: Plain JSON responses, not JSON:API media type or structure.
+compliance_frameworks:
+- id: soc2-type-ii
+  conforms: true
+  evidence: SOC 2 Type II certified via Vanta (published on www.silnahealth.com). See security/silna-trust-center.yml.
+- id: hipaa
+  conforms: true
+  evidence: HIPAA compliance published on www.silnahealth.com. See security/silna-trust-center.yml.

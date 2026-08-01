@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.silnahealth.com/api-reference/v1benefitscheckresource/qa-testing-guide.md
+description: >-
+  Silna provides a QA environment for testing the Benefits Check integration. Every
+  benefits check request is intercepted and returns a synthetic response driven by the
+  patient plan's member number - no real payor calls are made. All values below are
+  published verbatim in Silna's QA Testing Guide.
+environment:
+  name: QA
+  behavior: >-
+    Requests are intercepted and return synthetic responses based on the patient plan
+    member number. Workflow is identical to production (create patient plan, create
+    benefits check, get benefits check, poll until status COMPLETE).
+  limitation: >-
+    Currently only works with the Aetna payor (id 018f7dfa-3e85-7f38-a0fe-71a9bf6a64c2)
+    and insurance code 11 (Commercial). Other codes/payors are a work in progress.
+member_number_format:
+  pattern: A[FLAGS][INSURANCE_CODE]
+  parts:
+  - part: Prefix
+    value: Always 'A'
+    required: true
+  - part: Flags
+    value: Optional keywords toggling behaviors; filler chars like '_' or '0' allowed for readability.
+    required: false
+  - part: Insurance Code
+    value: Last two characters; two-digit code selecting insurance type and plan data.
+    required: true
+test_member_numbers:
+- number: ATEST00000011
+  meaning: Commercial plan, no special requirements
+- number: A_AUTH_REQ_011
+  meaning: Commercial plan with authorization required
+- number: A_REF_REQ_011
+  meaning: Commercial plan with referral required
+- number: A_VISIT_REQ_011
+  meaning: Commercial plan with visit limits
+- number: AAUTH_REQREF_REQVISIT_REQ11
+  meaning: Commercial plan with all three requirements
+insurance_type_codes:
+- code: '11'
+  insurance_type: Commercial
+  plan: >-
+    Aetna-style Open Access MC plan. Individual deductible $3,500 / $7,000 OON. Family
+    deductible $10,000 / $14,000 OON. Individual OOP $5,500 / $13,000 OON. Family OOP
+    $16,000 / $26,000 OON. 10% coinsurance in-network, 40% out-of-network. $0 copay.
+    Plan dates 2025-01-01 to 2025-12-31.
+note: >-
+  Authorization/referral/visit-limit flags require a benefits check template with those
+  features enabled - contact your Silna representative to update the template.

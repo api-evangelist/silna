@@ -1,0 +1,66 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.silnahealth.com/api-reference/overview
+description: >-
+  Cross-cutting runtime semantics for the Silna Public API, captured from the docs
+  overview and the OpenAPI contract.
+auth:
+  style: bearer
+  header: Authorization
+  format: 'Authorization: Bearer <token>'
+  issuance: Tokens created in the Silna Portal (https://app.silnahealth.com/), scoped to a provider or MSO.
+  ref: authentication/silna-authentication.yml
+idempotency:
+  supported: true
+  mechanisms:
+  - name: Idempotency-Key header
+    header: Idempotency-Key
+    max_length: 255
+    retention: 30 days
+    scope: 2XX responses only (4XX/5XX may be retried with the same key)
+    conflict: Reusing a key with a different request body/parameters returns 400.
+    operations_with_header: 3
+  - name: PUT + source_id
+    description: >-
+      PUT APIs require a source_id in the body; re-sending the same source_id updates
+      the existing resource, otherwise creates a new one. Enables idempotent upserts
+      keyed on the caller's external id.
+pagination:
+  style: cursor
+  params:
+  - starting_after
+  - ending_before
+  - limit
+  note: Stripe-style cursor pagination available on list endpoints.
+external_ids:
+  field: source_id
+  description: >-
+    Correlate Silna resources with ids from your own system (EHR ids). Supported on
+    create/upsert bodies and as a search query parameter on many list endpoints.
+    Pass source_id=null to search for resources without a source_id.
+resource_urls:
+  field: silna_url
+  description: >-
+    Many resources return a silna_url pointing to the resource in the Silna web app.
+    These are volatile - fetch on demand, do not store.
+versioning:
+  scheme: path
+  current: v1
+  also: v2 (V2BenefitsCheckResource)
+  note: A legacy prior-authorization resource (OldV1PriorAuthorizationResource) remains for compatibility.
+rate_limiting:
+  default: 120 requests/minute
+  file_upload: 60 requests/minute
+  headers:
+  - X-RateLimit-Limit
+  - X-RateLimit-Remaining
+  - X-RateLimit-Reset
+  - Retry-After
+  ref: rate-limits/silna-rate-limits.yml
+error_envelope:
+  format: '{ "message": string, "type"?: string }'
+  rfc9457: false
+  ref: errors/silna-problem-types.yml
+delete_semantics:
+  behavior: archive (soft delete); records are not hard-deleted
+lifecycle_ref: lifecycle/silna-lifecycle.yml

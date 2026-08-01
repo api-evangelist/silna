@@ -1,0 +1,111 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/silna-openapi.json
+description: >-
+  Entity-relationship graph derived from the Silna Public API OpenAPI schemas by
+  following id-reference fields (foreign keys) between resource objects. Relationships
+  are read directly from *_id properties on each response schema; no relationships
+  were invented.
+entities:
+- name: Patient
+  schema: V1Patient
+  relationships:
+  - belongs_to: ServiceLocation
+    via: provider_service_location_id
+- name: PatientPlan
+  schema: V1PatientPlan
+  note: Patient Plans are immutable; to change one you archive it and create a new plan.
+  relationships:
+  - belongs_to: Patient
+    via: patient_id
+  - belongs_to: Payor
+    via: payor_entity_id
+  - belongs_to: Provider
+    via: provider_id
+  - belongs_to: File
+    via: insurance_card_file_id
+  - belongs_to: File
+    via: insurance_card_back_file_id
+- name: Payor
+  schema: V1Payor
+  relationships: []
+- name: PayorPlan
+  schema: V1PayorPlan
+  relationships:
+  - belongs_to: Payor
+    via: payor_id
+- name: Provider
+  schema: V1Provider
+  relationships: []
+- name: ProviderGroup
+  schema: V1ProviderGroup
+  relationships: []
+- name: ServiceLocation
+  schema: V1ServiceLocation
+  relationships:
+  - belongs_to: ProviderGroup
+    via: provider_group_id
+  - belongs_to: Provider
+    via: provider_id
+- name: BenefitsCheck
+  schema: V1BenefitsCheckResponse
+  relationships:
+  - belongs_to: PatientPlan
+    via: patient_plan_id
+  - belongs_to: Patient
+    via: patient_id
+  - belongs_to: Provider
+    via: provider_id
+- name: PriorAuthorization
+  schema: V1PriorAuthorization
+  note: Created and read under a patient plan (patient_plan_id path/query parameter).
+  relationships: []
+- name: DocumentValidation
+  schema: V1DetailedDocumentValidation
+  relationships:
+  - belongs_to: DocumentValidationBatch
+    via: batch_id
+- name: DocumentValidationBatch
+  schema: V1DocumentValidationBatch
+  relationships: []
+- name: Escalation
+  schema: V1Escalation
+  note: resource_id is polymorphic - points at the eligibility check, benefits check, or prior authorization that raised the escalation.
+  relationships:
+  - belongs_to: Patient
+    via: patient_id
+  - belongs_to: Payor
+    via: payor_id
+  - belongs_to: Resource
+    via: resource_id
+- name: PatientDiagnosis
+  schema: V1PatientDiagnosis
+  relationships:
+  - belongs_to: Patient
+    via: patient_id
+- name: PatientNote
+  schema: V1PatientNote
+  relationships:
+  - belongs_to: Patient
+    via: patient_id
+  - belongs_to: File
+    via: file_id
+- name: PatientPlaceOfService
+  schema: V1PatientPlaceOfService
+  relationships: []
+- name: Contract
+  schema: V1Contract
+  relationships:
+  - belongs_to: Payor
+    via: payor_id
+- name: PayorDetectionRun
+  schema: V1PayorDetectionRunResponse
+  relationships: []
+- name: BulkExport
+  schema: V1BulkExportSchema
+  relationships:
+  - belongs_to: File
+    via: file_id
+- name: File
+  schema: V1DocumentFile
+  relationships: []

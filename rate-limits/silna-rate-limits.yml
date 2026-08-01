@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.silnahealth.com/api-reference/overview
+description: >-
+  Silna Public API rate limiting, documented in the API overview and observable as
+  429 responses across all operations in the OpenAPI contract.
+limits:
+- scope: default (all APIs)
+  limit_count: 120
+  window: minute
+- scope: file upload API
+  limit_count: 60
+  window: minute
+response:
+  status: 429
+  body:
+    message: 'Rate limit exceeded. Please wait {X} seconds before trying again.'
+headers:
+- name: X-RateLimit-Limit
+  description: Maximum requests permitted per minute for the requested API.
+- name: X-RateLimit-Remaining
+  description: Requests remaining in the current window.
+- name: X-RateLimit-Reset
+  description: UTC epoch seconds when the current window resets.
+- name: Retry-After
+  description: Seconds to wait before the next request; 0 except on a 429.
+increase: Email engineering@silnahealth.com to request a rate limit increase.

@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: probed
+source: probe of Silna hosts
+description: >-
+  Results of probing standard /.well-known/ and discovery paths across Silna hosts.
+  Absence (404/000) is valid, expected data. No well-known documents were published.
+probes:
+- host: www.silnahealth.com
+  path: /.well-known/security.txt
+  status: 404
+  file: null
+- host: www.silnahealth.com
+  path: /security.txt
+  status: 404
+  file: null
+- host: silnahealth.com
+  path: /.well-known/security.txt
+  status: 404
+  file: null
+- host: app.silnahealth.com
+  path: /.well-known/openid-configuration
+  status: 404
+  file: null
+- host: api.silnahealth.com
+  path: / (root)
+  status: 404
+  file: null
+- host: api.silnahealth.com
+  path: /public/openapi.json
+  status: 200
+  file: null
+  note: OpenAPI specification (captured to openapi/silna-openapi.json).
+- host: docs.silnahealth.com
+  path: /llms.txt
+  status: 200
+  file: null
+  note: LLMs docs index (captured to llms/silna-llms.txt).
+found: []

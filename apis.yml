@@ -1,8 +1,14 @@
 aid: silna
 name: Silna
-description: 'Silna is a company surfaced as a portfolio company of accel, bain-capital-ventures and added
-  to the API Evangelist network as a stub for enrichment. Sector: automation. This profile is a lead awaiting
-  the enrichment pipeline.'
+description: 'Silna Health is a healthcare automation platform that handles prior authorizations,
+  benefit checks, eligibility verification, and insurance monitoring upfront so providers
+  can confirm patients are clear to receive care. Its Public API (OpenAPI 3.0.2, Bearer-authenticated)
+  exposes patients, patient plans, payors, providers, service locations, benefits checks,
+  eligibility, prior authorizations, document validation, payor detection, escalations,
+  and bulk export across 63 operations, with cursor pagination, idempotency keys, source
+  ids, and per-minute rate limiting. Silna is SOC 2 Type II certified (via Vanta) and
+  HIPAA compliant, and was surfaced as a portfolio company of Accel and Bain Capital
+  Ventures.'
 url: https://raw.githubusercontent.com/api-evangelist/silna/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,18 +17,798 @@ x-backed-by:
 - bain-capital-ventures
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/silna.png
 tags:
 - Company
 - Automation
-apis: []
+- Healthcare
+- Prior Authorization
+- Benefits Check
+- Eligibility
+- Insurance
+- Revenue Cycle
+- API
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: silna:silna-oldv1priorauthorizationresource-api
+  name: Silna OldV1PriorAuthorizationResource API
+  description: >-
+    The OldV1PriorAuthorizationResource API from Silna — 1 operation(s) for oldv1priorauthorizationresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - OldV1PriorAuthorizationResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-oldv1priorauthorizationresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1benefitscheckreportresource-api
+  name: Silna V1BenefitsCheckReportResource API
+  description: >-
+    The V1BenefitsCheckReportResource API from Silna — 1 operation(s) for v1benefitscheckreportresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1BenefitsCheckReportResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1benefitscheckreportresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1benefitscheckresource-api
+  name: Silna V1BenefitsCheckResource API
+  description: The V1BenefitsCheckResource API from Silna — 2 operation(s) for v1benefitscheckresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1BenefitsCheckResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1benefitscheckresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1benefitschecktemplatesresource-api
+  name: Silna V1BenefitsCheckTemplatesResource API
+  description: >-
+    The V1BenefitsCheckTemplatesResource API from Silna — 1 operation(s) for v1benefitschecktemplatesresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1BenefitsCheckTemplatesResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1benefitschecktemplatesresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1bulkexportresource-api
+  name: Silna V1BulkExportResource API
+  description: The V1BulkExportResource API from Silna — 2 operation(s) for v1bulkexportresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1BulkExportResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1bulkexportresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1cliniciansresource-api
+  name: Silna V1CliniciansResource API
+  description: The V1CliniciansResource API from Silna — 1 operation(s) for v1cliniciansresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1CliniciansResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1cliniciansresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1contractresource-api
+  name: Silna V1ContractResource API
+  description: The V1ContractResource API from Silna — 1 operation(s) for v1contractresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ContractResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1contractresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1contractsresource-api
+  name: Silna V1ContractsResource API
+  description: The V1ContractsResource API from Silna — 1 operation(s) for v1contractsresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ContractsResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1contractsresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1documentvalidationbatchdocumentvalidationsresource-api
+  name: Silna V1DocumentValidationBatchDocumentValidationsResource API
+  description: >-
+    The V1DocumentValidationBatchDocumentValidationsResource API from Silna — 1 operation(s) for v1documentvalidationbatchdocumentvalidationsresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1DocumentValidationBatchDocumentValidationsResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1documentvalidationbatchdocumentvalidationsresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1documentvalidationbatchresource-api
+  name: Silna V1DocumentValidationBatchResource API
+  description: >-
+    The V1DocumentValidationBatchResource API from Silna — 1 operation(s) for v1documentvalidationbatchresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1DocumentValidationBatchResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1documentvalidationbatchresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1documentvalidationresource-api
+  name: Silna V1DocumentValidationResource API
+  description: >-
+    The V1DocumentValidationResource API from Silna — 1 operation(s) for v1documentvalidationresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1DocumentValidationResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1documentvalidationresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1escalationsresource-api
+  name: Silna V1EscalationsResource API
+  description: The V1EscalationsResource API from Silna — 1 operation(s) for v1escalationsresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1EscalationsResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1escalationsresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1fileresource-api
+  name: Silna V1FileResource API
+  description: The V1FileResource API from Silna — 2 operation(s) for v1fileresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1FileResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1fileresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1getpayorresource-api
+  name: Silna V1GetPayorResource API
+  description: The V1GetPayorResource API from Silna — 1 operation(s) for v1getpayorresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1GetPayorResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1getpayorresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1patientdiagnosisresource-api
+  name: Silna V1PatientDiagnosisResource API
+  description: >-
+    The V1PatientDiagnosisResource API from Silna — 2 operation(s) for v1patientdiagnosisresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PatientDiagnosisResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1patientdiagnosisresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1patientnotesresource-api
+  name: Silna V1PatientNotesResource API
+  description: The V1PatientNotesResource API from Silna — 1 operation(s) for v1patientnotesresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PatientNotesResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1patientnotesresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1patientplaceofservicesresource-api
+  name: Silna V1PatientPlaceOfServicesResource API
+  description: >-
+    The V1PatientPlaceOfServicesResource API from Silna — 2 operation(s) for v1patientplaceofservicesresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PatientPlaceOfServicesResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1patientplaceofservicesresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1patientplanbenefitschecksresource-api
+  name: Silna V1PatientPlanBenefitsChecksResource API
+  description: >-
+    The V1PatientPlanBenefitsChecksResource API from Silna — 1 operation(s) for v1patientplanbenefitschecksresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PatientPlanBenefitsChecksResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1patientplanbenefitschecksresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1patientplanpriorauthorizationsresource-api
+  name: Silna V1PatientPlanPriorAuthorizationsResource API
+  description: >-
+    The V1PatientPlanPriorAuthorizationsResource API from Silna — 1 operation(s) for v1patientplanpriorauthorizationsresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PatientPlanPriorAuthorizationsResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1patientplanpriorauthorizationsresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1patientplanresource-api
+  name: Silna V1PatientPlanResource API
+  description: The V1PatientPlanResource API from Silna — 2 operation(s) for v1patientplanresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PatientPlanResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1patientplanresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1patientplansresource-api
+  name: Silna V1PatientPlansResource API
+  description: The V1PatientPlansResource API from Silna — 1 operation(s) for v1patientplansresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PatientPlansResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1patientplansresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1patientresource-api
+  name: Silna V1PatientResource API
+  description: The V1PatientResource API from Silna — 1 operation(s) for v1patientresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PatientResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1patientresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1patientsresource-api
+  name: Silna V1PatientsResource API
+  description: The V1PatientsResource API from Silna — 1 operation(s) for v1patientsresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PatientsResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1patientsresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1payordetectionrunresource-api
+  name: Silna V1PayorDetectionRunResource API
+  description: >-
+    The V1PayorDetectionRunResource API from Silna — 2 operation(s) for v1payordetectionrunresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PayorDetectionRunResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1payordetectionrunresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1payorinferenceresource-api
+  name: Silna V1PayorInferenceResource API
+  description: >-
+    The V1PayorInferenceResource API from Silna — 2 operation(s) for v1payorinferenceresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PayorInferenceResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1payorinferenceresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1payorplansresource-api
+  name: Silna V1PayorPlansResource API
+  description: The V1PayorPlansResource API from Silna — 1 operation(s) for v1payorplansresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PayorPlansResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1payorplansresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1payorsresource-api
+  name: Silna V1PayorsResource API
+  description: The V1PayorsResource API from Silna — 1 operation(s) for v1payorsresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PayorsResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1payorsresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1priorauthorizationcompletedresource-api
+  name: Silna V1PriorAuthorizationCompletedResource API
+  description: >-
+    The V1PriorAuthorizationCompletedResource API from Silna — 1 operation(s) for v1priorauthorizationcompletedresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PriorAuthorizationCompletedResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1priorauthorizationcompletedresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1priorauthorizationcompleterequestresource-api
+  name: Silna V1PriorAuthorizationCompleteRequestResource API
+  description: >-
+    The V1PriorAuthorizationCompleteRequestResource API from Silna — 1 operation(s) for v1priorauthorizationcompleterequestresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PriorAuthorizationCompleteRequestResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1priorauthorizationcompleterequestresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1priorauthorizationrecordapprovalresource-api
+  name: Silna V1PriorAuthorizationRecordApprovalResource API
+  description: >-
+    The V1PriorAuthorizationRecordApprovalResource API from Silna — 1 operation(s) for v1priorauthorizationrecordapprovalresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PriorAuthorizationRecordApprovalResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1priorauthorizationrecordapprovalresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1priorauthorizationresource-api
+  name: Silna V1PriorAuthorizationResource API
+  description: >-
+    The V1PriorAuthorizationResource API from Silna — 2 operation(s) for v1priorauthorizationresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1PriorAuthorizationResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1priorauthorizationresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1providergroupresource-api
+  name: Silna V1ProviderGroupResource API
+  description: The V1ProviderGroupResource API from Silna — 1 operation(s) for v1providergroupresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ProviderGroupResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1providergroupresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1providergroupsresource-api
+  name: Silna V1ProviderGroupsResource API
+  description: >-
+    The V1ProviderGroupsResource API from Silna — 1 operation(s) for v1providergroupsresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ProviderGroupsResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1providergroupsresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1providerpayorsresource-api
+  name: Silna V1ProviderPayorsResource API
+  description: >-
+    The V1ProviderPayorsResource API from Silna — 1 operation(s) for v1providerpayorsresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ProviderPayorsResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1providerpayorsresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1providerplaceofservicesresource-api
+  name: Silna V1ProviderPlaceOfServicesResource API
+  description: >-
+    The V1ProviderPlaceOfServicesResource API from Silna — 1 operation(s) for v1providerplaceofservicesresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ProviderPlaceOfServicesResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1providerplaceofservicesresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1providerresource-api
+  name: Silna V1ProviderResource API
+  description: The V1ProviderResource API from Silna — 1 operation(s) for v1providerresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ProviderResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1providerresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1providerservicelocationsresource-api
+  name: Silna V1ProviderServiceLocationsResource API
+  description: >-
+    The V1ProviderServiceLocationsResource API from Silna — 1 operation(s) for v1providerservicelocationsresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ProviderServiceLocationsResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1providerservicelocationsresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1providersresource-api
+  name: Silna V1ProvidersResource API
+  description: The V1ProvidersResource API from Silna — 1 operation(s) for v1providersresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ProvidersResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1providersresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1servicelocationbyidresource-api
+  name: Silna V1ServiceLocationByIdResource API
+  description: >-
+    The V1ServiceLocationByIdResource API from Silna — 1 operation(s) for v1servicelocationbyidresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ServiceLocationByIdResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1servicelocationbyidresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1servicelocationproviderplaceofservicesresource-api
+  name: Silna V1ServiceLocationProviderPlaceOfServicesResource API
+  description: >-
+    The V1ServiceLocationProviderPlaceOfServicesResource API from Silna — 1 operation(s) for v1servicelocationproviderplaceofservicesresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ServiceLocationProviderPlaceOfServicesResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1servicelocationproviderplaceofservicesresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v1servicelocationsresource-api
+  name: Silna V1ServiceLocationsResource API
+  description: >-
+    The V1ServiceLocationsResource API from Silna — 1 operation(s) for v1servicelocationsresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V1ServiceLocationsResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v1servicelocationsresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
+- aid: silna:silna-v2benefitscheckresource-api
+  name: Silna V2BenefitsCheckResource API
+  description: The V2BenefitsCheckResource API from Silna — 1 operation(s) for v2benefitscheckresource.
+  humanURL: https://docs.silnahealth.com/api-reference/overview
+  baseURL: https://app.silnahealth.com/api
+  tags:
+  - V2BenefitsCheckResource
+  properties:
+  - type: OpenAPI
+    url: openapi/silna-v2benefitscheckresource-api-openapi.yml
+  - type: Documentation
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: APIReference
+    url: https://docs.silnahealth.com/api-reference/overview
+  - type: LLMs
+    url: llms/silna-llms.txt
 common:
+- type: DomainSecurity
+  url: security/silna-domain-security.yml
+- type: Authentication
+  url: authentication/silna-authentication.yml
+- type: ErrorCatalog
+  url: errors/silna-problem-types.yml
+- type: Conventions
+  url: conventions/silna-conventions.yml
+- type: Idempotency
+  url: conventions/silna-conventions.yml
+- type: RateLimits
+  url: rate-limits/silna-rate-limits.yml
+- type: Lifecycle
+  url: lifecycle/silna-lifecycle.yml
+- type: Conformance
+  url: conformance/silna-conformance.yml
+- type: Compliance
+  url: conformance/silna-conformance.yml
+- type: TrustCenter
+  url: security/silna-trust-center.yml
+- type: DataModel
+  url: data-model/silna-data-model.yml
+- type: MCPServer
+  url: mcp/silna-mcp.yml
+- type: WellKnown
+  url: well-known/silna-well-known.yml
+- type: Overlay
+  url: overlays/silna-openapi-overlay.yaml
+- type: Sandbox
+  url: sandbox/silna-sandbox.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: GitHubOrganization
+  url: https://github.com/silna-health
 - type: Website
   url: https://www.silnahealth.com/
+- type: Portal
+  url: https://app.silnahealth.com/
+- type: DeveloperPortal
+  url: https://docs.silnahealth.com/api-reference/overview
+- type: Documentation
+  url: https://docs.silnahealth.com/api-reference/overview
+- type: APIReference
+  url: https://docs.silnahealth.com/api-reference/overview
+- type: GettingStarted
+  url: https://docs.silnahealth.com/api-reference/overview
+- type: SignUp
+  url: https://app.silnahealth.com/
+- type: Blog
+  url: https://engineering.silnahealth.com
+- type: StatusPage
+  url: https://status.silnahealth.com
+- type: PrivacyPolicy
+  url: https://www.silnahealth.com/privacy-policy/
+- type: TermsOfService
+  url: https://www.silnahealth.com/terms-of-use/
+- type: Support
+  url: mailto:support@silnahealth.com
+- type: LinkedIn
+  url: https://www.linkedin.com/company/silna-health
+- type: Twitter
+  url: https://x.com/SilnaHealth/
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 18
+  pass: local-v1

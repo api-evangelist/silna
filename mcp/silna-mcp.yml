@@ -1,0 +1,151 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/silna-openapi.json
+status: candidate
+description: Candidate Model Context Protocol (MCP) tool surface derived from the Silna Public API OpenAPI
+  operations. Silna does not publish an official hosted/remote MCP server; this is a proposed mapping
+  of REST operations to MCP tools, one tool per operationId, grounded in the real contract. Bearer auth
+  (Authorization header) applies to every tool.
+official_server: null
+transport: null
+auth:
+  type: bearer
+  header: Authorization
+tool_groups:
+- group: Patients
+  tools:
+  - name: get_patients
+    op: V1PatientsResource.get
+    method: GET
+    path: /public/v1/patients/
+  - name: create_patient
+    op: V1PatientsResource.post
+    method: POST
+    path: /public/v1/patients/
+  - name: upsert_patient
+    op: V1PatientsResource.put
+    method: PUT
+    path: /public/v1/patients/
+  - name: get_patient
+    op: V1PatientResource.get
+    method: GET
+    path: /public/v1/patients/{patient_id}
+  - name: update_patient
+    op: V1PatientResource.patch
+    method: PATCH
+    path: /public/v1/patients/{patient_id}
+  - name: delete_patient
+    op: V1PatientResource.delete
+    method: DELETE
+    path: /public/v1/patients/{patient_id}
+- group: Patient Plans
+  tools:
+  - name: get_patient_plans
+    op: V1PatientPlansResource.get
+    method: GET
+    path: /public/v1/patients/{patient_id}/patient-plans
+  - name: create_patient_plan
+    op: V1PatientPlanResource.post
+    method: POST
+    path: /public/v1/patient-plans/
+  - name: get_patient_plan
+    op: V1PatientPlanResource.get
+    method: GET
+    path: /public/v1/patient-plans/{patient_plan_id}
+  - name: upsert_patient_plan
+    op: V1PatientPlanResource.put
+    method: PUT
+    path: /public/v1/patient-plans/
+- group: Benefits Checks
+  tools:
+  - name: create_benefits_check
+    op: V1BenefitsCheckResource.post
+    method: POST
+    path: /public/v1/benefits-checks/
+  - name: get_benefits_check
+    op: V1BenefitsCheckResource.get
+    method: GET
+    path: /public/v1/benefits-checks/{benefits_check_id}
+  - name: get_benefits_check_v2
+    op: V2BenefitsCheckResource.get
+    method: GET
+    path: /public/v2/benefits-checks/{benefits_check_id}
+  - name: generate_benefits_check_report
+    op: V1BenefitsCheckReportResource.post
+    method: POST
+    path: /public/v1/benefits-checks/{benefits_check_id}/reports
+- group: Prior Authorizations
+  tools:
+  - name: create_prior_authorization
+    op: V1PriorAuthorizationResource.post
+    method: POST
+    path: /public/v1/prior-authorizations/
+  - name: get_prior_authorization
+    op: V1PriorAuthorizationResource.get
+    method: GET
+    path: /public/v1/prior-authorizations/{prior_authorization_id}
+  - name: update_prior_authorization
+    op: V1PriorAuthorizationResource.patch
+    method: PATCH
+    path: /public/v1/prior-authorizations/{prior_authorization_id}
+  - name: abort_prior_authorization
+    op: V1PriorAuthorizationResource.delete
+    method: DELETE
+    path: /public/v1/prior-authorizations/{prior_authorization_id}
+- group: Payors
+  tools:
+  - name: get_payors
+    op: V1PayorsResource.get
+    method: GET
+    path: /public/v1/payors/
+  - name: get_payor
+    op: V1GetPayorResource.get
+    method: GET
+    path: /public/v1/payors/{payor_id}
+  - name: list_payor_plans
+    op: V1PayorPlansResource.get
+    method: GET
+    path: /public/v1/payors/plans
+  - name: create_payor_detection_run
+    op: V1PayorDetectionRunResource.post
+    method: POST
+    path: /public/v1/payor-detection/runs
+- group: Providers
+  tools:
+  - name: get_providers
+    op: V1ProvidersResource.get
+    method: GET
+    path: /public/v1/providers/
+  - name: get_provider
+    op: V1ProviderResource.get
+    method: GET
+    path: /public/v1/providers/{provider_id}
+  - name: get_service_locations
+    op: V1ProviderServiceLocationsResource.get
+    method: GET
+    path: /public/v1/providers/{provider_id}/service-locations
+- group: Document Intelligence
+  tools:
+  - name: get_document_validation
+    op: V1DocumentValidationResource.get
+    method: GET
+    path: /public/v1/document-intelligence/document-validations/{document_validation_id}
+  - name: upload_file
+    op: V1FileResource.post
+    method: POST
+    path: /public/v1/files/
+- group: Escalations & Export
+  tools:
+  - name: get_escalations
+    op: V1EscalationsResource.get
+    method: GET
+    path: /public/v1/escalations/
+  - name: create_bulk_export
+    op: V1BulkExportResource.post
+    method: POST
+    path: /public/v1/bulk-export/
+  - name: get_bulk_export
+    op: V1BulkExportResource.get
+    method: GET
+    path: /public/v1/bulk-export/{bulk_export_id}
+total_operations_available: 63

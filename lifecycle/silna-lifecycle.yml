@@ -1,0 +1,26 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.silnahealth.com/api-reference/overview
+description: >-
+  Operational lifecycle signals for the Silna Public API: status page, versioning,
+  and deprecation posture.
+status_page:
+  url: https://status.silnahealth.com
+  present: true
+versioning:
+  scheme: path-prefix
+  versions:
+  - v1 (current, majority of operations)
+  - v2 (V2BenefitsCheckResource)
+  legacy:
+  - OldV1PriorAuthorizationResource (retained for backward compatibility, superseded by V1PriorAuthorizationResource)
+deprecation:
+  policy_documented: false
+  headers_observed: false
+  note: >-
+    No formal deprecation/Sunset (RFC 8594) policy is published. Version coexistence
+    (v1/v2 and an Old* prior-authorization resource) implies additive, non-breaking
+    evolution, but this is inferred, not stated.
+support:
+  contact: engineering@silnahealth.com
+  support_email: support@silnahealth.com

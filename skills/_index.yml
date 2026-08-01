@@ -1,0 +1,13 @@
+generated: '2026-07-21'
+method: generated
+source: openapi/silna-openapi.json
+description: >-
+  Packaged Agent Skills for the Silna Public API, each grounded in real operationIds
+  from openapi/silna-openapi.json. No provider-published skills or AGENTS.md were found.
+skills:
+- name: silna-run-benefits-check
+  file: silna-run-benefits-check.md
+  summary: Run an on-demand insurance benefits check for a patient plan and read coverage details.
+- name: silna-submit-prior-authorization
+  file: silna-submit-prior-authorization.md
+  summary: Submit a prior authorization for a patient plan and track it to approval.

@@ -1,0 +1,63 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.silnahealth.com/api-reference/overview
+derived_from: openapi/silna-openapi.json
+format: custom-json
+envelope:
+  description: >-
+    All Silna API errors return a JSON body with a `message` field. Some errors
+    (notably 401 authentication errors) also return a `type` field to distinguish
+    the kind of unauthorized error. This is NOT RFC 9457 problem+json.
+  fields:
+  - name: message
+    type: string
+    always: true
+  - name: type
+    type: string
+    always: false
+    note: Present on 401 authentication errors to distinguish unauthorized reasons.
+  example:
+    message: '{MESSAGE}'
+    type: '{TYPE}'
+content_type: application/json
+problem_types:
+- status: 400
+  title: Bad Request
+  schema: ValidationError / UserError
+  meaning: Malformed request, failed validation, or improper idempotency-key reuse
+    (same key with a different request body or parameters).
+  remediation: Correct the request body/parameters. For idempotency, reuse a key only
+    with an identical request.
+- status: 401
+  title: Unauthorized
+  schema: AuthenticationError
+  meaning: Missing, invalid, or expired Bearer token. Returns a `type` field
+    identifying the authentication failure.
+  remediation: >-
+    Generate a valid token in the Silna Portal and send it in the Authorization
+    header as 'Bearer <token>'.
+- status: 404
+  title: Not Found
+  schema: ObjectNotFoundError
+  meaning: The requested resource does not exist or is not visible to your token's
+    provider/MSO.
+  remediation: Verify the resource id (or source_id) and that it belongs to your account.
+- status: 409
+  title: Conflict
+  schema: ConflictError
+  meaning: The request conflicts with the current state of the resource.
+  remediation: Re-fetch the resource and retry with reconciled state.
+- status: 413
+  title: Request Entity Too Large
+  schema: RequestEntityTooLargeError
+  meaning: The uploaded payload (e.g. a file) exceeds the allowed size.
+  remediation: Reduce the payload size and retry.
+- status: 429
+  title: Too Many Requests
+  schema: TooManyRequestsError
+  meaning: Rate limit exceeded (default 120 requests/minute; 60/minute for file upload).
+  remediation: Honor the Retry-After header and the X-RateLimit-* headers; back off
+    before retrying.
+notes: >-
+  Idempotency keys are only honored for 2XX responses; a 4XX/5XX may be safely
+  retried with the same key. Delete operations archive rather than hard-delete.

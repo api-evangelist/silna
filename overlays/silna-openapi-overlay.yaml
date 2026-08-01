@@ -1,0 +1,43 @@
+overlay: 1.0.0
+info:
+  title: Silna Public API - API Evangelist enrichment overlay
+  version: 1.0.0
+x-provenance:
+  generated: '2026-07-21'
+  method: generated
+  source: openapi/silna-openapi.json
+  note: >-
+    Non-destructive overlay of API Evangelist enrichments over the upstream Silna
+    Public API OpenAPI. Adds discovery metadata, runtime-semantics annotations, and
+    cross-links to enrichment artifacts. Does not mutate the original spec.
+extends: ../openapi/silna-openapi.json
+actions:
+- target: $.info
+  update:
+    x-api-evangelist:
+      provider: silna
+      domain: healthcare-prior-authorization
+      auth: bearer
+      pagination: cursor (starting_after/ending_before/limit)
+      idempotency: Idempotency-Key header (255 char, 30-day, 2XX-only) + PUT/source_id upsert
+      rate_limit: 120/min default, 60/min file upload
+      error_envelope: '{ message, type? } (not RFC 9457)'
+      compliance: [SOC 2 Type II (Vanta), HIPAA]
+      artifacts:
+        authentication: authentication/silna-authentication.yml
+        conventions: conventions/silna-conventions.yml
+        errors: errors/silna-problem-types.yml
+        rate_limits: rate-limits/silna-rate-limits.yml
+        lifecycle: lifecycle/silna-lifecycle.yml
+        data_model: data-model/silna-data-model.yml
+- target: $.servers
+  update:
+  - url: https://app.silnahealth.com/api
+    description: Production
+- target: $.info
+  update:
+    x-rate-limit-headers:
+    - X-RateLimit-Limit
+    - X-RateLimit-Remaining
+    - X-RateLimit-Reset
+    - Retry-After

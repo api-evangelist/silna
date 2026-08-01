@@ -1,0 +1,21 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.silnahealth.com/api-reference/overview
+docs: https://docs.silnahealth.com/api-reference/overview
+summary:
+  types:
+  - http
+  notes: >-
+    All Silna Public API endpoints are authenticated with Bearer tokens passed in
+    the Authorization header. Tokens are generated in the Silna Portal
+    (https://app.silnahealth.com/) and associated with a provider or MSO.
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  in: header
+  header: Authorization
+  token_issuance: 'https://app.silnahealth.com/ - create a token associated with your provider or MSO'
+  sources:
+  - openapi/silna-openapi.json
+  - https://docs.silnahealth.com/api-reference/overview
