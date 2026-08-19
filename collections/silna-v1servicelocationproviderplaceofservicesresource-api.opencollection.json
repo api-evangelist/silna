@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1ServiceLocationProviderPlaceOfServicesResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1ServiceLocationProviderPlaceOfServicesResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Provider Places of Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/service-locations/:service_location_id/provider-place-of-services",
+            "params": [
+              {
+                "name": "service_location_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ending_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Provider Places of Service"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

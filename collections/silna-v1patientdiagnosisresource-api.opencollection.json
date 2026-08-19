@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PatientDiagnosisResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1PatientDiagnosisResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Patient Diagnosis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/patient-diagnoses/:patient_diagnosis_id",
+            "params": [
+              {
+                "name": "patient_diagnosis_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Patient Diagnosis"
+        },
+        {
+          "info": {
+            "name": "Create Patient Diagnosis",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.silnahealth.com/api/public/v1/patient-diagnoses/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Patient Diagnosis"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

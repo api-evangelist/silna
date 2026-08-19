@@ -1,0 +1,568 @@
+{
+  "item": [
+    {
+      "id": "5406fb30-5c1c-4d27-8641-05ec597bb1d1",
+      "name": "V1EscalationsResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a7bc7b5-19a2-446d-8015-ab3b75e81b31",
+          "name": "Get Escalations",
+          "request": {
+            "name": "Get Escalations",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "escalations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "starting_after",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ending_before",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "provider_id",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "resource_types",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "resource_types",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "resource_id",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "statuses",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "patient_id",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0611b6f9-654b-4db7-9c2c-1a9650e56c08",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "escalations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "resource_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patient_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1977",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9735",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "3119",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5679.593979019956",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"has_more\": false,\n  \"records\": [\n    {\n      \"id\": \"c36b8db2-d719-c632-1bb1-694792e5f72c\",\n      \"escalation_type\": \"NOTIFICATION__TREATMENT__PEER_TO_PEER\",\n      \"action_type\": \"SUBMISSION\",\n      \"reason\": \"string\",\n      \"status\": \"<string>\",\n      \"created_at\": \"2022-10-08T17:17:39.407Z\",\n      \"resource_type\": \"<string>\",\n      \"silna_url\": \"string\",\n      \"deadline\": null,\n      \"last_submitted_at\": null,\n      \"resource_id\": null,\n      \"patient_id\": null,\n      \"payor_id\": null,\n      \"supplemental_file_ids\": null\n    },\n    {\n      \"id\": \"b8ac66d7-0cc1-c026-60f5-4da837654317\",\n      \"escalation_type\": \"ADDITIONAL_REQUIREMENTS__SPECIFIC_DETAILS__PATIENT__DIAGNOSIS\",\n      \"action_type\": \"NOTIFICATION\",\n      \"reason\": \"string\",\n      \"status\": \"<string>\",\n      \"created_at\": \"1950-10-29T04:59:04.989Z\",\n      \"resource_type\": \"<string>\",\n      \"silna_url\": \"string\",\n      \"deadline\": null,\n      \"last_submitted_at\": null,\n      \"resource_id\": null,\n      \"patient_id\": null,\n      \"payor_id\": null,\n      \"supplemental_file_ids\": null\n    }\n  ],\n  \"first_id\": null,\n  \"last_id\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad6c5530-06ec-4143-b44e-1329b3f7de65",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "escalations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "resource_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patient_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1977",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9735",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "3119",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5679.593979019956",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b764c829-d2d6-405f-bbf7-032706dbb900",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "escalations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "resource_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patient_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1977",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9735",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "3119",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5679.593979019956",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9706c50b-6e0d-4d74-bd26-94e88a56df16",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "escalations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "resource_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_types",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resource_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "statuses",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "patient_id",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1977",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9735",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "3119",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5679.593979019956",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "975e0cab-66ad-4322-9383-2537df57e74c",
+    "name": "Silna Public OldV1PriorAuthorizationResource V1EscalationsResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

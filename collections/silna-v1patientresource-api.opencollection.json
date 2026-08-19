@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PatientResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1PatientResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/patients/:patient_id",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Patient"
+        },
+        {
+          "info": {
+            "name": "Update Patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.silnahealth.com/api/public/v1/patients/:patient_id",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Patient"
+        },
+        {
+          "info": {
+            "name": "Delete Patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.silnahealth.com/api/public/v1/patients/:patient_id",
+            "params": [
+              {
+                "name": "patient_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Patient"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

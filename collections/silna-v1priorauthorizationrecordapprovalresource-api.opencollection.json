@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PriorAuthorizationRecordApprovalResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1PriorAuthorizationRecordApprovalResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Record Approval for Prior Authorization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.silnahealth.com/api/public/v1/prior-authorizations/:prior_authorization_id/sync",
+            "params": [
+              {
+                "name": "prior_authorization_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Record Approval for Prior Authorization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

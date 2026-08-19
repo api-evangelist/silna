@@ -1,0 +1,463 @@
+{
+  "item": [
+    {
+      "id": "b12b2dee-b616-4872-849f-12ea33aeb66c",
+      "name": "V1CliniciansResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "040ac1c0-f39a-4c68-95f4-c9169fc81507",
+          "name": "Get Clinicians",
+          "request": {
+            "name": "Get Clinicians",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "clinicians",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "starting_after",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ending_before",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "provider_id",
+                  "value": "<uuid>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e51e1689-1f03-44c8-890b-4bfec6166097",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "clinicians",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7305",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "6436",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "9457",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "9476.487992415068",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"has_more\": false,\n  \"records\": [\n    {\n      \"first_name\": null,\n      \"last_name\": null,\n      \"npi\": null\n    },\n    {\n      \"first_name\": null,\n      \"last_name\": null,\n      \"npi\": null\n    }\n  ],\n  \"first_id\": null,\n  \"last_id\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f0ce714-b7bc-445e-a059-1d0f7a3330cc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "clinicians",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7305",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "6436",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "9457",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "9476.487992415068",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95bf48f1-c673-4fe1-95ed-a3ba7d3630ed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "clinicians",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7305",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "6436",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "9457",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "9476.487992415068",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c57a9074-7dbe-410f-a36c-ce5432057848",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "clinicians",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "provider_id",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7305",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "6436",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "9457",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "9476.487992415068",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "19d845b0-8b66-453c-8146-b0c8f111d018",
+    "name": "Silna Public OldV1PriorAuthorizationResource V1CliniciansResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

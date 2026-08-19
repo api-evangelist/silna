@@ -1,0 +1,486 @@
+{
+  "item": [
+    {
+      "id": "7319784e-fa3b-4cba-a15d-815f8554c4ae",
+      "name": "V1PatientPlansResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "937e2073-eb95-4b52-81c0-887593dbef64",
+          "name": "Get Patient Plans",
+          "request": {
+            "name": "Get Patient Plans",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "patients",
+                ":patient_id",
+                "patient-plans"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "starting_after",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ending_before",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_id",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "patient_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0f5283b4-2f0c-433f-96ae-f35e724a7258",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "patients",
+                    ":patient_id",
+                    "patient-plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "4669",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "8553",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "9821",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "1572.1872554780014",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"has_more\": true,\n  \"records\": [\n    {\n      \"member_number\": \"string\",\n      \"payor_entity_id\": \"31931220-7be8-69b4-02f7-0e23e5d1ac84\",\n      \"id\": \"d11a3893-0a9d-88d8-1ee2-865876537b17\",\n      \"patient_id\": \"a2b96f95-21f7-00d6-8bcd-99257e07a2f7\",\n      \"provider_id\": \"6b53c425-b6a4-86ac-b5c8-df7037d4035f\",\n      \"plan_order_number\": 1426,\n      \"plan_eligibility_status\": \"ACTIVE\",\n      \"group_number\": null,\n      \"start_date\": null,\n      \"end_date\": null,\n      \"insurance_type\": \"REGIONAL_CENTER\",\n      \"source_id\": null,\n      \"insurance_card_file_id\": null,\n      \"insurance_card_back_file_id\": null,\n      \"archived_at\": null,\n      \"latest_eligibility_check\": {\n        \"status\": \"WITHDRAWN\",\n        \"eligibility_check_id\": \"40785498-e6a1-0dce-de12-6efd4eb3d43a\",\n        \"date_verified\": null\n      },\n      \"latest_benefits_check\": {\n        \"status\": \"COMPLETE\",\n        \"benefits_check_id\": \"6efdeabb-af82-ddc8-2032-74e0a2fb9d49\",\n        \"date_verified\": null\n      }\n    },\n    {\n      \"member_number\": \"string\",\n      \"payor_entity_id\": \"573dd224-2aa0-f59d-7e3b-c24ae17fa008\",\n      \"id\": \"806dd41f-c847-884f-0dc2-9a0bb698039d\",\n      \"patient_id\": \"9666aa99-e7b4-fd9f-5e69-71f25c646b29\",\n      \"provider_id\": \"82e6ef83-891e-04e9-e367-2cc0f675dd18\",\n      \"plan_order_number\": 5250,\n      \"plan_eligibility_status\": \"INACTIVE\",\n      \"group_number\": null,\n      \"start_date\": null,\n      \"end_date\": null,\n      \"insurance_type\": \"MEDICAID\",\n      \"source_id\": null,\n      \"insurance_card_file_id\": null,\n      \"insurance_card_back_file_id\": null,\n      \"archived_at\": null,\n      \"latest_eligibility_check\": {\n        \"status\": \"ELIGIBLE\",\n        \"eligibility_check_id\": \"40e5e91e-1116-7661-1192-edf523e33b80\",\n        \"date_verified\": null\n      },\n      \"latest_benefits_check\": {\n        \"status\": \"COMPLETE\",\n        \"benefits_check_id\": \"7e2a964d-cc25-e279-44dd-a36b13ad4708\",\n        \"date_verified\": null\n      }\n    }\n  ],\n  \"first_id\": null,\n  \"last_id\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e25b933-9ba5-4a6f-8fdb-a3801b259887",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "patients",
+                    ":patient_id",
+                    "patient-plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "4669",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "8553",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "9821",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "1572.1872554780014",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e9b9c0d-73fd-4b41-82e0-f4d0a4637fa1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "patients",
+                    ":patient_id",
+                    "patient-plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "4669",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "8553",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "9821",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "1572.1872554780014",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4540f5f7-0038-4dcd-9cfd-b371fb57f6cc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "patients",
+                    ":patient_id",
+                    "patient-plans"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "patient_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "4669",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "8553",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "9821",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "1572.1872554780014",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d1451549-5db5-4f44-b30e-d653baf06be8",
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PatientPlansResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

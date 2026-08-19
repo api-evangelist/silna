@@ -1,0 +1,570 @@
+{
+  "item": [
+    {
+      "id": "0debb473-0b1b-45ae-b6c1-f49152c588fb",
+      "name": "V1ProviderServiceLocationsResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1fe3afb3-9328-4f98-a519-9b70470768d0",
+          "name": "Get Service Locations",
+          "request": {
+            "name": "Get Service Locations",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "providers",
+                ":provider_id",
+                "service-locations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "starting_after",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ending_before",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "source_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "provider_group_ids",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "provider_group_ids",
+                  "value": "<uuid>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "provider_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08b38dc7-433e-4d0f-9a9a-84b6fc77c534",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "providers",
+                    ":provider_id",
+                    "service-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "provider_group_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "provider_group_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "provider_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "4591",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "251",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "808",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "6587.034849850143",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"has_more\": false,\n  \"records\": [\n    {\n      \"id\": \"4590922f-e908-c4b2-9693-2d88e32612dc\",\n      \"npi\": \"1234567890\",\n      \"tin\": \"123456789\",\n      \"address_line_1\": \"54 Broome St\",\n      \"provider_group_id\": \"c214ec34-621e-e71f-0b2b-a25a1b2cac29\",\n      \"city\": \"New York\",\n      \"state\": \"NY\",\n      \"zip_code\": \"10001\",\n      \"name\": \"string\",\n      \"provider_id\": \"440da7a8-5bcc-0f0f-be8e-e6e817fed4a7\",\n      \"address_line_2\": \"Apt 3\",\n      \"ptan_number\": null,\n      \"primary_taxonomy_code\": null,\n      \"source_id\": \"my-unique-id-123\"\n    },\n    {\n      \"id\": \"bb87ac64-f401-2bb1-4cf0-524e3569f9e1\",\n      \"npi\": \"1234567890\",\n      \"tin\": \"123456789\",\n      \"address_line_1\": \"54 Broome St\",\n      \"provider_group_id\": \"ea7382f6-4be8-9993-976c-2a4aa560b987\",\n      \"city\": \"New York\",\n      \"state\": \"NY\",\n      \"zip_code\": \"10001\",\n      \"name\": \"string\",\n      \"provider_id\": \"cd3d8617-e546-553d-2a58-5da1dd253147\",\n      \"address_line_2\": \"Apt 3\",\n      \"ptan_number\": null,\n      \"primary_taxonomy_code\": null,\n      \"source_id\": \"my-unique-id-123\"\n    }\n  ],\n  \"first_id\": null,\n  \"last_id\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62a13dc3-04c4-4f73-b13f-a590ae7fc2ba",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "providers",
+                    ":provider_id",
+                    "service-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "provider_group_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "provider_group_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "provider_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "4591",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "251",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "808",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "6587.034849850143",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_REQUEST_HEADER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85917b6d-269c-4e6b-b894-d53726c61efa",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "providers",
+                    ":provider_id",
+                    "service-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "provider_group_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "provider_group_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "provider_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "4591",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "251",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "808",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "6587.034849850143",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3059ff00-abf0-4909-bde8-5006ed7ee72a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "providers",
+                    ":provider_id",
+                    "service-locations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "source_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "provider_group_ids",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "provider_group_ids",
+                      "value": "<uuid>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "provider_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "4591",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "251",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "808",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "6587.034849850143",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d207adda-f110-4d6f-ae41-d9380fc7b944",
+    "name": "Silna Public OldV1PriorAuthorizationResource V1ProviderServiceLocationsResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

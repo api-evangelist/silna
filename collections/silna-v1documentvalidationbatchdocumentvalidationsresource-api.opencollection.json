@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1DocumentValidationBatchDocumentValidationsResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1DocumentValidationBatchDocumentValidationsResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Document Validations in a Batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/document-intelligence/document-validation-batches/:document_validation_batch_id/document-validations",
+            "params": [
+              {
+                "name": "document_validation_batch_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ending_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Document Validations in a Batch"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

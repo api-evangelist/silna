@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PayorInferenceResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1PayorInferenceResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Payor Inference",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/payor_inference/:payor_inference_id",
+            "params": [
+              {
+                "name": "payor_inference_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Payor Inference"
+        },
+        {
+          "info": {
+            "name": "Create Payor Inference",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.silnahealth.com/api/public/v1/payor_inference/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Payor Inference"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

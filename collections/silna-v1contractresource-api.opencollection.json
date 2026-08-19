@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1ContractResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1ContractResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Payor Contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/payor-contracts/:contract_id",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Payor Contract"
+        },
+        {
+          "info": {
+            "name": "Update Payor Contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.silnahealth.com/api/public/v1/payor-contracts/:contract_id",
+            "params": [
+              {
+                "name": "contract_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Payor Contract"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

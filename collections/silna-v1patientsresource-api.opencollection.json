@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PatientsResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1PatientsResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Patients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/patients/",
+            "params": [
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ending_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "service_location_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "source_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "full_name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Patients"
+        },
+        {
+          "info": {
+            "name": "Create Patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.silnahealth.com/api/public/v1/patients/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Patient"
+        },
+        {
+          "info": {
+            "name": "Create or Update Patient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.silnahealth.com/api/public/v1/patients/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or Update Patient"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,504 @@
+{
+  "item": [
+    {
+      "id": "f5314d28-cf71-41ad-95f5-de1e3df02ecc",
+      "name": "V1ProviderPayorsResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf7e3d43-e5b1-489d-8ea9-cc8dfb9a5f8f",
+          "name": "Get Provider Payors",
+          "request": {
+            "name": "Get Provider Payors",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "provider-payors",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "starting_after",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ending_before",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "standard",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "payor_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "only_contracted",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2920d97-fdcc-44ff-a55d-7e1deae82447",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "provider-payors",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "standard",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "payor_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "only_contracted",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "45",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4943",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5842",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "3289.87367740077",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"has_more\": true,\n  \"records\": [\n    {\n      \"id\": \"ecb67d64-6aec-b3a3-3172-62f86c891909\",\n      \"name\": \"AETNA\",\n      \"alternate_identifiers\": [\n        {\n          \"identifier\": \"AETNA_INSC\",\n          \"standard\": \"PROVIDER_IDENTIFIER\",\n          \"payor_types\": [\n            \"COMMERCIAL\",\n            \"MEDICARE\"\n          ]\n        },\n        {\n          \"identifier\": \"AETNA_INSC\",\n          \"standard\": \"PROVIDER_IDENTIFIER\",\n          \"payor_types\": [\n            \"COMMERCIAL\",\n            \"MEDICARE\"\n          ]\n        }\n      ],\n      \"insurance_types\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"id\": \"b8decbd5-e321-643d-c979-ad06c3cf8a7a\",\n      \"name\": \"AETNA\",\n      \"alternate_identifiers\": [\n        {\n          \"identifier\": \"AETNA_INSC\",\n          \"standard\": \"PROVIDER_IDENTIFIER\",\n          \"payor_types\": [\n            \"COMMERCIAL\",\n            \"MEDICARE\"\n          ]\n        },\n        {\n          \"identifier\": \"AETNA_INSC\",\n          \"standard\": \"PROVIDER_IDENTIFIER\",\n          \"payor_types\": [\n            \"COMMERCIAL\",\n            \"MEDICARE\"\n          ]\n        }\n      ],\n      \"insurance_types\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"first_id\": null,\n  \"last_id\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07bcdc40-d23f-43bd-b5a0-ca3cc405c3f0",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "provider-payors",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "standard",
+                      "value": "PROVIDER_IDENTIFIER"
+                    },
+                    {
+                      "key": "payor_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "only_contracted",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "45",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4943",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5842",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "3289.87367740077",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57566123-a82a-42a4-9185-7f9b86f133a4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "provider-payors",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "standard",
+                      "value": "PROVIDER_IDENTIFIER"
+                    },
+                    {
+                      "key": "payor_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "only_contracted",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "45",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4943",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5842",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "3289.87367740077",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e1db810-a8e0-495d-a054-679cf78fb771",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "provider-payors",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "identifier",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "standard",
+                      "value": "PROVIDER_IDENTIFIER"
+                    },
+                    {
+                      "key": "payor_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "only_contracted",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "45",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "4943",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5842",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "3289.87367740077",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "461b7392-a6cc-45ac-96d0-c4331bcc7c83",
+    "name": "Silna Public OldV1PriorAuthorizationResource V1ProviderPayorsResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

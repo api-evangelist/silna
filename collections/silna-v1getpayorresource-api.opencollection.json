@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1GetPayorResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1GetPayorResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Payor",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/payors/:payor_id",
+            "params": [
+              {
+                "name": "payor_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Payor"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

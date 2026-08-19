@@ -1,0 +1,1790 @@
+{
+  "item": [
+    {
+      "id": "6cb3e327-10d5-4fee-bb42-af7acf362686",
+      "name": "V1PriorAuthorizationResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a673f3f2-aa38-4b3e-98fe-a75a2e44afcb",
+          "name": "Get Prior Authorization",
+          "request": {
+            "name": "Get Prior Authorization",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "prior-authorizations",
+                ":prior_authorization_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "with_requirements",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prior_authorization_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc98697b-a689-4502-8d94-c536544af7d5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "with_requirements",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"2ca8ed84-1119-b03b-d07d-73f5def4f134\",\n  \"specialty\": \"GYNECOLOGY\",\n  \"status\": \"RESUBMITTED_TO_PAYOR\",\n  \"reference_numbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authorization_type\": \"INITIAL_AUTHORIZATION\",\n  \"created_at\": \"1967-12-03T06:12:12.071Z\",\n  \"requested_treatment_codes\": [\n    {\n      \"units\": \"2.5\",\n      \"unit_type\": \"HOURS\",\n      \"treatment_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"CALIFORNIA_REGIONAL_CENTER\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"HCPCS\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"time_frame\": \"SIX_MONTHS\"\n    },\n    {\n      \"units\": \"2.5\",\n      \"unit_type\": \"DAYS\",\n      \"treatment_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"HCPCS\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"ICD_10\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"time_frame\": \"SIX_MONTHS\"\n    }\n  ],\n  \"approved_treatment_codes\": [\n    {\n      \"units\": \"2.5\",\n      \"unit_type\": \"CPT_UNITS\",\n      \"treatment_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"HCPCS\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"HCPCS\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"time_frame\": \"DAILY\",\n      \"reference_number\": null,\n      \"approved_start_date\": null,\n      \"approved_end_date\": null\n    },\n    {\n      \"units\": \"2.5\",\n      \"unit_type\": \"VISITS\",\n      \"treatment_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"CALIFORNIA_REGIONAL_CENTER\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"ICD_10\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"time_frame\": \"TOTAL\",\n      \"reference_number\": null,\n      \"approved_start_date\": null,\n      \"approved_end_date\": null\n    }\n  ],\n  \"requested_start_date\": null,\n  \"requested_end_date\": null,\n  \"approval_files\": [\n    {\n      \"document_type\": \"APPROVAL_LETTER\",\n      \"file_id\": \"973bb63c-6b65-76b0-a7e4-762082d17746\"\n    },\n    {\n      \"document_type\": \"APPROVAL_LETTER\",\n      \"file_id\": \"a25b03d2-eb6e-ac21-6d79-2afd59895fba\"\n    }\n  ],\n  \"denial_files\": [\n    {\n      \"document_type\": \"DENIAL_LETTER\",\n      \"file_id\": \"7e2d1bc8-7ad7-a78a-c5fd-d0b44c6822af\"\n    },\n    {\n      \"document_type\": \"DENIAL_LETTER\",\n      \"file_id\": \"b17f3eab-2aa2-05e9-0a2d-2d25362efc1a\"\n    }\n  ],\n  \"other_files\": [\n    {\n      \"document_type\": \"TREATMENT_PLAN_PLAN_OF_CARE\",\n      \"file_id\": \"00e47779-0f81-ca20-1e5e-994b2169defb\"\n    },\n    {\n      \"document_type\": \"TELEHEALTH_ATTESTATION\",\n      \"file_id\": \"a871c31d-ee69-8936-d38d-1b833e07bdc9\"\n    }\n  ],\n  \"submitted_at\": null,\n  \"last_updated_at\": null,\n  \"clinician\": {\n    \"first_name\": null,\n    \"last_name\": null,\n    \"npi\": null\n  },\n  \"required_data\": {\n    \"treatment_codes\": {\n      \"required\": true,\n      \"standards\": [\n        \"CPT\",\n        \"HCPCS\"\n      ],\n      \"requirement_satisfied\": false\n    },\n    \"documents\": {\n      \"required\": false,\n      \"requirement_satisfied\": false,\n      \"items\": [\n        {\n          \"document_type\": \"DIAGNOSIS_REPORT\",\n          \"required\": false,\n          \"document_intelligence\": {\n            \"validation_supported\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"requirement_satisfied\": true,\n          \"files\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"document_validation\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"document_validation_batch\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"document_type\": \"INDIVIDUALIZED_EDUCATION_PROGRAM\",\n          \"required\": false,\n          \"document_intelligence\": {\n            \"validation_supported\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"requirement_satisfied\": false,\n          \"files\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"document_validation\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"document_validation_batch\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"clinician_npi\": {\n      \"required\": true,\n      \"requirement_satisfied\": false\n    },\n    \"start_date\": {\n      \"required\": true,\n      \"requirement_satisfied\": false\n    }\n  },\n  \"silna_url\": null,\n  \"approval_information_last_updated_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26f525d8-8f88-4655-ab16-0d177578ea11",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "with_requirements",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd4b38bf-081d-41f5-8661-13bf13e95579",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "with_requirements",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f211bff-07f6-4e14-a9c8-5adeefc2261d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "with_requirements",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d895284-ecac-4e8a-b455-e7d40621a232",
+          "name": "Update Prior Authorization",
+          "request": {
+            "name": "Update Prior Authorization",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "prior-authorizations",
+                ":prior_authorization_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prior_authorization_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requested_treatment_codes\": null,\n  \"documents\": null,\n  \"document_intelligence_configurations\": null,\n  \"clinician\": {\n    \"npi\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  },\n  \"start_date\": null,\n  \"save_as_draft\": false,\n  \"skip_document_intelligence\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "de95f447-4ee9-4f24-9816-e98a67c35512",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requested_treatment_codes\": null,\n  \"documents\": null,\n  \"document_intelligence_configurations\": null,\n  \"clinician\": {\n    \"npi\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  },\n  \"start_date\": null,\n  \"save_as_draft\": false,\n  \"skip_document_intelligence\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2c532f75-feff-4f21-9c74-e4787f94f7a5",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requested_treatment_codes\": null,\n  \"documents\": null,\n  \"document_intelligence_configurations\": null,\n  \"clinician\": {\n    \"npi\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  },\n  \"start_date\": null,\n  \"save_as_draft\": false,\n  \"skip_document_intelligence\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e69440b5-f198-4c12-996d-5ae09c78af66",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requested_treatment_codes\": null,\n  \"documents\": null,\n  \"document_intelligence_configurations\": null,\n  \"clinician\": {\n    \"npi\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  },\n  \"start_date\": null,\n  \"save_as_draft\": false,\n  \"skip_document_intelligence\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbf19d27-9d4c-4af5-bdc5-ee49f236833a",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requested_treatment_codes\": null,\n  \"documents\": null,\n  \"document_intelligence_configurations\": null,\n  \"clinician\": {\n    \"npi\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  },\n  \"start_date\": null,\n  \"save_as_draft\": false,\n  \"skip_document_intelligence\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9406a386-4eb8-4528-a341-cb8c4470624c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requested_treatment_codes\": null,\n  \"documents\": null,\n  \"document_intelligence_configurations\": null,\n  \"clinician\": {\n    \"npi\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  },\n  \"start_date\": null,\n  \"save_as_draft\": false,\n  \"skip_document_intelligence\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c82e4958-b3e7-42ac-a146-335200ca56a8",
+          "name": "Abort Prior Authorization",
+          "request": {
+            "name": "Abort Prior Authorization",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "prior-authorizations",
+                ":prior_authorization_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prior_authorization_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "634244e2-b1cd-4599-91c1-3997ebcb4c43",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b84c2e47-d3c3-428d-af16-be12c1584421",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0412a8f7-fef5-4283-ad03-1841c07248c4",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c2e181d-6be1-4888-82be-a4599ebfa75b",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b1f8706-071e-41e7-980f-25d03cfecf9e",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48f00cab-e1a1-49e2-8275-501f457b27b6",
+          "name": "Create Prior Authorization",
+          "request": {
+            "name": "Create Prior Authorization",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "prior-authorizations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                "key": "idempotency-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialty\": \"<string>\",\n  \"authorization_type\": \"<string>\",\n  \"save_as_draft\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4f6b18e1-6cac-46c2-851d-98111fe03e7d",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                    "key": "idempotency-key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialty\": \"<string>\",\n  \"authorization_type\": \"<string>\",\n  \"save_as_draft\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5cf50494-9fae-8fa6-a7b4-e702cc5d317c\",\n  \"status\": \"SUBMITTED_TO_PAYOR\",\n  \"required_data\": {\n    \"treatment_codes\": {\n      \"required\": false,\n      \"standards\": [\n        \"CPT\",\n        \"CPT\"\n      ]\n    },\n    \"documents\": {\n      \"required\": true,\n      \"items\": [\n        {\n          \"document_type\": \"<string>\",\n          \"required\": true,\n          \"document_intelligence\": {\n            \"validation_supported\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"document_type\": \"<string>\",\n          \"required\": false,\n          \"document_intelligence\": {\n            \"validation_supported\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"clinician_npi\": {\n      \"required\": false\n    },\n    \"start_date\": {\n      \"required\": false\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fcf3729-d9eb-44b7-b2d8-b0c936d87772",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                    "key": "idempotency-key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialty\": \"<string>\",\n  \"authorization_type\": \"<string>\",\n  \"save_as_draft\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4aa2a6d-8ea1-47a8-9db6-e03f336df2cf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                    "key": "idempotency-key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialty\": \"<string>\",\n  \"authorization_type\": \"<string>\",\n  \"save_as_draft\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfcb8561-172c-428f-9ed9-d7d398c7dfcd",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                    "key": "idempotency-key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialty\": \"<string>\",\n  \"authorization_type\": \"<string>\",\n  \"save_as_draft\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00ee789c-f7a2-4f59-b8b7-833f2459e707",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                    "key": "idempotency-key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialty\": \"<string>\",\n  \"authorization_type\": \"<string>\",\n  \"save_as_draft\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1024",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3797",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "2856",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "384.40337943825955",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8e047f14-e022-45d5-aeee-0939e91409c6",
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PriorAuthorizationResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

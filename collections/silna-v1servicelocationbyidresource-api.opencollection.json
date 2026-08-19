@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1ServiceLocationByIdResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1ServiceLocationByIdResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Service Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/service-locations/:service_location_id",
+            "params": [
+              {
+                "name": "service_location_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Service Location"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1ProviderPayorsResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1ProviderPayorsResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Provider Payors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/provider-payors/",
+            "params": [
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ending_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "standard",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "payor_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "only_contracted",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Provider Payors"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

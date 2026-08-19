@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PatientPlanPriorAuthorizationsResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1PatientPlanPriorAuthorizationsResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Patient Plan Prior Authorizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/patient-plans/:patient_plan_id/prior-authorizations",
+            "params": [
+              {
+                "name": "patient_plan_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ending_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get Patient Plan Prior Authorizations"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

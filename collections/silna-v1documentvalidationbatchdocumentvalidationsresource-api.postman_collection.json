@@ -1,0 +1,378 @@
+{
+  "item": [
+    {
+      "id": "0b04264d-2342-44d3-8f05-7a6d2a8621c7",
+      "name": "V1DocumentValidationBatchDocumentValidationsResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23516bcd-c0a1-448b-9647-e4fa0516fc54",
+          "name": "Get Document Validations in a Batch",
+          "request": {
+            "name": "Get Document Validations in a Batch",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "document-intelligence",
+                "document-validation-batches",
+                ":document_validation_batch_id",
+                "document-validations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "starting_after",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ending_before",
+                  "value": "<uuid>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "document_validation_batch_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32d90280-c79e-4d82-92ea-6b8c2d2985f1",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "document-intelligence",
+                    "document-validation-batches",
+                    ":document_validation_batch_id",
+                    "document-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_validation_batch_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "2983",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "7322",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5709",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "3974.2607681618115",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"has_more\": true,\n  \"records\": [\n    {\n      \"id\": \"cd3090f5-459a-8f22-f192-fbabe4c186d0\",\n      \"result\": \"FAILED\",\n      \"failed_rules\": [\n        {\n          \"rule\": \"VALID_CLINICIAN_TAXONOMY\",\n          \"reason\": null,\n          \"result\": \"PASSED\",\n          \"operator\": \"AND\"\n        },\n        {\n          \"rule\": \"EVALUATION_DATE\",\n          \"reason\": null,\n          \"result\": \"PASSED\",\n          \"operator\": \"OR\"\n        }\n      ],\n      \"passed_rules\": [\n        {\n          \"rule\": \"DIAGNOSIS_CODES\",\n          \"reason\": null,\n          \"result\": \"PASSED\",\n          \"operator\": \"AND\"\n        },\n        {\n          \"rule\": \"EVALUATION_DATE\",\n          \"reason\": null,\n          \"result\": \"FAILED\",\n          \"operator\": \"OR\"\n        }\n      ],\n      \"rule_results\": [\n        {\n          \"rule\": \"PATIENT_VERIFICATION\",\n          \"reason\": null,\n          \"result\": \"FAILED\",\n          \"operator\": \"OR\"\n        },\n        {\n          \"rule\": \"AUTH_PERIOD_WITHIN_CERT_PERIOD\",\n          \"reason\": null,\n          \"result\": \"FAILED\",\n          \"operator\": \"OR\"\n        }\n      ],\n      \"batch_id\": null\n    },\n    {\n      \"id\": \"d247ab76-bf83-c4e6-3b38-21bdc3877a7c\",\n      \"result\": \"FAILED\",\n      \"failed_rules\": [\n        {\n          \"rule\": \"AUTH_PERIOD_WITHIN_CERT_PERIOD\",\n          \"reason\": null,\n          \"result\": \"FAILED\",\n          \"operator\": \"OR\"\n        },\n        {\n          \"rule\": \"SYMPTOM_SEVERITY\",\n          \"reason\": null,\n          \"result\": \"FAILED\",\n          \"operator\": \"OR\"\n        }\n      ],\n      \"passed_rules\": [\n        {\n          \"rule\": \"AUTH_PERIOD_WITHIN_CERT_PERIOD\",\n          \"reason\": null,\n          \"result\": \"FAILED\",\n          \"operator\": \"AND\"\n        },\n        {\n          \"rule\": \"VALID_CLINICIAN_SIGNATURE\",\n          \"reason\": null,\n          \"result\": \"PASSED\",\n          \"operator\": \"AND\"\n        }\n      ],\n      \"rule_results\": [\n        {\n          \"rule\": \"DIAGNOSIS_DATE\",\n          \"reason\": null,\n          \"result\": \"FAILED\",\n          \"operator\": \"OR\"\n        },\n        {\n          \"rule\": \"VALID_CLINICIAN_CREDENTIAL\",\n          \"reason\": null,\n          \"result\": \"PASSED\",\n          \"operator\": \"OR\"\n        }\n      ],\n      \"batch_id\": null\n    }\n  ],\n  \"first_id\": null,\n  \"last_id\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf306116-a131-48bf-8ea5-1d9cad9c00cf",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "document-intelligence",
+                    "document-validation-batches",
+                    ":document_validation_batch_id",
+                    "document-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_validation_batch_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "2983",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "7322",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5709",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "3974.2607681618115",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_REQUEST_HEADER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6ca02bf-0bff-45e9-b763-58930aa774a7",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "document-intelligence",
+                    "document-validation-batches",
+                    ":document_validation_batch_id",
+                    "document-validations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "starting_after",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "ending_before",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "document_validation_batch_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "2983",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "7322",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5709",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "3974.2607681618115",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a7f6448b-04a1-4520-90dd-c1552215b892",
+    "name": "Silna Public OldV1PriorAuthorizationResource V1DocumentValidationBatchDocumentValidationsResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,525 @@
+{
+  "item": [
+    {
+      "id": "dc0f95bd-ea64-445c-91a0-5c6c05635755",
+      "name": "V1PriorAuthorizationRecordApprovalResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "adb691cf-904e-452f-b7de-59e702d28f3f",
+          "name": "Record Approval for Prior Authorization.",
+          "request": {
+            "name": "Record Approval for Prior Authorization.",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "prior-authorizations",
+                ":prior_authorization_id",
+                "sync"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prior_authorization_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reference_number\": null,\n  \"approved_start_date\": null,\n  \"approved_end_date\": null,\n  \"approved_treatment_codes\": [\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"<string>\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    },\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"<string>\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    }\n  ],\n  \"approval_letter_file_ids\": null\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a4acc87b-0105-4b69-a675-924eacf9280b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_number\": null,\n  \"approved_start_date\": null,\n  \"approved_end_date\": null,\n  \"approved_treatment_codes\": [\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"2.5\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    },\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"2.5\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    }\n  ],\n  \"approval_letter_file_ids\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "6181",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1265",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "7634",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "9115.69709973233",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a08976b-bb60-485e-a50b-84e345e04d42",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_number\": null,\n  \"approved_start_date\": null,\n  \"approved_end_date\": null,\n  \"approved_treatment_codes\": [\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"2.5\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    },\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"2.5\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    }\n  ],\n  \"approval_letter_file_ids\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "6181",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1265",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "7634",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "9115.69709973233",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6abe2c36-b5ec-4bca-8ff7-ccb06ab07e8c",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_number\": null,\n  \"approved_start_date\": null,\n  \"approved_end_date\": null,\n  \"approved_treatment_codes\": [\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"2.5\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    },\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"2.5\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    }\n  ],\n  \"approval_letter_file_ids\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "6181",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1265",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "7634",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "9115.69709973233",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_REQUEST_HEADER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb09560d-fa7f-498e-9b77-f0fd4b412ba9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_number\": null,\n  \"approved_start_date\": null,\n  \"approved_end_date\": null,\n  \"approved_treatment_codes\": [\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"2.5\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    },\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"2.5\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    }\n  ],\n  \"approval_letter_file_ids\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "6181",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1265",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "7634",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "9115.69709973233",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91b0300b-50f0-408a-975c-f929453dc202",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior-authorizations",
+                    ":prior_authorization_id",
+                    "sync"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reference_number\": null,\n  \"approved_start_date\": null,\n  \"approved_end_date\": null,\n  \"approved_treatment_codes\": [\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"2.5\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    },\n    {\n      \"treatment_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"<string>\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"units\": \"2.5\",\n      \"unit_type\": \"<string>\",\n      \"time_frame\": \"<string>\",\n      \"reference_number\": null\n    }\n  ],\n  \"approval_letter_file_ids\": null\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "6181",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "1265",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "7634",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "9115.69709973233",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5b8c9e9c-560c-40f5-b8db-4a65b95593e3",
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PriorAuthorizationRecordApprovalResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

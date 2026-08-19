@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OldV1PriorAuthorizationResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Prior Authorization (Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/prior_authorizations/:prior_authorization_id",
+            "params": [
+              {
+                "name": "prior_authorization_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Prior Authorization (Deprecated)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

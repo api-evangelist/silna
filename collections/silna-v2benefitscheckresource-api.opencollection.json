@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V2BenefitsCheckResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V2BenefitsCheckResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Benefits Check V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v2/benefits-checks/:benefits_check_id",
+            "params": [
+              {
+                "name": "benefits_check_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Benefits Check V2"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

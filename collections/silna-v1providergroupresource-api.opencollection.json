@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1ProviderGroupResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1ProviderGroupResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "V1ProviderGroupResource.get",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/provider-groups/:provider_group_id",
+            "params": [
+              {
+                "name": "provider_group_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

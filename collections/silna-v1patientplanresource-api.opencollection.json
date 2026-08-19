@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PatientPlanResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1PatientPlanResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Patient Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/patient-plans/:patient_plan_id",
+            "params": [
+              {
+                "name": "patient_plan_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Patient Plan"
+        },
+        {
+          "info": {
+            "name": "Update Patient Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://app.silnahealth.com/api/public/v1/patient-plans/:patient_plan_id",
+            "params": [
+              {
+                "name": "patient_plan_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Patient Plan"
+        },
+        {
+          "info": {
+            "name": "Delete Patient Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://app.silnahealth.com/api/public/v1/patient-plans/:patient_plan_id",
+            "params": [
+              {
+                "name": "patient_plan_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Patient Plan"
+        },
+        {
+          "info": {
+            "name": "Create Patient Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.silnahealth.com/api/public/v1/patient-plans/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Patient Plan"
+        },
+        {
+          "info": {
+            "name": "Put Patient Plan",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://app.silnahealth.com/api/public/v1/patient-plans/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Put Patient Plan"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

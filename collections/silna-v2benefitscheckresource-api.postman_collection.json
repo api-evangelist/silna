@@ -1,0 +1,392 @@
+{
+  "item": [
+    {
+      "id": "c6272eee-8c32-453d-86a0-abf6f838ef72",
+      "name": "V2BenefitsCheckResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bb0e9a8c-db63-4476-8fe0-3f95742b8c40",
+          "name": "Get Benefits Check V2",
+          "request": {
+            "name": "Get Benefits Check V2",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v2",
+                "benefits-checks",
+                ":benefits_check_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "benefits_check_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cfd27557-85ea-4989-82a1-a5a4dc9818d9",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v2",
+                    "benefits-checks",
+                    ":benefits_check_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benefits_check_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1807",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "8071",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "303",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "8465.643800747386",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3145a67c-3cef-a639-6307-f28b5feac24c\",\n  \"status\": \"REQUESTED\",\n  \"patient_plan_id\": \"755aff8e-45e4-95d1-cfbd-893faf91e38c\",\n  \"patient_id\": \"def42758-6ec7-a590-26b4-d6aa707f8d75\",\n  \"provider_id\": \"2550b127-2197-aa68-6260-5183f1447183\",\n  \"created_at\": \"1953-04-20T23:06:38.447Z\",\n  \"specialty_fields\": [\n    {\n      \"specialty\": \"SKILLED_NURSING\",\n      \"copay_fields\": [\n        {\n          \"value\": 9187.699645102884,\n          \"modifier\": {\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"applies_to_deductible\": false,\n            \"before_deductible\": false,\n            \"benefit_unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"value\": 7622.934408115417,\n          \"modifier\": {\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"applies_to_deductible\": false,\n            \"before_deductible\": false,\n            \"benefit_unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"coinsurance_fields\": [\n        {\n          \"value\": 236.44597810707046,\n          \"modifier\": {\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"applies_to_deductible\": false,\n            \"before_deductible\": false\n          }\n        },\n        {\n          \"value\": 5703.052899196031,\n          \"modifier\": {\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"applies_to_deductible\": false,\n            \"before_deductible\": false\n          }\n        }\n      ],\n      \"deductible\": {\n        \"individual\": {\n          \"amount\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"amount_met\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"family\": {\n          \"amount\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"amount_met\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"out_of_pocket\": {\n        \"individual\": {\n          \"amount\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"amount_met\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"family\": {\n          \"amount\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"amount_met\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"visit_limits\": [\n        {\n          \"value\": 2458.595665092533,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"specialties\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"value\": 1278.7838842419542,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"specialties\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"dollar_limits\": [\n        {\n          \"value\": 1123.0352324797698,\n          \"dollars_used\": 4708.790192920028,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"specialties\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"value\": 5279.86146625474,\n          \"dollars_used\": 7069.667316673903,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"specialties\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"authorization_requirements\": [\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"payor_name\": null,\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"diagnosis_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"payor_name\": null,\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"diagnosis_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"referral_requirements\": [\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"exclusions\": [\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"diagnosis_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"diagnosis_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"reimbursement_rate\": {\n        \"value\": null,\n        \"modifier\": {\n          \"reimbursement_rate_type\": \"USUAL_CUSTOMARY_AND_REASONABLE\"\n        }\n      },\n      \"medicare_dollars_used\": {\n        \"value\": 5110.095453429366\n      },\n      \"exclusions_and_limitations\": null,\n      \"patient_cost_estimates\": [\n        {\n          \"cost_estimate_name\": \"string\",\n          \"cost_of_service\": \"string\",\n          \"cost_of_service_duration\": \"PER_PHASE\"\n        },\n        {\n          \"cost_estimate_name\": \"string\",\n          \"cost_of_service\": \"string\",\n          \"cost_of_service_duration\": \"NONE_HIDDEN\"\n        }\n      ]\n    },\n    {\n      \"specialty\": \"RADIOLOGY\",\n      \"copay_fields\": [\n        {\n          \"value\": 1928.1435608216846,\n          \"modifier\": {\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"applies_to_deductible\": false,\n            \"before_deductible\": false,\n            \"benefit_unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"value\": 9344.577495218877,\n          \"modifier\": {\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"applies_to_deductible\": false,\n            \"before_deductible\": false,\n            \"benefit_unit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"coinsurance_fields\": [\n        {\n          \"value\": 7782.901489070962,\n          \"modifier\": {\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"applies_to_deductible\": false,\n            \"before_deductible\": false\n          }\n        },\n        {\n          \"value\": 2568.6789297234404,\n          \"modifier\": {\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"applies_to_deductible\": false,\n            \"before_deductible\": false\n          }\n        }\n      ],\n      \"deductible\": {\n        \"individual\": {\n          \"amount\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"amount_met\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"family\": {\n          \"amount\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"amount_met\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"out_of_pocket\": {\n        \"individual\": {\n          \"amount\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"amount_met\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"family\": {\n          \"amount\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"amount_met\": {\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"visit_limits\": [\n        {\n          \"value\": 3238.687618896442,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"specialties\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"value\": 4042.476297513723,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"specialties\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"dollar_limits\": [\n        {\n          \"value\": 555.2580863955336,\n          \"dollars_used\": 9597.717523703373,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"specialties\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"value\": 6116.845101028999,\n          \"dollars_used\": 3214.661360504485,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"specialties\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"authorization_requirements\": [\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"payor_name\": null,\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"diagnosis_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"payor_name\": null,\n            \"timing\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"diagnosis_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"referral_requirements\": [\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"exclusions\": [\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"diagnosis_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"value\": false,\n          \"modifier\": {\n            \"treatment_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"places_of_service\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"diagnosis_codes\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"reimbursement_rate\": {\n        \"value\": null,\n        \"modifier\": {\n          \"reimbursement_rate_type\": \"NOT_SPECIFIED\"\n        }\n      },\n      \"medicare_dollars_used\": {\n        \"value\": 3517.3377956423055\n      },\n      \"exclusions_and_limitations\": null,\n      \"patient_cost_estimates\": [\n        {\n          \"cost_estimate_name\": \"string\",\n          \"cost_of_service\": \"string\",\n          \"cost_of_service_duration\": \"PER_WEEK\"\n        },\n        {\n          \"cost_estimate_name\": \"string\",\n          \"cost_of_service\": \"string\",\n          \"cost_of_service_duration\": \"PER_MONTH\"\n        }\n      ]\n    }\n  ],\n  \"eligibility_status\": \"ELIGIBLE\",\n  \"ineligibility_reason\": \"MBI_TERMINATED\",\n  \"reference\": null,\n  \"note\": null,\n  \"insurance_type\": \"WORKERS_COMPENSATION\",\n  \"date_verified\": null,\n  \"network_status\": \"OUT_OF_NETWORK\",\n  \"plan_type\": null,\n  \"plan_start_date\": null,\n  \"plan_end_date\": null,\n  \"group_number\": null,\n  \"patient_information\": {\n    \"subscriber_first_name\": null,\n    \"subscriber_last_name\": null,\n    \"subscriber_date_of_birth\": null,\n    \"subscriber_address\": null,\n    \"subscriber_state\": null,\n    \"subscriber_city\": null,\n    \"subscriber_zip_code\": null,\n    \"subscriber_patient_relationship\": null\n  },\n  \"other_payor_information\": null,\n  \"other_payor_entity_name\": null,\n  \"independent_physician_association_name\": null,\n  \"silna_url\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed885e5f-3e89-48f5-9226-a7ce9a55bc73",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v2",
+                    "benefits-checks",
+                    ":benefits_check_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benefits_check_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1807",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "8071",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "303",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "8465.643800747386",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_REQUEST_HEADER\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf6edf32-5436-496f-9d71-57b7e483a9dc",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v2",
+                    "benefits-checks",
+                    ":benefits_check_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benefits_check_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1807",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "8071",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "303",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "8465.643800747386",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05d3279f-6b03-4ed9-9fa0-445a7dedf148",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v2",
+                    "benefits-checks",
+                    ":benefits_check_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benefits_check_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "1807",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "8071",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "303",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "8465.643800747386",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0b15181a-0c73-4d85-ab3c-58143dc37f14",
+    "name": "Silna Public OldV1PriorAuthorizationResource V2BenefitsCheckResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

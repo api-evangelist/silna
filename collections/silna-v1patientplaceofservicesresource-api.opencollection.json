@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1PatientPlaceOfServicesResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1PatientPlaceOfServicesResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Patient Place of Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.silnahealth.com/api/public/v1/patient-place-of-services/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Patient Place of Service"
+        },
+        {
+          "info": {
+            "name": "Get Patient Place of Service",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/patient-place-of-services/:patient_place_of_service_id",
+            "params": [
+              {
+                "name": "patient_place_of_service_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Patient Place of Service"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

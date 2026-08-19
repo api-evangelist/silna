@@ -149,3 +149,8 @@ tool_groups:
     method: GET
     path: /public/v1/bulk-export/{bulk_export_id}
 total_operations_available: 63
+deployment:
+  mode: none
+  verified: derived
+  checked: '2026-08-12'
+  source: catalog MCP census

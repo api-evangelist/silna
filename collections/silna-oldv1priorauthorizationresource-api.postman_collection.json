@@ -1,0 +1,392 @@
+{
+  "item": [
+    {
+      "id": "174ccdcc-fc2b-4443-8f6b-4ec67350188a",
+      "name": "OldV1PriorAuthorizationResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98b84434-ed1d-4575-831b-f136ee4e0f09",
+          "name": "Get Prior Authorization (Deprecated)",
+          "request": {
+            "name": "Get Prior Authorization (Deprecated)",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "prior_authorizations",
+                ":prior_authorization_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "prior_authorization_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c744a329-de8d-4161-8eb7-12bd2885aa22",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior_authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "2604",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3160",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "55",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "1214.5597016549737",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"e5d5efca-7eec-f067-5feb-a47cd4223251\",\n  \"specialty\": \"ALLERGY_TESTING\",\n  \"status\": \"ALL_REQUIRED_DATA_RECEIVED\",\n  \"reference_numbers\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authorization_type\": \"ASSESSMENT_AUTHORIZATION\",\n  \"created_at\": \"2007-08-10T15:39:02.682Z\",\n  \"requested_treatment_codes\": [\n    {\n      \"units\": \"2.5\",\n      \"unit_type\": \"CPT_UNITS\",\n      \"treatment_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"CALIFORNIA_REGIONAL_CENTER\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"HCPCS\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"time_frame\": \"YEARLY\"\n    },\n    {\n      \"units\": \"2.5\",\n      \"unit_type\": \"VISITS\",\n      \"treatment_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"CPT\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"ICD_10\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"time_frame\": \"WEEKLY\"\n    }\n  ],\n  \"approved_treatment_codes\": [\n    {\n      \"units\": \"2.5\",\n      \"unit_type\": \"VISITS\",\n      \"treatment_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"ICD_10\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"ICD_10\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"time_frame\": \"MONTHLY\",\n      \"reference_number\": null,\n      \"approved_start_date\": null,\n      \"approved_end_date\": null\n    },\n    {\n      \"units\": \"2.5\",\n      \"unit_type\": \"DAYS\",\n      \"treatment_codes\": [\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"ICD_10\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"code\": \"string\",\n          \"description\": \"string\",\n          \"standard\": \"HCPCS\",\n          \"treatment_code_modifiers\": [\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"code\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"description\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ],\n      \"time_frame\": \"AUTHORIZATION_PERIOD\",\n      \"reference_number\": null,\n      \"approved_start_date\": null,\n      \"approved_end_date\": null\n    }\n  ],\n  \"requested_start_date\": null,\n  \"requested_end_date\": null,\n  \"approval_files\": [\n    {\n      \"document_type\": \"APPROVAL_LETTER\",\n      \"file_id\": \"0d0c3774-9511-d8b2-b607-02c93fb31149\"\n    },\n    {\n      \"document_type\": \"APPROVAL_LETTER\",\n      \"file_id\": \"4eb9148a-4cd0-4ac5-4ce7-b51f16e5d40b\"\n    }\n  ],\n  \"denial_files\": [\n    {\n      \"document_type\": \"DENIAL_LETTER\",\n      \"file_id\": \"015d0baa-b850-5f34-ffd8-5c243359a220\"\n    },\n    {\n      \"document_type\": \"DENIAL_LETTER\",\n      \"file_id\": \"59cf9ad5-8e5c-0b58-46d2-2e590bbeb58d\"\n    }\n  ],\n  \"other_files\": [\n    {\n      \"document_type\": \"PSI_SIPA\",\n      \"file_id\": \"4d7e8b4b-e9ed-17f1-8e4d-b1bebd61a50e\"\n    },\n    {\n      \"document_type\": \"DIAGNOSIS_REPORT\",\n      \"file_id\": \"1604176a-e6f4-2ca3-6e62-58f3858934cf\"\n    }\n  ],\n  \"submitted_at\": null,\n  \"last_updated_at\": null,\n  \"clinician\": {\n    \"first_name\": null,\n    \"last_name\": null,\n    \"npi\": null\n  },\n  \"required_data\": {\n    \"treatment_codes\": {\n      \"required\": false,\n      \"standards\": [\n        \"CPT\",\n        \"CALIFORNIA_REGIONAL_CENTER\"\n      ],\n      \"requirement_satisfied\": false\n    },\n    \"documents\": {\n      \"required\": false,\n      \"requirement_satisfied\": false,\n      \"items\": [\n        {\n          \"document_type\": \"ORIGINAL_AUTHORIZATION_APPROVAL_LETTER\",\n          \"required\": true,\n          \"document_intelligence\": {\n            \"validation_supported\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"requirement_satisfied\": true,\n          \"files\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"document_validation\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"document_validation_batch\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"document_type\": \"AUTHORIZATION_FORM\",\n          \"required\": true,\n          \"document_intelligence\": {\n            \"validation_supported\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"requirement_satisfied\": false,\n          \"files\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"document_validation\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"document_validation_batch\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"result\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"clinician_npi\": {\n      \"required\": true,\n      \"requirement_satisfied\": false\n    },\n    \"start_date\": {\n      \"required\": true,\n      \"requirement_satisfied\": true\n    }\n  },\n  \"silna_url\": null,\n  \"approval_information_last_updated_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce649072-8907-4c7c-8735-a5216be57fad",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior_authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "2604",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3160",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "55",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "1214.5597016549737",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18522983-24b3-49e3-9d4c-12334bbf932f",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior_authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "2604",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3160",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "55",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "1214.5597016549737",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "045d3095-ac64-4bed-9316-963a178d9f40",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "prior_authorizations",
+                    ":prior_authorization_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "prior_authorization_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "2604",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "3160",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "55",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "1214.5597016549737",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9c49ae2b-2a85-41d6-a49b-9ad40264e499",
+    "name": "Silna Public OldV1PriorAuthorizationResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

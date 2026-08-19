@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Silna Public OldV1PriorAuthorizationResource V1ContractsResource API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "V1ContractsResource",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Payor Contracts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://app.silnahealth.com/api/public/v1/payor-contracts/",
+            "params": [
+              {
+                "name": "starting_after",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ending_before",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "provider_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mso_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "payor_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Payor Contracts"
+        },
+        {
+          "info": {
+            "name": "Create Payor Contract",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://app.silnahealth.com/api/public/v1/payor-contracts/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Payor Contract"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

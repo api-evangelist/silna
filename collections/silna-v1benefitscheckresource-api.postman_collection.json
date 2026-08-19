@@ -1,0 +1,779 @@
+{
+  "item": [
+    {
+      "id": "f3dd1558-260d-4e19-b966-60f63e7a3915",
+      "name": "V1BenefitsCheckResource",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66ab8d16-08de-4bc1-aa0f-42f23333ced2",
+          "name": "Get Benefits Check V1",
+          "request": {
+            "name": "Get Benefits Check V1",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "benefits-checks",
+                ":benefits_check_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "benefits_check_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b9a5d70-3b09-4457-8dc7-e44bedc04d97",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "benefits-checks",
+                    ":benefits_check_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benefits_check_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7057",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9049",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "760",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5747.694420897778",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"c64b942e-8d8e-e105-81ec-fd2e09dbd23e\",\n  \"status\": \"REQUESTED\",\n  \"patient_plan_id\": \"596c44c6-6e6f-b2db-3845-f7a85d7f621a\",\n  \"patient_id\": \"b0a16766-62fc-9538-7dae-21384969099f\",\n  \"provider_id\": \"9c8b8093-94a6-31a7-0a68-2bdfe0aaf641\",\n  \"created_at\": \"1950-05-28T22:00:45.978Z\",\n  \"specialty_specific_data\": [\n    {\n      \"specialty\": \"ABA_THERAPY\",\n      \"auth_required\": true,\n      \"referral_required\": true,\n      \"referral_info\": \"string\",\n      \"requirement_time\": \"BEFORE_SERVICES\",\n      \"requirement_quantity\": 6492,\n      \"requirement_unit\": \"CPT_UNITS\",\n      \"auth_company\": \"string\",\n      \"has_visit_limit\": false,\n      \"visit_limit_quantity\": 2561,\n      \"visits_used\": 5374,\n      \"copay_amount\": \"string\",\n      \"coinsurance_percentage\": \"string\",\n      \"individual_deductible_amount\": \"string\",\n      \"individual_deductible_amount_met\": \"string\",\n      \"family_deductible_amount\": \"string\",\n      \"family_deductible_amount_met\": \"string\",\n      \"individual_out_of_pocket_amount\": \"string\",\n      \"individual_out_of_pocket_amount_met\": \"string\",\n      \"family_out_of_pocket_amount\": \"string\",\n      \"family_out_of_pocket_amount_met\": \"string\",\n      \"medicare_dollars_used\": \"string\",\n      \"reimbursement_rate\": \"string\",\n      \"exclusions_and_limitations\": \"string\",\n      \"patient_cost_estimates\": [\n        {\n          \"cost_estimate_name\": \"string\",\n          \"cost_of_service\": \"string\",\n          \"cost_of_service_duration\": \"NONE_HIDDEN\"\n        },\n        {\n          \"cost_estimate_name\": \"string\",\n          \"cost_of_service\": \"string\",\n          \"cost_of_service_duration\": \"PER_WEEK\"\n        }\n      ]\n    },\n    {\n      \"specialty\": \"PRINCIPAL_CARE_MANAGEMENT\",\n      \"auth_required\": false,\n      \"referral_required\": false,\n      \"referral_info\": \"string\",\n      \"requirement_time\": \"BEFORE_SERVICES\",\n      \"requirement_quantity\": 8736,\n      \"requirement_unit\": \"CPT_UNITS\",\n      \"auth_company\": \"string\",\n      \"has_visit_limit\": true,\n      \"visit_limit_quantity\": 3415,\n      \"visits_used\": 7382,\n      \"copay_amount\": \"string\",\n      \"coinsurance_percentage\": \"string\",\n      \"individual_deductible_amount\": \"string\",\n      \"individual_deductible_amount_met\": \"string\",\n      \"family_deductible_amount\": \"string\",\n      \"family_deductible_amount_met\": \"string\",\n      \"individual_out_of_pocket_amount\": \"string\",\n      \"individual_out_of_pocket_amount_met\": \"string\",\n      \"family_out_of_pocket_amount\": \"string\",\n      \"family_out_of_pocket_amount_met\": \"string\",\n      \"medicare_dollars_used\": \"string\",\n      \"reimbursement_rate\": \"string\",\n      \"exclusions_and_limitations\": \"string\",\n      \"patient_cost_estimates\": [\n        {\n          \"cost_estimate_name\": \"string\",\n          \"cost_of_service\": \"string\",\n          \"cost_of_service_duration\": \"PER_HOUR\"\n        },\n        {\n          \"cost_estimate_name\": \"string\",\n          \"cost_of_service\": \"string\",\n          \"cost_of_service_duration\": \"NONE_HIDDEN\"\n        }\n      ]\n    }\n  ],\n  \"eligibility_status\": \"ELIGIBLE\",\n  \"ineligibility_reason\": \"NO_MEDICARE_PART_B_COVERAGE\",\n  \"reference\": null,\n  \"note\": null,\n  \"insurance_type\": \"REGIONAL_CENTER\",\n  \"date_verified\": null,\n  \"network_status\": \"OUT_OF_NETWORK\",\n  \"plan_type\": null,\n  \"plan_start_date\": null,\n  \"plan_end_date\": null,\n  \"group_number\": null,\n  \"patient_information\": {\n    \"subscriber_first_name\": null,\n    \"subscriber_last_name\": null,\n    \"subscriber_date_of_birth\": null,\n    \"subscriber_address\": null,\n    \"subscriber_state\": null,\n    \"subscriber_city\": null,\n    \"subscriber_zip_code\": null,\n    \"subscriber_patient_relationship\": null\n  },\n  \"other_payor_information\": null,\n  \"other_payor_entity_name\": null,\n  \"independent_physician_association_name\": null,\n  \"silna_url\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5dd09eba-b4da-40db-8f15-ec06fb356d54",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "benefits-checks",
+                    ":benefits_check_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benefits_check_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7057",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9049",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "760",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5747.694420897778",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3cc6526-d55c-44a3-b45b-9c3e86139ee3",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "benefits-checks",
+                    ":benefits_check_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benefits_check_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7057",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9049",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "760",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5747.694420897778",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c5973c9-c85a-4430-8904-bf05f2509602",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "benefits-checks",
+                    ":benefits_check_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benefits_check_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7057",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9049",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "760",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5747.694420897778",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "50c6902c-c736-4950-a8a6-e0c7d2b0a14d",
+          "name": "Create Benefits Check",
+          "request": {
+            "name": "Create Benefits Check",
+            "description": {},
+            "url": {
+              "path": [
+                "public",
+                "v1",
+                "benefits-checks",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                "key": "idempotency-key",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialties\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"template_id\": null,\n  \"network_status_override\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46bd7e2f-d31d-49cb-9d09-dac8351e3309",
+              "name": "\n    Benefits Check Create Response Schema\n    ",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "benefits-checks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                    "key": "idempotency-key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialties\": [\n    \"PHYSICAL_THERAPY\"\n  ],\n  \"template_id\": null,\n  \"network_status_override\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7057",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9049",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "760",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5747.694420897778",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"benefits_check_ids\": [\n    \"084263c5-6851-7031-3366-ed4e15c6313c\",\n    \"dd6605ea-0615-211c-7ca6-580587b47bec\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c09f0e17-dfcb-4f96-811a-104cae465b83",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "benefits-checks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                    "key": "idempotency-key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialties\": [\n    \"PHYSICAL_THERAPY\"\n  ],\n  \"template_id\": null,\n  \"network_status_override\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7057",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9049",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "760",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5747.694420897778",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73ccfc1c-e9a1-4676-bb8d-c798a0846e93",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "benefits-checks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                    "key": "idempotency-key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialties\": [\n    \"PHYSICAL_THERAPY\"\n  ],\n  \"template_id\": null,\n  \"network_status_override\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7057",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9049",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "760",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5747.694420897778",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"type\": \"AUTH_INVALID_CREDENTIALS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "271639cb-1180-4764-9f37-b99bbb578ee8",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "public",
+                    "v1",
+                    "benefits-checks",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Unique key to prevent duplicate requests. We support keys up to 255 characters.",
+                    "key": "idempotency-key",
+                    "value": "550e8400-e29b-41d4-a716-446655440000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"patient_plan_id\": \"<uuid>\",\n  \"specialties\": [\n    \"PHYSICAL_THERAPY\"\n  ],\n  \"template_id\": null,\n  \"network_status_override\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "7057",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "9049",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "760",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Retry-After",
+                  "value": "5747.694420897778",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://app.silnahealth.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "99b0b0a7-e00d-4c97-be91-e1e145cd2694",
+    "name": "Silna Public OldV1PriorAuthorizationResource V1BenefitsCheckResource API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
