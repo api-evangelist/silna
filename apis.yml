@@ -766,6 +766,9 @@ apis:
   - type: LLMs
     url: llms/silna-llms.txt
 common:
+- type: CapabilityMap
+  url: capabilities/silna-capability-edges.yml
+  name: Silna Business Capability Map
 - type: DomainSecurity
   url: security/silna-domain-security.yml
 - type: Authentication
