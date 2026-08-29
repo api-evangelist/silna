@@ -11,200 +11,185 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 19
+edge_count: 17
 edges:
-- tag: V2BenefitsCheckResource
-  spec_file: silna-v2benefitscheckresource-api-openapi.yml
-  capability_id: BC-2800.30
-  capability_id_l1: BC-2800
-  capability_name: Eligibility & Benefits Verification
-  confidence: 0.95
-  evidence: '''Get Benefits Check V2'' with schemas V2CopayModifier, V2CoinsuranceModifier, NetworkStatus,
-    BenefitsCheckPatientInformation, V2PatientCostOfServiceEstimate'
-  reason: Operations return insurance benefit detail (copay, coinsurance, network status, exclusions,
-    dollar limits) for a patient prior to service — squarely eligibility and benefits verification within
-    patient access. The cost estimate schema is a secondary aspect of the same benefits check.
-- tag: V1PatientPlanBenefitsChecksResource
-  spec_file: silna-v1patientplanbenefitschecksresource-api-openapi.yml
-  capability_id: BC-2800.30
-  capability_id_l1: BC-2800
-  capability_name: Eligibility & Benefits Verification
-  confidence: 0.93
-  evidence: GET /public/v1/patient-plans/{patient_plan_id}/benefits-checks  Get Benefits Checks for Patient
-    Plan; BenefitsCheckStatusPublic
-  reason: Operations retrieve insurance benefits checks against a patient's plan — precisely eligibility
-    and benefits verification prior to service delivery.
 - tag: V1BenefitsCheckResource
   spec_file: silna-v1benefitscheckresource-api-openapi.yml
   capability_id: BC-2800.30
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
   confidence: 0.9
-  evidence: Create Benefits Check; schemas BenefitsCheckEligibilityStatus, NetworkStatus, InsuranceType,
-    BenefitsCheckAuthRequiredTime
-  reason: Creates and retrieves insurance benefits checks with eligibility status, network status and
-    authorisation-required data — verification of coverage, benefits and authorisation requirements before
-    service.
+  evidence: POST /public/v1/benefits-checks/ Create Benefits Check; schemas BenefitsCheckEligibilityStatus,
+    NetworkStatus, BenefitsCheckAuthRequiredTime, BenefitsCheckIneligibilityReason
+  reason: Creates and retrieves insurance benefits checks returning eligibility status, network status
+    and whether authorisation is required — the definition of Eligibility & Benefits Verification. (Patient
+    cost-of-service estimate is a secondary output.)
+- tag: V1PatientPlanBenefitsChecksResource
+  spec_file: silna-v1patientplanbenefitschecksresource-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.9
+  evidence: GET /public/v1/patient-plans/{patient_plan_id}/benefits-checks  'Get Benefits Checks for Patient
+    Plan'; schema BenefitsCheckStatusPublic
+  reason: Operation retrieves insurance benefits checks against a patient's insurance plan, which is precisely
+    pre-service verification of coverage and benefits.
+- tag: V2BenefitsCheckResource
+  spec_file: silna-v2benefitscheckresource-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.9
+  evidence: GET /public/v2/benefits-checks/{benefits_check_id}  "Get Benefits Check V2"; schemas BenefitsCheckPatientInformation,
+    NetworkStatus, V2PatientCostOfServiceEstimate; vendor "handles prior authorizations, benefit checks,
+    eligibility verification"
+  reason: The single operation retrieves an insurance benefits check with network status, copay/coinsurance
+    modifiers and patient cost-of-service estimates — i.e. verification of coverage and benefits before
+    service delivery. Maps cleanly to Eligibility & Benefits Verification rather than to financial counselling,
+    since the resource is the benefits check itself.
 - tag: V1PatientPlanPriorAuthorizationsResource
   spec_file: silna-v1patientplanpriorauthorizationsresource-api-openapi.yml
   capability_id: BC-2800.30
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
-  confidence: 0.9
-  evidence: Get Patient Plan Prior Authorizations; PublicPriorAuthorizationStatus
-  reason: Prior authorization status per patient insurance plan is authorisation-requirement verification
-    before service delivery, the explicit scope of Eligibility & Benefits Verification.
-- tag: OldV1PriorAuthorizationResource
-  spec_file: silna-oldv1priorauthorizationresource-api-openapi.yml
-  capability_id: BC-2800.30
-  capability_id_l1: BC-2800
-  capability_name: Eligibility & Benefits Verification
-  confidence: 0.85
-  evidence: Get Prior Authorization (Deprecated); schemas V1PriorAuthorization, PublicPriorAuthorizationStatus,
-    V1PriorAuthorizationApprovalDocument
-  reason: Retrieves payer prior authorization records with status and approval/denial documents — squarely
-    pre-service authorisation requirement verification under Eligibility & Benefits Verification.
-- tag: V1PatientPlanResource
-  spec_file: silna-v1patientplanresource-api-openapi.yml
-  capability_id: BC-2800.30
-  capability_id_l1: BC-2800
-  capability_name: Eligibility & Benefits Verification
-  confidence: 0.85
-  evidence: Create Patient Plan; schemas PatientPlanEligibilityStatus, V1BenefitsInformation, V1EligibilityInformation,
-    InsuranceType
-  reason: CRUD over a patient's insurance plan carrying eligibility and benefits information — coverage
-    capture and verification, not clinical or billing production.
-- tag: V1PatientPlansResource
-  spec_file: silna-v1patientplansresource-api-openapi.yml
-  capability_id: BC-2800.30
-  capability_id_l1: BC-2800
-  capability_name: Eligibility & Benefits Verification
-  confidence: 0.85
-  evidence: GET /public/v1/patients/{patient_id}/patient-plans  Get Patient Plans; EligibilityCheckCompleteStatus,
-    BenefitsCheckCompleteStatus
-  reason: Lists a patient's insurance coverages with eligibility and benefits check status, which is insurance
-    coverage/benefits verification.
+  confidence: 0.88
+  evidence: '''Get Patient Plan Prior Authorizations''; PublicPriorAuthorizationStatus'
+  reason: Prior authorisation status per patient insurance plan is authorisation-requirement verification
+    before service delivery, within Eligibility & Benefits Verification.
 - tag: V1PriorAuthorizationResource
   spec_file: silna-v1priorauthorizationresource-api-openapi.yml
   capability_id: BC-2800.30
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
-  confidence: 0.85
-  evidence: Create Prior Authorization / Get Prior Authorization / Update Prior Authorization / Abort
-    Prior Authorization; schemas PublicPriorAuthorizationStatus, V1PriorAuthorizationApprovalDocument,
-    V1PriorAuthorizationDenialDocument
-  reason: Full CRUD lifecycle over prior authorization requests with approval/denial documents and status
-    — the core pre-service payer authorisation capability, which the frame places under Eligibility &
-    Benefits Verification.
-- tag: V1PriorAuthorizationCompleteRequestResource
-  spec_file: silna-v1priorauthorizationcompleterequestresource-api-openapi.yml
-  capability_id: BC-2800.30
-  capability_id_l1: BC-2800
-  capability_name: Eligibility & Benefits Verification
-  confidence: 0.82
-  evidence: POST /public/v1/prior-authorizations/{prior_authorization_id}/complete-request  Complete Prior
-    Authorization
-  reason: The single operation completes a prior authorization request to a payer — pre-service authorisation,
-    which sits under Patient Access Management / Eligibility & Benefits Verification ('authorisation requirements
-    before service delivery'). Vendor confirms it 'handles prior authorizations, benefit checks, eligibility
-    verification'.
-- tag: V1PriorAuthorizationCompletedResource
-  spec_file: silna-v1priorauthorizationcompletedresource-api-openapi.yml
-  capability_id: BC-2800.30
-  capability_id_l1: BC-2800
-  capability_name: Eligibility & Benefits Verification
-  confidence: 0.82
-  evidence: Create Completed Prior Authorization; schemas V1CompletedAuthorizationCreate, PriorAuthorizationType,
-    V1RecordApprovedTreatmentCodeCreate
-  reason: Records a completed payer authorisation including approved treatment codes and units — payer
-    authorisation handling ahead of service delivery, i.e. eligibility/benefits/authorisation verification
-    within patient access.
+  confidence: 0.88
+  evidence: '"Create Prior Authorization", "Update Prior Authorization", "Abort Prior Authorization";
+    schemas PublicPriorAuthorizationStatus, V1TreatmentCodesRequirement, V1PriorAuthorizationApprovalDocument'
+  reason: Full CRUD lifecycle over prior authorization requests including status, treatment-code and document
+    requirements — i.e. obtaining payer authorisation before service delivery, which the frame places
+    in Eligibility & Benefits Verification within Patient Access Management.
 - tag: V1PriorAuthorizationRecordApprovalResource
   spec_file: silna-v1priorauthorizationrecordapprovalresource-api-openapi.yml
   capability_id: BC-2800.30
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
   confidence: 0.82
-  evidence: Record Approval for Prior Authorization.; V1RecordApprovalCreate, V1RecordApprovedTreatmentCodeCreate,
-    PriorAuthorizationUnit
-  reason: Records payer approval details (approved treatment codes, units, timeframe) for a prior authorization
-    — authorisation requirement verification before service delivery.
+  evidence: POST /public/v1/prior-authorizations/{prior_authorization_id}/sync  "Record Approval for Prior
+    Authorization"; schemas V1RecordApprovalCreate, V1RecordApprovedTreatmentCodeCreate, PriorAuthorizationUnit
+  reason: The single operation records a payer approval outcome against a prior authorization, with approved
+    treatment codes and units. Prior authorization determination is pre-service payer authorisation, which
+    sits under Eligibility & Benefits Verification ('authorisation requirements before service delivery').
+    Not revenue-cycle claim production — no claim, remittance or coding production surface here.
+- tag: OldV1PriorAuthorizationResource
+  spec_file: silna-oldv1priorauthorizationresource-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.8
+  evidence: GET /public/v1/prior_authorizations/{prior_authorization_id}  Get Prior Authorization (Deprecated);
+    schemas V1PriorAuthorization, V1PriorAuthorizationApprovalDocument, V1PriorAuthorizationDenialDocument
+  reason: Retrieves payer prior-authorisation records with approval/denial documents, treatment codes
+    and units — pre-service authorisation determination, which sits under Eligibility & Benefits Verification
+    (verification of coverage and authorisation requirements before service delivery) in Patient Access
+    Management.
 - tag: V1BenefitsCheckReportResource
   spec_file: silna-v1benefitscheckreportresource-api-openapi.yml
   capability_id: BC-2800.30
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
   confidence: 0.8
-  evidence: Generate Benefits Check Report; V1BenefitsCheckReportCreateResponse
-  reason: Produces a report for an insurance benefits check, part of verifying coverage and benefits before
+  evidence: POST /public/v1/benefits-checks/{benefits_check_id}/reports  Generate Benefits Check Report
+  reason: Generates a report for a completed insurance benefits check; the vendor describes handling 'benefit
+    checks, eligibility verification' upfront so providers confirm patients are clear to receive care
+    — squarely pre-service eligibility and benefits verification.
+- tag: V1PatientPlanResource
+  spec_file: silna-v1patientplanresource-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.8
+  evidence: '''Create Patient Plan''; schemas PatientPlanEligibilityStatus, V1BenefitsInformation, V1EligibilityInformation,
+    InsuranceType'
+  reason: CRUD over a patient's insurance plan carrying eligibility and benefits information — coverage
+    verification data stewardship, not generic registration.
+- tag: V1PatientPlansResource
+  spec_file: silna-v1patientplansresource-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.8
+  evidence: GET /public/v1/patients/{patient_id}/patient-plans 'Get Patient Plans'; EligibilityCheckCompleteStatus,
+    BenefitsCheckCompleteStatus
+  reason: Lists a patient's insurance plans with eligibility and benefits check status — insurance coverage
+    verification surface.
+- tag: V1PriorAuthorizationCompletedResource
+  spec_file: silna-v1priorauthorizationcompletedresource-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.8
+  evidence: POST /public/v1/prior-authorizations/sync 'Create Completed Prior Authorization'; V1CompletedAuthorizationCreate,
+    V1RecordApprovedTreatmentCodeCreate
+  reason: Records completed/approved prior authorisations with approved treatment codes — authorisation
+    verification ahead of care delivery.
+- tag: V1PriorAuthorizationCompleteRequestResource
+  spec_file: silna-v1priorauthorizationcompleterequestresource-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.78
+  evidence: POST /public/v1/prior-authorizations/{prior_authorization_id}/complete-request  'Complete
+    Prior Authorization'
+  reason: Completing a prior authorisation request is management of payer authorisation requirements before
     service delivery.
-- tag: V1PayorDetectionRunResource
-  spec_file: silna-v1payordetectionrunresource-api-openapi.yml
-  capability_id: BC-2800.30
-  capability_id_l1: BC-2800
-  capability_name: Eligibility & Benefits Verification
+- tag: V1ContractResource
+  spec_file: silna-v1contractresource-api-openapi.yml
+  capability_id: BC-2870.70
+  capability_id_l1: BC-2870
+  capability_name: Payer Contract Management
   confidence: 0.75
-  evidence: Create payor detection run; PayorDetectionCategory, PayorDetectionStatus
-  reason: Automated detection of a patient's insurance payor is coverage discovery feeding eligibility/benefits
-    verification in this prior-auth platform; sub-capability inference rests on vendor context rather
-    than explicit summaries.
-- tag: V1PayorInferenceResource
-  spec_file: silna-v1payorinferenceresource-api-openapi.yml
-  capability_id: BC-2800.30
-  capability_id_l1: BC-2800
-  capability_name: Eligibility & Benefits Verification
+  evidence: GET /public/v1/payor-contracts/{contract_id} Get Payor Contract; PATCH ... Update Payor Contract;
+    schemas V1Contract, V1ContractPlan, V1ContractServiceLocation, InsuranceType
+  reason: Operations manage payor (payer) contract records including plans and covered service locations,
+    which is provider-side payer contract stewardship. Some ambiguity remains because the contracts also
+    drive authorisation rules rather than reimbursement modelling only.
+- tag: V1ContractsResource
+  spec_file: silna-v1contractsresource-api-openapi.yml
+  capability_id: BC-2870.70
+  capability_id_l1: BC-2870
+  capability_name: Payer Contract Management
   confidence: 0.75
-  evidence: Create Payor Inference; V1PayorInferencePlanSchema, InsuranceType
-  reason: Infers the payor and insurance plan for a patient — insurance coverage identification supporting
-    benefits/eligibility verification before service.
+  evidence: GET /public/v1/payor-contracts/ List Payor Contracts; POST /public/v1/payor-contracts/ Create
+    Payor Contract
+  reason: Create and list payer contract records with plan and service-location detail — provider-side
+    payer contract management. Ambiguity only over whether the contracts serve reimbursement modelling
+    or authorisation configuration.
 - tag: V1PatientResource
   spec_file: silna-v1patientresource-api-openapi.yml
   capability_id: BC-2800.20
   capability_id_l1: BC-2800
   capability_name: Patient Registration Management
-  confidence: 0.72
-  evidence: Get Patient / Update Patient; schemas V1Patient, PatientSex, PatientStatus
-  reason: Maintains patient demographic and identity records used to establish the patient in the platform,
-    closest to Patient Registration Management; some chance it is better read as master patient data stewardship.
+  confidence: 0.75
+  evidence: '''Get Patient'' / ''Update Patient'' / ''Delete Patient''; schemas V1Patient, PatientSex,
+    PatientStatus, V1PatientSpecialtyDetail'
+  reason: Maintains patient demographic/identity records used for the pre-service workflow, matching capture
+    and stewardship of patient registration data.
 - tag: V1PatientsResource
   spec_file: silna-v1patientsresource-api-openapi.yml
   capability_id: BC-2800.20
   capability_id_l1: BC-2800
   capability_name: Patient Registration Management
-  confidence: 0.72
-  evidence: POST /public/v1/patients/  Create Patient; PUT Create or Update Patient; V1PatientPut
-  reason: Creation and upsert of patient demographic records (sex, status, specialty detail) is capture/stewardship
-    of patient registration data; alternative reading is patient master data management.
+  confidence: 0.75
+  evidence: POST /public/v1/patients/ 'Create Patient'; PUT 'Create or Update Patient'; V1PatientCreate,
+    PatientSex
+  reason: Creation and listing of patient demographic records is patient registration data capture and
+    stewardship.
 - tag: V1BenefitsCheckTemplatesResource
   spec_file: silna-v1benefitschecktemplatesresource-api-openapi.yml
   capability_id: BC-2800.30
   capability_id_l1: BC-2800
   capability_name: Eligibility & Benefits Verification
   confidence: 0.7
-  evidence: GET /public/v1/benefits-checks/templates — "Get Benefits Check Templates"; schema V1BenefitsCheckTemplateResponse
-  reason: The tag exposes templates that drive Silna's benefits checks, i.e. verification of insurance
-    coverage and benefits before service. It is a configuration/reference surface rather than the check
-    execution itself, so confidence is moderate, but the only business capability it serves is eligibility
-    & benefits verification.
-- tag: V1ContractResource
-  spec_file: silna-v1contractresource-api-openapi.yml
-  capability_id: BC-2870.70
-  capability_id_l1: BC-2870
-  capability_name: Payer Contract Management
-  confidence: 0.7
-  evidence: GET/PATCH /public/v1/payor-contracts/{contract_id} — "Get Payor Contract", "Update Payor Contract";
-    schemas V1Contract, V1ContractPlan, V1ContractServiceLocation, InsuranceType
-  reason: Operations maintain provider-side payor contract records linked to plans and service locations,
-    which is payer contract stewardship within revenue cycle. Confidence is moderate because the surface
-    is record CRUD rather than modelling/variance analysis.
-- tag: V1ContractsResource
-  spec_file: silna-v1contractsresource-api-openapi.yml
-  capability_id: BC-2870.70
-  capability_id_l1: BC-2870
-  capability_name: Payer Contract Management
-  confidence: 0.7
-  evidence: GET /public/v1/payor-contracts/ — "List Payor Contracts"; POST — "Create Payor Contract";
-    schemas V1ContractCreateBody, V1ContractPlan, V1ContractServiceLocation
-  reason: Creation and listing of payor contracts tied to plans and service locations for a provider organisation,
-    i.e. payer contract management in the provider revenue cycle. Moderate confidence as the endpoints
-    are basic record management.
+  evidence: GET /public/v1/benefits-checks/templates  Get Benefits Check Templates
+  reason: Lists templates used to configure benefits checks; it is configuration metadata but is unambiguously
+    scoped to the insurance benefits-verification workflow, so the same capability applies with reduced
+    confidence.
