@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 17
+edge_count: 19
 edges:
 - tag: V1BenefitsCheckResource
   spec_file: silna-v1benefitscheckresource-api-openapi.yml
@@ -183,6 +183,27 @@ edges:
     PatientSex
   reason: Creation and listing of patient demographic records is patient registration data capture and
     stewardship.
+- tag: V1PayorDetectionRunResource
+  spec_file: silna-v1payordetectionrunresource-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.75
+  evidence: Create payor detection run; PayorDetectionCategory, PayorDetectionStatus
+  reason: Automated detection of a patient's insurance payor is coverage discovery feeding eligibility/benefits
+    verification in this prior-auth platform; sub-capability inference rests on vendor context rather
+    than explicit summaries.
+  recovered_from: healthcare-vertical-edges.json
+- tag: V1PayorInferenceResource
+  spec_file: silna-v1payorinferenceresource-api-openapi.yml
+  capability_id: BC-2800.30
+  capability_id_l1: BC-2800
+  capability_name: Eligibility & Benefits Verification
+  confidence: 0.75
+  evidence: Create Payor Inference; V1PayorInferencePlanSchema, InsuranceType
+  reason: Infers the payor and insurance plan for a patient — insurance coverage identification supporting
+    benefits/eligibility verification before service.
+  recovered_from: healthcare-vertical-edges.json
 - tag: V1BenefitsCheckTemplatesResource
   spec_file: silna-v1benefitschecktemplatesresource-api-openapi.yml
   capability_id: BC-2800.30
