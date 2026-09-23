@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1FileResource API
+  title: Silna Public V1 File Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -287,6 +287,56 @@ paths:
         description: Binary file content to upload
 components:
   schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    RequestEntityTooLargeError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1FileDumpSchema:
+      properties:
+        url:
+          default: null
+          title: Url
+          type:
+          - string
+          - 'null'
+        id:
+          format: uuid
+          title: Id
+          type: string
+        original_filename:
+          default: null
+          title: Original Filename
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      title: V1FileDumpSchema
+      type: object
+      x-folder: public_api
     V1FileCreateResponseSchema:
       properties:
         id:
@@ -298,14 +348,11 @@ components:
       title: V1FileCreateResponseSchema
       type: object
       x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
     AuthenticationError:
       type: object
@@ -326,51 +373,6 @@ components:
         message:
           type: string
           description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    RequestEntityTooLargeError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    V1FileDumpSchema:
-      properties:
-        url:
-          default: null
-          title: Url
-          nullable: true
-          type: string
-        id:
-          format: uuid
-          title: Id
-          type: string
-        original_filename:
-          default: null
-          title: Original Filename
-          nullable: true
-          type: string
-      required:
-      - id
-      title: V1FileDumpSchema
-      type: object
-      x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

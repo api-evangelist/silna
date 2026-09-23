@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1PatientResource API
+  title: Silna Public V1 Patient Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -372,6 +372,67 @@ paths:
       x-folder: public_api
 components:
   schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    TherapyType:
+      type: string
+      enum:
+      - REHABILITATIVE
+      - HABILITATIVE
+      x-folder: patient
+    PatientStatus:
+      type: string
+      enum:
+      - INTAKE
+      - ACTIVE
+      - DISCHARGED
+      - ON_HOLD
+      x-folder: patient
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1PatientSpecialtyDetail:
+      properties:
+        specialty:
+          $ref: '#/components/schemas/PublicSpecialty'
+        therapy_type:
+          default: null
+          $ref: '#/components/schemas/TherapyType'
+      required:
+      - specialty
+      title: V1PatientSpecialtyDetail
+      type: object
+      x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     V1Patient:
       description: Patient Response Schema
       properties:
@@ -392,46 +453,51 @@ components:
           default: null
           description: Patient's EHR ID (or other unique identifier) that you have in your system
           title: Source Id
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         address_line_1:
           default: null
           description: Patient's street address
           title: Address Line 1
-          nullable: true
           maxLength: 255
-          type: string
+          type:
+          - string
+          - 'null'
         address_line_2:
           default: null
           description: Patient's apartment, suite, unit, etc.
           title: Address Line 2
-          nullable: true
           maxLength: 255
-          type: string
+          type:
+          - string
+          - 'null'
         city:
           default: null
           description: Patient's city
           title: City
-          nullable: true
           maxLength: 255
-          type: string
+          type:
+          - string
+          - 'null'
         state:
           default: null
           description: Patient's state
           title: State
-          nullable: true
           maxLength: 255
-          type: string
+          type:
+          - string
+          - 'null'
         zip_code:
           default: null
           description: Patient's zip code. Empty strings are not allowed
           title: Zip Code
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         sex:
           default: null
           description: Patient's sex
-          nullable: true
           $ref: '#/components/schemas/PatientSex'
         patient_specialties:
           description: Patient's specialties. A patient can have multiple
@@ -459,26 +525,29 @@ components:
           default: null
           description: Detailed specialty info including therapy type per specialty
           title: Patient Specialty Details
-          nullable: true
           items:
             $ref: '#/components/schemas/V1PatientSpecialtyDetail'
-          type: array
+          type:
+          - array
+          - 'null'
         patient_diagnosis_ids:
           default: null
           title: Patient Diagnosis Ids
-          nullable: true
           items:
             format: uuid
             type: string
-          type: array
+          type:
+          - array
+          - 'null'
         patient_place_of_service_ids:
           default: null
           title: Patient Place Of Service Ids
-          nullable: true
           items:
             format: uuid
             type: string
-          type: array
+          type:
+          - array
+          - 'null'
         silna_url:
           description: URL to view this patient in the Silna Health app
           title: Silna Url
@@ -496,58 +565,103 @@ components:
       title: V1Patient
       type: object
       x-folder: public_api
-    TherapyType:
+    V1PatientUpdate:
+      description: Patient Update Request Schema
+      properties:
+        first_name:
+          default: null
+          title: First Name
+          type:
+          - string
+          - 'null'
+        last_name:
+          default: null
+          title: Last Name
+          type:
+          - string
+          - 'null'
+        date_of_birth:
+          default: null
+          title: Date Of Birth
+          format: date
+          type:
+          - string
+          - 'null'
+        source_id:
+          default: null
+          description: Patient's EHR ID (or other unique identifier) that you have in your system
+          title: Source Id
+          type:
+          - string
+          - 'null'
+        address_line_1:
+          default: null
+          description: Patient's street address
+          title: Address Line 1
+          maxLength: 255
+          type:
+          - string
+          - 'null'
+        address_line_2:
+          default: null
+          description: Patient's apartment, suite, unit, etc.
+          title: Address Line 2
+          maxLength: 255
+          type:
+          - string
+          - 'null'
+        city:
+          default: null
+          description: Patient's city
+          title: City
+          maxLength: 255
+          type:
+          - string
+          - 'null'
+        state:
+          default: null
+          description: Patient's state
+          title: State
+          maxLength: 255
+          type:
+          - string
+          - 'null'
+        zip_code:
+          default: null
+          title: Zip Code
+          type:
+          - string
+          - 'null'
+        sex:
+          default: null
+          $ref: '#/components/schemas/PatientSex'
+        patient_specialties:
+          default: null
+          title: Patient Specialties
+          items:
+            $ref: '#/components/schemas/PublicSpecialty'
+          type:
+          - array
+          - 'null'
+        status:
+          default: null
+          $ref: '#/components/schemas/PatientStatus'
+        provider_service_location_id:
+          default: null
+          title: Provider Service Location Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      title: V1PatientUpdate
+      type: object
+      x-folder: public_api
+    PatientSex:
       type: string
       enum:
-      - REHABILITATIVE
-      - HABILITATIVE
+      - MALE
+      - FEMALE
       x-folder: patient
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PatientStatus:
-      type: string
-      enum:
-      - INTAKE
-      - ACTIVE
-      - DISCHARGED
-      - ON_HOLD
-      x-folder: patient
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     PublicSpecialty:
       type: string
       enum:
@@ -587,113 +701,15 @@ components:
       - PROFESSIONAL_OFFICE_VISIT
       - PSYCHIATRY
       x-folder: specialty
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    V1PatientSpecialtyDetail:
-      properties:
-        specialty:
-          $ref: '#/components/schemas/PublicSpecialty'
-        therapy_type:
-          default: null
-          nullable: true
-          $ref: '#/components/schemas/TherapyType'
+    ValidationError:
+      type: object
       required:
-      - specialty
-      title: V1PatientSpecialtyDetail
-      type: object
-      x-folder: public_api
-    V1PatientUpdate:
-      description: Patient Update Request Schema
+      - message
       properties:
-        first_name:
-          default: null
-          title: First Name
-          nullable: true
+        message:
           type: string
-        last_name:
-          default: null
-          title: Last Name
-          nullable: true
-          type: string
-        date_of_birth:
-          default: null
-          title: Date Of Birth
-          nullable: true
-          format: date
-          type: string
-        source_id:
-          default: null
-          description: Patient's EHR ID (or other unique identifier) that you have in your system
-          title: Source Id
-          nullable: true
-          type: string
-        address_line_1:
-          default: null
-          description: Patient's street address
-          title: Address Line 1
-          nullable: true
-          maxLength: 255
-          type: string
-        address_line_2:
-          default: null
-          description: Patient's apartment, suite, unit, etc.
-          title: Address Line 2
-          nullable: true
-          maxLength: 255
-          type: string
-        city:
-          default: null
-          description: Patient's city
-          title: City
-          nullable: true
-          maxLength: 255
-          type: string
-        state:
-          default: null
-          description: Patient's state
-          title: State
-          nullable: true
-          maxLength: 255
-          type: string
-        zip_code:
-          default: null
-          title: Zip Code
-          nullable: true
-          type: string
-        sex:
-          default: null
-          nullable: true
-          $ref: '#/components/schemas/PatientSex'
-        patient_specialties:
-          default: null
-          title: Patient Specialties
-          nullable: true
-          items:
-            $ref: '#/components/schemas/PublicSpecialty'
-          type: array
-        status:
-          default: null
-          nullable: true
-          $ref: '#/components/schemas/PatientStatus'
-        provider_service_location_id:
-          default: null
-          title: Provider Service Location Id
-          nullable: true
-          format: uuid
-          type: string
-      title: V1PatientUpdate
-      type: object
-      x-folder: public_api
-    PatientSex:
-      type: string
-      enum:
-      - MALE
-      - FEMALE
-      x-folder: patient
+          description: Human readable error message
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

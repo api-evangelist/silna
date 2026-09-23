@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1PatientPlaceOfServicesResource API
+  title: Silna Public V1 Patient Place Of Services Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -248,6 +248,15 @@ paths:
       x-folder: public_api
 components:
   schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     V1PatientPlaceOfServiceCreateResponse:
       description: Patient Place of Service Create Response
       properties:
@@ -261,7 +270,7 @@ components:
       title: V1PatientPlaceOfServiceCreateResponse
       type: object
       x-folder: public_api
-    TooManyRequestsError:
+    ObjectNotFoundError:
       type: object
       required:
       - message
@@ -269,6 +278,29 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    V1PatientPlaceOfService:
+      description: Patient Place of Service
+      properties:
+        id:
+          description: Patient Place of Service Id
+          format: uuid
+          title: Id
+          type: string
+        place_of_service_code:
+          $ref: '#/components/schemas/V1PlaceOfServiceCode'
+          description: Place of service code details
+      required:
+      - id
+      - place_of_service_code
+      title: V1PatientPlaceOfService
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
     AuthenticationError:
       type: object
@@ -281,30 +313,25 @@ components:
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
+    V1PatientPlaceOfServiceCreateBody:
+      description: Patient Place of Service Create Response
       properties:
-        message:
+        patient_id:
+          description: Patient Id
+          format: uuid
+          title: Patient Id
           type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
+        provider_place_of_service_id:
+          description: Provider Place Of Service Id
+          format: uuid
+          title: Provider Place Of Service Id
+          type: string
       required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
+      - patient_id
+      - provider_place_of_service_id
+      title: V1PatientPlaceOfServiceCreateBody
+      type: object
+      x-folder: public_api
     V1PlaceOfServiceCode:
       description: Place of Service Code
       properties:
@@ -327,8 +354,9 @@ components:
           default: null
           description: Detailed description of the service
           title: Description
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - id
       - code
@@ -336,42 +364,15 @@ components:
       title: V1PlaceOfServiceCode
       type: object
       x-folder: public_api
-    V1PatientPlaceOfService:
-      description: Patient Place of Service
-      properties:
-        id:
-          description: Patient Place of Service Id
-          format: uuid
-          title: Id
-          type: string
-        place_of_service_code:
-          $ref: '#/components/schemas/V1PlaceOfServiceCode'
-          description: Place of service code details
-      required:
-      - id
-      - place_of_service_code
-      title: V1PatientPlaceOfService
+    ValidationError:
       type: object
-      x-folder: public_api
-    V1PatientPlaceOfServiceCreateBody:
-      description: Patient Place of Service Create Response
-      properties:
-        patient_id:
-          description: Patient Id
-          format: uuid
-          title: Patient Id
-          type: string
-        provider_place_of_service_id:
-          description: Provider Place Of Service Id
-          format: uuid
-          title: Provider Place Of Service Id
-          type: string
       required:
-      - patient_id
-      - provider_place_of_service_id
-      title: V1PatientPlaceOfServiceCreateBody
-      type: object
-      x-folder: public_api
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

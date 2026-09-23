@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1ProviderGroupResource API
+  title: Silna Public V1 Provider Group Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -11,7 +11,7 @@ tags:
 paths:
   /public/v1/provider-groups/{provider_group_id}:
     get:
-      summary: ''
+      summary: V1 provider group resource get
       responses:
         '200':
           description: ''
@@ -115,8 +115,27 @@ paths:
       tags:
       - V1ProviderGroupResource
       x-folder: public_api
+      x-summary-source: derived
 components:
   schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     V1ProviderGroup:
       properties:
         id:
@@ -152,14 +171,11 @@ components:
       title: V1ProviderGroup
       type: object
       x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
     AuthenticationError:
       type: object
@@ -171,21 +187,6 @@ components:
           description: Human readable error message
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

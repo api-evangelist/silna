@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1PatientNotesResource API
+  title: Silna Public V1 Patient Notes Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -269,6 +269,74 @@ paths:
         description: ''
 components:
   schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PatientNoteCreate:
+      properties:
+        note:
+          default: null
+          description: The note text. At least one of note or file_id must be provided.
+          title: Note
+          type:
+          - string
+          - 'null'
+        file_id:
+          default: null
+          description: UUID of an uploaded file to attach to this note. At least one of note or file_id must be provided.
+          title: File Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      title: V1PatientNoteCreate
+      type: object
+      x-folder: public_api
+    KeysetPaginatedResponse__V1PatientNote:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1PatientNote'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        last_id:
+          default: null
+          title: Last Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1PatientNote]
+      type: object
+      x-folder: null
     V1PatientNote:
       properties:
         id:
@@ -285,8 +353,9 @@ components:
           default: null
           description: The note text
           title: Note
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         created_at:
           description: When the note was created
           format: date-time
@@ -296,9 +365,10 @@ components:
           default: null
           description: UUID of the attached file. Use GET /public/v1/files/<id> to retrieve file details.
           title: File Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - id
       - patient_id
@@ -306,33 +376,23 @@ components:
       title: V1PatientNote
       type: object
       x-folder: public_api
-    V1PatientNoteCreate:
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1PatientNoteCreateResponse:
       properties:
-        note:
-          default: null
-          description: The note text. At least one of note or file_id must be provided.
-          title: Note
-          nullable: true
-          type: string
-        file_id:
-          default: null
-          description: UUID of an uploaded file to attach to this note. At least one of note or file_id must be provided.
-          title: File Id
-          nullable: true
+        patient_note_id:
           format: uuid
+          title: Patient Note Id
           type: string
-      title: V1PatientNoteCreate
+      required:
+      - patient_note_id
+      title: V1PatientNoteCreateResponse
       type: object
       x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     AuthenticationError:
       type: object
       required:
@@ -352,60 +412,6 @@ components:
         message:
           type: string
           description: Human readable error message
-      x-folder: null
-    V1PatientNoteCreateResponse:
-      properties:
-        patient_note_id:
-          format: uuid
-          title: Patient Note Id
-          type: string
-      required:
-      - patient_note_id
-      title: V1PatientNoteCreateResponse
-      type: object
-      x-folder: public_api
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    KeysetPaginatedResponse__V1PatientNote:
-      properties:
-        has_more:
-          title: Has More
-          type: boolean
-        records:
-          items:
-            $ref: '#/components/schemas/V1PatientNote'
-          title: Records
-          type: array
-        first_id:
-          default: null
-          title: First Id
-          nullable: true
-          format: uuid
-          type: string
-        last_id:
-          default: null
-          title: Last Id
-          nullable: true
-          format: uuid
-          type: string
-      required:
-      - has_more
-      - records
-      title: KeysetPaginatedResponse[V1PatientNote]
-      type: object
       x-folder: null
   securitySchemes:
     bearerAuth:

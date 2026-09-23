@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1ServiceLocationsResource API
+  title: Silna Public V1 Service Locations Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -151,7 +151,7 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    AuthenticationError:
+    ObjectNotFoundError:
       type: object
       required:
       - message
@@ -159,17 +159,24 @@ components:
         message:
           type: string
           description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
+    V1ServiceLocationCreateResponse:
       properties:
-        message:
+        id:
+          description: The newly created service location's Silna identifier
+          format: uuid
+          title: Id
           type: string
-          description: Human readable error message
+      required:
+      - id
+      title: V1ServiceLocationCreateResponse
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
     V1ServiceLocationCreate:
       properties:
@@ -196,8 +203,9 @@ components:
           default: null
           description: Secondary address line
           title: Address Line 2
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           example: Apt 3
         city:
           description: City name
@@ -218,8 +226,9 @@ components:
           default: null
           description: An API client's (internal) identifier for a service location
           title: Source Id
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           example: my-unique-id-123
       required:
       - provider_id
@@ -232,7 +241,18 @@ components:
       title: V1ServiceLocationCreate
       type: object
       x-folder: public_api
-    ObjectNotFoundError:
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ValidationError:
       type: object
       required:
       - message
@@ -241,24 +261,6 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    V1ServiceLocationCreateResponse:
-      properties:
-        id:
-          description: The newly created service location's Silna identifier
-          format: uuid
-          title: Id
-          type: string
-      required:
-      - id
-      title: V1ServiceLocationCreateResponse
-      type: object
-      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

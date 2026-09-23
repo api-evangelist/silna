@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1ProviderPayorsResource API
+  title: Silna Public V1 Provider Payors Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -149,54 +149,7 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    V1ProviderPayorAlternateIdentifier:
-      properties:
-        identifier:
-          description: The alternate/provider supplied identifier
-          title: Identifier
-          type: string
-          example: AETNA_INSC
-        standard:
-          $ref: '#/components/schemas/ProviderPayorStandard'
-          description: The standard of the alternate identifier
-          example: PROVIDER_IDENTIFIER
-        payor_types:
-          description: The types of insurances that this alternate identifier is associated with
-          items:
-            $ref: '#/components/schemas/InsuranceType'
-          title: Payor Types
-          type: array
-          example:
-          - COMMERCIAL
-          - MEDICARE
-      required:
-      - identifier
-      - standard
-      - payor_types
-      title: V1ProviderPayorAlternateIdentifier
-      type: object
-      x-folder: public_api
     TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ValidationError:
       type: object
       required:
       - message
@@ -218,15 +171,17 @@ components:
         first_id:
           default: null
           title: First Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         last_id:
           default: null
           title: Last Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - has_more
       - records
@@ -239,6 +194,36 @@ components:
       - AUTH_INVALID_REQUEST_HEADER
       - AUTH_INVALID_CREDENTIALS
       x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
     V1ProviderPayor:
       properties:
         id:
@@ -274,6 +259,33 @@ components:
       title: V1ProviderPayor
       type: object
       x-folder: public_api
+    V1ProviderPayorAlternateIdentifier:
+      properties:
+        identifier:
+          description: The alternate/provider supplied identifier
+          title: Identifier
+          type: string
+          example: AETNA_INSC
+        standard:
+          $ref: '#/components/schemas/ProviderPayorStandard'
+          description: The standard of the alternate identifier
+          example: PROVIDER_IDENTIFIER
+        payor_types:
+          description: The types of insurances that this alternate identifier is associated with
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Payor Types
+          type: array
+          example:
+          - COMMERCIAL
+          - MEDICARE
+      required:
+      - identifier
+      - standard
+      - payor_types
+      title: V1ProviderPayorAlternateIdentifier
+      type: object
+      x-folder: public_api
     ProviderPayorStandard:
       type: string
       enum:
@@ -285,16 +297,6 @@ components:
       - STEDI
       - PROVIDER_IDENTIFIER
       x-folder: public_api
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
   securitySchemes:
     bearerAuth:
       type: http

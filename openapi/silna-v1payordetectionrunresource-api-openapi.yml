@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1PayorDetectionRunResource API
+  title: Silna Public V1 Payor Detection Run Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -257,18 +257,15 @@ paths:
         description: ''
 components:
   schemas:
-    PayorDetectionStatus:
-      type: string
-      enum:
-      - ACTIVE_PLAN
-      - NO_ACTIVE_PLAN
-      - ACTIVE_PLAN_RELATED_PAYOR
-      - ACTIVE_PLAN_DENTAL_OR_VISION
-      - ACTIVE_PLAN_MEDICAID_DUPLICATE
-      - ACTIVE_PLAN_NO_MEMBER_NUMBER
-      - ACTIVE_PLAN_OTHER_PAYOR
-      - ACTIVE_PLAN_EXPIRED
-      x-folder: payor_detection
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     V1PayorDetectionSchema:
       properties:
         status:
@@ -281,15 +278,17 @@ components:
           default: null
           description: The payor the patient actually has coverage with. May differ from the queried payor.
           title: Detected Payor Entity Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         detected_payor_entity_name:
           default: null
           description: The name of the detected payor entity
           title: Detected Payor Entity Name
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         queried_payor_entity_id:
           description: The payor that Silna queried. See `detected_payor_entity_id` for the actual coverage payor.
           format: uuid
@@ -303,47 +302,54 @@ components:
           default: null
           description: The patient's first name as returned by the payor
           title: Patient First Name
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         patient_last_name:
           default: null
           description: The patient's last name as returned by the payor
           title: Patient Last Name
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         patient_date_of_birth:
           default: null
           description: The patient's date of birth as returned by the payor
           title: Patient Date Of Birth
-          nullable: true
           format: date
-          type: string
+          type:
+          - string
+          - 'null'
         member_number:
           default: null
           description: The member/subscriber number for this patient's plan
           title: Member Number
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         plan_coverage_description:
           default: null
           description: A description of the plan coverage (e.g., 'Gold PPO')
           title: Plan Coverage Description
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         plan_start_date:
           default: null
           description: The start date of the detected plan
           title: Plan Start Date
-          nullable: true
           format: date
-          type: string
+          type:
+          - string
+          - 'null'
         plan_end_date:
           default: null
           description: The end date of the detected plan
           title: Plan End Date
-          nullable: true
           format: date
-          type: string
+          type:
+          - string
+          - 'null'
         other_payors:
           description: Other payors identified in the EDI response, indicating possible coordination of benefits
           items:
@@ -364,12 +370,63 @@ components:
       title: V1PayorDetectionSchema
       type: object
       x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     PayorDetectionCategory:
       type: string
       enum:
       - COVERAGE_FOUND
       - POTENTIAL_COVERAGE
       - NO_COVERAGE
+      x-folder: payor_detection
+    V1PayorDetectionOtherPayorSchema:
+      properties:
+        name:
+          description: The name of the other payor as returned by the EDI response. This is a raw string and may not match a payor entity name exactly.
+          title: Name
+          type: string
+        order_number:
+          default: null
+          description: The coordination of benefits order (e.g., 1 for primary, 2 for secondary)
+          title: Order Number
+          type:
+          - integer
+          - 'null'
+      required:
+      - name
+      title: V1PayorDetectionOtherPayorSchema
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    PayorDetectionRunStatus:
+      type: string
+      enum:
+      - IN_PROGRESS
+      - COMPLETE
+      x-folder: payor_detection
+    PayorDetectionStatus:
+      type: string
+      enum:
+      - ACTIVE_PLAN
+      - NO_ACTIVE_PLAN
+      - ACTIVE_PLAN_RELATED_PAYOR
+      - ACTIVE_PLAN_DENTAL_OR_VISION
+      - ACTIVE_PLAN_MEDICAID_DUPLICATE
+      - ACTIVE_PLAN_NO_MEMBER_NUMBER
+      - ACTIVE_PLAN_OTHER_PAYOR
+      - ACTIVE_PLAN_EXPIRED
       x-folder: payor_detection
     V1PayorDetectionRunResponse:
       properties:
@@ -414,15 +471,6 @@ components:
       title: V1PayorDetectionRunResponse
       type: object
       x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     AuthenticationError:
       type: object
       required:
@@ -433,15 +481,6 @@ components:
           description: Human readable error message
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
       x-folder: null
     V1PayorDetectionRunCreateBody:
       properties:
@@ -455,38 +494,6 @@ components:
       title: V1PayorDetectionRunCreateBody
       type: object
       x-folder: public_api
-    V1PayorDetectionOtherPayorSchema:
-      properties:
-        name:
-          description: The name of the other payor as returned by the EDI response. This is a raw string and may not match a payor entity name exactly.
-          title: Name
-          type: string
-        order_number:
-          default: null
-          description: The coordination of benefits order (e.g., 1 for primary, 2 for secondary)
-          title: Order Number
-          nullable: true
-          type: integer
-      required:
-      - name
-      title: V1PayorDetectionOtherPayorSchema
-      type: object
-      x-folder: public_api
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
     V1PayorDetectionRunCreateResponse:
       properties:
         id:
@@ -499,12 +506,15 @@ components:
       title: V1PayorDetectionRunCreateResponse
       type: object
       x-folder: public_api
-    PayorDetectionRunStatus:
-      type: string
-      enum:
-      - IN_PROGRESS
-      - COMPLETE
-      x-folder: payor_detection
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

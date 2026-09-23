@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1ServiceLocationByIdResource API
+  title: Silna Public V1 Service Location By ID Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -126,17 +126,6 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
     ObjectNotFoundError:
       type: object
       required:
@@ -145,12 +134,6 @@ components:
         message:
           type: string
           description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
       x-folder: null
     V1ServiceLocation:
       description: V1 Service Location
@@ -185,8 +168,9 @@ components:
           default: null
           description: Secondary address line
           title: Address Line 2
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           example: Apt 3
         provider_group_id:
           description: ID of the associated provider group
@@ -216,14 +200,16 @@ components:
           default: null
           description: PTAN number
           title: Ptan Number
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         primary_taxonomy_code:
           default: null
           description: Primary taxonomy code
           title: Primary Taxonomy Code
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         provider_id:
           description: The associated provider's Silna identifier
           format: uuid
@@ -233,8 +219,9 @@ components:
           default: null
           description: An API client's (internal) identifier for a service location
           title: Source Id
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           example: my-unique-id-123
       required:
       - id
@@ -250,6 +237,23 @@ components:
       title: V1ServiceLocation
       type: object
       x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

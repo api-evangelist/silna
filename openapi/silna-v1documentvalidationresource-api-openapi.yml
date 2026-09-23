@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1DocumentValidationResource API
+  title: Silna Public V1 Document Validation Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -94,66 +94,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    ConditionExpressionOperator:
-      type: string
-      enum:
-      - AND
-      - OR
-      x-folder: conditions
-    V1DocumentValidationRuleResult:
-      description: 'Unified schema for V1 rule evaluation results.
-
-
-        For leaf results (individual rules): rule is set, operator/child_results are defaults.
-
-        For parent results (nested rules): result/operator/child_results are set, rule is None.'
-      properties:
-        rule:
-          default: null
-          nullable: true
-          $ref: '#/components/schemas/SubRuleType'
-        reason:
-          default: null
-          title: Reason
-          nullable: true
-          type: string
-        result:
-          default: null
-          nullable: true
-          $ref: '#/components/schemas/RuleExecutionResult'
-        operator:
-          default: null
-          nullable: true
-          $ref: '#/components/schemas/ConditionExpressionOperator'
-        child_results:
-          default: []
-          items:
-            $ref: '#/components/schemas/V1DocumentValidationRuleResult'
-          title: Child Results
-          type: array
-      title: V1DocumentValidationRuleResult
-      type: object
-      x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
     SubRuleType:
       type: string
       enum:
@@ -177,6 +117,70 @@ components:
       - SYMPTOM_SEVERITY
       - DOCUMENT_TYPE_VERIFICATION
       x-folder: document_intelligence
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    RuleExecutionResult:
+      type: string
+      enum:
+      - PASSED
+      - FAILED
+      x-folder: document_intelligence
+    V1DocumentValidationRuleResult:
+      description: 'Unified schema for V1 rule evaluation results.
+
+
+        For leaf results (individual rules): rule is set, operator/child_results are defaults.
+
+        For parent results (nested rules): result/operator/child_results are set, rule is None.'
+      properties:
+        rule:
+          default: null
+          $ref: '#/components/schemas/SubRuleType'
+        reason:
+          default: null
+          title: Reason
+          type:
+          - string
+          - 'null'
+        result:
+          default: null
+          $ref: '#/components/schemas/RuleExecutionResult'
+        operator:
+          default: null
+          $ref: '#/components/schemas/ConditionExpressionOperator'
+        child_results:
+          default: []
+          items:
+            $ref: '#/components/schemas/V1DocumentValidationRuleResult'
+          title: Child Results
+          type: array
+      title: V1DocumentValidationRuleResult
+      type: object
+      x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     V1DetailedDocumentValidation:
       properties:
         id:
@@ -188,9 +192,10 @@ components:
         batch_id:
           default: null
           title: Batch Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         failed_rules:
           items:
             $ref: '#/components/schemas/V1DocumentValidationRuleResult'
@@ -215,18 +220,12 @@ components:
       title: V1DetailedDocumentValidation
       type: object
       x-folder: public_api
-    PublicApiErrorType:
+    ConditionExpressionOperator:
       type: string
       enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    RuleExecutionResult:
-      type: string
-      enum:
-      - PASSED
-      - FAILED
-      x-folder: document_intelligence
+      - AND
+      - OR
+      x-folder: conditions
   securitySchemes:
     bearerAuth:
       type: http

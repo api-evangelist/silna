@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1PatientPlanBenefitsChecksResource API
+  title: Silna Public V1 Patient Plan Benefits Checks Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -143,6 +143,89 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1BenefitsCheckPreview:
+      properties:
+        id:
+          description: Benefits Check ID
+          format: uuid
+          title: Id
+          type: string
+        created_at:
+          description: Created at timestamp
+          format: date-time
+          title: Created At
+          type: string
+        specialties:
+          description: List of specialties
+          items:
+            $ref: '#/components/schemas/PublicSpecialty'
+          title: Specialties
+          type: array
+        status:
+          $ref: '#/components/schemas/BenefitsCheckStatusPublic'
+          description: Benefits Check Status
+      required:
+      - id
+      - created_at
+      - specialties
+      - status
+      title: V1BenefitsCheckPreview
+      type: object
+      x-folder: public_api
+    BenefitsCheckStatusPublic:
+      type: string
+      enum:
+      - REQUESTED
+      - AWAITING_SILNA
+      - AWAITING_PROVIDER
+      - COMPLETE
+      - WITHDRAWN
+      x-folder: benefit_check
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    KeysetPaginatedResponse__V1BenefitsCheckPreview:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1BenefitsCheckPreview'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        last_id:
+          default: null
+          title: Last Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1BenefitsCheckPreview]
+      type: object
+      x-folder: null
     AuthenticationError:
       type: object
       required:
@@ -153,15 +236,6 @@ components:
           description: Human readable error message
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
       x-folder: null
     PublicSpecialty:
       type: string
@@ -202,78 +276,6 @@ components:
       - PROFESSIONAL_OFFICE_VISIT
       - PSYCHIATRY
       x-folder: specialty
-    KeysetPaginatedResponse__V1BenefitsCheckPreview:
-      properties:
-        has_more:
-          title: Has More
-          type: boolean
-        records:
-          items:
-            $ref: '#/components/schemas/V1BenefitsCheckPreview'
-          title: Records
-          type: array
-        first_id:
-          default: null
-          title: First Id
-          nullable: true
-          format: uuid
-          type: string
-        last_id:
-          default: null
-          title: Last Id
-          nullable: true
-          format: uuid
-          type: string
-      required:
-      - has_more
-      - records
-      title: KeysetPaginatedResponse[V1BenefitsCheckPreview]
-      type: object
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    BenefitsCheckStatusPublic:
-      type: string
-      enum:
-      - REQUESTED
-      - AWAITING_SILNA
-      - AWAITING_PROVIDER
-      - COMPLETE
-      - WITHDRAWN
-      x-folder: benefit_check
-    V1BenefitsCheckPreview:
-      properties:
-        id:
-          description: Benefits Check ID
-          format: uuid
-          title: Id
-          type: string
-        created_at:
-          description: Created at timestamp
-          format: date-time
-          title: Created At
-          type: string
-        specialties:
-          description: List of specialties
-          items:
-            $ref: '#/components/schemas/PublicSpecialty'
-          title: Specialties
-          type: array
-        status:
-          $ref: '#/components/schemas/BenefitsCheckStatusPublic'
-          description: Benefits Check Status
-      required:
-      - id
-      - created_at
-      - specialties
-      - status
-      title: V1BenefitsCheckPreview
-      type: object
-      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

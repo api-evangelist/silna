@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1PayorInferenceResource API
+  title: Silna Public V1 Payor Inference Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -248,96 +248,6 @@ paths:
         description: ''
 components:
   schemas:
-    V1PayorInferencePlanSchema:
-      properties:
-        member_number:
-          default: null
-          title: Member Number
-          nullable: true
-          type: string
-        group_number:
-          default: null
-          title: Group Number
-          nullable: true
-          type: string
-        payor_entity_id:
-          default: null
-          title: Payor Entity Id
-          nullable: true
-          format: uuid
-          type: string
-        proof_of_insurance_file_id:
-          default: null
-          title: Proof Of Insurance File Id
-          nullable: true
-          format: uuid
-          type: string
-        plan_order_number:
-          description: The order number of the plan (1 for primary, 2 for secondary, etc)
-          title: Plan Order Number
-          type: integer
-        name:
-          default: null
-          description: The name of the plan
-          title: Name
-          nullable: true
-          type: string
-        insurance_type:
-          default: null
-          description: The type of insurance
-          nullable: true
-          $ref: '#/components/schemas/InsuranceType'
-      required:
-      - plan_order_number
-      title: V1PayorInferencePlanSchema
-      type: object
-      x-folder: public_api
-    V1PayorInferencePostResponseSchema:
-      properties:
-        id:
-          format: uuid
-          title: Id
-          type: string
-      required:
-      - id
-      title: V1PayorInferencePostResponseSchema
-      type: object
-      x-folder: public_api
-    V1PayorInferenceIndividualSchema:
-      properties:
-        first_name:
-          default: null
-          description: Patient's first name
-          title: First Name
-          nullable: true
-          type: string
-        last_name:
-          default: null
-          description: Patient's alst name
-          title: Last Name
-          nullable: true
-          type: string
-        date_of_birth:
-          default: null
-          description: Patient's date of birth
-          title: Date Of Birth
-          nullable: true
-          format: date
-          type: string
-        patient_source_id:
-          default: null
-          description: Patient's EHR ID (or other unique identifier)
-          title: Patient Source Id
-          nullable: true
-          type: string
-        plans:
-          items:
-            $ref: '#/components/schemas/V1PayorInferencePlanSchema'
-          title: Plans
-          type: array
-      title: V1PayorInferenceIndividualSchema
-      type: object
-      x-folder: public_api
     TooManyRequestsError:
       type: object
       required:
@@ -347,72 +257,43 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
+    V1PayorInferenceIndividualSchema:
       properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PayorInferenceStatus:
-      type: string
-      enum:
-      - COMPLETED
-      - FAILED
-      - PROCESSING
-      x-folder: payor_inference
-    V1PayorInferenceRequestSchema:
-      properties:
-        strategy:
-          $ref: '#/components/schemas/PayorInferenceConfigName'
-        patient_document_file_ids:
+        first_name:
           default: null
-          description: Optional list of document file IDs to process
-          title: Patient Document File Ids
-          nullable: true
+          description: Patient's first name
+          title: First Name
+          type:
+          - string
+          - 'null'
+        last_name:
+          default: null
+          description: Patient's alst name
+          title: Last Name
+          type:
+          - string
+          - 'null'
+        date_of_birth:
+          default: null
+          description: Patient's date of birth
+          title: Date Of Birth
+          format: date
+          type:
+          - string
+          - 'null'
+        patient_source_id:
+          default: null
+          description: Patient's EHR ID (or other unique identifier)
+          title: Patient Source Id
+          type:
+          - string
+          - 'null'
+        plans:
           items:
-            format: uuid
-            type: string
-          maxItems: 10
-          minItems: 1
+            $ref: '#/components/schemas/V1PayorInferencePlanSchema'
+          title: Plans
           type: array
-        text:
-          default: null
-          description: Payor Text
-          title: Text
-          nullable: true
-          maxLength: 5000
-          minLength: 1
-          type: string
-        patient_id:
-          default: null
-          description: Optional patient identifier
-          title: Patient Id
-          nullable: true
-          format: uuid
-          type: string
-        provider_id:
-          description: Required provider identifier (for HIPAA compliance)
-          format: uuid
-          title: Provider Id
-          type: string
-      required:
-      - strategy
-      - provider_id
-      title: V1PayorInferenceRequestSchema
+      title: V1PayorInferenceIndividualSchema
       type: object
       x-folder: public_api
     ObjectNotFoundError:
@@ -423,30 +304,6 @@ components:
         message:
           type: string
           description: Human readable error message
-      x-folder: null
-    V1PayorInferenceResponseSchema:
-      properties:
-        id:
-          format: uuid
-          title: Id
-          type: string
-        status:
-          $ref: '#/components/schemas/PayorInferenceStatus'
-        inference_result:
-          default: null
-          nullable: true
-          $ref: '#/components/schemas/V1PayorInferenceResultSchema'
-      required:
-      - id
-      - status
-      title: V1PayorInferenceResponseSchema
-      type: object
-      x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
       x-folder: null
     V1PayorInferenceResultSchema:
       properties:
@@ -464,6 +321,141 @@ components:
       - NEAR_REALTIME
       - BASE
       x-folder: payor_inference
+    V1PayorInferencePlanSchema:
+      properties:
+        member_number:
+          default: null
+          title: Member Number
+          type:
+          - string
+          - 'null'
+        group_number:
+          default: null
+          title: Group Number
+          type:
+          - string
+          - 'null'
+        payor_entity_id:
+          default: null
+          title: Payor Entity Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        proof_of_insurance_file_id:
+          default: null
+          title: Proof Of Insurance File Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        plan_order_number:
+          description: The order number of the plan (1 for primary, 2 for secondary, etc)
+          title: Plan Order Number
+          type: integer
+        name:
+          default: null
+          description: The name of the plan
+          title: Name
+          type:
+          - string
+          - 'null'
+        insurance_type:
+          default: null
+          description: The type of insurance
+          $ref: '#/components/schemas/InsuranceType'
+      required:
+      - plan_order_number
+      title: V1PayorInferencePlanSchema
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PayorInferenceRequestSchema:
+      properties:
+        strategy:
+          $ref: '#/components/schemas/PayorInferenceConfigName'
+        patient_document_file_ids:
+          default: null
+          description: Optional list of document file IDs to process
+          title: Patient Document File Ids
+          items:
+            format: uuid
+            type: string
+          maxItems: 10
+          minItems: 1
+          type:
+          - array
+          - 'null'
+        text:
+          default: null
+          description: Payor Text
+          title: Text
+          maxLength: 5000
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        patient_id:
+          default: null
+          description: Optional patient identifier
+          title: Patient Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        provider_id:
+          description: Required provider identifier (for HIPAA compliance)
+          format: uuid
+          title: Provider Id
+          type: string
+      required:
+      - strategy
+      - provider_id
+      title: V1PayorInferenceRequestSchema
+      type: object
+      x-folder: public_api
+    V1PayorInferenceResponseSchema:
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+        status:
+          $ref: '#/components/schemas/PayorInferenceStatus'
+        inference_result:
+          default: null
+          $ref: '#/components/schemas/V1PayorInferenceResultSchema'
+      required:
+      - id
+      - status
+      title: V1PayorInferenceResponseSchema
+      type: object
+      x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     InsuranceType:
       type: string
       enum:
@@ -474,6 +466,24 @@ components:
       - WORKERS_COMPENSATION
       - AUTO_INSURANCE
       x-folder: patient
+    PayorInferenceStatus:
+      type: string
+      enum:
+      - COMPLETED
+      - FAILED
+      - PROCESSING
+      x-folder: payor_inference
+    V1PayorInferencePostResponseSchema:
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1PayorInferencePostResponseSchema
+      type: object
+      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

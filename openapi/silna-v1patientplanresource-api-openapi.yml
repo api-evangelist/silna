@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1PatientPlanResource API
+  title: Silna Public V1 Patient Plan Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -702,6 +702,274 @@ paths:
         description: "\n    Request schema for updating a patient plan\n    "
 components:
   schemas:
+    ConflictError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PatientPlanCreate:
+      description: Request schema for creating a patient plan
+      properties:
+        member_number:
+          maxLength: 80
+          minLength: 2
+          title: Member Number
+          type: string
+        group_number:
+          default: null
+          title: Group Number
+          maxLength: 80
+          minLength: 2
+          type:
+          - string
+          - 'null'
+        start_date:
+          default: null
+          title: Start Date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        end_date:
+          default: null
+          title: End Date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        payor_entity_id:
+          format: uuid
+          title: Payor Entity Id
+          type: string
+        insurance_type:
+          default: null
+          description: The type of insurance
+          $ref: '#/components/schemas/InsuranceType'
+        source_id:
+          default: null
+          description: Unique identifier for the patient plan. This is (optionally) generated and supplied by API clients
+          title: Source Id
+          type:
+          - string
+          - 'null'
+        patient_id:
+          format: uuid
+          title: Patient Id
+          type: string
+        plan_order_number:
+          description: The order number of the plan (1 for primary, 2 for secondary, etc)
+          title: Plan Order Number
+          type: integer
+        insurance_card_file_id:
+          default: null
+          description: The file ID corresponding to the front of the insurance card
+          title: Insurance Card File Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        insurance_card_back_file_id:
+          default: null
+          description: The file ID corresponding to the back of the insurance card
+          title: Insurance Card Back File Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        conflict_behavior:
+          default: RAISE_ERROR
+          description: How to handle a conflict when a patient plan already exists at the specified plan_order_number. RAISE_ERROR (default) will return a 409 Conflict error. BUMP_ONE will move the existing plan at the specified order to the next order number (e.g., primary becomes secondary).
+          $ref: '#/components/schemas/APIPatientPlanCreateConflictBehavior'
+      required:
+      - member_number
+      - payor_entity_id
+      - patient_id
+      - plan_order_number
+      title: V1PatientPlanCreate
+      type: object
+      x-folder: public_api
+    DeduplicationStrategy:
+      type: string
+      enum:
+      - MEMBER_NUMBER
+      - MEMBER_NUMBER_AND_PAYOR
+      - MEMBER_NUMBER_PAYOR_AND_ORDER
+      x-folder: patient
+    V1EligibilityInformation:
+      description: Response schema for eligibility check information
+      properties:
+        status:
+          $ref: '#/components/schemas/EligibilityCheckCompleteStatus'
+        eligibility_check_id:
+          format: uuid
+          title: Eligibility Check Id
+          type: string
+        date_verified:
+          default: null
+          title: Date Verified
+          format: date-time
+          type:
+          - string
+          - 'null'
+      required:
+      - status
+      - eligibility_check_id
+      title: V1EligibilityInformation
+      type: object
+      x-folder: public_api
+    V1PatientPlanCreateResponse:
+      description: Response schema for creating a patient plan
+      properties:
+        patient_plan_id:
+          format: uuid
+          title: Patient Plan Id
+          type: string
+      required:
+      - patient_plan_id
+      title: V1PatientPlanCreateResponse
+      type: object
+      x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    V1PatientPlanPut:
+      description: Request schema for updating a patient plan
+      properties:
+        member_number:
+          maxLength: 80
+          minLength: 2
+          title: Member Number
+          type: string
+        group_number:
+          default: null
+          title: Group Number
+          maxLength: 80
+          minLength: 2
+          type:
+          - string
+          - 'null'
+        start_date:
+          default: null
+          title: Start Date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        end_date:
+          default: null
+          title: End Date
+          format: date-time
+          type:
+          - string
+          - 'null'
+        payor_entity_id:
+          format: uuid
+          title: Payor Entity Id
+          type: string
+        insurance_type:
+          default: null
+          description: The type of insurance
+          $ref: '#/components/schemas/InsuranceType'
+        source_id:
+          description: Unique identifier for the patient plan. This is generated and supplied by API clients
+          title: Source Id
+          type: string
+        patient_id:
+          format: uuid
+          title: Patient Id
+          type: string
+        plan_order_number:
+          description: The order number of the plan (1 for primary, 2 for secondary, etc)
+          title: Plan Order Number
+          type: integer
+        insurance_card_file_id:
+          default: null
+          description: The file ID corresponding to the front of the insurance card
+          title: Insurance Card File Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        insurance_card_back_file_id:
+          default: null
+          description: The file ID corresponding to the back of the insurance card
+          title: Insurance Card Back File Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        conflict_behavior:
+          default: REPLACE
+          description: The behavior to take when there is a conflict with an existing patient plan.REPLACE (default) will replace the existing plan (this will halt all in progress benefits checks and prior authorizations for the plan). RAISE_ERROR will raise an error if there is a conflict. RAISE_ERROR_ON_AUTH_WITHDRAWAL will raise an error if there are active prior authorizations that would be withdrawn. The default behavior is REPLACE
+          $ref: '#/components/schemas/APIPatientPlanPutConflictBehavior'
+        deduplication_strategy:
+          default: MEMBER_NUMBER
+          description: The strategy to use for deduplicating patient plans. MEMBER_NUMBER (default) checks only the member number. MEMBER_NUMBER_AND_PAYOR checks both member number and payor entity for deduplication. MEMBER_NUMBER_PAYOR_AND_ORDER checks member number, payor entity, and plan order number for deduplication.
+          $ref: '#/components/schemas/DeduplicationStrategy'
+      required:
+      - member_number
+      - payor_entity_id
+      - source_id
+      - patient_id
+      - plan_order_number
+      title: V1PatientPlanPut
+      type: object
+      x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PatientPlanUpdate:
+      description: Request schema for updating a patient plan
+      properties:
+        source_id:
+          default: null
+          description: Unique identifier for the patient plan. This is (optionally) generated and supplied by API clients
+          title: Source Id
+          type:
+          - string
+          - 'null'
+      title: V1PatientPlanUpdate
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    BenefitsCheckCompleteStatus:
+      type: string
+      enum:
+      - COMPLETE
+      x-folder: benefit_check
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
     TooManyRequestsError:
       type: object
       required:
@@ -711,15 +979,13 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
+    PatientPlanEligibilityStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - INACTIVE
+      - NO_CHECK
+      x-folder: patient
     EligibilityCheckCompleteStatus:
       type: string
       enum:
@@ -727,6 +993,40 @@ components:
       - INELIGIBLE
       - WITHDRAWN
       x-folder: eligibility_check
+    V1BenefitsInformation:
+      description: Response schema for benefits check information
+      properties:
+        status:
+          $ref: '#/components/schemas/BenefitsCheckCompleteStatus'
+        benefits_check_id:
+          format: uuid
+          title: Benefits Check Id
+          type: string
+        date_verified:
+          default: null
+          title: Date Verified
+          format: date-time
+          type:
+          - string
+          - 'null'
+      required:
+      - status
+      - benefits_check_id
+      title: V1BenefitsInformation
+      type: object
+      x-folder: public_api
+    V1PatientPlanPutResponse:
+      description: Response schema for creating a patient plan
+      properties:
+        patient_plan_id:
+          format: uuid
+          title: Patient Plan Id
+          type: string
+      required:
+      - patient_plan_id
+      title: V1PatientPlanPutResponse
+      type: object
+      x-folder: public_api
     V1PatientPlan:
       description: Response schema for patient plan
       properties:
@@ -738,22 +1038,25 @@ components:
         group_number:
           default: null
           title: Group Number
-          nullable: true
           maxLength: 80
           minLength: 2
-          type: string
+          type:
+          - string
+          - 'null'
         start_date:
           default: null
           title: Start Date
-          nullable: true
           format: date-time
-          type: string
+          type:
+          - string
+          - 'null'
         end_date:
           default: null
           title: End Date
-          nullable: true
           format: date-time
-          type: string
+          type:
+          - string
+          - 'null'
         payor_entity_id:
           format: uuid
           title: Payor Entity Id
@@ -761,14 +1064,14 @@ components:
         insurance_type:
           default: null
           description: The type of insurance
-          nullable: true
           $ref: '#/components/schemas/InsuranceType'
         source_id:
           default: null
           description: Unique identifier for the patient plan. This is (optionally) generated and supplied by API clients
           title: Source Id
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         id:
           format: uuid
           title: Id
@@ -791,29 +1094,30 @@ components:
           default: null
           description: The file ID corresponding to the front of the insurance card
           title: Insurance Card File Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         insurance_card_back_file_id:
           default: null
           description: The file ID corresponding to the back of the insurance card
           title: Insurance Card Back File Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         archived_at:
           default: null
           title: Archived At
-          nullable: true
           format: date-time
-          type: string
+          type:
+          - string
+          - 'null'
         latest_eligibility_check:
           default: null
-          nullable: true
           $ref: '#/components/schemas/V1EligibilityInformation'
         latest_benefits_check:
           default: null
-          nullable: true
           $ref: '#/components/schemas/V1BenefitsInformation'
       required:
       - member_number
@@ -826,212 +1130,11 @@ components:
       title: V1PatientPlan
       type: object
       x-folder: public_api
-    PatientPlanEligibilityStatus:
+    APIPatientPlanCreateConflictBehavior:
       type: string
       enum:
-      - ACTIVE
-      - INACTIVE
-      - NO_CHECK
-      x-folder: patient
-    V1PatientPlanCreate:
-      description: Request schema for creating a patient plan
-      properties:
-        member_number:
-          maxLength: 80
-          minLength: 2
-          title: Member Number
-          type: string
-        group_number:
-          default: null
-          title: Group Number
-          nullable: true
-          maxLength: 80
-          minLength: 2
-          type: string
-        start_date:
-          default: null
-          title: Start Date
-          nullable: true
-          format: date-time
-          type: string
-        end_date:
-          default: null
-          title: End Date
-          nullable: true
-          format: date-time
-          type: string
-        payor_entity_id:
-          format: uuid
-          title: Payor Entity Id
-          type: string
-        insurance_type:
-          default: null
-          description: The type of insurance
-          nullable: true
-          $ref: '#/components/schemas/InsuranceType'
-        source_id:
-          default: null
-          description: Unique identifier for the patient plan. This is (optionally) generated and supplied by API clients
-          title: Source Id
-          nullable: true
-          type: string
-        patient_id:
-          format: uuid
-          title: Patient Id
-          type: string
-        plan_order_number:
-          description: The order number of the plan (1 for primary, 2 for secondary, etc)
-          title: Plan Order Number
-          type: integer
-        insurance_card_file_id:
-          default: null
-          description: The file ID corresponding to the front of the insurance card
-          title: Insurance Card File Id
-          nullable: true
-          format: uuid
-          type: string
-        insurance_card_back_file_id:
-          default: null
-          description: The file ID corresponding to the back of the insurance card
-          title: Insurance Card Back File Id
-          nullable: true
-          format: uuid
-          type: string
-        conflict_behavior:
-          default: RAISE_ERROR
-          description: How to handle a conflict when a patient plan already exists at the specified plan_order_number. RAISE_ERROR (default) will return a 409 Conflict error. BUMP_ONE will move the existing plan at the specified order to the next order number (e.g., primary becomes secondary).
-          nullable: true
-          $ref: '#/components/schemas/APIPatientPlanCreateConflictBehavior'
-      required:
-      - member_number
-      - payor_entity_id
-      - patient_id
-      - plan_order_number
-      title: V1PatientPlanCreate
-      type: object
-      x-folder: public_api
-    DeduplicationStrategy:
-      type: string
-      enum:
-      - MEMBER_NUMBER
-      - MEMBER_NUMBER_AND_PAYOR
-      - MEMBER_NUMBER_PAYOR_AND_ORDER
-      x-folder: patient
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    BenefitsCheckCompleteStatus:
-      type: string
-      enum:
-      - COMPLETE
-      x-folder: benefit_check
-    V1PatientPlanPut:
-      description: Request schema for updating a patient plan
-      properties:
-        member_number:
-          maxLength: 80
-          minLength: 2
-          title: Member Number
-          type: string
-        group_number:
-          default: null
-          title: Group Number
-          nullable: true
-          maxLength: 80
-          minLength: 2
-          type: string
-        start_date:
-          default: null
-          title: Start Date
-          nullable: true
-          format: date-time
-          type: string
-        end_date:
-          default: null
-          title: End Date
-          nullable: true
-          format: date-time
-          type: string
-        payor_entity_id:
-          format: uuid
-          title: Payor Entity Id
-          type: string
-        insurance_type:
-          default: null
-          description: The type of insurance
-          nullable: true
-          $ref: '#/components/schemas/InsuranceType'
-        source_id:
-          description: Unique identifier for the patient plan. This is generated and supplied by API clients
-          title: Source Id
-          type: string
-        patient_id:
-          format: uuid
-          title: Patient Id
-          type: string
-        plan_order_number:
-          description: The order number of the plan (1 for primary, 2 for secondary, etc)
-          title: Plan Order Number
-          type: integer
-        insurance_card_file_id:
-          default: null
-          description: The file ID corresponding to the front of the insurance card
-          title: Insurance Card File Id
-          nullable: true
-          format: uuid
-          type: string
-        insurance_card_back_file_id:
-          default: null
-          description: The file ID corresponding to the back of the insurance card
-          title: Insurance Card Back File Id
-          nullable: true
-          format: uuid
-          type: string
-        conflict_behavior:
-          default: REPLACE
-          description: The behavior to take when there is a conflict with an existing patient plan.REPLACE (default) will replace the existing plan (this will halt all in progress benefits checks and prior authorizations for the plan). RAISE_ERROR will raise an error if there is a conflict. RAISE_ERROR_ON_AUTH_WITHDRAWAL will raise an error if there are active prior authorizations that would be withdrawn. The default behavior is REPLACE
-          nullable: true
-          $ref: '#/components/schemas/APIPatientPlanPutConflictBehavior'
-        deduplication_strategy:
-          default: MEMBER_NUMBER
-          description: The strategy to use for deduplicating patient plans. MEMBER_NUMBER (default) checks only the member number. MEMBER_NUMBER_AND_PAYOR checks both member number and payor entity for deduplication. MEMBER_NUMBER_PAYOR_AND_ORDER checks member number, payor entity, and plan order number for deduplication.
-          nullable: true
-          $ref: '#/components/schemas/DeduplicationStrategy'
-      required:
-      - member_number
-      - payor_entity_id
-      - source_id
-      - patient_id
-      - plan_order_number
-      title: V1PatientPlanPut
-      type: object
-      x-folder: public_api
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
+      - RAISE_ERROR
+      - BUMP_ONE
       x-folder: patient
     APIPatientPlanPutConflictBehavior:
       type: string
@@ -1040,85 +1143,7 @@ components:
       - REPLACE
       - RAISE_ERROR_ON_AUTH_WITHDRAWAL
       x-folder: patient
-    V1BenefitsInformation:
-      description: Response schema for benefits check information
-      properties:
-        status:
-          $ref: '#/components/schemas/BenefitsCheckCompleteStatus'
-        benefits_check_id:
-          format: uuid
-          title: Benefits Check Id
-          type: string
-        date_verified:
-          default: null
-          title: Date Verified
-          nullable: true
-          format: date-time
-          type: string
-      required:
-      - status
-      - benefits_check_id
-      title: V1BenefitsInformation
-      type: object
-      x-folder: public_api
-    V1PatientPlanPutResponse:
-      description: Response schema for creating a patient plan
-      properties:
-        patient_plan_id:
-          format: uuid
-          title: Patient Plan Id
-          type: string
-      required:
-      - patient_plan_id
-      title: V1PatientPlanPutResponse
-      type: object
-      x-folder: public_api
-    V1PatientPlanUpdate:
-      description: Request schema for updating a patient plan
-      properties:
-        source_id:
-          default: null
-          description: Unique identifier for the patient plan. This is (optionally) generated and supplied by API clients
-          title: Source Id
-          nullable: true
-          type: string
-      title: V1PatientPlanUpdate
-      type: object
-      x-folder: public_api
-    APIPatientPlanCreateConflictBehavior:
-      type: string
-      enum:
-      - RAISE_ERROR
-      - BUMP_ONE
-      x-folder: patient
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    V1EligibilityInformation:
-      description: Response schema for eligibility check information
-      properties:
-        status:
-          $ref: '#/components/schemas/EligibilityCheckCompleteStatus'
-        eligibility_check_id:
-          format: uuid
-          title: Eligibility Check Id
-          type: string
-        date_verified:
-          default: null
-          title: Date Verified
-          nullable: true
-          format: date-time
-          type: string
-      required:
-      - status
-      - eligibility_check_id
-      title: V1EligibilityInformation
-      type: object
-      x-folder: public_api
-    ConflictError:
+    ValidationError:
       type: object
       required:
       - message
@@ -1127,18 +1152,6 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    V1PatientPlanCreateResponse:
-      description: Response schema for creating a patient plan
-      properties:
-        patient_plan_id:
-          format: uuid
-          title: Patient Plan Id
-          type: string
-      required:
-      - patient_plan_id
-      title: V1PatientPlanCreateResponse
-      type: object
-      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

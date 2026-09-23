@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1ProviderGroupsResource API
+  title: Silna Public V1 Provider Groups Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -11,7 +11,7 @@ tags:
 paths:
   /public/v1/provider-groups/:
     get:
-      summary: ''
+      summary: V1 provider groups resource get
       responses:
         '200':
           description: ''
@@ -144,8 +144,27 @@ paths:
       tags:
       - V1ProviderGroupsResource
       x-folder: public_api
+      x-summary-source: derived
 components:
   schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     V1ProviderGroup:
       properties:
         id:
@@ -181,6 +200,23 @@ components:
       title: V1ProviderGroup
       type: object
       x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     KeysetPaginatedResponse__V1ProviderGroup:
       properties:
         has_more:
@@ -194,55 +230,22 @@ components:
         first_id:
           default: null
           title: First Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         last_id:
           default: null
           title: Last Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - has_more
       - records
       title: KeysetPaginatedResponse[V1ProviderGroup]
       type: object
-      x-folder: null
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1GetPayorResource API
+  title: Silna Public V1 Get Payor Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -117,6 +117,89 @@ paths:
       x-folder: public_api
 components:
   schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1AlternateIdentifier:
+      description: Alternate Identifiers Response
+      properties:
+        identifier:
+          description: The alternate identifier
+          title: Identifier
+          type: string
+          example: AETNA_INSC
+        standard:
+          $ref: '#/components/schemas/PayorStandard'
+          description: The standard of the alternate identifier
+          example: AVAILITY
+        payor_types:
+          description: The types of insurances that this alternate identifier is associated with
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Payor Types
+          type: array
+          example:
+          - COMMERCIAL
+          - MEDICARE
+      required:
+      - identifier
+      - standard
+      - payor_types
+      title: V1AlternateIdentifier
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    PayorStandard:
+      type: string
+      enum:
+      - AVAILITY
+      - WAYSTAR
+      - CHANGE_HEALTHCARE
+      - OFFICE_ALLY
+      - CLAIM_MD
+      - STEDI
+      x-folder: payor_entity
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
     V1Payor:
       description: Payors Response
       properties:
@@ -151,89 +234,6 @@ components:
       - alternate_identifiers
       - insurance_types
       title: V1Payor
-      type: object
-      x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
-    PayorStandard:
-      type: string
-      enum:
-      - AVAILITY
-      - WAYSTAR
-      - CHANGE_HEALTHCARE
-      - OFFICE_ALLY
-      - CLAIM_MD
-      - STEDI
-      x-folder: payor_entity
-    V1AlternateIdentifier:
-      description: Alternate Identifiers Response
-      properties:
-        identifier:
-          description: The alternate identifier
-          title: Identifier
-          type: string
-          example: AETNA_INSC
-        standard:
-          $ref: '#/components/schemas/PayorStandard'
-          description: The standard of the alternate identifier
-          example: AVAILITY
-        payor_types:
-          description: The types of insurances that this alternate identifier is associated with
-          items:
-            $ref: '#/components/schemas/InsuranceType'
-          title: Payor Types
-          type: array
-          example:
-          - COMMERCIAL
-          - MEDICARE
-      required:
-      - identifier
-      - standard
-      - payor_types
-      title: V1AlternateIdentifier
       type: object
       x-folder: public_api
   securitySchemes:

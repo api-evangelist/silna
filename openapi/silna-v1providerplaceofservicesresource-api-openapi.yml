@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1ProviderPlaceOfServicesResource API
+  title: Silna Public V1 Provider Place Of Services Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -126,6 +126,21 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
     AuthenticationError:
       type: object
       required:
@@ -136,15 +151,6 @@ components:
           description: Human readable error message
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
       x-folder: null
     V1ProviderPlaceOfService:
       description: Provider Place of Service
@@ -163,12 +169,6 @@ components:
       title: V1ProviderPlaceOfService
       type: object
       x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
     V1PlaceOfServiceCode:
       description: Place of Service Code
       properties:
@@ -191,8 +191,9 @@ components:
           default: null
           description: Detailed description of the service
           title: Description
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - id
       - code

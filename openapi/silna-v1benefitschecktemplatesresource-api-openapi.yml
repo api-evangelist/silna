@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1BenefitsCheckTemplatesResource API
+  title: Silna Public V1 Benefits Check Templates Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -120,6 +120,42 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
+    KeysetPaginatedResponse__V1BenefitsCheckTemplateResponse:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1BenefitsCheckTemplateResponse'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        last_id:
+          default: null
+          title: Last Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1BenefitsCheckTemplateResponse]
+      type: object
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
     AuthenticationError:
       type: object
       required:
@@ -149,40 +185,6 @@ components:
       title: V1BenefitsCheckTemplateResponse
       type: object
       x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    KeysetPaginatedResponse__V1BenefitsCheckTemplateResponse:
-      properties:
-        has_more:
-          title: Has More
-          type: boolean
-        records:
-          items:
-            $ref: '#/components/schemas/V1BenefitsCheckTemplateResponse'
-          title: Records
-          type: array
-        first_id:
-          default: null
-          title: First Id
-          nullable: true
-          format: uuid
-          type: string
-        last_id:
-          default: null
-          title: Last Id
-          nullable: true
-          format: uuid
-          type: string
-      required:
-      - has_more
-      - records
-      title: KeysetPaginatedResponse[V1BenefitsCheckTemplateResponse]
-      type: object
-      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

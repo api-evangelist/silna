@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1EscalationsResource API
+  title: Silna Public V1 Escalations Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -170,7 +170,15 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    AuthenticationError:
+    EscalationProviderDisplayStatus:
+      type: string
+      enum:
+      - NEW
+      - IN_PROGRESS
+      - RESOLVED
+      - WITHDRAWN
+      x-folder: escalations
+    ObjectNotFoundError:
       type: object
       required:
       - message
@@ -178,8 +186,6 @@ components:
         message:
           type: string
           description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
     KeysetPaginatedResponse__V1Escalation:
       properties:
@@ -194,21 +200,35 @@ components:
         first_id:
           default: null
           title: First Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         last_id:
           default: null
           title: Last Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - has_more
       - records
       title: KeysetPaginatedResponse[V1Escalation]
       type: object
       x-folder: null
+    PublicEscalationActionType:
+      type: string
+      enum:
+      - NOTIFICATION
+      - SUBMISSION
+      x-folder: public_api
+    V1EscalationResourceType:
+      type: string
+      enum:
+      - BENEFITS_CHECK
+      - PRIOR_AUTHORIZATION
+      x-folder: public_api
     EscalationV2Type:
       type: string
       enum:
@@ -250,7 +270,13 @@ components:
       - PROVIDER_REVIEW__PRE_SUBMISSION__REVIEW
       - PROVIDER_REVIEW__PRE_SUBMISSION__SIGNATURE_ATTESTATION
       x-folder: escalations
-    ObjectNotFoundError:
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    AuthenticationError:
       type: object
       required:
       - message
@@ -258,15 +284,9 @@ components:
         message:
           type: string
           description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
-    EscalationProviderDisplayStatus:
-      type: string
-      enum:
-      - NEW
-      - IN_PROGRESS
-      - RESOLVED
-      - WITHDRAWN
-      x-folder: escalations
     V1Escalation:
       properties:
         id:
@@ -291,9 +311,10 @@ components:
           default: null
           description: Response deadline
           title: Deadline
-          nullable: true
           format: date-time
-          type: string
+          type:
+          - string
+          - 'null'
         created_at:
           format: date-time
           title: Created At
@@ -301,9 +322,10 @@ components:
         last_submitted_at:
           default: null
           title: Last Submitted At
-          nullable: true
           format: date-time
-          type: string
+          type:
+          - string
+          - 'null'
         resource_type:
           $ref: '#/components/schemas/V1EscalationResourceType'
           description: 'Task type: PRIOR_AUTHORIZATION or BENEFITS_CHECK'
@@ -311,23 +333,26 @@ components:
           default: null
           description: UUID of the associated resource
           title: Resource Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         patient_id:
           default: null
           description: Patient UUID
           title: Patient Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         payor_id:
           default: null
           description: Payor UUID
           title: Payor Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         silna_url:
           description: Link to escalation in Silna
           title: Silna Url
@@ -336,11 +361,12 @@ components:
           default: null
           description: Supplemental file UUIDs. Use GET /public/v1/files/<id> to retrieve file details.
           title: Supplemental File Ids
-          nullable: true
           items:
             format: uuid
             type: string
-          type: array
+          type:
+          - array
+          - 'null'
       required:
       - id
       - escalation_type
@@ -352,24 +378,6 @@ components:
       - silna_url
       title: V1Escalation
       type: object
-      x-folder: public_api
-    V1EscalationResourceType:
-      type: string
-      enum:
-      - BENEFITS_CHECK
-      - PRIOR_AUTHORIZATION
-      x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    PublicEscalationActionType:
-      type: string
-      enum:
-      - NOTIFICATION
-      - SUBMISSION
       x-folder: public_api
   securitySchemes:
     bearerAuth:

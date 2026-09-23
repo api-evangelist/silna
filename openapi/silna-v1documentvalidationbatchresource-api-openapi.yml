@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1DocumentValidationBatchResource API
+  title: Silna Public V1 Document Validation Batch Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -103,23 +103,6 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
     V1DocumentValidationBatch:
       properties:
         id:
@@ -136,12 +119,29 @@ components:
       title: V1DocumentValidationBatch
       type: object
       x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
     RuleExecutionResult:
       type: string
       enum:
       - PASSED
       - FAILED
       x-folder: document_intelligence
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1CliniciansResource API
+  title: Silna Public V1 Clinicians Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -149,17 +149,6 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
     ObjectNotFoundError:
       type: object
       required:
@@ -182,15 +171,17 @@ components:
         first_id:
           default: null
           title: First Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         last_id:
           default: null
           title: Last Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - has_more
       - records
@@ -203,26 +194,40 @@ components:
       - AUTH_INVALID_REQUEST_HEADER
       - AUTH_INVALID_CREDENTIALS
       x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     V1Clinician:
       properties:
         first_name:
           default: null
           description: First name of the clinician
           title: First Name
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         last_name:
           default: null
           description: Last name of the clinician
           title: Last Name
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         npi:
           default: null
           description: NPI of the clinician
           title: Npi
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
       title: V1Clinician
       type: object
       x-folder: public_api

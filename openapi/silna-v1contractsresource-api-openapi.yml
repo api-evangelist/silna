@@ -1,6 +1,6 @@
-openapi: 3.0.2
+openapi: 3.2.0
 info:
-  title: Silna Public OldV1PriorAuthorizationResource V1ContractsResource API
+  title: Silna Public V1 Contracts Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -277,6 +277,15 @@ paths:
         description: ''
 components:
   schemas:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     KeysetPaginatedResponse__V1Contract:
       properties:
         has_more:
@@ -290,58 +299,22 @@ components:
         first_id:
           default: null
           title: First Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         last_id:
           default: null
           title: Last Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
       required:
       - has_more
       - records
       title: KeysetPaginatedResponse[V1Contract]
       type: object
-      x-folder: null
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
       x-folder: null
     V1ContractPlan:
       properties:
@@ -360,29 +333,42 @@ components:
       title: V1ContractPlan
       type: object
       x-folder: public_api
-    V1ContractServiceLocation:
-      properties:
-        id:
-          description: The service location's Silna identifier
-          format: uuid
-          title: Id
-          type: string
-        name:
-          description: Service location name
-          title: Name
-          type: string
-      required:
-      - id
-      - name
-      title: V1ContractServiceLocation
+    ObjectNotFoundError:
       type: object
-      x-folder: public_api
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     PublicApiErrorType:
       type: string
       enum:
       - AUTH_INVALID_REQUEST_HEADER
       - AUTH_INVALID_CREDENTIALS
       x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
     V1ContractCreateResponse:
       properties:
         id:
@@ -401,16 +387,18 @@ components:
           default: null
           description: The provider's Silna identifier
           title: Provider Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         mso_id:
           default: null
           description: The MSO's Silna identifier
           title: Mso Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         payor_id:
           description: The payor's Silna identifier
           format: uuid
@@ -420,16 +408,18 @@ components:
           default: null
           description: The clinician's Silna identifier. Specify either clinician_id or provider_group_id.
           title: Clinician Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         provider_group_id:
           default: null
           description: The provider group's Silna identifier. Specify either clinician_id or provider_group_id.
           title: Provider Group Id
-          nullable: true
           format: uuid
-          type: string
+          type:
+          - string
+          - 'null'
         insurance_types:
           default: []
           description: Specifies which insurance types this contract covers. When no types are selected, the contract applies to all insurance types.
@@ -465,30 +455,39 @@ components:
           default: null
           description: Medicaid ID
           title: Medicaid Id
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         ipa_required:
           default: null
           description: When enabled, this contract only applies when the patient is associated with one of the contract's IPAs.
           title: Ipa Required
-          nullable: true
-          type: boolean
+          type:
+          - boolean
+          - 'null'
       required:
       - payor_id
       - service_locations
       title: V1ContractCreateBody
       type: object
       x-folder: public_api
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
+    V1ContractServiceLocation:
+      properties:
+        id:
+          description: The service location's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: Service location name
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: V1ContractServiceLocation
+      type: object
+      x-folder: public_api
     V1Contract:
       properties:
         id:
@@ -513,15 +512,17 @@ components:
           default: null
           description: National Provider Identifier
           title: Contract Npi
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           example: '1234567890'
         contract_tin:
           default: null
           description: Tax Identification Number
           title: Contract Tin
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
           example: '123456789'
         insurance_types:
           description: Specifies which insurance types this contract covers. When no types are selected, the contract applies to all insurance types.
@@ -551,8 +552,9 @@ components:
           default: null
           description: Medicaid ID
           title: Medicaid Id
-          nullable: true
-          type: string
+          type:
+          - string
+          - 'null'
         ipa_required:
           description: When enabled, this contract only applies when the patient is associated with one of the contract's IPAs.
           title: Ipa Required
@@ -581,6 +583,15 @@ components:
       title: V1Contract
       type: object
       x-folder: public_api
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http
