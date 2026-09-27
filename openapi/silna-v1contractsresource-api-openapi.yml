@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Contracts Resource API
+  title: Silna Public V1Contracts Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -277,98 +277,6 @@ paths:
         description: ''
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    KeysetPaginatedResponse__V1Contract:
-      properties:
-        has_more:
-          title: Has More
-          type: boolean
-        records:
-          items:
-            $ref: '#/components/schemas/V1Contract'
-          title: Records
-          type: array
-        first_id:
-          default: null
-          title: First Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        last_id:
-          default: null
-          title: Last Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-      required:
-      - has_more
-      - records
-      title: KeysetPaginatedResponse[V1Contract]
-      type: object
-      x-folder: null
-    V1ContractPlan:
-      properties:
-        id:
-          description: The plan's Silna identifier
-          format: uuid
-          title: Id
-          type: string
-        name:
-          description: Plan name
-          title: Name
-          type: string
-      required:
-      - id
-      - name
-      title: V1ContractPlan
-      type: object
-      x-folder: public_api
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
     V1ContractCreateResponse:
       properties:
         id:
@@ -379,113 +287,6 @@ components:
       required:
       - id
       title: V1ContractCreateResponse
-      type: object
-      x-folder: public_api
-    V1ContractCreateBody:
-      properties:
-        provider_id:
-          default: null
-          description: The provider's Silna identifier
-          title: Provider Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        mso_id:
-          default: null
-          description: The MSO's Silna identifier
-          title: Mso Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        payor_id:
-          description: The payor's Silna identifier
-          format: uuid
-          title: Payor Id
-          type: string
-        clinician_id:
-          default: null
-          description: The clinician's Silna identifier. Specify either clinician_id or provider_group_id.
-          title: Clinician Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        provider_group_id:
-          default: null
-          description: The provider group's Silna identifier. Specify either clinician_id or provider_group_id.
-          title: Provider Group Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        insurance_types:
-          default: []
-          description: Specifies which insurance types this contract covers. When no types are selected, the contract applies to all insurance types.
-          items:
-            $ref: '#/components/schemas/InsuranceType'
-          title: Insurance Types
-          type: array
-        plans:
-          default: []
-          description: Select specific plans to include. When no plans are selected, the contract applies to all plans. Cannot be combined with excluded_plans.
-          items:
-            format: uuid
-            type: string
-          title: Plans
-          type: array
-        excluded_plans:
-          default: []
-          description: Select specific plans to exclude. The contract will apply to all plans except those selected. Cannot be combined with plans.
-          items:
-            format: uuid
-            type: string
-          title: Excluded Plans
-          type: array
-        service_locations:
-          description: At least one service location is required.
-          items:
-            format: uuid
-            type: string
-          minItems: 1
-          title: Service Locations
-          type: array
-        medicaid_id:
-          default: null
-          description: Medicaid ID
-          title: Medicaid Id
-          type:
-          - string
-          - 'null'
-        ipa_required:
-          default: null
-          description: When enabled, this contract only applies when the patient is associated with one of the contract's IPAs.
-          title: Ipa Required
-          type:
-          - boolean
-          - 'null'
-      required:
-      - payor_id
-      - service_locations
-      title: V1ContractCreateBody
-      type: object
-      x-folder: public_api
-    V1ContractServiceLocation:
-      properties:
-        id:
-          description: The service location's Silna identifier
-          format: uuid
-          title: Id
-          type: string
-        name:
-          description: Service location name
-          title: Name
-          type: string
-      required:
-      - id
-      - name
-      title: V1ContractServiceLocation
       type: object
       x-folder: public_api
     V1Contract:
@@ -583,7 +384,206 @@ components:
       title: V1Contract
       type: object
       x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+    KeysetPaginatedResponse__V1Contract:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1Contract'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        last_id:
+          default: null
+          title: Last Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1Contract]
+      type: object
+      x-folder: null
+    V1ContractServiceLocation:
+      properties:
+        id:
+          description: The service location's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: Service location name
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: V1ContractServiceLocation
+      type: object
+      x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1ContractPlan:
+      properties:
+        id:
+          description: The plan's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: Plan name
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: V1ContractPlan
+      type: object
+      x-folder: public_api
+    V1ContractCreateBody:
+      properties:
+        provider_id:
+          default: null
+          description: The provider's Silna identifier
+          title: Provider Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        mso_id:
+          default: null
+          description: The MSO's Silna identifier
+          title: Mso Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        payor_id:
+          description: The payor's Silna identifier
+          format: uuid
+          title: Payor Id
+          type: string
+        clinician_id:
+          default: null
+          description: The clinician's Silna identifier. Specify either clinician_id or provider_group_id.
+          title: Clinician Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        provider_group_id:
+          default: null
+          description: The provider group's Silna identifier. Specify either clinician_id or provider_group_id.
+          title: Provider Group Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        insurance_types:
+          default: []
+          description: Specifies which insurance types this contract covers. When no types are selected, the contract applies to all insurance types.
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Insurance Types
+          type: array
+        plans:
+          default: []
+          description: Select specific plans to include. When no plans are selected, the contract applies to all plans. Cannot be combined with excluded_plans.
+          items:
+            format: uuid
+            type: string
+          title: Plans
+          type: array
+        excluded_plans:
+          default: []
+          description: Select specific plans to exclude. The contract will apply to all plans except those selected. Cannot be combined with plans.
+          items:
+            format: uuid
+            type: string
+          title: Excluded Plans
+          type: array
+        service_locations:
+          description: At least one service location is required.
+          items:
+            format: uuid
+            type: string
+          minItems: 1
+          title: Service Locations
+          type: array
+        medicaid_id:
+          default: null
+          description: Medicaid ID
+          title: Medicaid Id
+          type:
+          - string
+          - 'null'
+        ipa_required:
+          default: null
+          description: When enabled, this contract only applies when the patient is associated with one of the contract's IPAs.
+          title: Ipa Required
+          type:
+          - boolean
+          - 'null'
+      required:
+      - payor_id
+      - service_locations
+      title: V1ContractCreateBody
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
       type: object
       required:
       - message

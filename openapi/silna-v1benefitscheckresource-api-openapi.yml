@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Benefits Check Resource API
+  title: Silna Public V1Benefits Check Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -234,18 +234,26 @@ paths:
         description: "\n    Benefits Check Create Request Schema\n    "
 components:
   schemas:
-    RateDuration:
-      type: string
-      enum:
-      - PER_VISIT
-      - PER_HOUR
-      - PER_DAY
-      - PER_SESSION
-      - PER_MONTH
-      - PER_WEEK
-      - PER_PHASE
-      - NONE_HIDDEN
-      x-folder: provider
+    BenefitsCheckOtherPayorInformation:
+      description: Other Payor Information Schema - shared between V1 and V2
+      properties:
+        payor_name:
+          default: null
+          description: Payor name
+          title: Payor Name
+          type:
+          - string
+          - 'null'
+        plan_order_number:
+          default: null
+          description: Plan order number
+          title: Plan Order Number
+          type:
+          - integer
+          - 'null'
+      title: BenefitsCheckOtherPayorInformation
+      type: object
+      x-folder: public_api
     V1PatientCostOfServiceEstimate:
       properties:
         cost_estimate_name:
@@ -266,178 +274,150 @@ components:
       title: V1PatientCostOfServiceEstimate
       type: object
       x-folder: public_api
-    V1BenefitsCheckSpecialtyData:
-      description: Benefits Check Specialty Data Response Schema
-      properties:
-        specialty:
-          $ref: '#/components/schemas/PublicSpecialty'
-          description: Specialty
-        auth_required:
-          description: Whether authorization is required
-          title: Auth Required
-          type:
-          - boolean
-          - 'null'
-        referral_required:
-          description: Whether referral is required
-          title: Referral Required
-          type:
-          - boolean
-          - 'null'
-        referral_info:
-          description: Referral information
-          title: Referral Info
-          type:
-          - string
-          - 'null'
-        requirement_time:
-          description: When authorization is required
-          $ref: '#/components/schemas/BenefitsCheckAuthRequiredTime'
-        requirement_quantity:
-          description: Authorization requirement quantity
-          title: Requirement Quantity
-          type:
-          - integer
-          - 'null'
-        requirement_unit:
-          description: Authorization requirement unit
-          $ref: '#/components/schemas/UnitType'
-        auth_company:
-          description: Authorization company
-          title: Auth Company
-          type:
-          - string
-          - 'null'
-        has_visit_limit:
-          description: Whether visit limit exists
-          title: Has Visit Limit
-          type:
-          - boolean
-          - 'null'
-        visit_limit_quantity:
-          description: Visit limit quantity
-          title: Visit Limit Quantity
-          type:
-          - integer
-          - 'null'
-        visits_used:
-          description: Number of visits used
-          title: Visits Used
-          type:
-          - integer
-          - 'null'
-        copay_amount:
-          description: Copay amount
-          title: Copay Amount
-          type:
-          - string
-          - 'null'
-        coinsurance_percentage:
-          description: Coinsurance percentage
-          title: Coinsurance Percentage
-          type:
-          - string
-          - 'null'
-        individual_deductible_amount:
-          description: Individual deductible amount
-          title: Individual Deductible Amount
-          type:
-          - string
-          - 'null'
-        individual_deductible_amount_met:
-          description: Individual deductible amount met
-          title: Individual Deductible Amount Met
-          type:
-          - string
-          - 'null'
-        family_deductible_amount:
-          description: Family deductible amount
-          title: Family Deductible Amount
-          type:
-          - string
-          - 'null'
-        family_deductible_amount_met:
-          description: Family deductible amount met
-          title: Family Deductible Amount Met
-          type:
-          - string
-          - 'null'
-        individual_out_of_pocket_amount:
-          description: Individual out of pocket amount
-          title: Individual Out Of Pocket Amount
-          type:
-          - string
-          - 'null'
-        individual_out_of_pocket_amount_met:
-          description: Individual out of pocket amount met
-          title: Individual Out Of Pocket Amount Met
-          type:
-          - string
-          - 'null'
-        family_out_of_pocket_amount:
-          description: Family out of pocket amount
-          title: Family Out Of Pocket Amount
-          type:
-          - string
-          - 'null'
-        family_out_of_pocket_amount_met:
-          description: Family out of pocket amount met
-          title: Family Out Of Pocket Amount Met
-          type:
-          - string
-          - 'null'
-        medicare_dollars_used:
-          description: Medicare dollars used
-          title: Medicare Dollars Used
-          type:
-          - string
-          - 'null'
-        reimbursement_rate:
-          description: Reimbursement rate
-          title: Reimbursement Rate
-          type:
-          - string
-          - 'null'
-        exclusions_and_limitations:
-          description: Exclusions and limitations
-          title: Exclusions And Limitations
-          type:
-          - string
-          - 'null'
-        patient_cost_estimates:
-          description: List of patient cost estimates
-          items:
-            $ref: '#/components/schemas/V1PatientCostOfServiceEstimate'
-          title: Patient Cost Estimates
-          type: array
-      required:
-      - specialty
-      - auth_required
-      - referral_required
-      - referral_info
-      - requirement_time
-      - requirement_quantity
-      - requirement_unit
-      - auth_company
-      - has_visit_limit
-      - visit_limit_quantity
-      - visits_used
-      - copay_amount
-      - coinsurance_percentage
-      - individual_deductible_amount
-      - individual_deductible_amount_met
-      - family_deductible_amount
-      - family_deductible_amount_met
-      - individual_out_of_pocket_amount
-      - individual_out_of_pocket_amount_met
-      - family_out_of_pocket_amount
-      - family_out_of_pocket_amount_met
-      - medicare_dollars_used
-      - reimbursement_rate
-      - exclusions_and_limitations
-      title: V1BenefitsCheckSpecialtyData
+    PublicSpecialty:
+      type: string
+      enum:
+      - PHYSICAL_THERAPY
+      - ABA_THERAPY
+      - SPEECH_THERAPY
+      - OCCUPATIONAL_THERAPY
+      - PSYCHOLOGICAL_TESTING
+      - HOME_HEALTH_CARE
+      - HOSPICE
+      - CARDIAC_REHABILITATION
+      - INTENSIVE_CARDIAC_REHABILITATION
+      - MENTAL_HEALTH
+      - PRINCIPAL_ILLNESS_NAVIGATION
+      - PRINCIPAL_CARE_MANAGEMENT
+      - ADVANCED_PRIMARY_CARE_MODELS
+      - PREVENTATIVE_HEALTH
+      - PARTIAL_HOSPITALIZATION_PROGRAM
+      - INTENSIVE_OUTPATIENT_PROGRAM
+      - INTERVENTIONAL_RADIOLOGY
+      - VASCULAR_SURGERY
+      - INTERVENTIONAL_CARDIOLOGY
+      - ORTHOPEDICS
+      - CHIROPRACTIC
+      - GYNECOLOGY
+      - LONG_TERM_CARE
+      - NUTRITIONAL_COUNSELING
+      - PHYSICAL_MEDICINE
+      - PULMONARY_REHABILITATION
+      - INJECTABLE_SPECIALTY_MEDICATIONS
+      - ALLERGY_TESTING
+      - SKILLED_NURSING
+      - RADIOLOGY
+      - OTOLARYNGOLOGY
+      - DURABLE_MEDICAL_EQUIPMENT
+      - DERMATOLOGY
+      - PROFESSIONAL_OFFICE_VISIT
+      - PSYCHIATRY
+      x-folder: specialty
+    ObjectNotFoundError:
       type: object
-      x-folder: public_api
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    NetworkStatus:
+      type: string
+      enum:
+      - IN_NETWORK
+      - OUT_OF_NETWORK
+      x-folder: payor_entity
+    BenefitsCheckIneligibilityReason:
+      type: string
+      enum:
+      - PLAN_INACTIVE
+      - PATIENT_HAS_OUT_OF_NETWORK_IPA
+      - PLAN_HAS_TERMINATED
+      - MBI_TERMINATED
+      - NO_MEDICARE_PART_B_COVERAGE
+      - MEMBER_NUMBER_MISMATCH
+      - SPECIALTY_NOT_COVERED
+      - PATIENT_HAS_OTHER_INSURANCE
+      - NO_OUT_OF_NETWORK_BENEFITS
+      - HAS_ACTIVE_HOME_PLAN
+      - ENROLLED_IN_HOSPICE
+      - PROVIDER_PLACE_OF_SERVICE_NOT_COVERED
+      - PATIENT_DECEASED
+      x-folder: benefit_check
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    BenefitsCheckAuthRequiredTime:
+      type: string
+      enum:
+      - BEFORE_SERVICES
+      - AFTER_SERVICES
+      x-folder: benefit_check
+    BenefitsCheckStatusPublic:
+      type: string
+      enum:
+      - REQUESTED
+      - AWAITING_SILNA
+      - AWAITING_PROVIDER
+      - COMPLETE
+      - WITHDRAWN
+      x-folder: benefit_check
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    UnitType:
+      type: string
+      enum:
+      - VISITS
+      - CPT_UNITS
+      x-folder: units
+    BenefitsCheckEligibilityStatus:
+      type: string
+      enum:
+      - ELIGIBLE
+      - INELIGIBLE
+      x-folder: benefit_check
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+    RateDuration:
+      type: string
+      enum:
+      - PER_VISIT
+      - PER_HOUR
+      - PER_DAY
+      - PER_SESSION
+      - PER_MONTH
+      - PER_WEEK
+      - PER_PHASE
+      - NONE_HIDDEN
+      x-folder: provider
     BenefitsCheckPatientInformation:
       description: Patient Information Schema - shared between V1 and V2
       properties:
@@ -650,145 +630,6 @@ components:
       title: V1BenefitsCheckResponse
       type: object
       x-folder: public_api
-    BenefitsCheckIneligibilityReason:
-      type: string
-      enum:
-      - PLAN_INACTIVE
-      - PATIENT_HAS_OUT_OF_NETWORK_IPA
-      - PLAN_HAS_TERMINATED
-      - MBI_TERMINATED
-      - NO_MEDICARE_PART_B_COVERAGE
-      - MEMBER_NUMBER_MISMATCH
-      - SPECIALTY_NOT_COVERED
-      - PATIENT_HAS_OTHER_INSURANCE
-      - NO_OUT_OF_NETWORK_BENEFITS
-      - HAS_ACTIVE_HOME_PLAN
-      - ENROLLED_IN_HOSPICE
-      - PROVIDER_PLACE_OF_SERVICE_NOT_COVERED
-      - PATIENT_DECEASED
-      x-folder: benefit_check
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    BenefitsCheckOtherPayorInformation:
-      description: Other Payor Information Schema - shared between V1 and V2
-      properties:
-        payor_name:
-          default: null
-          description: Payor name
-          title: Payor Name
-          type:
-          - string
-          - 'null'
-        plan_order_number:
-          default: null
-          description: Plan order number
-          title: Plan Order Number
-          type:
-          - integer
-          - 'null'
-      title: BenefitsCheckOtherPayorInformation
-      type: object
-      x-folder: public_api
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
-    UnitType:
-      type: string
-      enum:
-      - VISITS
-      - CPT_UNITS
-      x-folder: units
-    PublicSpecialty:
-      type: string
-      enum:
-      - PHYSICAL_THERAPY
-      - ABA_THERAPY
-      - SPEECH_THERAPY
-      - OCCUPATIONAL_THERAPY
-      - PSYCHOLOGICAL_TESTING
-      - HOME_HEALTH_CARE
-      - HOSPICE
-      - CARDIAC_REHABILITATION
-      - INTENSIVE_CARDIAC_REHABILITATION
-      - MENTAL_HEALTH
-      - PRINCIPAL_ILLNESS_NAVIGATION
-      - PRINCIPAL_CARE_MANAGEMENT
-      - ADVANCED_PRIMARY_CARE_MODELS
-      - PREVENTATIVE_HEALTH
-      - PARTIAL_HOSPITALIZATION_PROGRAM
-      - INTENSIVE_OUTPATIENT_PROGRAM
-      - INTERVENTIONAL_RADIOLOGY
-      - VASCULAR_SURGERY
-      - INTERVENTIONAL_CARDIOLOGY
-      - ORTHOPEDICS
-      - CHIROPRACTIC
-      - GYNECOLOGY
-      - LONG_TERM_CARE
-      - NUTRITIONAL_COUNSELING
-      - PHYSICAL_MEDICINE
-      - PULMONARY_REHABILITATION
-      - INJECTABLE_SPECIALTY_MEDICATIONS
-      - ALLERGY_TESTING
-      - SKILLED_NURSING
-      - RADIOLOGY
-      - OTOLARYNGOLOGY
-      - DURABLE_MEDICAL_EQUIPMENT
-      - DERMATOLOGY
-      - PROFESSIONAL_OFFICE_VISIT
-      - PSYCHIATRY
-      x-folder: specialty
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    BenefitsCheckEligibilityStatus:
-      type: string
-      enum:
-      - ELIGIBLE
-      - INELIGIBLE
-      x-folder: benefit_check
-    BenefitsCheckAuthRequiredTime:
-      type: string
-      enum:
-      - BEFORE_SERVICES
-      - AFTER_SERVICES
-      x-folder: benefit_check
     V1BenefitsCheckCreateResponse:
       description: Benefits Check Create Response Schema
       properties:
@@ -804,21 +645,17 @@ components:
       title: V1BenefitsCheckCreateResponse
       type: object
       x-folder: public_api
-    BenefitsCheckStatusPublic:
-      type: string
-      enum:
-      - REQUESTED
-      - AWAITING_SILNA
-      - AWAITING_PROVIDER
-      - COMPLETE
-      - WITHDRAWN
-      x-folder: benefit_check
-    NetworkStatus:
-      type: string
-      enum:
-      - IN_NETWORK
-      - OUT_OF_NETWORK
-      x-folder: payor_entity
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     V1BenefitsCheckCreateBody:
       description: Benefits Check Create Request Schema
       properties:
@@ -853,15 +690,178 @@ components:
       title: V1BenefitsCheckCreateBody
       type: object
       x-folder: public_api
-    ValidationError:
-      type: object
-      required:
-      - message
+    V1BenefitsCheckSpecialtyData:
+      description: Benefits Check Specialty Data Response Schema
       properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
+        specialty:
+          $ref: '#/components/schemas/PublicSpecialty'
+          description: Specialty
+        auth_required:
+          description: Whether authorization is required
+          title: Auth Required
+          type:
+          - boolean
+          - 'null'
+        referral_required:
+          description: Whether referral is required
+          title: Referral Required
+          type:
+          - boolean
+          - 'null'
+        referral_info:
+          description: Referral information
+          title: Referral Info
+          type:
+          - string
+          - 'null'
+        requirement_time:
+          description: When authorization is required
+          $ref: '#/components/schemas/BenefitsCheckAuthRequiredTime'
+        requirement_quantity:
+          description: Authorization requirement quantity
+          title: Requirement Quantity
+          type:
+          - integer
+          - 'null'
+        requirement_unit:
+          description: Authorization requirement unit
+          $ref: '#/components/schemas/UnitType'
+        auth_company:
+          description: Authorization company
+          title: Auth Company
+          type:
+          - string
+          - 'null'
+        has_visit_limit:
+          description: Whether visit limit exists
+          title: Has Visit Limit
+          type:
+          - boolean
+          - 'null'
+        visit_limit_quantity:
+          description: Visit limit quantity
+          title: Visit Limit Quantity
+          type:
+          - integer
+          - 'null'
+        visits_used:
+          description: Number of visits used
+          title: Visits Used
+          type:
+          - integer
+          - 'null'
+        copay_amount:
+          description: Copay amount
+          title: Copay Amount
+          type:
+          - string
+          - 'null'
+        coinsurance_percentage:
+          description: Coinsurance percentage
+          title: Coinsurance Percentage
+          type:
+          - string
+          - 'null'
+        individual_deductible_amount:
+          description: Individual deductible amount
+          title: Individual Deductible Amount
+          type:
+          - string
+          - 'null'
+        individual_deductible_amount_met:
+          description: Individual deductible amount met
+          title: Individual Deductible Amount Met
+          type:
+          - string
+          - 'null'
+        family_deductible_amount:
+          description: Family deductible amount
+          title: Family Deductible Amount
+          type:
+          - string
+          - 'null'
+        family_deductible_amount_met:
+          description: Family deductible amount met
+          title: Family Deductible Amount Met
+          type:
+          - string
+          - 'null'
+        individual_out_of_pocket_amount:
+          description: Individual out of pocket amount
+          title: Individual Out Of Pocket Amount
+          type:
+          - string
+          - 'null'
+        individual_out_of_pocket_amount_met:
+          description: Individual out of pocket amount met
+          title: Individual Out Of Pocket Amount Met
+          type:
+          - string
+          - 'null'
+        family_out_of_pocket_amount:
+          description: Family out of pocket amount
+          title: Family Out Of Pocket Amount
+          type:
+          - string
+          - 'null'
+        family_out_of_pocket_amount_met:
+          description: Family out of pocket amount met
+          title: Family Out Of Pocket Amount Met
+          type:
+          - string
+          - 'null'
+        medicare_dollars_used:
+          description: Medicare dollars used
+          title: Medicare Dollars Used
+          type:
+          - string
+          - 'null'
+        reimbursement_rate:
+          description: Reimbursement rate
+          title: Reimbursement Rate
+          type:
+          - string
+          - 'null'
+        exclusions_and_limitations:
+          description: Exclusions and limitations
+          title: Exclusions And Limitations
+          type:
+          - string
+          - 'null'
+        patient_cost_estimates:
+          description: List of patient cost estimates
+          items:
+            $ref: '#/components/schemas/V1PatientCostOfServiceEstimate'
+          title: Patient Cost Estimates
+          type: array
+      required:
+      - specialty
+      - auth_required
+      - referral_required
+      - referral_info
+      - requirement_time
+      - requirement_quantity
+      - requirement_unit
+      - auth_company
+      - has_visit_limit
+      - visit_limit_quantity
+      - visits_used
+      - copay_amount
+      - coinsurance_percentage
+      - individual_deductible_amount
+      - individual_deductible_amount_met
+      - family_deductible_amount
+      - family_deductible_amount_met
+      - individual_out_of_pocket_amount
+      - individual_out_of_pocket_amount_met
+      - family_out_of_pocket_amount
+      - family_out_of_pocket_amount_met
+      - medicare_dollars_used
+      - reimbursement_rate
+      - exclusions_and_limitations
+      title: V1BenefitsCheckSpecialtyData
+      type: object
+      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

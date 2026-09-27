@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Provider Groups Resource API
+  title: Silna Public V1Provider Groups Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -147,15 +147,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     ObjectNotFoundError:
       type: object
       required:
@@ -246,6 +237,15 @@ components:
       - records
       title: KeysetPaginatedResponse[V1ProviderGroup]
       type: object
+      x-folder: null
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
       x-folder: null
   securitySchemes:
     bearerAuth:

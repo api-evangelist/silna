@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Patient Plan Prior Authorizations Resource…
+  title: Silna Public V1Patient Plan Prior Authorizations Resource…
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -139,91 +139,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicPriorAuthorizationStatus:
-      type: string
-      enum:
-      - DATA_REQUESTED
-      - DATA_RECEIVED
-      - ALL_REQUIRED_DATA_RECEIVED
-      - REQUESTED
-      - TOO_EARLY_TO_SUBMIT
-      - UNNECESSARY
-      - AWAITING_PROVIDER
-      - PENDING_PROVIDER_SUBMISSION_REVIEW
-      - AWAITING_SILNA
-      - APPROVED_TO_SUBMIT
-      - SUBMITTED_TO_PAYOR
-      - PAYOR_DENIED
-      - PAYOR_DENIED_APPEALING
-      - AWAITING_RESUBMISSION
-      - RESUBMITTED_TO_PAYOR
-      - PAYOR_APPROVED
-      - DENIED_UNAPPEALED
-      - PRELIMINARY_APPROVAL
-      - PARTIALLY_APPROVED
-      - WITHDRAWN
-      x-folder: prior_authorization
-    V1PriorAuthorizationPreview:
-      properties:
-        id:
-          description: ID of the prior authorization
-          format: uuid
-          title: Id
-          type: string
-        created_at:
-          description: Date the prior authorization was created
-          format: date-time
-          title: Created At
-          type: string
-        specialty:
-          $ref: '#/components/schemas/PublicSpecialty'
-          description: Specialty for the prior authorization
-        status:
-          $ref: '#/components/schemas/PublicPriorAuthorizationStatus'
-          description: Status of the prior authorization
-      required:
-      - id
-      - created_at
-      - specialty
-      - status
-      title: V1PriorAuthorizationPreview
-      type: object
-      x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
     PublicSpecialty:
       type: string
       enum:
@@ -263,6 +178,47 @@ components:
       - PROFESSIONAL_OFFICE_VISIT
       - PSYCHIATRY
       x-folder: specialty
+    V1PriorAuthorizationPreview:
+      properties:
+        id:
+          description: ID of the prior authorization
+          format: uuid
+          title: Id
+          type: string
+        created_at:
+          description: Date the prior authorization was created
+          format: date-time
+          title: Created At
+          type: string
+        specialty:
+          $ref: '#/components/schemas/PublicSpecialty'
+          description: Specialty for the prior authorization
+        status:
+          $ref: '#/components/schemas/PublicPriorAuthorizationStatus'
+          description: Status of the prior authorization
+      required:
+      - id
+      - created_at
+      - specialty
+      - status
+      title: V1PriorAuthorizationPreview
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     KeysetPaginatedResponse__V1PriorAuthorizationPreview:
       properties:
         has_more:
@@ -292,6 +248,50 @@ components:
       - records
       title: KeysetPaginatedResponse[V1PriorAuthorizationPreview]
       type: object
+      x-folder: null
+    PublicPriorAuthorizationStatus:
+      type: string
+      enum:
+      - DATA_REQUESTED
+      - DATA_RECEIVED
+      - ALL_REQUIRED_DATA_RECEIVED
+      - REQUESTED
+      - TOO_EARLY_TO_SUBMIT
+      - UNNECESSARY
+      - AWAITING_PROVIDER
+      - PENDING_PROVIDER_SUBMISSION_REVIEW
+      - AWAITING_SILNA
+      - APPROVED_TO_SUBMIT
+      - SUBMITTED_TO_PAYOR
+      - PAYOR_DENIED
+      - PAYOR_DENIED_APPEALING
+      - AWAITING_RESUBMISSION
+      - RESUBMITTED_TO_PAYOR
+      - PAYOR_APPROVED
+      - DENIED_UNAPPEALED
+      - PRELIMINARY_APPROVAL
+      - PARTIALLY_APPROVED
+      - WITHDRAWN
+      x-folder: prior_authorization
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
       x-folder: null
   securitySchemes:
     bearerAuth:

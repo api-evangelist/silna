@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Prior Authorization Complete Request…
+  title: Silna Public V1Prior Authorization Complete Request…
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -136,15 +136,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     ObjectNotFoundError:
       type: object
       required:
@@ -172,6 +163,15 @@ components:
           $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
     ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    TooManyRequestsError:
       type: object
       required:
       - message

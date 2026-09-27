@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Provider Payors Resource API
+  title: Silna Public V1Provider Payors Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -149,15 +149,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     KeysetPaginatedResponse__V1ProviderPayor:
       properties:
         has_more:
@@ -194,15 +185,16 @@ components:
       - AUTH_INVALID_REQUEST_HEADER
       - AUTH_INVALID_CREDENTIALS
       x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
     AuthenticationError:
       type: object
       required:
@@ -214,16 +206,42 @@ components:
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1ProviderPayorAlternateIdentifier:
+      properties:
+        identifier:
+          description: The alternate/provider supplied identifier
+          title: Identifier
+          type: string
+          example: AETNA_INSC
+        standard:
+          $ref: '#/components/schemas/ProviderPayorStandard'
+          description: The standard of the alternate identifier
+          example: PROVIDER_IDENTIFIER
+        payor_types:
+          description: The types of insurances that this alternate identifier is associated with
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Payor Types
+          type: array
+          example:
+          - COMMERCIAL
+          - MEDICARE
+      required:
+      - identifier
+      - standard
+      - payor_types
+      title: V1ProviderPayorAlternateIdentifier
+      type: object
+      x-folder: public_api
     V1ProviderPayor:
       properties:
         id:
@@ -259,33 +277,15 @@ components:
       title: V1ProviderPayor
       type: object
       x-folder: public_api
-    V1ProviderPayorAlternateIdentifier:
-      properties:
-        identifier:
-          description: The alternate/provider supplied identifier
-          title: Identifier
-          type: string
-          example: AETNA_INSC
-        standard:
-          $ref: '#/components/schemas/ProviderPayorStandard'
-          description: The standard of the alternate identifier
-          example: PROVIDER_IDENTIFIER
-        payor_types:
-          description: The types of insurances that this alternate identifier is associated with
-          items:
-            $ref: '#/components/schemas/InsuranceType'
-          title: Payor Types
-          type: array
-          example:
-          - COMMERCIAL
-          - MEDICARE
-      required:
-      - identifier
-      - standard
-      - payor_types
-      title: V1ProviderPayorAlternateIdentifier
+    TooManyRequestsError:
       type: object
-      x-folder: public_api
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     ProviderPayorStandard:
       type: string
       enum:

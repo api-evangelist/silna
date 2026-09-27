@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Prior Authorization Record Approval…
+  title: Silna Public V1Prior Authorization Record Approval Resource…
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -143,15 +143,17 @@ paths:
         description: ''
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
+    V1TreatmentCodeModifiersCreate:
       properties:
-        message:
+        code:
+          description: Modifier code
+          title: Code
           type: string
-          description: Human readable error message
-      x-folder: null
+      required:
+      - code
+      title: V1TreatmentCodeModifiersCreate
+      type: object
+      x-folder: public_api
     PriorAuthorizationUnit:
       type: string
       enum:
@@ -160,15 +162,6 @@ components:
       - HOURS
       - DAYS
       x-folder: prior_authorization
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     V1TreatmentCodeCreate:
       properties:
         code:
@@ -198,6 +191,84 @@ components:
       - SIX_MONTHS
       - YEARLY
       x-folder: prior_authorization
+    V1RecordApprovedTreatmentCodeCreate:
+      properties:
+        treatment_codes:
+          description: List of treatment codes
+          items:
+            $ref: '#/components/schemas/V1TreatmentCodeCreate'
+          title: Treatment Codes
+          type: array
+        units:
+          description: Approved units (decimal string format)
+          title: Units
+          type: string
+          example: '2.5'
+        unit_type:
+          $ref: '#/components/schemas/PriorAuthorizationUnit'
+          description: Type of unit
+        time_frame:
+          $ref: '#/components/schemas/UnitTimeFrame'
+          default: TOTAL
+          description: Time frame for the units
+        reference_number:
+          default: null
+          description: Reference number for this treatment code group
+          title: Reference Number
+          type:
+          - string
+          - 'null'
+      required:
+      - treatment_codes
+      - units
+      - unit_type
+      title: V1RecordApprovedTreatmentCodeCreate
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     V1RecordApprovalCreate:
       properties:
         reference_number:
@@ -242,77 +313,6 @@ components:
       title: V1RecordApprovalCreate
       type: object
       x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    V1TreatmentCodeModifiersCreate:
-      properties:
-        code:
-          description: Modifier code
-          title: Code
-          type: string
-      required:
-      - code
-      title: V1TreatmentCodeModifiersCreate
-      type: object
-      x-folder: public_api
-    V1RecordApprovedTreatmentCodeCreate:
-      properties:
-        treatment_codes:
-          description: List of treatment codes
-          items:
-            $ref: '#/components/schemas/V1TreatmentCodeCreate'
-          title: Treatment Codes
-          type: array
-        units:
-          description: Approved units (decimal string format)
-          title: Units
-          type: string
-          example: '2.5'
-        unit_type:
-          $ref: '#/components/schemas/PriorAuthorizationUnit'
-          description: Type of unit
-        time_frame:
-          $ref: '#/components/schemas/UnitTimeFrame'
-          default: TOTAL
-          description: Time frame for the units
-        reference_number:
-          default: null
-          description: Reference number for this treatment code group
-          title: Reference Number
-          type:
-          - string
-          - 'null'
-      required:
-      - treatment_codes
-      - units
-      - unit_type
-      title: V1RecordApprovedTreatmentCodeCreate
-      type: object
-      x-folder: public_api
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

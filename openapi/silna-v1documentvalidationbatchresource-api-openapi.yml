@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Document Validation Batch Resource API
+  title: Silna Public V1Document Validation Batch Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -94,15 +94,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     V1DocumentValidationBatch:
       properties:
         id:
@@ -125,12 +116,6 @@ components:
       - AUTH_INVALID_REQUEST_HEADER
       - AUTH_INVALID_CREDENTIALS
       x-folder: null
-    RuleExecutionResult:
-      type: string
-      enum:
-      - PASSED
-      - FAILED
-      x-folder: document_intelligence
     AuthenticationError:
       type: object
       required:
@@ -141,6 +126,21 @@ components:
           description: Human readable error message
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    RuleExecutionResult:
+      type: string
+      enum:
+      - PASSED
+      - FAILED
+      x-folder: document_intelligence
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
       x-folder: null
   securitySchemes:
     bearerAuth:

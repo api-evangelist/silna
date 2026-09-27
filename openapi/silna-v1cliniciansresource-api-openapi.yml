@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Clinicians Resource API
+  title: Silna Public V1Clinicians Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -140,24 +140,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     KeysetPaginatedResponse__V1Clinician:
       properties:
         has_more:
@@ -187,6 +169,15 @@ components:
       - records
       title: KeysetPaginatedResponse[V1Clinician]
       type: object
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
       x-folder: null
     PublicApiErrorType:
       type: string
@@ -231,6 +222,15 @@ components:
       title: V1Clinician
       type: object
       x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

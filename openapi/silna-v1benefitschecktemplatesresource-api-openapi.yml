@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Benefits Check Templates Resource API
+  title: Silna Public V1Benefits Check Templates Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -111,7 +111,31 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    TooManyRequestsError:
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1BenefitsCheckTemplateResponse:
+      description: Benefits Check Template Response Schema
+      properties:
+        id:
+          description: Benefits Check Template ID
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: Benefits Check Template Name
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: V1BenefitsCheckTemplateResponse
+      type: object
+      x-folder: public_api
+    AuthenticationError:
       type: object
       required:
       - message
@@ -119,6 +143,8 @@ components:
         message:
           type: string
           description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
     KeysetPaginatedResponse__V1BenefitsCheckTemplateResponse:
       properties:
@@ -150,13 +176,7 @@ components:
       title: KeysetPaginatedResponse[V1BenefitsCheckTemplateResponse]
       type: object
       x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    AuthenticationError:
+    TooManyRequestsError:
       type: object
       required:
       - message
@@ -164,27 +184,7 @@ components:
         message:
           type: string
           description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
-    V1BenefitsCheckTemplateResponse:
-      description: Benefits Check Template Response Schema
-      properties:
-        id:
-          description: Benefits Check Template ID
-          format: uuid
-          title: Id
-          type: string
-        name:
-          description: Benefits Check Template Name
-          title: Name
-          type: string
-      required:
-      - id
-      - name
-      title: V1BenefitsCheckTemplateResponse
-      type: object
-      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

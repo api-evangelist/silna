@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 File Resource API
+  title: Silna Public V1File Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -287,15 +287,6 @@ paths:
         description: Binary file content to upload
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     RequestEntityTooLargeError:
       type: object
       required:
@@ -304,6 +295,12 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
     ObjectNotFoundError:
       type: object
@@ -348,12 +345,6 @@ components:
       title: V1FileCreateResponseSchema
       type: object
       x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
     AuthenticationError:
       type: object
       required:
@@ -366,6 +357,15 @@ components:
           $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
     ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    TooManyRequestsError:
       type: object
       required:
       - message

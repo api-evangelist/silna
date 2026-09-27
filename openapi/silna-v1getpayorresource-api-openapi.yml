@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Get Payor Resource API
+  title: Silna Public V1Get Payor Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -117,24 +117,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     V1AlternateIdentifier:
       description: Alternate Identifiers Response
       properties:
@@ -163,12 +145,6 @@ components:
       title: V1AlternateIdentifier
       type: object
       x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
     PayorStandard:
       type: string
       enum:
@@ -179,27 +155,6 @@ components:
       - CLAIM_MD
       - STEDI
       x-folder: payor_entity
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
     V1Payor:
       description: Payors Response
       properties:
@@ -236,6 +191,51 @@ components:
       title: V1Payor
       type: object
       x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

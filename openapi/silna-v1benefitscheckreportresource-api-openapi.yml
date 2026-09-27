@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Silna Public V1 Benefits Check Report Resource API
+  title: Silna Public V1Benefits Check Report Resource API
   version: '1.0'
 servers:
 - url: https://app.silnahealth.com/api
@@ -140,24 +140,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     V1BenefitsCheckReportCreateResponse:
       description: Benefits Check Report Create Response Schema
       properties:
@@ -171,6 +153,15 @@ components:
       title: V1BenefitsCheckReportCreateResponse
       type: object
       x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     PublicApiErrorType:
       type: string
       enum:
@@ -189,6 +180,15 @@ components:
           $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
     ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    TooManyRequestsError:
       type: object
       required:
       - message
