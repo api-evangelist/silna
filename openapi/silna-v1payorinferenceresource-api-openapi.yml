@@ -248,6 +248,55 @@ paths:
         description: ''
 components:
   schemas:
+    V1PayorInferenceIndividualSchema:
+      properties:
+        first_name:
+          default: null
+          description: Patient's first name
+          title: First Name
+          type:
+          - string
+          - 'null'
+        last_name:
+          default: null
+          description: Patient's alst name
+          title: Last Name
+          type:
+          - string
+          - 'null'
+        date_of_birth:
+          default: null
+          description: Patient's date of birth
+          title: Date Of Birth
+          format: date
+          type:
+          - string
+          - 'null'
+        patient_source_id:
+          default: null
+          description: Patient's EHR ID (or other unique identifier)
+          title: Patient Source Id
+          type:
+          - string
+          - 'null'
+        plans:
+          items:
+            $ref: '#/components/schemas/V1PayorInferencePlanSchema'
+          title: Plans
+          type: array
+      title: V1PayorInferenceIndividualSchema
+      type: object
+      x-folder: public_api
+    V1PayorInferenceResultSchema:
+      properties:
+        individuals:
+          items:
+            $ref: '#/components/schemas/V1PayorInferenceIndividualSchema'
+          title: Individuals
+          type: array
+      title: V1PayorInferenceResultSchema
+      type: object
+      x-folder: public_api
     V1PayorInferenceRequestSchema:
       properties:
         strategy:
@@ -292,23 +341,15 @@ components:
       title: V1PayorInferenceRequestSchema
       type: object
       x-folder: public_api
-    V1PayorInferenceResponseSchema:
-      properties:
-        id:
-          format: uuid
-          title: Id
-          type: string
-        status:
-          $ref: '#/components/schemas/PayorInferenceStatus'
-        inference_result:
-          default: null
-          $ref: '#/components/schemas/V1PayorInferenceResultSchema'
-      required:
-      - id
-      - status
-      title: V1PayorInferenceResponseSchema
+    ValidationError:
       type: object
-      x-folder: public_api
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     PublicApiErrorType:
       type: string
       enum:
@@ -326,7 +367,7 @@ components:
       title: V1PayorInferencePostResponseSchema
       type: object
       x-folder: public_api
-    ObjectNotFoundError:
+    AuthenticationError:
       type: object
       required:
       - message
@@ -334,6 +375,8 @@ components:
         message:
           type: string
           description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
     InsuranceType:
       type: string
@@ -345,12 +388,47 @@ components:
       - WORKERS_COMPENSATION
       - AUTO_INSURANCE
       x-folder: patient
+    V1PayorInferenceResponseSchema:
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+        status:
+          $ref: '#/components/schemas/PayorInferenceStatus'
+        inference_result:
+          default: null
+          $ref: '#/components/schemas/V1PayorInferenceResultSchema'
+      required:
+      - id
+      - status
+      title: V1PayorInferenceResponseSchema
+      type: object
+      x-folder: public_api
     PayorInferenceConfigName:
       type: string
       enum:
       - NEAR_REALTIME
       - BASE
       x-folder: payor_inference
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     V1PayorInferencePlanSchema:
       properties:
         member_number:
@@ -406,84 +484,6 @@ components:
       - FAILED
       - PROCESSING
       x-folder: payor_inference
-    V1PayorInferenceResultSchema:
-      properties:
-        individuals:
-          items:
-            $ref: '#/components/schemas/V1PayorInferenceIndividualSchema'
-          title: Individuals
-          type: array
-      title: V1PayorInferenceResultSchema
-      type: object
-      x-folder: public_api
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    V1PayorInferenceIndividualSchema:
-      properties:
-        first_name:
-          default: null
-          description: Patient's first name
-          title: First Name
-          type:
-          - string
-          - 'null'
-        last_name:
-          default: null
-          description: Patient's alst name
-          title: Last Name
-          type:
-          - string
-          - 'null'
-        date_of_birth:
-          default: null
-          description: Patient's date of birth
-          title: Date Of Birth
-          format: date
-          type:
-          - string
-          - 'null'
-        patient_source_id:
-          default: null
-          description: Patient's EHR ID (or other unique identifier)
-          title: Patient Source Id
-          type:
-          - string
-          - 'null'
-        plans:
-          items:
-            $ref: '#/components/schemas/V1PayorInferencePlanSchema'
-          title: Plans
-          type: array
-      title: V1PayorInferenceIndividualSchema
-      type: object
-      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

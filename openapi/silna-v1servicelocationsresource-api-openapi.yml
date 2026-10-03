@@ -142,6 +142,18 @@ paths:
         description: ''
 components:
   schemas:
+    V1ServiceLocationCreateResponse:
+      properties:
+        id:
+          description: The newly created service location's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1ServiceLocationCreateResponse
+      type: object
+      x-folder: public_api
     V1ServiceLocationCreate:
       properties:
         provider_id:
@@ -205,13 +217,7 @@ components:
       title: V1ServiceLocationCreate
       type: object
       x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    ObjectNotFoundError:
+    ValidationError:
       type: object
       required:
       - message
@@ -231,27 +237,6 @@ components:
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    V1ServiceLocationCreateResponse:
-      properties:
-        id:
-          description: The newly created service location's Silna identifier
-          format: uuid
-          title: Id
-          type: string
-      required:
-      - id
-      title: V1ServiceLocationCreateResponse
-      type: object
-      x-folder: public_api
     TooManyRequestsError:
       type: object
       required:
@@ -260,6 +245,21 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

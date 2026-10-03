@@ -144,31 +144,6 @@ components:
       enum:
       - COMPLETE
       x-folder: benefit_check
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
     V1PatientPlan:
       description: Response schema for patient plan
       properties:
@@ -272,13 +247,35 @@ components:
       title: V1PatientPlan
       type: object
       x-folder: public_api
-    PatientPlanEligibilityStatus:
+    EligibilityCheckCompleteStatus:
       type: string
       enum:
-      - ACTIVE
-      - INACTIVE
-      - NO_CHECK
-      x-folder: patient
+      - ELIGIBLE
+      - INELIGIBLE
+      - WITHDRAWN
+      x-folder: eligibility_check
+    V1BenefitsInformation:
+      description: Response schema for benefits check information
+      properties:
+        status:
+          $ref: '#/components/schemas/BenefitsCheckCompleteStatus'
+        benefits_check_id:
+          format: uuid
+          title: Benefits Check Id
+          type: string
+        date_verified:
+          default: null
+          title: Date Verified
+          format: date-time
+          type:
+          - string
+          - 'null'
+      required:
+      - status
+      - benefits_check_id
+      title: V1BenefitsInformation
+      type: object
+      x-folder: public_api
     V1EligibilityInformation:
       description: Response schema for eligibility check information
       properties:
@@ -301,6 +298,15 @@ components:
       title: V1EligibilityInformation
       type: object
       x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     AuthenticationError:
       type: object
       required:
@@ -342,29 +348,24 @@ components:
       title: KeysetPaginatedResponse[V1PatientPlan]
       type: object
       x-folder: null
-    V1BenefitsInformation:
-      description: Response schema for benefits check information
-      properties:
-        status:
-          $ref: '#/components/schemas/BenefitsCheckCompleteStatus'
-        benefits_check_id:
-          format: uuid
-          title: Benefits Check Id
-          type: string
-        date_verified:
-          default: null
-          title: Date Verified
-          format: date-time
-          type:
-          - string
-          - 'null'
-      required:
-      - status
-      - benefits_check_id
-      title: V1BenefitsInformation
-      type: object
-      x-folder: public_api
-    TooManyRequestsError:
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+    PatientPlanEligibilityStatus:
+      type: string
+      enum:
+      - ACTIVE
+      - INACTIVE
+      - NO_CHECK
+      x-folder: patient
+    ObjectNotFoundError:
       type: object
       required:
       - message
@@ -373,13 +374,12 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    EligibilityCheckCompleteStatus:
+    PublicApiErrorType:
       type: string
       enum:
-      - ELIGIBLE
-      - INELIGIBLE
-      - WITHDRAWN
-      x-folder: eligibility_check
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

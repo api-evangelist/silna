@@ -111,36 +111,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    KeysetPaginatedResponse__V1Provider:
-      properties:
-        has_more:
-          title: Has More
-          type: boolean
-        records:
-          items:
-            $ref: '#/components/schemas/V1Provider'
-          title: Records
-          type: array
-        first_id:
-          default: null
-          title: First Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        last_id:
-          default: null
-          title: Last Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-      required:
-      - has_more
-      - records
-      title: KeysetPaginatedResponse[V1Provider]
-      type: object
-      x-folder: null
     V1Provider:
       properties:
         id:
@@ -175,12 +145,6 @@ components:
       title: V1Provider
       type: object
       x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
     AuthenticationError:
       type: object
       required:
@@ -200,6 +164,42 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    KeysetPaginatedResponse__V1Provider:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1Provider'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        last_id:
+          default: null
+          title: Last Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1Provider]
+      type: object
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

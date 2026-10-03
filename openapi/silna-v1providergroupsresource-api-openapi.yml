@@ -147,7 +147,37 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ObjectNotFoundError:
+    KeysetPaginatedResponse__V1ProviderGroup:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1ProviderGroup'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        last_id:
+          default: null
+          title: Last Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1ProviderGroup]
+      type: object
+      x-folder: null
+    AuthenticationError:
       type: object
       required:
       - message
@@ -155,6 +185,8 @@ components:
         message:
           type: string
           description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
     V1ProviderGroup:
       properties:
@@ -191,53 +223,6 @@ components:
       title: V1ProviderGroup
       type: object
       x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    KeysetPaginatedResponse__V1ProviderGroup:
-      properties:
-        has_more:
-          title: Has More
-          type: boolean
-        records:
-          items:
-            $ref: '#/components/schemas/V1ProviderGroup'
-          title: Records
-          type: array
-        first_id:
-          default: null
-          title: First Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        last_id:
-          default: null
-          title: Last Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-      required:
-      - has_more
-      - records
-      title: KeysetPaginatedResponse[V1ProviderGroup]
-      type: object
-      x-folder: null
     TooManyRequestsError:
       type: object
       required:
@@ -246,6 +231,21 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

@@ -248,6 +248,70 @@ paths:
         description: ''
 components:
   schemas:
+    V1ContractPlan:
+      properties:
+        id:
+          description: The plan's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: Plan name
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: V1ContractPlan
+      type: object
+      x-folder: public_api
+    V1ContractServiceLocation:
+      properties:
+        id:
+          description: The service location's Silna identifier
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: Service location name
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: V1ContractServiceLocation
+      type: object
+      x-folder: public_api
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
     V1Contract:
       properties:
         id:
@@ -343,13 +407,7 @@ components:
       title: V1Contract
       type: object
       x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    ObjectNotFoundError:
+    TooManyRequestsError:
       type: object
       required:
       - message
@@ -358,16 +416,6 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
     V1ContractUpdateBody:
       properties:
         clinician_id:
@@ -436,35 +484,7 @@ components:
       title: V1ContractUpdateBody
       type: object
       x-folder: public_api
-    V1ContractServiceLocation:
-      properties:
-        id:
-          description: The service location's Silna identifier
-          format: uuid
-          title: Id
-          type: string
-        name:
-          description: Service location name
-          title: Name
-          type: string
-      required:
-      - id
-      - name
-      title: V1ContractServiceLocation
-      type: object
-      x-folder: public_api
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ValidationError:
+    ObjectNotFoundError:
       type: object
       required:
       - message
@@ -473,31 +493,11 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    V1ContractPlan:
-      properties:
-        id:
-          description: The plan's Silna identifier
-          format: uuid
-          title: Id
-          type: string
-        name:
-          description: Plan name
-          title: Name
-          type: string
-      required:
-      - id
-      - name
-      title: V1ContractPlan
-      type: object
-      x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

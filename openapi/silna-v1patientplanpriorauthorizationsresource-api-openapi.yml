@@ -139,6 +139,32 @@ paths:
       x-folder: public_api
 components:
   schemas:
+    V1PriorAuthorizationPreview:
+      properties:
+        id:
+          description: ID of the prior authorization
+          format: uuid
+          title: Id
+          type: string
+        created_at:
+          description: Date the prior authorization was created
+          format: date-time
+          title: Created At
+          type: string
+        specialty:
+          $ref: '#/components/schemas/PublicSpecialty'
+          description: Specialty for the prior authorization
+        status:
+          $ref: '#/components/schemas/PublicPriorAuthorizationStatus'
+          description: Status of the prior authorization
+      required:
+      - id
+      - created_at
+      - specialty
+      - status
+      title: V1PriorAuthorizationPreview
+      type: object
+      x-folder: public_api
     PublicSpecialty:
       type: string
       enum:
@@ -178,77 +204,6 @@ components:
       - PROFESSIONAL_OFFICE_VISIT
       - PSYCHIATRY
       x-folder: specialty
-    V1PriorAuthorizationPreview:
-      properties:
-        id:
-          description: ID of the prior authorization
-          format: uuid
-          title: Id
-          type: string
-        created_at:
-          description: Date the prior authorization was created
-          format: date-time
-          title: Created At
-          type: string
-        specialty:
-          $ref: '#/components/schemas/PublicSpecialty'
-          description: Specialty for the prior authorization
-        status:
-          $ref: '#/components/schemas/PublicPriorAuthorizationStatus'
-          description: Status of the prior authorization
-      required:
-      - id
-      - created_at
-      - specialty
-      - status
-      title: V1PriorAuthorizationPreview
-      type: object
-      x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    KeysetPaginatedResponse__V1PriorAuthorizationPreview:
-      properties:
-        has_more:
-          title: Has More
-          type: boolean
-        records:
-          items:
-            $ref: '#/components/schemas/V1PriorAuthorizationPreview'
-          title: Records
-          type: array
-        first_id:
-          default: null
-          title: First Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        last_id:
-          default: null
-          title: Last Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-      required:
-      - has_more
-      - records
-      title: KeysetPaginatedResponse[V1PriorAuthorizationPreview]
-      type: object
-      x-folder: null
     PublicPriorAuthorizationStatus:
       type: string
       enum:
@@ -284,6 +239,36 @@ components:
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
+    KeysetPaginatedResponse__V1PriorAuthorizationPreview:
+      properties:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1PriorAuthorizationPreview'
+          title: Records
+          type: array
+        first_id:
+          default: null
+          title: First Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        last_id:
+          default: null
+          title: Last Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1PriorAuthorizationPreview]
+      type: object
+      x-folder: null
     TooManyRequestsError:
       type: object
       required:
@@ -292,6 +277,21 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

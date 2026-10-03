@@ -111,41 +111,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    V1BenefitsCheckTemplateResponse:
-      description: Benefits Check Template Response Schema
-      properties:
-        id:
-          description: Benefits Check Template ID
-          format: uuid
-          title: Id
-          type: string
-        name:
-          description: Benefits Check Template Name
-          title: Name
-          type: string
-      required:
-      - id
-      - name
-      title: V1BenefitsCheckTemplateResponse
-      type: object
-      x-folder: public_api
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
     KeysetPaginatedResponse__V1BenefitsCheckTemplateResponse:
       properties:
         has_more:
@@ -176,6 +141,35 @@ components:
       title: KeysetPaginatedResponse[V1BenefitsCheckTemplateResponse]
       type: object
       x-folder: null
+    V1BenefitsCheckTemplateResponse:
+      description: Benefits Check Template Response Schema
+      properties:
+        id:
+          description: Benefits Check Template ID
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: Benefits Check Template Name
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      title: V1BenefitsCheckTemplateResponse
+      type: object
+      x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     TooManyRequestsError:
       type: object
       required:
@@ -184,6 +178,12 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

@@ -94,34 +94,11 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    PublicApiErrorType:
+    RuleExecutionResult:
       type: string
       enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    SubRuleType:
-      type: string
-      enum:
-      - VALID_CLINICIAN_SIGNATURE
-      - VALID_CLINICIAN_CREDENTIAL
-      - VALID_CLINICIAN_TAXONOMY
-      - DOCUMENT_DATE
-      - DOCUMENT_EXPIRED
-      - EVALUATION_DATE
-      - AUTH_PERIOD_WITHIN_CERT_PERIOD
-      - DOCUMENT_EXPIRATION_AFTER_AUTH_PERIOD
-      - DIAGNOSIS_CODES
-      - DIAGNOSIS_DATE
-      - REFERRED_SPECIALTIES
-      - TREATMENT_CODES_PRESENCE
-      - PATIENT_AGE
-      - CLINICAL_HISTORY
-      - PATIENT_VERIFICATION
-      - DIAGNOSTIC_TOOLS
-      - DIAGNOSTIC_CRITERIA
-      - SYMPTOM_SEVERITY
-      - DOCUMENT_TYPE_VERIFICATION
+      - PASSED
+      - FAILED
       x-folder: document_intelligence
     V1DocumentValidationRuleResult:
       description: 'Unified schema for V1 rule evaluation results.
@@ -155,6 +132,29 @@ components:
       title: V1DocumentValidationRuleResult
       type: object
       x-folder: public_api
+    SubRuleType:
+      type: string
+      enum:
+      - VALID_CLINICIAN_SIGNATURE
+      - VALID_CLINICIAN_CREDENTIAL
+      - VALID_CLINICIAN_TAXONOMY
+      - DOCUMENT_DATE
+      - DOCUMENT_EXPIRED
+      - EVALUATION_DATE
+      - AUTH_PERIOD_WITHIN_CERT_PERIOD
+      - DOCUMENT_EXPIRATION_AFTER_AUTH_PERIOD
+      - DIAGNOSIS_CODES
+      - DIAGNOSIS_DATE
+      - REFERRED_SPECIALTIES
+      - TREATMENT_CODES_PRESENCE
+      - PATIENT_AGE
+      - CLINICAL_HISTORY
+      - PATIENT_VERIFICATION
+      - DIAGNOSTIC_TOOLS
+      - DIAGNOSTIC_CRITERIA
+      - SYMPTOM_SEVERITY
+      - DOCUMENT_TYPE_VERIFICATION
+      x-folder: document_intelligence
     AuthenticationError:
       type: object
       required:
@@ -165,21 +165,6 @@ components:
           description: Human readable error message
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    RuleExecutionResult:
-      type: string
-      enum:
-      - PASSED
-      - FAILED
-      x-folder: document_intelligence
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
       x-folder: null
     ConditionExpressionOperator:
       type: string
@@ -226,6 +211,21 @@ components:
       title: V1DetailedDocumentValidation
       type: object
       x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

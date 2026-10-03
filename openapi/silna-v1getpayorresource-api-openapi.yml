@@ -117,44 +117,6 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    V1AlternateIdentifier:
-      description: Alternate Identifiers Response
-      properties:
-        identifier:
-          description: The alternate identifier
-          title: Identifier
-          type: string
-          example: AETNA_INSC
-        standard:
-          $ref: '#/components/schemas/PayorStandard'
-          description: The standard of the alternate identifier
-          example: AVAILITY
-        payor_types:
-          description: The types of insurances that this alternate identifier is associated with
-          items:
-            $ref: '#/components/schemas/InsuranceType'
-          title: Payor Types
-          type: array
-          example:
-          - COMMERCIAL
-          - MEDICARE
-      required:
-      - identifier
-      - standard
-      - payor_types
-      title: V1AlternateIdentifier
-      type: object
-      x-folder: public_api
-    PayorStandard:
-      type: string
-      enum:
-      - AVAILITY
-      - WAYSTAR
-      - CHANGE_HEALTHCARE
-      - OFFICE_ALLY
-      - CLAIM_MD
-      - STEDI
-      x-folder: payor_entity
     V1Payor:
       description: Payors Response
       properties:
@@ -191,31 +153,34 @@ components:
       title: V1Payor
       type: object
       x-folder: public_api
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
+    V1AlternateIdentifier:
+      description: Alternate Identifiers Response
       properties:
-        message:
+        identifier:
+          description: The alternate identifier
+          title: Identifier
           type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
+          example: AETNA_INSC
+        standard:
+          $ref: '#/components/schemas/PayorStandard'
+          description: The standard of the alternate identifier
+          example: AVAILITY
+        payor_types:
+          description: The types of insurances that this alternate identifier is associated with
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Payor Types
+          type: array
+          example:
+          - COMMERCIAL
+          - MEDICARE
+      required:
+      - identifier
+      - standard
+      - payor_types
+      title: V1AlternateIdentifier
+      type: object
+      x-folder: public_api
     AuthenticationError:
       type: object
       required:
@@ -227,6 +192,16 @@ components:
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
+    InsuranceType:
+      type: string
+      enum:
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
     TooManyRequestsError:
       type: object
       required:
@@ -235,6 +210,31 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PayorStandard:
+      type: string
+      enum:
+      - AVAILITY
+      - WAYSTAR
+      - CHANGE_HEALTHCARE
+      - OFFICE_ALLY
+      - CLAIM_MD
+      - STEDI
+      x-folder: payor_entity
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

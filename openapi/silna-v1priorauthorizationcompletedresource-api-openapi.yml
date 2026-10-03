@@ -142,6 +142,108 @@ paths:
         description: ''
 components:
   schemas:
+    PriorAuthorizationType:
+      type: string
+      enum:
+      - ASSESSMENT_AUTHORIZATION
+      - INITIAL_AUTHORIZATION
+      - CONCURRENT_AUTHORIZATION
+      - AMENDMENT
+      x-folder: prior_authorization
+    PublicSpecialty:
+      type: string
+      enum:
+      - PHYSICAL_THERAPY
+      - ABA_THERAPY
+      - SPEECH_THERAPY
+      - OCCUPATIONAL_THERAPY
+      - PSYCHOLOGICAL_TESTING
+      - HOME_HEALTH_CARE
+      - HOSPICE
+      - CARDIAC_REHABILITATION
+      - INTENSIVE_CARDIAC_REHABILITATION
+      - MENTAL_HEALTH
+      - PRINCIPAL_ILLNESS_NAVIGATION
+      - PRINCIPAL_CARE_MANAGEMENT
+      - ADVANCED_PRIMARY_CARE_MODELS
+      - PREVENTATIVE_HEALTH
+      - PARTIAL_HOSPITALIZATION_PROGRAM
+      - INTENSIVE_OUTPATIENT_PROGRAM
+      - INTERVENTIONAL_RADIOLOGY
+      - VASCULAR_SURGERY
+      - INTERVENTIONAL_CARDIOLOGY
+      - ORTHOPEDICS
+      - CHIROPRACTIC
+      - GYNECOLOGY
+      - LONG_TERM_CARE
+      - NUTRITIONAL_COUNSELING
+      - PHYSICAL_MEDICINE
+      - PULMONARY_REHABILITATION
+      - INJECTABLE_SPECIALTY_MEDICATIONS
+      - ALLERGY_TESTING
+      - SKILLED_NURSING
+      - RADIOLOGY
+      - OTOLARYNGOLOGY
+      - DURABLE_MEDICAL_EQUIPMENT
+      - DERMATOLOGY
+      - PROFESSIONAL_OFFICE_VISIT
+      - PSYCHIATRY
+      x-folder: specialty
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1RecordApprovedTreatmentCodeCreate:
+      properties:
+        treatment_codes:
+          description: List of treatment codes
+          items:
+            $ref: '#/components/schemas/V1TreatmentCodeCreate'
+          title: Treatment Codes
+          type: array
+        units:
+          description: Approved units (decimal string format)
+          title: Units
+          type: string
+          example: '2.5'
+        unit_type:
+          $ref: '#/components/schemas/PriorAuthorizationUnit'
+          description: Type of unit
+        time_frame:
+          $ref: '#/components/schemas/UnitTimeFrame'
+          default: TOTAL
+          description: Time frame for the units
+        reference_number:
+          default: null
+          description: Reference number for this treatment code group
+          title: Reference Number
+          type:
+          - string
+          - 'null'
+      required:
+      - treatment_codes
+      - units
+      - unit_type
+      title: V1RecordApprovedTreatmentCodeCreate
+      type: object
+      x-folder: public_api
+    V1CompletedAuthorizationCreateResponse:
+      properties:
+        id:
+          description: ID of the prior authorization
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1CompletedAuthorizationCreateResponse
+      type: object
+      x-folder: public_api
     V1CompletedAuthorizationCreate:
       properties:
         reference_number:
@@ -195,6 +297,70 @@ components:
       title: V1CompletedAuthorizationCreate
       type: object
       x-folder: public_api
+    UnitTimeFrame:
+      type: string
+      enum:
+      - DAILY
+      - WEEKLY
+      - MONTHLY
+      - AUTHORIZATION_PERIOD
+      - TOTAL
+      - SIX_MONTHS
+      - YEARLY
+      x-folder: prior_authorization
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    V1TreatmentCodeCreate:
+      properties:
+        code:
+          description: Treatment code (e.g. a CPT code)
+          title: Code
+          type: string
+        treatment_code_modifiers:
+          description: List of treatment code modifiers
+          items:
+            $ref: '#/components/schemas/V1TreatmentCodeModifiersCreate'
+          title: Treatment Code Modifiers
+          type: array
+      required:
+      - code
+      - treatment_code_modifiers
+      title: V1TreatmentCodeCreate
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
     V1TreatmentCodeModifiersCreate:
       properties:
         code:
@@ -214,172 +380,6 @@ components:
       - HOURS
       - DAYS
       x-folder: prior_authorization
-    V1TreatmentCodeCreate:
-      properties:
-        code:
-          description: Treatment code (e.g. a CPT code)
-          title: Code
-          type: string
-        treatment_code_modifiers:
-          description: List of treatment code modifiers
-          items:
-            $ref: '#/components/schemas/V1TreatmentCodeModifiersCreate'
-          title: Treatment Code Modifiers
-          type: array
-      required:
-      - code
-      - treatment_code_modifiers
-      title: V1TreatmentCodeCreate
-      type: object
-      x-folder: public_api
-    UnitTimeFrame:
-      type: string
-      enum:
-      - DAILY
-      - WEEKLY
-      - MONTHLY
-      - AUTHORIZATION_PERIOD
-      - TOTAL
-      - SIX_MONTHS
-      - YEARLY
-      x-folder: prior_authorization
-    V1RecordApprovedTreatmentCodeCreate:
-      properties:
-        treatment_codes:
-          description: List of treatment codes
-          items:
-            $ref: '#/components/schemas/V1TreatmentCodeCreate'
-          title: Treatment Codes
-          type: array
-        units:
-          description: Approved units (decimal string format)
-          title: Units
-          type: string
-          example: '2.5'
-        unit_type:
-          $ref: '#/components/schemas/PriorAuthorizationUnit'
-          description: Type of unit
-        time_frame:
-          $ref: '#/components/schemas/UnitTimeFrame'
-          default: TOTAL
-          description: Time frame for the units
-        reference_number:
-          default: null
-          description: Reference number for this treatment code group
-          title: Reference Number
-          type:
-          - string
-          - 'null'
-      required:
-      - treatment_codes
-      - units
-      - unit_type
-      title: V1RecordApprovedTreatmentCodeCreate
-      type: object
-      x-folder: public_api
-    PriorAuthorizationType:
-      type: string
-      enum:
-      - ASSESSMENT_AUTHORIZATION
-      - INITIAL_AUTHORIZATION
-      - CONCURRENT_AUTHORIZATION
-      - AMENDMENT
-      x-folder: prior_authorization
-    PublicSpecialty:
-      type: string
-      enum:
-      - PHYSICAL_THERAPY
-      - ABA_THERAPY
-      - SPEECH_THERAPY
-      - OCCUPATIONAL_THERAPY
-      - PSYCHOLOGICAL_TESTING
-      - HOME_HEALTH_CARE
-      - HOSPICE
-      - CARDIAC_REHABILITATION
-      - INTENSIVE_CARDIAC_REHABILITATION
-      - MENTAL_HEALTH
-      - PRINCIPAL_ILLNESS_NAVIGATION
-      - PRINCIPAL_CARE_MANAGEMENT
-      - ADVANCED_PRIMARY_CARE_MODELS
-      - PREVENTATIVE_HEALTH
-      - PARTIAL_HOSPITALIZATION_PROGRAM
-      - INTENSIVE_OUTPATIENT_PROGRAM
-      - INTERVENTIONAL_RADIOLOGY
-      - VASCULAR_SURGERY
-      - INTERVENTIONAL_CARDIOLOGY
-      - ORTHOPEDICS
-      - CHIROPRACTIC
-      - GYNECOLOGY
-      - LONG_TERM_CARE
-      - NUTRITIONAL_COUNSELING
-      - PHYSICAL_MEDICINE
-      - PULMONARY_REHABILITATION
-      - INJECTABLE_SPECIALTY_MEDICATIONS
-      - ALLERGY_TESTING
-      - SKILLED_NURSING
-      - RADIOLOGY
-      - OTOLARYNGOLOGY
-      - DURABLE_MEDICAL_EQUIPMENT
-      - DERMATOLOGY
-      - PROFESSIONAL_OFFICE_VISIT
-      - PSYCHIATRY
-      x-folder: specialty
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    V1CompletedAuthorizationCreateResponse:
-      properties:
-        id:
-          description: ID of the prior authorization
-          format: uuid
-          title: Id
-          type: string
-      required:
-      - id
-      title: V1CompletedAuthorizationCreateResponse
-      type: object
-      x-folder: public_api
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http

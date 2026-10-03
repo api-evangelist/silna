@@ -110,12 +110,12 @@ components:
       title: V1DocumentValidationBatch
       type: object
       x-folder: public_api
-    PublicApiErrorType:
+    RuleExecutionResult:
       type: string
       enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
+      - PASSED
+      - FAILED
+      x-folder: document_intelligence
     AuthenticationError:
       type: object
       required:
@@ -127,12 +127,6 @@ components:
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
-    RuleExecutionResult:
-      type: string
-      enum:
-      - PASSED
-      - FAILED
-      x-folder: document_intelligence
     TooManyRequestsError:
       type: object
       required:
@@ -141,6 +135,12 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:
