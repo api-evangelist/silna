@@ -248,6 +248,41 @@ paths:
         description: "\n    Patient Diagnosis Create Schema\n    "
 components:
   schemas:
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     V1PatientDiagnosis:
       description: Patient Diagnosis Response Schema
       properties:
@@ -266,24 +301,6 @@ components:
       - patient_id
       - diagnosis_code
       title: V1PatientDiagnosis
-      type: object
-      x-folder: public_api
-    V1PatientDiagnosisCreate:
-      description: Patient Diagnosis Create Schema
-      properties:
-        patient_id:
-          format: uuid
-          title: Patient Id
-          type: string
-        diagnosis_code:
-          description: An ICD_10 Diagnosis Code
-          title: Diagnosis Code
-          type: string
-          example: F84.0
-      required:
-      - patient_id
-      - diagnosis_code
-      title: V1PatientDiagnosisCreate
       type: object
       x-folder: public_api
     V1DiagnosisCode:
@@ -310,26 +327,24 @@ components:
       title: V1DiagnosisCode
       type: object
       x-folder: public_api
-    ValidationError:
-      type: object
-      required:
-      - message
+    V1PatientDiagnosisCreate:
+      description: Patient Diagnosis Create Schema
       properties:
-        message:
+        patient_id:
+          format: uuid
+          title: Patient Id
           type: string
-          description: Human readable error message
-      x-folder: null
-    AuthenticationError:
-      type: object
+        diagnosis_code:
+          description: An ICD_10 Diagnosis Code
+          title: Diagnosis Code
+          type: string
+          example: F84.0
       required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
+      - patient_id
+      - diagnosis_code
+      title: V1PatientDiagnosisCreate
+      type: object
+      x-folder: public_api
     V1PatientDiagnosisCreateResponse:
       description: Patient Diagnosis Create Response Schema
       properties:
@@ -342,7 +357,7 @@ components:
       title: V1PatientDiagnosisCreateResponse
       type: object
       x-folder: public_api
-    TooManyRequestsError:
+    ValidationError:
       type: object
       required:
       - message
@@ -350,21 +365,6 @@ components:
         message:
           type: string
           description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
       x-folder: null
   securitySchemes:
     bearerAuth:

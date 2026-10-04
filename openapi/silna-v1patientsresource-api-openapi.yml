@@ -370,24 +370,221 @@ paths:
         description: ''
 components:
   schemas:
-    PatientSex:
+    PublicApiErrorType:
       type: string
       enum:
-      - MALE
-      - FEMALE
-      x-folder: patient
-    V1PatientSpecialtyDetail:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    KeysetPaginatedResponse__V1Patient:
       properties:
-        specialty:
-          $ref: '#/components/schemas/PublicSpecialty'
-        therapy_type:
+        has_more:
+          title: Has More
+          type: boolean
+        records:
+          items:
+            $ref: '#/components/schemas/V1Patient'
+          title: Records
+          type: array
+        first_id:
           default: null
-          $ref: '#/components/schemas/TherapyType'
+          title: First Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        last_id:
+          default: null
+          title: Last Id
+          format: uuid
+          type:
+          - string
+          - 'null'
       required:
-      - specialty
-      title: V1PatientSpecialtyDetail
+      - has_more
+      - records
+      title: KeysetPaginatedResponse[V1Patient]
+      type: object
+      x-folder: null
+    V1PatientPutResponse:
+      properties:
+        patient_id:
+          format: uuid
+          title: Patient Id
+          type: string
+      required:
+      - patient_id
+      title: V1PatientPutResponse
       type: object
       x-folder: public_api
+    PatientStatus:
+      type: string
+      enum:
+      - INTAKE
+      - ACTIVE
+      - DISCHARGED
+      - ON_HOLD
+      x-folder: patient
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PatientPut:
+      properties:
+        first_name:
+          description: Patient's first name
+          title: First Name
+          type: string
+        last_name:
+          description: Patient's last name
+          title: Last Name
+          type: string
+        date_of_birth:
+          description: Patient's date of birth
+          format: date
+          title: Date Of Birth
+          type: string
+        source_id:
+          description: Patient's EHR ID (or other unique identifier) that you have in your system
+          title: Source Id
+          type: string
+        address_line_1:
+          default: null
+          description: Patient's street address
+          title: Address Line 1
+          maxLength: 255
+          type:
+          - string
+          - 'null'
+        address_line_2:
+          default: null
+          description: Patient's apartment, suite, unit, etc.
+          title: Address Line 2
+          maxLength: 255
+          type:
+          - string
+          - 'null'
+        city:
+          default: null
+          description: Patient's city
+          title: City
+          maxLength: 255
+          type:
+          - string
+          - 'null'
+        state:
+          default: null
+          description: Patient's state
+          title: State
+          maxLength: 255
+          type:
+          - string
+          - 'null'
+        zip_code:
+          default: null
+          description: Patient's zip code. Empty strings are not allowed
+          title: Zip Code
+          type:
+          - string
+          - 'null'
+        sex:
+          default: null
+          description: Patient's sex
+          $ref: '#/components/schemas/PatientSex'
+        patient_specialties:
+          description: Patient's specialties. A patient can have multiple
+          items:
+            $ref: '#/components/schemas/PublicSpecialty'
+          title: Patient Specialties
+          type: array
+        status:
+          $ref: '#/components/schemas/PatientStatus'
+          description: Patient's status
+        provider_service_location_id:
+          description: Provider Service Location ID (where the patient receives service)
+          format: uuid
+          title: Provider Service Location Id
+          type: string
+        provider_id:
+          format: uuid
+          title: Provider Id
+          type: string
+      required:
+      - first_name
+      - last_name
+      - date_of_birth
+      - source_id
+      - patient_specialties
+      - status
+      - provider_service_location_id
+      - provider_id
+      title: V1PatientPut
+      type: object
+      x-folder: public_api
+    PublicSpecialty:
+      type: string
+      enum:
+      - PHYSICAL_THERAPY
+      - ABA_THERAPY
+      - SPEECH_THERAPY
+      - OCCUPATIONAL_THERAPY
+      - PSYCHOLOGICAL_TESTING
+      - HOME_HEALTH_CARE
+      - HOSPICE
+      - CARDIAC_REHABILITATION
+      - INTENSIVE_CARDIAC_REHABILITATION
+      - MENTAL_HEALTH
+      - PRINCIPAL_ILLNESS_NAVIGATION
+      - PRINCIPAL_CARE_MANAGEMENT
+      - ADVANCED_PRIMARY_CARE_MODELS
+      - PREVENTATIVE_HEALTH
+      - PARTIAL_HOSPITALIZATION_PROGRAM
+      - INTENSIVE_OUTPATIENT_PROGRAM
+      - INTERVENTIONAL_RADIOLOGY
+      - VASCULAR_SURGERY
+      - INTERVENTIONAL_CARDIOLOGY
+      - ORTHOPEDICS
+      - CHIROPRACTIC
+      - GYNECOLOGY
+      - LONG_TERM_CARE
+      - NUTRITIONAL_COUNSELING
+      - PHYSICAL_MEDICINE
+      - PULMONARY_REHABILITATION
+      - INJECTABLE_SPECIALTY_MEDICATIONS
+      - ALLERGY_TESTING
+      - SKILLED_NURSING
+      - RADIOLOGY
+      - OTOLARYNGOLOGY
+      - DURABLE_MEDICAL_EQUIPMENT
+      - DERMATOLOGY
+      - PROFESSIONAL_OFFICE_VISIT
+      - PSYCHIATRY
+      x-folder: specialty
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     V1Patient:
       description: Patient Response Schema
       properties:
@@ -520,239 +717,6 @@ components:
       title: V1Patient
       type: object
       x-folder: public_api
-    PublicSpecialty:
-      type: string
-      enum:
-      - PHYSICAL_THERAPY
-      - ABA_THERAPY
-      - SPEECH_THERAPY
-      - OCCUPATIONAL_THERAPY
-      - PSYCHOLOGICAL_TESTING
-      - HOME_HEALTH_CARE
-      - HOSPICE
-      - CARDIAC_REHABILITATION
-      - INTENSIVE_CARDIAC_REHABILITATION
-      - MENTAL_HEALTH
-      - PRINCIPAL_ILLNESS_NAVIGATION
-      - PRINCIPAL_CARE_MANAGEMENT
-      - ADVANCED_PRIMARY_CARE_MODELS
-      - PREVENTATIVE_HEALTH
-      - PARTIAL_HOSPITALIZATION_PROGRAM
-      - INTENSIVE_OUTPATIENT_PROGRAM
-      - INTERVENTIONAL_RADIOLOGY
-      - VASCULAR_SURGERY
-      - INTERVENTIONAL_CARDIOLOGY
-      - ORTHOPEDICS
-      - CHIROPRACTIC
-      - GYNECOLOGY
-      - LONG_TERM_CARE
-      - NUTRITIONAL_COUNSELING
-      - PHYSICAL_MEDICINE
-      - PULMONARY_REHABILITATION
-      - INJECTABLE_SPECIALTY_MEDICATIONS
-      - ALLERGY_TESTING
-      - SKILLED_NURSING
-      - RADIOLOGY
-      - OTOLARYNGOLOGY
-      - DURABLE_MEDICAL_EQUIPMENT
-      - DERMATOLOGY
-      - PROFESSIONAL_OFFICE_VISIT
-      - PSYCHIATRY
-      x-folder: specialty
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    V1PatientPutResponse:
-      properties:
-        patient_id:
-          format: uuid
-          title: Patient Id
-          type: string
-      required:
-      - patient_id
-      title: V1PatientPutResponse
-      type: object
-      x-folder: public_api
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    KeysetPaginatedResponse__V1Patient:
-      properties:
-        has_more:
-          title: Has More
-          type: boolean
-        records:
-          items:
-            $ref: '#/components/schemas/V1Patient'
-          title: Records
-          type: array
-        first_id:
-          default: null
-          title: First Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        last_id:
-          default: null
-          title: Last Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-      required:
-      - has_more
-      - records
-      title: KeysetPaginatedResponse[V1Patient]
-      type: object
-      x-folder: null
-    PatientStatus:
-      type: string
-      enum:
-      - INTAKE
-      - ACTIVE
-      - DISCHARGED
-      - ON_HOLD
-      x-folder: patient
-    TherapyType:
-      type: string
-      enum:
-      - REHABILITATIVE
-      - HABILITATIVE
-      x-folder: patient
-    V1PatientCreateResponse:
-      description: Patient Create Response Schema
-      properties:
-        patient_id:
-          format: uuid
-          title: Patient Id
-          type: string
-      required:
-      - patient_id
-      title: V1PatientCreateResponse
-      type: object
-      x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    V1PatientPut:
-      properties:
-        first_name:
-          description: Patient's first name
-          title: First Name
-          type: string
-        last_name:
-          description: Patient's last name
-          title: Last Name
-          type: string
-        date_of_birth:
-          description: Patient's date of birth
-          format: date
-          title: Date Of Birth
-          type: string
-        source_id:
-          description: Patient's EHR ID (or other unique identifier) that you have in your system
-          title: Source Id
-          type: string
-        address_line_1:
-          default: null
-          description: Patient's street address
-          title: Address Line 1
-          maxLength: 255
-          type:
-          - string
-          - 'null'
-        address_line_2:
-          default: null
-          description: Patient's apartment, suite, unit, etc.
-          title: Address Line 2
-          maxLength: 255
-          type:
-          - string
-          - 'null'
-        city:
-          default: null
-          description: Patient's city
-          title: City
-          maxLength: 255
-          type:
-          - string
-          - 'null'
-        state:
-          default: null
-          description: Patient's state
-          title: State
-          maxLength: 255
-          type:
-          - string
-          - 'null'
-        zip_code:
-          default: null
-          description: Patient's zip code. Empty strings are not allowed
-          title: Zip Code
-          type:
-          - string
-          - 'null'
-        sex:
-          default: null
-          description: Patient's sex
-          $ref: '#/components/schemas/PatientSex'
-        patient_specialties:
-          description: Patient's specialties. A patient can have multiple
-          items:
-            $ref: '#/components/schemas/PublicSpecialty'
-          title: Patient Specialties
-          type: array
-        status:
-          $ref: '#/components/schemas/PatientStatus'
-          description: Patient's status
-        provider_service_location_id:
-          description: Provider Service Location ID (where the patient receives service)
-          format: uuid
-          title: Provider Service Location Id
-          type: string
-        provider_id:
-          format: uuid
-          title: Provider Id
-          type: string
-      required:
-      - first_name
-      - last_name
-      - date_of_birth
-      - source_id
-      - patient_specialties
-      - status
-      - provider_service_location_id
-      - provider_id
-      title: V1PatientPut
-      type: object
-      x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
     V1PatientCreate:
       description: Patient Create Request Schema
       properties:
@@ -848,6 +812,42 @@ components:
       title: V1PatientCreate
       type: object
       x-folder: public_api
+    V1PatientCreateResponse:
+      description: Patient Create Response Schema
+      properties:
+        patient_id:
+          format: uuid
+          title: Patient Id
+          type: string
+      required:
+      - patient_id
+      title: V1PatientCreateResponse
+      type: object
+      x-folder: public_api
+    V1PatientSpecialtyDetail:
+      properties:
+        specialty:
+          $ref: '#/components/schemas/PublicSpecialty'
+        therapy_type:
+          default: null
+          $ref: '#/components/schemas/TherapyType'
+      required:
+      - specialty
+      title: V1PatientSpecialtyDetail
+      type: object
+      x-folder: public_api
+    TherapyType:
+      type: string
+      enum:
+      - REHABILITATIVE
+      - HABILITATIVE
+      x-folder: patient
+    PatientSex:
+      type: string
+      enum:
+      - MALE
+      - FEMALE
+      x-folder: patient
   securitySchemes:
     bearerAuth:
       type: http

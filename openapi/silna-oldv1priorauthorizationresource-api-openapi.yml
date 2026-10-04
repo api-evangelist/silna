@@ -117,102 +117,31 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    V1TreatmentCodeModifier:
-      properties:
-        code:
-          description: Modifier code
-          title: Code
-          type: string
-        description:
-          description: Description of the modifier
-          title: Description
-          type: string
-      required:
-      - code
-      - description
-      title: V1TreatmentCodeModifier
-      type: object
-      x-folder: public_api
-    V1DocumentValidationBatch:
-      properties:
-        id:
-          description: Document validation batch ID
-          format: uuid
-          title: Id
-          type: string
-        result:
-          $ref: '#/components/schemas/RuleExecutionResult'
-          description: Aggregate result across all document validations in the batch
-      required:
-      - id
-      - result
-      title: V1DocumentValidationBatch
-      type: object
-      x-folder: public_api
-    PublicSpecialty:
+    PriorAuthorizationApprovalDocumentType:
       type: string
       enum:
-      - PHYSICAL_THERAPY
-      - ABA_THERAPY
-      - SPEECH_THERAPY
-      - OCCUPATIONAL_THERAPY
-      - PSYCHOLOGICAL_TESTING
-      - HOME_HEALTH_CARE
-      - HOSPICE
-      - CARDIAC_REHABILITATION
-      - INTENSIVE_CARDIAC_REHABILITATION
-      - MENTAL_HEALTH
-      - PRINCIPAL_ILLNESS_NAVIGATION
-      - PRINCIPAL_CARE_MANAGEMENT
-      - ADVANCED_PRIMARY_CARE_MODELS
-      - PREVENTATIVE_HEALTH
-      - PARTIAL_HOSPITALIZATION_PROGRAM
-      - INTENSIVE_OUTPATIENT_PROGRAM
-      - INTERVENTIONAL_RADIOLOGY
-      - VASCULAR_SURGERY
-      - INTERVENTIONAL_CARDIOLOGY
-      - ORTHOPEDICS
-      - CHIROPRACTIC
-      - GYNECOLOGY
-      - LONG_TERM_CARE
-      - NUTRITIONAL_COUNSELING
-      - PHYSICAL_MEDICINE
-      - PULMONARY_REHABILITATION
-      - INJECTABLE_SPECIALTY_MEDICATIONS
-      - ALLERGY_TESTING
-      - SKILLED_NURSING
-      - RADIOLOGY
-      - OTOLARYNGOLOGY
-      - DURABLE_MEDICAL_EQUIPMENT
-      - DERMATOLOGY
-      - PROFESSIONAL_OFFICE_VISIT
-      - PSYCHIATRY
-      x-folder: specialty
-    PublicPriorAuthorizationStatus:
-      type: string
-      enum:
-      - DATA_REQUESTED
-      - DATA_RECEIVED
-      - ALL_REQUIRED_DATA_RECEIVED
-      - REQUESTED
-      - TOO_EARLY_TO_SUBMIT
-      - UNNECESSARY
-      - AWAITING_PROVIDER
-      - PENDING_PROVIDER_SUBMISSION_REVIEW
-      - AWAITING_SILNA
-      - APPROVED_TO_SUBMIT
-      - SUBMITTED_TO_PAYOR
-      - PAYOR_DENIED
-      - PAYOR_DENIED_APPEALING
-      - AWAITING_RESUBMISSION
-      - RESUBMITTED_TO_PAYOR
-      - PAYOR_APPROVED
-      - DENIED_UNAPPEALED
-      - PRELIMINARY_APPROVAL
-      - PARTIALLY_APPROVED
-      - WITHDRAWN
+      - APPROVAL_LETTER
       x-folder: prior_authorization
-    AuthenticationError:
+    PriorAuthorizationUnit:
+      type: string
+      enum:
+      - VISITS
+      - CPT_UNITS
+      - HOURS
+      - DAYS
+      x-folder: prior_authorization
+    V1DocumentIntelligence:
+      properties:
+        validation_supported:
+          description: Whether document validation is supported for this document type
+          title: Validation Supported
+          type: boolean
+      required:
+      - validation_supported
+      title: V1DocumentIntelligence
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
       type: object
       required:
       - message
@@ -220,61 +149,47 @@ components:
         message:
           type: string
           description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
-    V1Clinician:
+    V1PriorAuthorizationApprovalDocument:
       properties:
-        first_name:
-          default: null
-          description: First name of the clinician
-          title: First Name
-          type:
-          - string
-          - 'null'
-        last_name:
-          default: null
-          description: Last name of the clinician
-          title: Last Name
-          type:
-          - string
-          - 'null'
-        npi:
-          default: null
-          description: NPI of the clinician
-          title: Npi
-          type:
-          - string
-          - 'null'
-      title: V1Clinician
-      type: object
-      x-folder: public_api
-    V1TreatmentCode:
-      properties:
-        code:
-          description: Treatment code (e.g. a CPT code)
-          title: Code
+        document_type:
+          $ref: '#/components/schemas/PriorAuthorizationApprovalDocumentType'
+          description: Type of document
+        file_id:
+          description: ID of the file
+          format: uuid
+          title: File Id
           type: string
-        description:
-          description: Description of the treatment code
-          title: Description
-          type: string
-        standard:
-          $ref: '#/components/schemas/TreatmentCodeStandard'
-          description: Standard for the treatment code
-        treatment_code_modifiers:
-          description: List of treatment code modifiers
-          items:
-            $ref: '#/components/schemas/V1TreatmentCodeModifier'
-          title: Treatment Code Modifiers
-          type: array
       required:
-      - code
-      - description
-      - standard
-      title: V1TreatmentCode
+      - document_type
+      - file_id
+      title: V1PriorAuthorizationApprovalDocument
       type: object
       x-folder: public_api
+    PriorAuthorizationPublicDocumentType:
+      type: string
+      enum:
+      - AUTHORIZATION_FORM
+      - PROGRESS_NOTE
+      - DIAGNOSIS_REPORT
+      - REFERRAL
+      - ASSESSMENT_EVALUATION
+      - CANCELLATION_LETTER
+      - PROOF_OF_AUTH_NOT_REQUIRED
+      - TREATMENT_PLAN_PLAN_OF_CARE
+      - SUPPLEMENTAL_DOCUMENT
+      - ATTENDANCE_LOGS
+      - INDIVIDUALIZED_EDUCATION_PROGRAM
+      - CHANGE_OF_PROVIDER_FORM
+      - TELEHEALTH_ATTESTATION
+      - ORIGINAL_AUTHORIZATION_APPROVAL_LETTER
+      - OTHER
+      - ABAS
+      - VINELAND
+      - SRS_2
+      - PDDBI
+      - PSI_SIPA
+      x-folder: prior_authorization
     V1GetDocumentRequirement:
       properties:
         document_type:
@@ -316,57 +231,93 @@ components:
       title: V1GetDocumentRequirement
       type: object
       x-folder: public_api
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
+    V1PriorAuthorizationDenialDocument:
       properties:
-        message:
+        document_type:
+          $ref: '#/components/schemas/PriorAuthorizationDenialDocumentType'
+          description: Type of document
+        file_id:
+          description: ID of the file
+          format: uuid
+          title: File Id
           type: string
-          description: Human readable error message
-      x-folder: null
-    V1GetPriorAuthorizationRequirements:
-      properties:
-        treatment_codes:
-          $ref: '#/components/schemas/V1GetTreatmentCodesRequirement'
-          description: Treatment codes requirements
-        documents:
-          $ref: '#/components/schemas/V1GetDocumentsRequirement'
-          description: Document requirements
-        clinician_npi:
-          $ref: '#/components/schemas/V1GetClinicianNpiRequirement'
-          description: Clinician NPI requirements
-        start_date:
-          $ref: '#/components/schemas/V1GetStartDateRequirement'
-          description: Start date requirements
       required:
-      - treatment_codes
-      - documents
-      - clinician_npi
-      - start_date
-      title: V1GetPriorAuthorizationRequirements
+      - document_type
+      - file_id
+      title: V1PriorAuthorizationDenialDocument
       type: object
       x-folder: public_api
-    PriorAuthorizationApprovalDocumentType:
-      type: string
-      enum:
-      - APPROVAL_LETTER
-      x-folder: prior_authorization
+    V1DocumentFile:
+      properties:
+        id:
+          description: File ID
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1DocumentFile
+      type: object
+      x-folder: public_api
+    V1GetTreatmentCodesRequirement:
+      properties:
+        required:
+          description: Whether treatment codes are required
+          title: Required
+          type: boolean
+        standards:
+          description: Standard for the treatment codes
+          items:
+            $ref: '#/components/schemas/TreatmentCodeStandard'
+          title: Standards
+          type: array
+        requirement_satisfied:
+          description: Whether the requirement is satisfied
+          title: Requirement Satisfied
+          type: boolean
+      required:
+      - required
+      - standards
+      - requirement_satisfied
+      title: V1GetTreatmentCodesRequirement
+      type: object
+      x-folder: public_api
+    V1RequestedTreatmentCode:
+      properties:
+        treatment_codes:
+          description: List of requeted treatment codes
+          items:
+            $ref: '#/components/schemas/V1TreatmentCode'
+          title: Treatment Codes
+          type: array
+        units:
+          description: Requested units (this will be in a decimal string format)
+          title: Units
+          type: string
+          example: '2.5'
+        unit_type:
+          $ref: '#/components/schemas/PriorAuthorizationUnit'
+        time_frame:
+          $ref: '#/components/schemas/UnitTimeFrame'
+          default: TOTAL
+      required:
+      - units
+      - unit_type
+      title: V1RequestedTreatmentCode
+      type: object
+      x-folder: public_api
     PriorAuthorizationDenialDocumentType:
       type: string
       enum:
       - DENIAL_LETTER
       x-folder: prior_authorization
-    UnitTimeFrame:
+    PriorAuthorizationType:
       type: string
       enum:
-      - DAILY
-      - WEEKLY
-      - MONTHLY
-      - AUTHORIZATION_PERIOD
-      - TOTAL
-      - SIX_MONTHS
-      - YEARLY
+      - ASSESSMENT_AUTHORIZATION
+      - INITIAL_AUTHORIZATION
+      - CONCURRENT_AUTHORIZATION
+      - AMENDMENT
       x-folder: prior_authorization
     V1ApprovedTreatmentCode:
       properties:
@@ -415,42 +366,224 @@ components:
       title: V1ApprovedTreatmentCode
       type: object
       x-folder: public_api
-    TreatmentCodeStandard:
+    V1PriorAuthorizationDocument:
+      properties:
+        document_type:
+          $ref: '#/components/schemas/PriorAuthorizationPublicDocumentType'
+          description: Type of document
+        file_id:
+          description: ID of the file
+          format: uuid
+          title: File Id
+          type: string
+      required:
+      - document_type
+      - file_id
+      title: V1PriorAuthorizationDocument
+      type: object
+      x-folder: public_api
+    RuleExecutionResult:
       type: string
       enum:
-      - CPT
-      - HCPCS
-      - CALIFORNIA_REGIONAL_CENTER
-      - ICD_10
-      x-folder: codes
+      - PASSED
+      - FAILED
+      x-folder: document_intelligence
+    V1DocumentValidationBatch:
+      properties:
+        id:
+          description: Document validation batch ID
+          format: uuid
+          title: Id
+          type: string
+        result:
+          $ref: '#/components/schemas/RuleExecutionResult'
+          description: Aggregate result across all document validations in the batch
+      required:
+      - id
+      - result
+      title: V1DocumentValidationBatch
+      type: object
+      x-folder: public_api
+    V1GetClinicianNpiRequirement:
+      properties:
+        required:
+          description: Whether clinician NPI is required
+          title: Required
+          type: boolean
+        requirement_satisfied:
+          description: Whether the requirement is satisfied
+          title: Requirement Satisfied
+          type: boolean
+      required:
+      - required
+      - requirement_satisfied
+      title: V1GetClinicianNpiRequirement
+      type: object
+      x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    PriorAuthorizationUploadDocumentType:
+      type: string
+      enum:
+      - AUTHORIZATION_FORM
+      - PROGRESS_NOTE
+      - DIAGNOSIS_REPORT
+      - REFERRAL
+      - ASSESSMENT_EVALUATION
+      - CANCELLATION_LETTER
+      - TREATMENT_PLAN_PLAN_OF_CARE
+      - ATTENDANCE_LOGS
+      - INDIVIDUALIZED_EDUCATION_PROGRAM
+      - CHANGE_OF_PROVIDER_FORM
+      - TELEHEALTH_ATTESTATION
+      - ORIGINAL_AUTHORIZATION_APPROVAL_LETTER
+      - ABAS
+      - VINELAND
+      - SRS_2
+      - PDDBI
+      - PSI_SIPA
+      x-folder: prior_authorization
+    V1DocumentValidation:
+      properties:
+        id:
+          description: Document validation ID
+          format: uuid
+          title: Id
+          type: string
+        result:
+          $ref: '#/components/schemas/RuleExecutionResult'
+          description: Document validation result
+      required:
+      - id
+      - result
+      title: V1DocumentValidation
+      type: object
+      x-folder: public_api
+    PublicSpecialty:
+      type: string
+      enum:
+      - PHYSICAL_THERAPY
+      - ABA_THERAPY
+      - SPEECH_THERAPY
+      - OCCUPATIONAL_THERAPY
+      - PSYCHOLOGICAL_TESTING
+      - HOME_HEALTH_CARE
+      - HOSPICE
+      - CARDIAC_REHABILITATION
+      - INTENSIVE_CARDIAC_REHABILITATION
+      - MENTAL_HEALTH
+      - PRINCIPAL_ILLNESS_NAVIGATION
+      - PRINCIPAL_CARE_MANAGEMENT
+      - ADVANCED_PRIMARY_CARE_MODELS
+      - PREVENTATIVE_HEALTH
+      - PARTIAL_HOSPITALIZATION_PROGRAM
+      - INTENSIVE_OUTPATIENT_PROGRAM
+      - INTERVENTIONAL_RADIOLOGY
+      - VASCULAR_SURGERY
+      - INTERVENTIONAL_CARDIOLOGY
+      - ORTHOPEDICS
+      - CHIROPRACTIC
+      - GYNECOLOGY
+      - LONG_TERM_CARE
+      - NUTRITIONAL_COUNSELING
+      - PHYSICAL_MEDICINE
+      - PULMONARY_REHABILITATION
+      - INJECTABLE_SPECIALTY_MEDICATIONS
+      - ALLERGY_TESTING
+      - SKILLED_NURSING
+      - RADIOLOGY
+      - OTOLARYNGOLOGY
+      - DURABLE_MEDICAL_EQUIPMENT
+      - DERMATOLOGY
+      - PROFESSIONAL_OFFICE_VISIT
+      - PSYCHIATRY
+      x-folder: specialty
     PublicApiErrorType:
       type: string
       enum:
       - AUTH_INVALID_REQUEST_HEADER
       - AUTH_INVALID_CREDENTIALS
       x-folder: null
-    V1RequestedTreatmentCode:
+    V1GetStartDateRequirement:
+      properties:
+        required:
+          description: Whether start date is required
+          title: Required
+          type: boolean
+        requirement_satisfied:
+          description: Whether the requirement is satisfied
+          title: Requirement Satisfied
+          type: boolean
+      required:
+      - required
+      - requirement_satisfied
+      title: V1GetStartDateRequirement
+      type: object
+      x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    V1TreatmentCode:
+      properties:
+        code:
+          description: Treatment code (e.g. a CPT code)
+          title: Code
+          type: string
+        description:
+          description: Description of the treatment code
+          title: Description
+          type: string
+        standard:
+          $ref: '#/components/schemas/TreatmentCodeStandard'
+          description: Standard for the treatment code
+        treatment_code_modifiers:
+          description: List of treatment code modifiers
+          items:
+            $ref: '#/components/schemas/V1TreatmentCodeModifier'
+          title: Treatment Code Modifiers
+          type: array
+      required:
+      - code
+      - description
+      - standard
+      title: V1TreatmentCode
+      type: object
+      x-folder: public_api
+    V1GetPriorAuthorizationRequirements:
       properties:
         treatment_codes:
-          description: List of requeted treatment codes
-          items:
-            $ref: '#/components/schemas/V1TreatmentCode'
-          title: Treatment Codes
-          type: array
-        units:
-          description: Requested units (this will be in a decimal string format)
-          title: Units
-          type: string
-          example: '2.5'
-        unit_type:
-          $ref: '#/components/schemas/PriorAuthorizationUnit'
-        time_frame:
-          $ref: '#/components/schemas/UnitTimeFrame'
-          default: TOTAL
+          $ref: '#/components/schemas/V1GetTreatmentCodesRequirement'
+          description: Treatment codes requirements
+        documents:
+          $ref: '#/components/schemas/V1GetDocumentsRequirement'
+          description: Document requirements
+        clinician_npi:
+          $ref: '#/components/schemas/V1GetClinicianNpiRequirement'
+          description: Clinician NPI requirements
+        start_date:
+          $ref: '#/components/schemas/V1GetStartDateRequirement'
+          description: Start date requirements
       required:
-      - units
-      - unit_type
-      title: V1RequestedTreatmentCode
+      - treatment_codes
+      - documents
+      - clinician_npi
+      - start_date
+      title: V1GetPriorAuthorizationRequirements
       type: object
       x-folder: public_api
     V1GetDocumentsRequirement:
@@ -475,148 +608,91 @@ components:
       title: V1GetDocumentsRequirement
       type: object
       x-folder: public_api
-    V1PriorAuthorizationDocument:
+    V1Clinician:
       properties:
-        document_type:
-          $ref: '#/components/schemas/PriorAuthorizationPublicDocumentType'
-          description: Type of document
-        file_id:
-          description: ID of the file
-          format: uuid
-          title: File Id
+        first_name:
+          default: null
+          description: First name of the clinician
+          title: First Name
+          type:
+          - string
+          - 'null'
+        last_name:
+          default: null
+          description: Last name of the clinician
+          title: Last Name
+          type:
+          - string
+          - 'null'
+        npi:
+          default: null
+          description: NPI of the clinician
+          title: Npi
+          type:
+          - string
+          - 'null'
+      title: V1Clinician
+      type: object
+      x-folder: public_api
+    V1TreatmentCodeModifier:
+      properties:
+        code:
+          description: Modifier code
+          title: Code
+          type: string
+        description:
+          description: Description of the modifier
+          title: Description
           type: string
       required:
-      - document_type
-      - file_id
-      title: V1PriorAuthorizationDocument
+      - code
+      - description
+      title: V1TreatmentCodeModifier
       type: object
       x-folder: public_api
-    PriorAuthorizationPublicDocumentType:
+    UnitTimeFrame:
       type: string
       enum:
-      - AUTHORIZATION_FORM
-      - PROGRESS_NOTE
-      - DIAGNOSIS_REPORT
-      - REFERRAL
-      - ASSESSMENT_EVALUATION
-      - CANCELLATION_LETTER
-      - PROOF_OF_AUTH_NOT_REQUIRED
-      - TREATMENT_PLAN_PLAN_OF_CARE
-      - SUPPLEMENTAL_DOCUMENT
-      - ATTENDANCE_LOGS
-      - INDIVIDUALIZED_EDUCATION_PROGRAM
-      - CHANGE_OF_PROVIDER_FORM
-      - TELEHEALTH_ATTESTATION
-      - ORIGINAL_AUTHORIZATION_APPROVAL_LETTER
-      - OTHER
-      - ABAS
-      - VINELAND
-      - SRS_2
-      - PDDBI
-      - PSI_SIPA
+      - DAILY
+      - WEEKLY
+      - MONTHLY
+      - AUTHORIZATION_PERIOD
+      - TOTAL
+      - SIX_MONTHS
+      - YEARLY
       x-folder: prior_authorization
-    V1DocumentFile:
-      properties:
-        id:
-          description: File ID
-          format: uuid
-          title: Id
-          type: string
-      required:
-      - id
-      title: V1DocumentFile
-      type: object
-      x-folder: public_api
-    V1GetTreatmentCodesRequirement:
-      properties:
-        required:
-          description: Whether treatment codes are required
-          title: Required
-          type: boolean
-        standards:
-          description: Standard for the treatment codes
-          items:
-            $ref: '#/components/schemas/TreatmentCodeStandard'
-          title: Standards
-          type: array
-        requirement_satisfied:
-          description: Whether the requirement is satisfied
-          title: Requirement Satisfied
-          type: boolean
-      required:
-      - required
-      - standards
-      - requirement_satisfied
-      title: V1GetTreatmentCodesRequirement
-      type: object
-      x-folder: public_api
-    V1GetClinicianNpiRequirement:
-      properties:
-        required:
-          description: Whether clinician NPI is required
-          title: Required
-          type: boolean
-        requirement_satisfied:
-          description: Whether the requirement is satisfied
-          title: Requirement Satisfied
-          type: boolean
-      required:
-      - required
-      - requirement_satisfied
-      title: V1GetClinicianNpiRequirement
-      type: object
-      x-folder: public_api
-    PriorAuthorizationUploadDocumentType:
+    TreatmentCodeStandard:
       type: string
       enum:
-      - AUTHORIZATION_FORM
-      - PROGRESS_NOTE
-      - DIAGNOSIS_REPORT
-      - REFERRAL
-      - ASSESSMENT_EVALUATION
-      - CANCELLATION_LETTER
-      - TREATMENT_PLAN_PLAN_OF_CARE
-      - ATTENDANCE_LOGS
-      - INDIVIDUALIZED_EDUCATION_PROGRAM
-      - CHANGE_OF_PROVIDER_FORM
-      - TELEHEALTH_ATTESTATION
-      - ORIGINAL_AUTHORIZATION_APPROVAL_LETTER
-      - ABAS
-      - VINELAND
-      - SRS_2
-      - PDDBI
-      - PSI_SIPA
+      - CPT
+      - HCPCS
+      - CALIFORNIA_REGIONAL_CENTER
+      - ICD_10
+      x-folder: codes
+    PublicPriorAuthorizationStatus:
+      type: string
+      enum:
+      - DATA_REQUESTED
+      - DATA_RECEIVED
+      - ALL_REQUIRED_DATA_RECEIVED
+      - REQUESTED
+      - TOO_EARLY_TO_SUBMIT
+      - UNNECESSARY
+      - AWAITING_PROVIDER
+      - PENDING_PROVIDER_SUBMISSION_REVIEW
+      - AWAITING_SILNA
+      - APPROVED_TO_SUBMIT
+      - SUBMITTED_TO_PAYOR
+      - PAYOR_DENIED
+      - PAYOR_DENIED_APPEALING
+      - AWAITING_RESUBMISSION
+      - RESUBMITTED_TO_PAYOR
+      - PAYOR_APPROVED
+      - DENIED_UNAPPEALED
+      - PRELIMINARY_APPROVAL
+      - PARTIALLY_APPROVED
+      - WITHDRAWN
       x-folder: prior_authorization
-    PriorAuthorizationType:
-      type: string
-      enum:
-      - ASSESSMENT_AUTHORIZATION
-      - INITIAL_AUTHORIZATION
-      - CONCURRENT_AUTHORIZATION
-      - AMENDMENT
-      x-folder: prior_authorization
-    RuleExecutionResult:
-      type: string
-      enum:
-      - PASSED
-      - FAILED
-      x-folder: document_intelligence
-    V1GetStartDateRequirement:
-      properties:
-        required:
-          description: Whether start date is required
-          title: Required
-          type: boolean
-        requirement_satisfied:
-          description: Whether the requirement is satisfied
-          title: Requirement Satisfied
-          type: boolean
-      required:
-      - required
-      - requirement_satisfied
-      title: V1GetStartDateRequirement
-      type: object
-      x-folder: public_api
     V1PriorAuthorization:
       properties:
         id:
@@ -739,82 +815,6 @@ components:
       title: V1PriorAuthorization
       type: object
       x-folder: public_api
-    V1PriorAuthorizationDenialDocument:
-      properties:
-        document_type:
-          $ref: '#/components/schemas/PriorAuthorizationDenialDocumentType'
-          description: Type of document
-        file_id:
-          description: ID of the file
-          format: uuid
-          title: File Id
-          type: string
-      required:
-      - document_type
-      - file_id
-      title: V1PriorAuthorizationDenialDocument
-      type: object
-      x-folder: public_api
-    V1DocumentIntelligence:
-      properties:
-        validation_supported:
-          description: Whether document validation is supported for this document type
-          title: Validation Supported
-          type: boolean
-      required:
-      - validation_supported
-      title: V1DocumentIntelligence
-      type: object
-      x-folder: public_api
-    V1DocumentValidation:
-      properties:
-        id:
-          description: Document validation ID
-          format: uuid
-          title: Id
-          type: string
-        result:
-          $ref: '#/components/schemas/RuleExecutionResult'
-          description: Document validation result
-      required:
-      - id
-      - result
-      title: V1DocumentValidation
-      type: object
-      x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    V1PriorAuthorizationApprovalDocument:
-      properties:
-        document_type:
-          $ref: '#/components/schemas/PriorAuthorizationApprovalDocumentType'
-          description: Type of document
-        file_id:
-          description: ID of the file
-          format: uuid
-          title: File Id
-          type: string
-      required:
-      - document_type
-      - file_id
-      title: V1PriorAuthorizationApprovalDocument
-      type: object
-      x-folder: public_api
-    PriorAuthorizationUnit:
-      type: string
-      enum:
-      - VISITS
-      - CPT_UNITS
-      - HOURS
-      - DAYS
-      x-folder: prior_authorization
   securitySchemes:
     bearerAuth:
       type: http

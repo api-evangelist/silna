@@ -248,6 +248,21 @@ paths:
         description: ''
 components:
   schemas:
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     V1PayorInferenceIndividualSchema:
       properties:
         first_name:
@@ -287,61 +302,7 @@ components:
       title: V1PayorInferenceIndividualSchema
       type: object
       x-folder: public_api
-    V1PayorInferenceResultSchema:
-      properties:
-        individuals:
-          items:
-            $ref: '#/components/schemas/V1PayorInferenceIndividualSchema'
-          title: Individuals
-          type: array
-      title: V1PayorInferenceResultSchema
-      type: object
-      x-folder: public_api
-    V1PayorInferenceRequestSchema:
-      properties:
-        strategy:
-          $ref: '#/components/schemas/PayorInferenceConfigName'
-        patient_document_file_ids:
-          default: null
-          description: Optional list of document file IDs to process
-          title: Patient Document File Ids
-          items:
-            format: uuid
-            type: string
-          maxItems: 10
-          minItems: 1
-          type:
-          - array
-          - 'null'
-        text:
-          default: null
-          description: Payor Text
-          title: Text
-          maxLength: 5000
-          minLength: 1
-          type:
-          - string
-          - 'null'
-        patient_id:
-          default: null
-          description: Optional patient identifier
-          title: Patient Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        provider_id:
-          description: Required provider identifier (for HIPAA compliance)
-          format: uuid
-          title: Provider Id
-          type: string
-      required:
-      - strategy
-      - provider_id
-      title: V1PayorInferenceRequestSchema
-      type: object
-      x-folder: public_api
-    ValidationError:
+    TooManyRequestsError:
       type: object
       required:
       - message
@@ -350,23 +311,6 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    V1PayorInferencePostResponseSchema:
-      properties:
-        id:
-          format: uuid
-          title: Id
-          type: string
-      required:
-      - id
-      title: V1PayorInferencePostResponseSchema
-      type: object
-      x-folder: public_api
     AuthenticationError:
       type: object
       required:
@@ -388,47 +332,13 @@ components:
       - WORKERS_COMPENSATION
       - AUTO_INSURANCE
       x-folder: patient
-    V1PayorInferenceResponseSchema:
-      properties:
-        id:
-          format: uuid
-          title: Id
-          type: string
-        status:
-          $ref: '#/components/schemas/PayorInferenceStatus'
-        inference_result:
-          default: null
-          $ref: '#/components/schemas/V1PayorInferenceResultSchema'
-      required:
-      - id
-      - status
-      title: V1PayorInferenceResponseSchema
-      type: object
-      x-folder: public_api
-    PayorInferenceConfigName:
+    PayorInferenceStatus:
       type: string
       enum:
-      - NEAR_REALTIME
-      - BASE
+      - COMPLETED
+      - FAILED
+      - PROCESSING
       x-folder: payor_inference
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     V1PayorInferencePlanSchema:
       properties:
         member_number:
@@ -477,13 +387,103 @@ components:
       title: V1PayorInferencePlanSchema
       type: object
       x-folder: public_api
-    PayorInferenceStatus:
+    V1PayorInferenceRequestSchema:
+      properties:
+        strategy:
+          $ref: '#/components/schemas/PayorInferenceConfigName'
+        patient_document_file_ids:
+          default: null
+          description: Optional list of document file IDs to process
+          title: Patient Document File Ids
+          items:
+            format: uuid
+            type: string
+          maxItems: 10
+          minItems: 1
+          type:
+          - array
+          - 'null'
+        text:
+          default: null
+          description: Payor Text
+          title: Text
+          maxLength: 5000
+          minLength: 1
+          type:
+          - string
+          - 'null'
+        patient_id:
+          default: null
+          description: Optional patient identifier
+          title: Patient Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        provider_id:
+          description: Required provider identifier (for HIPAA compliance)
+          format: uuid
+          title: Provider Id
+          type: string
+      required:
+      - strategy
+      - provider_id
+      title: V1PayorInferenceRequestSchema
+      type: object
+      x-folder: public_api
+    PayorInferenceConfigName:
       type: string
       enum:
-      - COMPLETED
-      - FAILED
-      - PROCESSING
+      - NEAR_REALTIME
+      - BASE
       x-folder: payor_inference
+    V1PayorInferenceResponseSchema:
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+        status:
+          $ref: '#/components/schemas/PayorInferenceStatus'
+        inference_result:
+          default: null
+          $ref: '#/components/schemas/V1PayorInferenceResultSchema'
+      required:
+      - id
+      - status
+      title: V1PayorInferenceResponseSchema
+      type: object
+      x-folder: public_api
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PayorInferenceResultSchema:
+      properties:
+        individuals:
+          items:
+            $ref: '#/components/schemas/V1PayorInferenceIndividualSchema'
+          title: Individuals
+          type: array
+      title: V1PayorInferenceResultSchema
+      type: object
+      x-folder: public_api
+    V1PayorInferencePostResponseSchema:
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1PayorInferencePostResponseSchema
+      type: object
+      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

@@ -139,6 +139,30 @@ paths:
       x-folder: public_api
 components:
   schemas:
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     V1PriorAuthorizationPreview:
       properties:
         id:
@@ -165,6 +189,17 @@ components:
       title: V1PriorAuthorizationPreview
       type: object
       x-folder: public_api
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
     PublicSpecialty:
       type: string
       enum:
@@ -204,41 +239,6 @@ components:
       - PROFESSIONAL_OFFICE_VISIT
       - PSYCHIATRY
       x-folder: specialty
-    PublicPriorAuthorizationStatus:
-      type: string
-      enum:
-      - DATA_REQUESTED
-      - DATA_RECEIVED
-      - ALL_REQUIRED_DATA_RECEIVED
-      - REQUESTED
-      - TOO_EARLY_TO_SUBMIT
-      - UNNECESSARY
-      - AWAITING_PROVIDER
-      - PENDING_PROVIDER_SUBMISSION_REVIEW
-      - AWAITING_SILNA
-      - APPROVED_TO_SUBMIT
-      - SUBMITTED_TO_PAYOR
-      - PAYOR_DENIED
-      - PAYOR_DENIED_APPEALING
-      - AWAITING_RESUBMISSION
-      - RESUBMITTED_TO_PAYOR
-      - PAYOR_APPROVED
-      - DENIED_UNAPPEALED
-      - PRELIMINARY_APPROVAL
-      - PARTIALLY_APPROVED
-      - WITHDRAWN
-      x-folder: prior_authorization
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
     KeysetPaginatedResponse__V1PriorAuthorizationPreview:
       properties:
         has_more:
@@ -269,30 +269,30 @@ components:
       title: KeysetPaginatedResponse[V1PriorAuthorizationPreview]
       type: object
       x-folder: null
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
+    PublicPriorAuthorizationStatus:
       type: string
       enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
+      - DATA_REQUESTED
+      - DATA_RECEIVED
+      - ALL_REQUIRED_DATA_RECEIVED
+      - REQUESTED
+      - TOO_EARLY_TO_SUBMIT
+      - UNNECESSARY
+      - AWAITING_PROVIDER
+      - PENDING_PROVIDER_SUBMISSION_REVIEW
+      - AWAITING_SILNA
+      - APPROVED_TO_SUBMIT
+      - SUBMITTED_TO_PAYOR
+      - PAYOR_DENIED
+      - PAYOR_DENIED_APPEALING
+      - AWAITING_RESUBMISSION
+      - RESUBMITTED_TO_PAYOR
+      - PAYOR_APPROVED
+      - DENIED_UNAPPEALED
+      - PRELIMINARY_APPROVAL
+      - PARTIALLY_APPROVED
+      - WITHDRAWN
+      x-folder: prior_authorization
   securitySchemes:
     bearerAuth:
       type: http

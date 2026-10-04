@@ -287,7 +287,13 @@ paths:
         description: Binary file content to upload
 components:
   schemas:
-    RequestEntityTooLargeError:
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    ObjectNotFoundError:
       type: object
       required:
       - message
@@ -296,18 +302,7 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    V1FileCreateResponseSchema:
-      properties:
-        id:
-          format: uuid
-          title: Id
-          type: string
-      required:
-      - id
-      title: V1FileCreateResponseSchema
-      type: object
-      x-folder: public_api
-    ValidationError:
+    TooManyRequestsError:
       type: object
       required:
       - message
@@ -315,6 +310,17 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
     V1FileDumpSchema:
       properties:
@@ -339,18 +345,7 @@ components:
       title: V1FileDumpSchema
       type: object
       x-folder: public_api
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    TooManyRequestsError:
+    RequestEntityTooLargeError:
       type: object
       required:
       - message
@@ -359,7 +354,7 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    ObjectNotFoundError:
+    ValidationError:
       type: object
       required:
       - message
@@ -368,12 +363,17 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
+    V1FileCreateResponseSchema:
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1FileCreateResponseSchema
+      type: object
+      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

@@ -225,51 +225,17 @@ paths:
         description: "\n    Create Parameters for Bulk Export\n    "
 components:
   schemas:
-    V1BenefitsCheckExportQueryParams:
-      description: Benefits Export Params
+    V1PatientExportQueryParams:
+      description: Patient Export Params
       properties:
         export_type:
           title: Export Type
           type: string
           enum:
-          - BENEFITS_CHECK
-        date_range_start_date:
+          - PATIENT
+        service_location_ids:
           default: null
-          description: In ISO 8601 formatted date string
-          title: Date Range Start Date
-          type:
-          - string
-          - 'null'
-          example: '2024-02-01'
-        date_range_end_date:
-          default: null
-          description: In ISO 8601 formatted date string
-          title: Date Range End Date
-          type:
-          - string
-          - 'null'
-          example: '2024-02-01'
-        date_range_key:
-          default: null
-          description: The date key to use for date range filtering. This must be provided when using date range filters.
-          $ref: '#/components/schemas/BenefitsCheckDateRangeKey'
-        patient_id:
-          default: null
-          title: Patient Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        patient_plan_id:
-          default: null
-          title: Patient Plan Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        payor_entity_ids:
-          default: null
-          title: Payor Entity Ids
+          title: Service Location Ids
           items:
             format: uuid
             type: string
@@ -280,13 +246,13 @@ components:
           default: null
           title: Statuses
           items:
-            $ref: '#/components/schemas/BenefitsCheckStatusPublic'
+            $ref: '#/components/schemas/PatientStatus'
           type:
           - array
           - 'null'
-        service_location_ids:
+        payor_entity_ids:
           default: null
-          title: Service Location Ids
+          title: Payor Entity Ids
           items:
             format: uuid
             type: string
@@ -295,17 +261,27 @@ components:
           - 'null'
       required:
       - export_type
-      title: V1BenefitsCheckExportQueryParams
+      title: V1PatientExportQueryParams
       type: object
       x-folder: public_api
-    V1EscalationEhrSyncExportQueryParams:
-      description: Escalation EHR Sync Export Params
+    EligibilityDateRangeKey:
+      type: string
+      enum:
+      - created_at
+      - updated_at
+      - date_verified
+      - start_date
+      - end_date
+      - released_at
+      x-folder: eligibility_check
+    V1EscalationPriorAuthorizationExportQueryParams:
+      description: Escalation Prior Authorization Export Params
       properties:
         export_type:
           title: Export Type
           type: string
           enum:
-          - ESCALATION_EHR_SYNC
+          - ESCALATION_PRIOR_AUTHORIZATION
         service_location_ids:
           default: null
           title: Service Location Ids
@@ -333,19 +309,77 @@ components:
           - 'null'
       required:
       - export_type
-      title: V1EscalationEhrSyncExportQueryParams
+      title: V1EscalationPriorAuthorizationExportQueryParams
       type: object
       x-folder: public_api
-    BulkExportStatus:
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    BulkExportType:
       type: string
       enum:
-      - PENDING
-      - PROCESSING_ROWS
-      - MERGING_ROWS
-      - SUCCESS
-      - FAILURE
-      - NO_DATA_PRESENT
+      - PRIOR_AUTHORIZATION
+      - BENEFITS_CHECK
+      - ELIGIBILITY_CHECK
+      - PAYOR_DETECTION
+      - PATIENT
+      - ESCALATION_PRIOR_AUTHORIZATION
+      - ESCALATION_BENEFITS_CHECK
+      - ESCALATION_ELIGIBILITY_CHECK
+      - ESCALATION_EHR_SYNC
       x-folder: bulk_export
+    PriorAuthorizationType:
+      type: string
+      enum:
+      - ASSESSMENT_AUTHORIZATION
+      - INITIAL_AUTHORIZATION
+      - CONCURRENT_AUTHORIZATION
+      - AMENDMENT
+      x-folder: prior_authorization
+    V1EscalationBenefitsCheckExportQueryParams:
+      description: Escalation Benefits Check Export Params
+      properties:
+        export_type:
+          title: Export Type
+          type: string
+          enum:
+          - ESCALATION_BENEFITS_CHECK
+        service_location_ids:
+          default: null
+          title: Service Location Ids
+          items:
+            format: uuid
+            type: string
+          type:
+          - array
+          - 'null'
+        statuses:
+          default: null
+          description: 'Filter by provider-facing status: NEW, IN_PROGRESS, RESOLVED, WITHDRAWN.'
+          title: Statuses
+          items:
+            $ref: '#/components/schemas/EscalationProviderDisplayStatus'
+          type:
+          - array
+          - 'null'
+        patient_id:
+          default: null
+          title: Patient Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - export_type
+      title: V1EscalationBenefitsCheckExportQueryParams
+      type: object
+      x-folder: public_api
     V1BulkExportCreateParams:
       description: Create Parameters for Bulk Export
       properties:
@@ -391,78 +425,29 @@ components:
       title: V1BulkExportCreateParams
       type: object
       x-folder: public_api
-    PublicSpecialty:
+    PublicBulkExportPriorAuthorizationStatus:
       type: string
       enum:
-      - PHYSICAL_THERAPY
-      - ABA_THERAPY
-      - SPEECH_THERAPY
-      - OCCUPATIONAL_THERAPY
-      - PSYCHOLOGICAL_TESTING
-      - HOME_HEALTH_CARE
-      - HOSPICE
-      - CARDIAC_REHABILITATION
-      - INTENSIVE_CARDIAC_REHABILITATION
-      - MENTAL_HEALTH
-      - PRINCIPAL_ILLNESS_NAVIGATION
-      - PRINCIPAL_CARE_MANAGEMENT
-      - ADVANCED_PRIMARY_CARE_MODELS
-      - PREVENTATIVE_HEALTH
-      - PARTIAL_HOSPITALIZATION_PROGRAM
-      - INTENSIVE_OUTPATIENT_PROGRAM
-      - INTERVENTIONAL_RADIOLOGY
-      - VASCULAR_SURGERY
-      - INTERVENTIONAL_CARDIOLOGY
-      - ORTHOPEDICS
-      - CHIROPRACTIC
-      - GYNECOLOGY
-      - LONG_TERM_CARE
-      - NUTRITIONAL_COUNSELING
-      - PHYSICAL_MEDICINE
-      - PULMONARY_REHABILITATION
-      - INJECTABLE_SPECIALTY_MEDICATIONS
-      - ALLERGY_TESTING
-      - SKILLED_NURSING
-      - RADIOLOGY
-      - OTOLARYNGOLOGY
-      - DURABLE_MEDICAL_EQUIPMENT
-      - DERMATOLOGY
-      - PROFESSIONAL_OFFICE_VISIT
-      - PSYCHIATRY
-      x-folder: specialty
-    BulkExportType:
-      type: string
-      enum:
-      - PRIOR_AUTHORIZATION
-      - BENEFITS_CHECK
-      - ELIGIBILITY_CHECK
-      - PAYOR_DETECTION
-      - PATIENT
-      - ESCALATION_PRIOR_AUTHORIZATION
-      - ESCALATION_BENEFITS_CHECK
-      - ESCALATION_ELIGIBILITY_CHECK
-      - ESCALATION_EHR_SYNC
-      x-folder: bulk_export
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
+      - DATA_REQUESTED
+      - DATA_RECEIVED
+      - ALL_REQUIRED_DATA_RECEIVED
+      - REQUESTED
+      - UNNECESSARY
+      - AWAITING_PROVIDER
+      - PENDING_PROVIDER_SUBMISSION_REVIEW
+      - AWAITING_SILNA
+      - APPROVED_TO_SUBMIT
+      - SUBMITTED_TO_PAYOR
+      - PAYOR_DENIED
+      - PAYOR_DENIED_APPEALING
+      - AWAITING_RESUBMISSION
+      - RESUBMITTED_TO_PAYOR
+      - PAYOR_APPROVED
+      - DENIED_UNAPPEALED
+      - PRELIMINARY_APPROVAL
+      - PARTIALLY_APPROVED
+      - WITHDRAWN
+      x-folder: prior_authorization
     EscalationProviderDisplayStatus:
       type: string
       enum:
@@ -471,6 +456,17 @@ components:
       - RESOLVED
       - WITHDRAWN
       x-folder: escalations
+    PriorAuthorizationDateRangeKey:
+      type: string
+      enum:
+      - start_date
+      - end_date
+      - created_at
+      - updated_at
+      - submitted_at
+      - released_at
+      - due_date
+      x-folder: prior_authorization
     V1EligibilityCheckExportQueryParams:
       description: Eligibility Export Params
       properties:
@@ -544,17 +540,6 @@ components:
       title: V1EligibilityCheckExportQueryParams
       type: object
       x-folder: public_api
-    PriorAuthorizationDateRangeKey:
-      type: string
-      enum:
-      - start_date
-      - end_date
-      - created_at
-      - updated_at
-      - submitted_at
-      - released_at
-      - due_date
-      x-folder: prior_authorization
     BenefitsCheckDateRangeKey:
       type: string
       enum:
@@ -566,206 +551,6 @@ components:
       - due_date
       - released_at
       x-folder: benefit_check
-    EligibilityDateRangeKey:
-      type: string
-      enum:
-      - created_at
-      - updated_at
-      - date_verified
-      - start_date
-      - end_date
-      - released_at
-      x-folder: eligibility_check
-    V1BulkExportSchema:
-      properties:
-        id:
-          format: uuid
-          title: Id
-          type: string
-        status:
-          $ref: '#/components/schemas/BulkExportStatus'
-        export_type:
-          $ref: '#/components/schemas/BulkExportType'
-        file_id:
-          default: null
-          title: File Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-        created_at:
-          format: date-time
-          title: Created At
-          type: string
-      required:
-      - id
-      - status
-      - export_type
-      - created_at
-      title: V1BulkExportSchema
-      type: object
-      x-folder: public_api
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
-    V1PatientExportQueryParams:
-      description: Patient Export Params
-      properties:
-        export_type:
-          title: Export Type
-          type: string
-          enum:
-          - PATIENT
-        service_location_ids:
-          default: null
-          title: Service Location Ids
-          items:
-            format: uuid
-            type: string
-          type:
-          - array
-          - 'null'
-        statuses:
-          default: null
-          title: Statuses
-          items:
-            $ref: '#/components/schemas/PatientStatus'
-          type:
-          - array
-          - 'null'
-        payor_entity_ids:
-          default: null
-          title: Payor Entity Ids
-          items:
-            format: uuid
-            type: string
-          type:
-          - array
-          - 'null'
-      required:
-      - export_type
-      title: V1PatientExportQueryParams
-      type: object
-      x-folder: public_api
-    V1BulkExportCreateResponse:
-      properties:
-        bulk_export_id:
-          format: uuid
-          title: Bulk Export Id
-          type: string
-      required:
-      - bulk_export_id
-      title: V1BulkExportCreateResponse
-      type: object
-      x-folder: public_api
-    V1EscalationBenefitsCheckExportQueryParams:
-      description: Escalation Benefits Check Export Params
-      properties:
-        export_type:
-          title: Export Type
-          type: string
-          enum:
-          - ESCALATION_BENEFITS_CHECK
-        service_location_ids:
-          default: null
-          title: Service Location Ids
-          items:
-            format: uuid
-            type: string
-          type:
-          - array
-          - 'null'
-        statuses:
-          default: null
-          description: 'Filter by provider-facing status: NEW, IN_PROGRESS, RESOLVED, WITHDRAWN.'
-          title: Statuses
-          items:
-            $ref: '#/components/schemas/EscalationProviderDisplayStatus'
-          type:
-          - array
-          - 'null'
-        patient_id:
-          default: null
-          title: Patient Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-      required:
-      - export_type
-      title: V1EscalationBenefitsCheckExportQueryParams
-      type: object
-      x-folder: public_api
-    V1EscalationPriorAuthorizationExportQueryParams:
-      description: Escalation Prior Authorization Export Params
-      properties:
-        export_type:
-          title: Export Type
-          type: string
-          enum:
-          - ESCALATION_PRIOR_AUTHORIZATION
-        service_location_ids:
-          default: null
-          title: Service Location Ids
-          items:
-            format: uuid
-            type: string
-          type:
-          - array
-          - 'null'
-        statuses:
-          default: null
-          description: 'Filter by provider-facing status: NEW, IN_PROGRESS, RESOLVED, WITHDRAWN.'
-          title: Statuses
-          items:
-            $ref: '#/components/schemas/EscalationProviderDisplayStatus'
-          type:
-          - array
-          - 'null'
-        patient_id:
-          default: null
-          title: Patient Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-      required:
-      - export_type
-      title: V1EscalationPriorAuthorizationExportQueryParams
-      type: object
-      x-folder: public_api
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    BenefitsCheckStatusPublic:
-      type: string
-      enum:
-      - REQUESTED
-      - AWAITING_SILNA
-      - AWAITING_PROVIDER
-      - COMPLETE
-      - WITHDRAWN
-      x-folder: benefit_check
-    EligibilityCheckStatus:
-      type: string
-      enum:
-      - ELIGIBLE
-      - INELIGIBLE
-      - INCOMPLETE
-      - EDI_PROCESSING
-      - REQUESTED
-      - AWAITING_PROVIDER
-      - WITHDRAWN
-      x-folder: eligibility_check
     V1PriorAuthorizationExportQueryParams:
       description: Prior Auth Export Params
       properties:
@@ -865,37 +650,6 @@ components:
       title: V1PriorAuthorizationExportQueryParams
       type: object
       x-folder: public_api
-    PublicBulkExportPriorAuthorizationStatus:
-      type: string
-      enum:
-      - DATA_REQUESTED
-      - DATA_RECEIVED
-      - ALL_REQUIRED_DATA_RECEIVED
-      - REQUESTED
-      - UNNECESSARY
-      - AWAITING_PROVIDER
-      - PENDING_PROVIDER_SUBMISSION_REVIEW
-      - AWAITING_SILNA
-      - APPROVED_TO_SUBMIT
-      - SUBMITTED_TO_PAYOR
-      - PAYOR_DENIED
-      - PAYOR_DENIED_APPEALING
-      - AWAITING_RESUBMISSION
-      - RESUBMITTED_TO_PAYOR
-      - PAYOR_APPROVED
-      - DENIED_UNAPPEALED
-      - PRELIMINARY_APPROVAL
-      - PARTIALLY_APPROVED
-      - WITHDRAWN
-      x-folder: prior_authorization
-    PriorAuthorizationType:
-      type: string
-      enum:
-      - ASSESSMENT_AUTHORIZATION
-      - INITIAL_AUTHORIZATION
-      - CONCURRENT_AUTHORIZATION
-      - AMENDMENT
-      x-folder: prior_authorization
     V1EscalationEligibilityCheckExportQueryParams:
       description: Escalation Eligibility Check Export Params
       properties:
@@ -934,14 +688,15 @@ components:
       title: V1EscalationEligibilityCheckExportQueryParams
       type: object
       x-folder: public_api
-    PatientStatus:
-      type: string
-      enum:
-      - INTAKE
-      - ACTIVE
-      - DISCHARGED
-      - ON_HOLD
-      x-folder: patient
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     V1PayorDetectionExportQueryParams:
       description: Payor Detection Export Params
       properties:
@@ -979,7 +734,185 @@ components:
       title: V1PayorDetectionExportQueryParams
       type: object
       x-folder: public_api
-    TooManyRequestsError:
+    BulkExportStatus:
+      type: string
+      enum:
+      - PENDING
+      - PROCESSING_ROWS
+      - MERGING_ROWS
+      - SUCCESS
+      - FAILURE
+      - NO_DATA_PRESENT
+      x-folder: bulk_export
+    PublicSpecialty:
+      type: string
+      enum:
+      - PHYSICAL_THERAPY
+      - ABA_THERAPY
+      - SPEECH_THERAPY
+      - OCCUPATIONAL_THERAPY
+      - PSYCHOLOGICAL_TESTING
+      - HOME_HEALTH_CARE
+      - HOSPICE
+      - CARDIAC_REHABILITATION
+      - INTENSIVE_CARDIAC_REHABILITATION
+      - MENTAL_HEALTH
+      - PRINCIPAL_ILLNESS_NAVIGATION
+      - PRINCIPAL_CARE_MANAGEMENT
+      - ADVANCED_PRIMARY_CARE_MODELS
+      - PREVENTATIVE_HEALTH
+      - PARTIAL_HOSPITALIZATION_PROGRAM
+      - INTENSIVE_OUTPATIENT_PROGRAM
+      - INTERVENTIONAL_RADIOLOGY
+      - VASCULAR_SURGERY
+      - INTERVENTIONAL_CARDIOLOGY
+      - ORTHOPEDICS
+      - CHIROPRACTIC
+      - GYNECOLOGY
+      - LONG_TERM_CARE
+      - NUTRITIONAL_COUNSELING
+      - PHYSICAL_MEDICINE
+      - PULMONARY_REHABILITATION
+      - INJECTABLE_SPECIALTY_MEDICATIONS
+      - ALLERGY_TESTING
+      - SKILLED_NURSING
+      - RADIOLOGY
+      - OTOLARYNGOLOGY
+      - DURABLE_MEDICAL_EQUIPMENT
+      - DERMATOLOGY
+      - PROFESSIONAL_OFFICE_VISIT
+      - PSYCHIATRY
+      x-folder: specialty
+    V1BulkExportCreateResponse:
+      properties:
+        bulk_export_id:
+          format: uuid
+          title: Bulk Export Id
+          type: string
+      required:
+      - bulk_export_id
+      title: V1BulkExportCreateResponse
+      type: object
+      x-folder: public_api
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    V1BenefitsCheckExportQueryParams:
+      description: Benefits Export Params
+      properties:
+        export_type:
+          title: Export Type
+          type: string
+          enum:
+          - BENEFITS_CHECK
+        date_range_start_date:
+          default: null
+          description: In ISO 8601 formatted date string
+          title: Date Range Start Date
+          type:
+          - string
+          - 'null'
+          example: '2024-02-01'
+        date_range_end_date:
+          default: null
+          description: In ISO 8601 formatted date string
+          title: Date Range End Date
+          type:
+          - string
+          - 'null'
+          example: '2024-02-01'
+        date_range_key:
+          default: null
+          description: The date key to use for date range filtering. This must be provided when using date range filters.
+          $ref: '#/components/schemas/BenefitsCheckDateRangeKey'
+        patient_id:
+          default: null
+          title: Patient Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        patient_plan_id:
+          default: null
+          title: Patient Plan Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        payor_entity_ids:
+          default: null
+          title: Payor Entity Ids
+          items:
+            format: uuid
+            type: string
+          type:
+          - array
+          - 'null'
+        statuses:
+          default: null
+          title: Statuses
+          items:
+            $ref: '#/components/schemas/BenefitsCheckStatusPublic'
+          type:
+          - array
+          - 'null'
+        service_location_ids:
+          default: null
+          title: Service Location Ids
+          items:
+            format: uuid
+            type: string
+          type:
+          - array
+          - 'null'
+      required:
+      - export_type
+      title: V1BenefitsCheckExportQueryParams
+      type: object
+      x-folder: public_api
+    PatientStatus:
+      type: string
+      enum:
+      - INTAKE
+      - ACTIVE
+      - DISCHARGED
+      - ON_HOLD
+      x-folder: patient
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    EligibilityCheckStatus:
+      type: string
+      enum:
+      - ELIGIBLE
+      - INELIGIBLE
+      - INCOMPLETE
+      - EDI_PROCESSING
+      - REQUESTED
+      - AWAITING_PROVIDER
+      - WITHDRAWN
+      x-folder: eligibility_check
+    BenefitsCheckStatusPublic:
+      type: string
+      enum:
+      - REQUESTED
+      - AWAITING_SILNA
+      - AWAITING_PROVIDER
+      - COMPLETE
+      - WITHDRAWN
+      x-folder: benefit_check
+    ValidationError:
       type: object
       required:
       - message
@@ -988,6 +921,73 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
+    V1BulkExportSchema:
+      properties:
+        id:
+          format: uuid
+          title: Id
+          type: string
+        status:
+          $ref: '#/components/schemas/BulkExportStatus'
+        export_type:
+          $ref: '#/components/schemas/BulkExportType'
+        file_id:
+          default: null
+          title: File Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+        created_at:
+          format: date-time
+          title: Created At
+          type: string
+      required:
+      - id
+      - status
+      - export_type
+      - created_at
+      title: V1BulkExportSchema
+      type: object
+      x-folder: public_api
+    V1EscalationEhrSyncExportQueryParams:
+      description: Escalation EHR Sync Export Params
+      properties:
+        export_type:
+          title: Export Type
+          type: string
+          enum:
+          - ESCALATION_EHR_SYNC
+        service_location_ids:
+          default: null
+          title: Service Location Ids
+          items:
+            format: uuid
+            type: string
+          type:
+          - array
+          - 'null'
+        statuses:
+          default: null
+          description: 'Filter by provider-facing status: NEW, IN_PROGRESS, RESOLVED, WITHDRAWN.'
+          title: Statuses
+          items:
+            $ref: '#/components/schemas/EscalationProviderDisplayStatus'
+          type:
+          - array
+          - 'null'
+        patient_id:
+          default: null
+          title: Patient Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      required:
+      - export_type
+      title: V1EscalationEhrSyncExportQueryParams
+      type: object
+      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

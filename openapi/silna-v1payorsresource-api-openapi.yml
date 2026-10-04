@@ -144,43 +144,13 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    V1Payor:
-      description: Payors Response
-      properties:
-        id:
-          description: The Silna Identifier for the payor
-          format: uuid
-          title: Id
-          type: string
-        name:
-          description: The name of the payor
-          title: Name
-          type: string
-          example: AETNA
-        alternate_identifiers:
-          description: The alternate identifiers associated with the payor
-          items:
-            $ref: '#/components/schemas/V1AlternateIdentifier'
-          title: Alternate Identifiers
-          type: array
-        insurance_types:
-          description: The insurance types connected to the payor
-          items:
-            $ref: '#/components/schemas/InsuranceType'
-          title: Insurance Types
-          type: array
-          example:
-          - - COMMERCIAL
-            - MEDICARE
-      required:
-      - id
-      - name
-      - alternate_identifiers
-      - insurance_types
-      title: V1Payor
-      type: object
-      x-folder: public_api
-    ValidationError:
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    TooManyRequestsError:
       type: object
       required:
       - message
@@ -189,34 +159,6 @@ components:
           type: string
           description: Human readable error message
       x-folder: null
-    V1AlternateIdentifier:
-      description: Alternate Identifiers Response
-      properties:
-        identifier:
-          description: The alternate identifier
-          title: Identifier
-          type: string
-          example: AETNA_INSC
-        standard:
-          $ref: '#/components/schemas/PayorStandard'
-          description: The standard of the alternate identifier
-          example: AVAILITY
-        payor_types:
-          description: The types of insurances that this alternate identifier is associated with
-          items:
-            $ref: '#/components/schemas/InsuranceType'
-          title: Payor Types
-          type: array
-          example:
-          - COMMERCIAL
-          - MEDICARE
-      required:
-      - identifier
-      - standard
-      - payor_types
-      title: V1AlternateIdentifier
-      type: object
-      x-folder: public_api
     KeysetPaginatedResponse__V1Payor:
       properties:
         has_more:
@@ -258,25 +200,6 @@ components:
         type:
           $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
-    InsuranceType:
-      type: string
-      enum:
-      - COMMERCIAL
-      - MEDICARE
-      - MEDICAID
-      - REGIONAL_CENTER
-      - WORKERS_COMPENSATION
-      - AUTO_INSURANCE
-      x-folder: patient
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
     PayorStandard:
       type: string
       enum:
@@ -287,11 +210,88 @@ components:
       - CLAIM_MD
       - STEDI
       x-folder: payor_entity
-    PublicApiErrorType:
+    InsuranceType:
       type: string
       enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
+      - COMMERCIAL
+      - MEDICARE
+      - MEDICAID
+      - REGIONAL_CENTER
+      - WORKERS_COMPENSATION
+      - AUTO_INSURANCE
+      x-folder: patient
+    V1Payor:
+      description: Payors Response
+      properties:
+        id:
+          description: The Silna Identifier for the payor
+          format: uuid
+          title: Id
+          type: string
+        name:
+          description: The name of the payor
+          title: Name
+          type: string
+          example: AETNA
+        alternate_identifiers:
+          description: The alternate identifiers associated with the payor
+          items:
+            $ref: '#/components/schemas/V1AlternateIdentifier'
+          title: Alternate Identifiers
+          type: array
+        insurance_types:
+          description: The insurance types connected to the payor
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Insurance Types
+          type: array
+          example:
+          - - COMMERCIAL
+            - MEDICARE
+      required:
+      - id
+      - name
+      - alternate_identifiers
+      - insurance_types
+      title: V1Payor
+      type: object
+      x-folder: public_api
+    V1AlternateIdentifier:
+      description: Alternate Identifiers Response
+      properties:
+        identifier:
+          description: The alternate identifier
+          title: Identifier
+          type: string
+          example: AETNA_INSC
+        standard:
+          $ref: '#/components/schemas/PayorStandard'
+          description: The standard of the alternate identifier
+          example: AVAILITY
+        payor_types:
+          description: The types of insurances that this alternate identifier is associated with
+          items:
+            $ref: '#/components/schemas/InsuranceType'
+          title: Payor Types
+          type: array
+          example:
+          - COMMERCIAL
+          - MEDICARE
+      required:
+      - identifier
+      - standard
+      - payor_types
+      title: V1AlternateIdentifier
+      type: object
+      x-folder: public_api
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
       x-folder: null
   securitySchemes:
     bearerAuth:

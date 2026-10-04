@@ -117,23 +117,30 @@ paths:
       x-folder: public_api
 components:
   schemas:
-    V1ProviderPlaceOfService:
-      description: Provider Place of Service
-      properties:
-        id:
-          description: Provider Place of Service Id
-          format: uuid
-          title: Id
-          type: string
-        place_of_service_code:
-          $ref: '#/components/schemas/V1PlaceOfServiceCode'
-          description: Place of service code details
-      required:
-      - id
-      - place_of_service_code
-      title: V1ProviderPlaceOfService
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    ObjectNotFoundError:
       type: object
-      x-folder: public_api
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     AuthenticationError:
       type: object
       required:
@@ -177,30 +184,23 @@ components:
       title: V1PlaceOfServiceCode
       type: object
       x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
+    V1ProviderPlaceOfService:
+      description: Provider Place of Service
       properties:
-        message:
+        id:
+          description: Provider Place of Service Id
+          format: uuid
+          title: Id
           type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
+        place_of_service_code:
+          $ref: '#/components/schemas/V1PlaceOfServiceCode'
+          description: Place of service code details
       required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
+      - id
+      - place_of_service_code
+      title: V1ProviderPlaceOfService
+      type: object
+      x-folder: public_api
   securitySchemes:
     bearerAuth:
       type: http

@@ -257,6 +257,12 @@ paths:
         description: ''
 components:
   schemas:
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
     V1PayorDetectionRunResponse:
       properties:
         id:
@@ -300,117 +306,6 @@ components:
       title: V1PayorDetectionRunResponse
       type: object
       x-folder: public_api
-    V1PayorDetectionRunCreateResponse:
-      properties:
-        id:
-          description: The ID of the created payor detection run. Use this to poll the GET endpoint for results.
-          format: uuid
-          title: Id
-          type: string
-      required:
-      - id
-      title: V1PayorDetectionRunCreateResponse
-      type: object
-      x-folder: public_api
-    V1PayorDetectionRunCreateBody:
-      properties:
-        patient_id:
-          description: The ID of the patient to run payor detection for
-          format: uuid
-          title: Patient Id
-          type: string
-      required:
-      - patient_id
-      title: V1PayorDetectionRunCreateBody
-      type: object
-      x-folder: public_api
-    ValidationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PayorDetectionStatus:
-      type: string
-      enum:
-      - ACTIVE_PLAN
-      - NO_ACTIVE_PLAN
-      - ACTIVE_PLAN_RELATED_PAYOR
-      - ACTIVE_PLAN_DENTAL_OR_VISION
-      - ACTIVE_PLAN_MEDICAID_DUPLICATE
-      - ACTIVE_PLAN_NO_MEMBER_NUMBER
-      - ACTIVE_PLAN_OTHER_PAYOR
-      - ACTIVE_PLAN_EXPIRED
-      x-folder: payor_detection
-    PayorDetectionRunStatus:
-      type: string
-      enum:
-      - IN_PROGRESS
-      - COMPLETE
-      x-folder: payor_detection
-    PayorDetectionCategory:
-      type: string
-      enum:
-      - COVERAGE_FOUND
-      - POTENTIAL_COVERAGE
-      - NO_COVERAGE
-      x-folder: payor_detection
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    V1PayorDetectionOtherPayorSchema:
-      properties:
-        name:
-          description: The name of the other payor as returned by the EDI response. This is a raw string and may not match a payor entity name exactly.
-          title: Name
-          type: string
-        order_number:
-          default: null
-          description: The coordination of benefits order (e.g., 1 for primary, 2 for secondary)
-          title: Order Number
-          type:
-          - integer
-          - 'null'
-      required:
-      - name
-      title: V1PayorDetectionOtherPayorSchema
-      type: object
-      x-folder: public_api
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
     V1PayorDetectionSchema:
       properties:
         status:
@@ -515,6 +410,111 @@ components:
       title: V1PayorDetectionSchema
       type: object
       x-folder: public_api
+    ObjectNotFoundError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PayorDetectionOtherPayorSchema:
+      properties:
+        name:
+          description: The name of the other payor as returned by the EDI response. This is a raw string and may not match a payor entity name exactly.
+          title: Name
+          type: string
+        order_number:
+          default: null
+          description: The coordination of benefits order (e.g., 1 for primary, 2 for secondary)
+          title: Order Number
+          type:
+          - integer
+          - 'null'
+      required:
+      - name
+      title: V1PayorDetectionOtherPayorSchema
+      type: object
+      x-folder: public_api
+    TooManyRequestsError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
+      x-folder: null
+    PayorDetectionRunStatus:
+      type: string
+      enum:
+      - IN_PROGRESS
+      - COMPLETE
+      x-folder: payor_detection
+    V1PayorDetectionRunCreateBody:
+      properties:
+        patient_id:
+          description: The ID of the patient to run payor detection for
+          format: uuid
+          title: Patient Id
+          type: string
+      required:
+      - patient_id
+      title: V1PayorDetectionRunCreateBody
+      type: object
+      x-folder: public_api
+    PayorDetectionCategory:
+      type: string
+      enum:
+      - COVERAGE_FOUND
+      - POTENTIAL_COVERAGE
+      - NO_COVERAGE
+      x-folder: payor_detection
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
+    V1PayorDetectionRunCreateResponse:
+      properties:
+        id:
+          description: The ID of the created payor detection run. Use this to poll the GET endpoint for results.
+          format: uuid
+          title: Id
+          type: string
+      required:
+      - id
+      title: V1PayorDetectionRunCreateResponse
+      type: object
+      x-folder: public_api
+    PayorDetectionStatus:
+      type: string
+      enum:
+      - ACTIVE_PLAN
+      - NO_ACTIVE_PLAN
+      - ACTIVE_PLAN_RELATED_PAYOR
+      - ACTIVE_PLAN_DENTAL_OR_VISION
+      - ACTIVE_PLAN_MEDICAID_DUPLICATE
+      - ACTIVE_PLAN_NO_MEMBER_NUMBER
+      - ACTIVE_PLAN_OTHER_PAYOR
+      - ACTIVE_PLAN_EXPIRED
+      x-folder: payor_detection
   securitySchemes:
     bearerAuth:
       type: http

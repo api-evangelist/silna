@@ -269,26 +269,21 @@ paths:
         description: ''
 components:
   schemas:
-    V1PatientNoteCreate:
-      properties:
-        note:
-          default: null
-          description: The note text. At least one of note or file_id must be provided.
-          title: Note
-          type:
-          - string
-          - 'null'
-        file_id:
-          default: null
-          description: UUID of an uploaded file to attach to this note. At least one of note or file_id must be provided.
-          title: File Id
-          format: uuid
-          type:
-          - string
-          - 'null'
-      title: V1PatientNoteCreate
+    PublicApiErrorType:
+      type: string
+      enum:
+      - AUTH_INVALID_REQUEST_HEADER
+      - AUTH_INVALID_CREDENTIALS
+      x-folder: null
+    ObjectNotFoundError:
       type: object
-      x-folder: public_api
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
     KeysetPaginatedResponse__V1PatientNote:
       properties:
         has_more:
@@ -319,7 +314,7 @@ components:
       title: KeysetPaginatedResponse[V1PatientNote]
       type: object
       x-folder: null
-    ValidationError:
+    TooManyRequestsError:
       type: object
       required:
       - message
@@ -327,6 +322,17 @@ components:
         message:
           type: string
           description: Human readable error message
+      x-folder: null
+    AuthenticationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+        type:
+          $ref: '#/components/schemas/PublicApiErrorType'
       x-folder: null
     V1PatientNoteCreateResponse:
       properties:
@@ -339,41 +345,6 @@ components:
       title: V1PatientNoteCreateResponse
       type: object
       x-folder: public_api
-    AuthenticationError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-        type:
-          $ref: '#/components/schemas/PublicApiErrorType'
-      x-folder: null
-    TooManyRequestsError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    ObjectNotFoundError:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: Human readable error message
-      x-folder: null
-    PublicApiErrorType:
-      type: string
-      enum:
-      - AUTH_INVALID_REQUEST_HEADER
-      - AUTH_INVALID_CREDENTIALS
-      x-folder: null
     V1PatientNote:
       properties:
         id:
@@ -413,6 +384,35 @@ components:
       title: V1PatientNote
       type: object
       x-folder: public_api
+    V1PatientNoteCreate:
+      properties:
+        note:
+          default: null
+          description: The note text. At least one of note or file_id must be provided.
+          title: Note
+          type:
+          - string
+          - 'null'
+        file_id:
+          default: null
+          description: UUID of an uploaded file to attach to this note. At least one of note or file_id must be provided.
+          title: File Id
+          format: uuid
+          type:
+          - string
+          - 'null'
+      title: V1PatientNoteCreate
+      type: object
+      x-folder: public_api
+    ValidationError:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: Human readable error message
+      x-folder: null
   securitySchemes:
     bearerAuth:
       type: http
